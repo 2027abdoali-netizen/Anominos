@@ -4,19 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منصة الهكر العربي - التقييم والاختبارات السيبرانية</title>
-    <!-- Google Fonts & FontAwesome Icons -->
+    <!-- Google Fonts & FontAwesome -->
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-color: #0d1117;
-            --card-bg: #161b22;
+            --bg-color: #080c10;
+            --card-bg: rgba(22, 27, 34, 0.85);
             --accent-green: #00ff66;
+            --accent-green-dark: #00b347;
             --accent-blue: #58a6ff;
+            --accent-red: #ff7b72;
             --text-primary: #c9d1d9;
             --text-heading: #ffffff;
             --border-color: #30363d;
-            --shadow-glow: 0 0 15px rgba(0, 255, 102, 0.2);
+            --shadow-glow: 0 0 20px rgba(0, 255, 102, 0.15);
         }
 
         * {
@@ -32,19 +34,23 @@
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: center;
-            padding: 20px;
-            background-image: radial-gradient(circle at 50% 10%, rgba(0, 255, 102, 0.05), transparent 40%);
+            align-items: flex-start;
+            padding: 20px 10px;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(0, 255, 102, 0.08), transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(88, 166, 255, 0.05), transparent 50%);
+            background-attachment: fixed;
         }
 
         .container {
             width: 100%;
-            max-width: 550px;
+            max-width: 520px;
             background: var(--card-bg);
+            backdrop-filter: blur(12px);
             border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 28px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
             position: relative;
             overflow: hidden;
         }
@@ -59,38 +65,40 @@
             background: linear-gradient(90deg, var(--accent-green), var(--accent-blue));
         }
 
-        /* Top Bar Header */
+        /* Top Nav */
         .top-nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
-        .admin-btn {
-            background: #21262d;
-            color: var(--accent-green);
-            border: 1px solid var(--border-color);
+        .btn-toggle-admin {
+            background: rgba(88, 166, 255, 0.1);
+            color: var(--accent-blue);
+            border: 1px solid rgba(88, 166, 255, 0.3);
             padding: 8px 14px;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 0.85rem;
+            font-weight: 700;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
+            gap: 6px;
+            transition: all 0.3s;
         }
 
-        .admin-btn:hover {
-            border-color: var(--accent-green);
-            box-shadow: var(--shadow-glow);
+        .btn-toggle-admin:hover {
+            background: var(--accent-blue);
+            color: #000;
+            box-shadow: 0 0 15px rgba(88, 166, 255, 0.3);
         }
 
         .status-badge {
             font-size: 0.75rem;
             color: var(--accent-green);
             background: rgba(0, 255, 102, 0.1);
-            padding: 4px 10px;
+            padding: 5px 12px;
             border-radius: 20px;
             border: 1px solid rgba(0, 255, 102, 0.2);
             display: flex;
@@ -99,56 +107,64 @@
         }
 
         .status-dot {
-            width: 6px;
-            height: 6px;
+            width: 7px;
+            height: 7px;
             background-color: var(--accent-green);
             border-radius: 50%;
             box-shadow: 0 0 8px var(--accent-green);
+            animation: pulse 2s infinite;
         }
 
-        /* Main Logo & Title */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        /* Main Headers */
         .header {
             text-align: center;
-            margin-bottom: 24px;
+            margin-bottom: 22px;
         }
 
         .logo-icon {
-            width: 70px;
-            height: 70px;
-            background: rgba(0, 255, 102, 0.1);
+            width: 65px;
+            height: 65px;
+            background: rgba(0, 255, 102, 0.08);
             border: 2px solid var(--accent-green);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 0 auto 12px;
+            margin: 0 auto 10px;
             color: var(--accent-green);
-            font-size: 1.8rem;
+            font-size: 1.7rem;
             box-shadow: var(--shadow-glow);
         }
 
         .header h1 {
             color: var(--text-heading);
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 4px;
+            font-size: 1.4rem;
+            font-weight: 900;
+            letter-spacing: 0.5px;
         }
 
         .header p {
             color: #8b949e;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
+            margin-top: 2px;
         }
 
-        /* Form Fields */
+        /* Inputs & Controls */
         .form-group {
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
 
         .form-group label {
             display: block;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             margin-bottom: 6px;
             color: var(--text-heading);
+            font-weight: 500;
         }
 
         .input-wrapper {
@@ -163,16 +179,22 @@
             color: #8b949e;
         }
 
-        .custom-input, select.custom-input {
+        .custom-input, select.custom-input, textarea.custom-input {
             width: 100%;
-            padding: 12px 42px 12px 14px;
+            padding: 11px 40px 11px 12px;
             background-color: #0d1117;
             border: 1px solid var(--border-color);
-            border-radius: 8px;
+            border-radius: 10px;
             color: var(--text-heading);
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             outline: none;
-            transition: border-color 0.3s;
+            transition: all 0.3s;
+        }
+
+        textarea.custom-input {
+            padding-right: 12px;
+            resize: vertical;
+            min-height: 70px;
         }
 
         .custom-input:focus {
@@ -181,173 +203,163 @@
         }
 
         select.custom-input option {
-            background-color: var(--card-bg);
-            color: var(--text-heading);
+            background-color: #161b22;
         }
 
         /* Buttons */
         .btn-primary {
             width: 100%;
             padding: 12px;
-            background: linear-gradient(135deg, #238636, #2ea043);
-            color: #fff;
+            background: linear-gradient(135deg, #00ff66, #00b347);
+            color: #000;
             border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 700;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 800;
             cursor: pointer;
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 8px;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 255, 102, 0.2);
         }
 
         .btn-primary:hover {
-            opacity: 0.9;
-            box-shadow: 0 0 15px rgba(46, 160, 67, 0.4);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(0, 255, 102, 0.3);
         }
 
-        .divider {
-            display: flex;
-            align-items: center;
-            text-align: center;
-            margin: 20px 0;
-            color: #8b949e;
-            font-size: 0.8rem;
-        }
-
-        .divider::before, .divider::after {
-            content: '';
-            flex: 1;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .divider span {
-            padding: 0 10px;
-        }
-
-        .btn-gold {
-            width: 100%;
-            padding: 12px;
-            background: transparent;
-            color: #d29922;
-            border: 1px solid #d29922;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            font-weight: 700;
+        .btn-danger {
+            background: rgba(255, 123, 114, 0.1);
+            color: var(--accent-red);
+            border: 1px solid rgba(255, 123, 114, 0.3);
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
             cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-danger:hover {
+            background: var(--accent-red);
+            color: #fff;
+        }
+
+        /* Lesson & Quiz Cards Style */
+        .section-title {
+            color: var(--text-heading);
+            font-size: 1.1rem;
+            margin: 22px 0 12px;
             display: flex;
-            justify-content: center;
             align-items: center;
             gap: 8px;
-            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
         }
 
-        .btn-gold:hover {
-            background: rgba(210, 153, 34, 0.1);
-            box-shadow: 0 0 12px rgba(210, 153, 34, 0.3);
-        }
-
-        .card-secondary {
-            background-color: #0d1117;
+        .card-item {
+            background: #0d1117;
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 16px;
-            margin-top: 10px;
-        }
-
-        .card-title {
-            font-size: 0.85rem;
-            color: var(--accent-blue);
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .btn-secondary {
-            width: 100%;
-            padding: 10px;
-            background-color: #21262d;
-            color: var(--accent-blue);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            cursor: pointer;
-            margin-top: 10px;
+            margin-bottom: 14px;
+            position: relative;
             transition: border-color 0.3s;
         }
 
-        .btn-secondary:hover {
-            border-color: var(--accent-blue);
+        .card-item:hover {
+            border-color: rgba(0, 255, 102, 0.4);
         }
 
-        /* Lesson & Quiz Styles */
-        .lesson-card {
-            background: #0d1117;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
-        }
-
-        .lesson-card h3 {
-            color: var(--accent-green);
+        .card-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
             margin-bottom: 8px;
-            font-size: 1.1rem;
         }
 
-        .lesson-card p {
-            font-size: 0.9rem;
-            line-height: 1.6;
-            color: var(--text-primary);
+        .card-item h3 {
+            color: var(--accent-green);
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .card-item p {
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #c9d1d9;
         }
 
         .code-box {
-            background: #000;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
+            background: #040608;
+            border: 1px solid #21262d;
+            border-radius: 8px;
             padding: 10px;
             font-family: monospace;
             color: var(--accent-green);
             margin-top: 10px;
             direction: ltr;
             text-align: left;
+            font-size: 0.82rem;
+            overflow-x: auto;
         }
 
+        /* Quiz Radio Group */
         .quiz-option {
-            display: block;
+            display: flex;
+            align-items: center;
+            gap: 10px;
             background: #161b22;
             border: 1px solid var(--border-color);
-            padding: 10px;
-            border-radius: 6px;
+            padding: 10px 14px;
+            border-radius: 8px;
             margin: 8px 0;
             cursor: pointer;
-            transition: 0.2s;
+            font-size: 0.85rem;
+            transition: all 0.2s;
         }
 
         .quiz-option:hover {
             border-color: var(--accent-blue);
+            background: rgba(88, 166, 255, 0.05);
         }
 
+        .quiz-option input[type="radio"] {
+            accent-color: var(--accent-green);
+        }
+
+        /* Admin Section Styling */
+        .admin-box {
+            background: #0d1117;
+            border: 1px dashed var(--accent-blue);
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+
+        .admin-box h3 {
+            color: var(--accent-blue);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Footer */
         .footer {
             margin-top: 24px;
             text-align: center;
             font-size: 0.75rem;
             color: #8b949e;
             border-top: 1px solid var(--border-color);
-            padding-top: 16px;
+            padding-top: 14px;
         }
 
-        .footer p span {
-            color: var(--accent-green);
-        }
+        .footer span { color: var(--accent-green); }
 
-        .hidden {
-            display: none !important;
-        }
+        .hidden { display: none !important; }
     </style>
 </head>
 <body>
@@ -355,9 +367,9 @@
 <div class="container">
     <!-- Top Nav -->
     <div class="top-nav">
-        <button class="admin-btn" onclick="alert('لوحة التحكم قيد التطوير')">
-            <i class="fa-solid fa-user-shield"></i>
-            لوحة التحكم
+        <button class="btn-toggle-admin" onclick="toggleAdminPanel()">
+            <i class="fa-solid fa-user-gear"></i>
+            <span id="admin-btn-text">لوحة التحكم</span>
         </button>
         <div class="status-badge">
             <div class="status-dot"></div>
@@ -365,121 +377,113 @@
         </div>
     </div>
 
-    <!-- MAIN LOGIN / REGISTER SECTION -->
+    <!-- 1. LOGIN / ENTRANCE SECTION -->
     <div id="login-section">
         <div class="header">
-            <div class="logo-icon">
-                <i class="fa-solid fa-terminal"></i>
-            </div>
+            <div class="logo-icon"><i class="fa-solid fa-terminal"></i></div>
             <h1>منصة الهكر العربي</h1>
-            <p>اختبارات وتقييم المهارات في الأمن السيبراني</p>
+            <p>منصة الاختبارات والدروس السيبرانية التفاعلية</p>
         </div>
 
-        <form onsubmit="startApp(event)">
+        <form onsubmit="startPlatform(event)">
             <div class="form-group">
-                <label for="track">المسار التعليمي / التخصص</label>
+                <label>المسار التعليمي</label>
                 <div class="input-wrapper">
                     <i class="fa-solid fa-layer-group"></i>
-                    <select id="track" class="custom-input">
-                        <option value="web">اختراق التطبيقات والويب (Web Pentesting)</option>
-                        <option value="network">أمن الشبكات والإنترنت (Network Security)</option>
-                        <option value="reverse">الهندسة العكسية والبرمجيات الخبيثة (Reverse Engineering)</option>
-                        <option value="soc">تحليل الحوادث ومراقبة SOC (Blue Teaming)</option>
+                    <select id="user-track" class="custom-input">
+                        <option value="اختراق التطبيقات والويب">اختراق التطبيقات والويب (Web Pentesting)</option>
+                        <option value="أمن الشبكات">أمن الشبكات والإنترنت (Network Security)</option>
+                        <option value="الهندسة العكسية">الهندسة العكسية والبرمجيات الخبيثة (Reverse Eng)</option>
                     </select>
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="username">الاسم بالكامل / اللقب المتخصص</label>
+                <label>اسم الطالب / اللقب</label>
                 <div class="input-wrapper">
                     <i class="fa-solid fa-user-ninja"></i>
-                    <input type="text" id="username" class="custom-input" placeholder="أدخل اسمك أو الكود الخاص بك" required>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="phone">رقم الهاتف أو المعرّف</label>
-                <div class="input-wrapper">
-                    <i class="fa-solid fa-mobile-screen-button"></i>
-                    <input type="tel" id="phone" class="custom-input" placeholder="01XXXXXXXXX" required>
+                    <input type="text" id="user-name" class="custom-input" placeholder="أدخل اسمك هنا" required>
                 </div>
             </div>
 
             <button type="submit" class="btn-primary">
-                <i class="fa-solid fa-code"></i>
-                بدء الاختبار والشروحات
+                <i class="fa-solid fa-code"></i> دخول المنصة
             </button>
         </form>
+    </div>
 
-        <div class="divider">
-            <span>أو</span>
+    <!-- 2. ADMIN CONTROL PANEL (لوحة التحكم لإضافة الشروحات والأسئلة) -->
+    <div id="admin-section" class="hidden">
+        <div class="header" style="margin-bottom: 15px;">
+            <h2 style="color: var(--accent-blue); font-size: 1.2rem;"><i class="fa-solid fa-sliders"></i> لوحة إدارة المحتوى</h2>
+            <p>أضف الدروس والأسئلة لظهر فوراً للطلاب</p>
         </div>
 
-        <button class="btn-gold" onclick="alert('قائمة المتصدرين: 1. عبدالله علي (1500 نقطة)')">
-            <i class="fa-solid fa-trophy"></i>
-            قائمة المتصدرين والجوائز
-        </button>
+        <!-- إضافة درس -->
+        <div class="admin-box">
+            <h3><i class="fa-solid fa-plus-circle"></i> إضافة درس جديد</h3>
+            <div class="form-group">
+                <input type="text" id="new-lesson-title" class="custom-input" placeholder="عنوان الدرس (مثال: ثغرة XSS)">
+            </div>
+            <div class="form-group">
+                <textarea id="new-lesson-desc" class="custom-input" placeholder="شرح الدرس بالتفصيل..."></textarea>
+            </div>
+            <div class="form-group">
+                <input type="text" id="new-lesson-code" class="custom-input" placeholder="كود توضيحي / Payload (اختياري)">
+            </div>
+            <button class="btn-primary" style="background: linear-gradient(135deg, #58a6ff, #1f6feb); color: #fff;" onclick="addLesson()">
+                حفظ ونشر الدرس
+            </button>
+        </div>
 
-        <div class="card-secondary">
-            <div class="card-title">
-                <i class="fa-solid fa-key"></i>
-                التحقق من النتيجة أو الشهادة
+        <!-- إضافة سؤال -->
+        <div class="admin-box">
+            <h3><i class="fa-solid fa-question-circle"></i> إضافة سؤال جديد</h3>
+            <div class="form-group">
+                <input type="text" id="new-quiz-q" class="custom-input" placeholder="نص السؤال">
             </div>
-            <div class="input-wrapper">
-                <i class="fa-solid fa-lock"></i>
-                <input type="text" id="cert-code" class="custom-input" placeholder="أدخل الكود السري للاختبار">
+            <div class="form-group">
+                <input type="text" id="new-quiz-opt1" class="custom-input" placeholder="الخيار الأول (الإجابة الصحيحة)" style="border-color: var(--accent-green);">
             </div>
-            <button class="btn-secondary" onclick="checkCert()">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                عرض النتيجة
+            <div class="form-group">
+                <input type="text" id="new-quiz-opt2" class="custom-input" placeholder="الخيار الثاني (خاطئ)">
+            </div>
+            <div class="form-group">
+                <input type="text" id="new-quiz-opt3" class="custom-input" placeholder="الخيار الثالث (خاطئ)">
+            </div>
+            <button class="btn-primary" style="background: linear-gradient(135deg, #58a6ff, #1f6feb); color: #fff;" onclick="addQuiz()">
+                حفظ ونشر السؤال
             </button>
         </div>
     </div>
 
-    <!-- DASHBOARD & CONTENT SECTION (المحتوى والشروحات) -->
-    <div id="content-section" class="hidden">
-        <div class="header">
-            <h2 id="welcome-msg" style="color: var(--accent-green); font-size: 1.3rem;">مرحباً بك!</h2>
-            <p id="track-msg">المسار: اختراق التطبيقات والويب</p>
+    <!-- 3. STUDENT DISPLAY SECTION (عرض الشروحات والاختبارات) -->
+    <div id="main-content" class="hidden">
+        <div class="header" style="text-align: right; border-bottom: 1px solid var(--border-color); padding-bottom: 12px;">
+            <h2 id="display-welcome" style="color: var(--accent-green); font-size: 1.2rem;">مرحباً بك!</h2>
+            <p id="display-track" style="color: #8b949e; font-size: 0.8rem;">المسار: -</p>
         </div>
 
-        <!-- الشروحات -->
-        <h3 style="color: var(--text-heading); margin-bottom: 12px;"><i class="fa-solid fa-book-open"></i> الشروحات السيبرانية</h3>
-        
-        <div class="lesson-card">
-            <h3>الدرس الأول: ثغرة SQL Injection</h3>
-            <p>ثغرة حقن أوامر SQL تحدث عندما يتم إدخال بيانات من المستخدم مباشرة إلى الاستعلام دون تنقيح.</p>
-            <div class="code-box">SELECT * FROM users WHERE user = 'admin' AND pass = '' OR '1'='1';</div>
+        <!-- قسم الشروحات -->
+        <div class="section-title">
+            <i class="fa-solid fa-book-open" style="color: var(--accent-green);"></i>
+            <span>الشروحات والدروس</span>
+        </div>
+        <div id="lessons-container">
+            <!-- يتم تحميل الدروس هنا تلقائياً -->
         </div>
 
-        <div class="lesson-card">
-            <h3>الدرس الثاني: ثغرة XSS (Cross-Site Scripting)</h3>
-            <p>تسمح للمخترق بحقن أكواد JavaScript خبيثة داخل صفحات الويب ليتم تنفيذها في متصفح الضحية.</p>
-            <div class="code-box">&lt;script&gt;alert('XSS Payload!');&lt;/script&gt;</div>
+        <!-- قسم الاختبارات -->
+        <div class="section-title">
+            <i class="fa-solid fa-vial" style="color: var(--accent-blue);"></i>
+            <span>اختبر مهاراتك الان</span>
         </div>
-
-        <!-- الاختبار التفاعلي -->
-        <h3 style="color: var(--text-heading); margin: 20px 0 12px;"><i class="fa-solid fa-vial"></i> اختبر مهاراتك الان</h3>
-        <div class="lesson-card">
-            <p><strong>سؤال:</strong> ما الثغرة التي تمكن المخترق من قراءة قاعدة البيانات مباشرة؟</p>
-            <label class="quiz-option">
-                <input type="radio" name="q1" value="wrong"> XSS
-            </label>
-            <label class="quiz-option">
-                <input type="radio" name="q1" value="correct"> SQL Injection
-            </label>
-            <label class="quiz-option">
-                <input type="radio" name="q1" value="wrong"> CSRF
-            </label>
-            <button class="btn-primary" style="margin-top: 10px;" onclick="submitQuiz()">تسليم الإجابة</button>
+        <div id="quizzes-container">
+            <!-- يتم تحميل الأسئلة هنا تلقائياً -->
         </div>
-
-        <button class="btn-secondary" style="margin-top: 20px;" onclick="logout()">
-            <i class="fa-solid fa-right-from-bracket"></i> تسجيل الخروج
-        </button>
     </div>
 
-    <!-- Footer Credit -->
+    <!-- Footer -->
     <div class="footer">
         <p>تطوير وتصميم: <span>فريق الهكر العربي</span></p>
         <p style="margin-top: 4px;">جميع الحقوق محفوظة &copy; 2026</p>
@@ -487,49 +491,204 @@
 </div>
 
 <script>
-    function startApp(event) {
-        event.preventDefault();
-        const username = document.getElementById('username').value;
-        const trackSelect = document.getElementById('track');
-        const trackText = trackSelect.options[trackSelect.selectedIndex].text;
+    // البيانات الافتراضية
+    const defaultLessons = [
+        {
+            id: 1,
+            title: "الدرس الأول: ثغرة SQL Injection",
+            desc: "تحدث هذه الثغرة عند إدخال مدخلات خبيثة إلى استعلامات قواعد البيانات دون تصفيتها بشكل صحيح.",
+            code: "SELECT * FROM users WHERE user = 'admin' AND pass = '' OR '1'='1';"
+        }
+    ];
 
-        document.getElementById('welcome-msg').innerText = "مرحباً بك، " + username;
-        document.getElementById('track-msg').innerText = "المسار الحالي: " + trackText;
+    const defaultQuizzes = [
+        {
+            id: 1,
+            question: "ما الثغرة التي تسمح بتهديد وتعديل البيانات في قواعد البيانات مباشرة؟",
+            options: ["SQL Injection", "XSS", "CSRF"],
+            answer: 0
+        }
+    ];
+
+    // جلب البيانات من الميموري أو تعيين الافتراضي
+    let lessons = JSON.parse(localStorage.getItem('hacker_lessons')) || defaultLessons;
+    let quizzes = JSON.parse(localStorage.getItem('hacker_quizzes')) || defaultQuizzes;
+
+    function saveData() {
+        localStorage.setItem('hacker_lessons', JSON.stringify(lessons));
+        localStorage.setItem('hacker_quizzes', JSON.stringify(quizzes));
+    }
+
+    function startPlatform(e) {
+        e.preventDefault();
+        const name = document.getElementById('user-name').value;
+        const track = document.getElementById('user-track').value;
+
+        document.getElementById('display-welcome').innerText = "مرحباً بك، " + name;
+        document.getElementById('display-track').innerText = "المسار الحالي: " + track;
 
         document.getElementById('login-section').classList.add('hidden');
-        document.getElementById('content-section').classList.remove('hidden');
+        document.getElementById('main-content').classList.remove('hidden');
+
+        renderContent();
     }
 
-    function logout() {
-        document.getElementById('content-section').classList.add('hidden');
-        document.getElementById('login-section').classList.remove('hidden');
-    }
+    function toggleAdminPanel() {
+        const adminSec = document.getElementById('admin-section');
+        const loginSec = document.getElementById('login-section');
+        const mainSec = document.getElementById('main-content');
+        const btnText = document.getElementById('admin-btn-text');
 
-    function submitQuiz() {
-        const options = document.getElementsByName('q1');
-        let selected = false;
-        for (let opt of options) {
-            if (opt.checked) {
-                selected = true;
-                if (opt.value === 'correct') {
-                    alert('إجابة صحيحة! أحسنت 🔥');
-                } else {
-                    alert('إجابة خاطئة! حاول مرة أخرى.');
-                }
-            }
-        }
-        if (!selected) alert('برجاء اختيار إجابة أولاً!');
-    }
-
-    function checkCert() {
-        const code = document.getElementById('cert-code').value;
-        if (code === "12345") {
-            alert('الشهادة معتمدة لصالح: عبدالله علي - التقييم: ممتاز!');
-        } else if (code.trim() === "") {
-            alert('برجاء إدخال كود الشهادة.');
+        if (adminSec.classList.contains('hidden')) {
+            adminSec.classList.remove('hidden');
+            loginSec.classList.add('hidden');
+            mainSec.classList.add('hidden');
+            btnText.innerText = "العودة للمنصة";
         } else {
-            alert('الكود غير صحيح أو الشهادة غير موجودة.');
+            adminSec.classList.add('hidden');
+            mainSec.classList.remove('hidden');
+            btnText.innerText = "لوحة التحكم";
+            renderContent();
         }
+    }
+
+    function renderContent() {
+        // رسم الدروس
+        const lessonContainer = document.getElementById('lessons-container');
+        lessonContainer.innerHTML = '';
+        
+        if (lessons.length === 0) {
+            lessonContainer.innerHTML = '<p style="font-size: 0.85rem; color:#8b949e;">لا توجد دروس حالياً.</p>';
+        } else {
+            lessons.forEach((l, index) => {
+                lessonContainer.innerHTML += `
+                    <div class="card-item">
+                        <div class="card-item-header">
+                            <h3>${l.title}</h3>
+                            <button class="btn-danger" onclick="deleteLesson(${index})"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                        <p>${l.desc}</p>
+                        ${l.code ? `<div class="code-box">${escapeHtml(l.code)}</div>` : ''}
+                    </div>
+                `;
+            });
+        }
+
+        // رسم الأسئلة
+        const quizContainer = document.getElementById('quizzes-container');
+        quizContainer.innerHTML = '';
+
+        if (quizzes.length === 0) {
+            quizContainer.innerHTML = '<p style="font-size: 0.85rem; color:#8b949e;">لا توجد أسئلة حالياً.</p>';
+        } else {
+            quizzes.forEach((q, qIndex) => {
+                let optionsHTML = '';
+                q.options.forEach((opt, oIndex) => {
+                    optionsHTML += `
+                        <label class="quiz-option">
+                            <input type="radio" name="quiz_${qIndex}" value="${oIndex}">
+                            <span>${opt}</span>
+                        </label>
+                    `;
+                });
+
+                quizContainer.innerHTML += `
+                    <div class="card-item">
+                        <div class="card-item-header">
+                            <p style="font-weight: 700; color: #fff;">سُؤال: ${q.question}</p>
+                            <button class="btn-danger" onclick="deleteQuiz(${qIndex})"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                        ${optionsHTML}
+                        <button class="btn-primary" style="margin-top: 10px; padding: 8px; font-size:0.85rem;" onclick="checkAnswer(${qIndex})">تسليم الإجابة</button>
+                    </div>
+                `;
+            });
+        }
+    }
+
+    function addLesson() {
+        const title = document.getElementById('new-lesson-title').value.trim();
+        const desc = document.getElementById('new-lesson-desc').value.trim();
+        const code = document.getElementById('new-lesson-code').value.trim();
+
+        if (!title || !desc) {
+            alert('برجاء كتابة عنوان الدرس والشرح أولاً!');
+            return;
+        }
+
+        lessons.push({ id: Date.now(), title, desc, code });
+        saveData();
+
+        document.getElementById('new-lesson-title').value = '';
+        document.getElementById('new-lesson-desc').value = '';
+        document.getElementById('new-lesson-code').value = '';
+
+        alert('تم إضافة الدرس بنجاح! 🔥');
+    }
+
+    function addQuiz() {
+        const q = document.getElementById('new-quiz-q').value.trim();
+        const opt1 = document.getElementById('new-quiz-opt1').value.trim();
+        const opt2 = document.getElementById('new-quiz-opt2').value.trim();
+        const opt3 = document.getElementById('new-quiz-opt3').value.trim();
+
+        if (!q || !opt1 || !opt2) {
+            alert('برجاء إدخال السؤال والإجابة الصحيحة والخيار الثاني على الأقل!');
+            return;
+        }
+
+        const options = [opt1, opt2];
+        if (opt3) options.push(opt3);
+
+        quizzes.push({ id: Date.now(), question: q, options: options, answer: 0 });
+        saveData();
+
+        document.getElementById('new-quiz-q').value = '';
+        document.getElementById('new-quiz-opt1').value = '';
+        document.getElementById('new-quiz-opt2').value = '';
+        document.getElementById('new-quiz-opt3').value = '';
+
+        alert('تم إضافة السؤال بنجاح! 🔥');
+    }
+
+    function deleteLesson(index) {
+        if (confirm('هل أنت تأكد من حذف هذا الدرس؟')) {
+            lessons.splice(index, 1);
+            saveData();
+            renderContent();
+        }
+    }
+
+    function deleteQuiz(index) {
+        if (confirm('هل أنت تأكد من حذف هذا السؤال؟')) {
+            quizzes.splice(index, 1);
+            saveData();
+            renderContent();
+        }
+    }
+
+    function checkAnswer(qIndex) {
+        const radios = document.getElementsByName(`quiz_${qIndex}`);
+        let selectedValue = -1;
+
+        radios.forEach(r => {
+            if (r.checked) selectedValue = parseInt(r.value);
+        });
+
+        if (selectedValue === -1) {
+            alert('برجاء اختيار إجابة أولاً!');
+            return;
+        }
+
+        if (selectedValue === quizzes[qIndex].answer) {
+            alert('إجابة صحيحة! أحسنت 🎯🔥');
+        } else {
+            alert('إجابة خاطئة! حاول مرة أخرى ❌');
+        }
+    }
+
+    function escapeHtml(text) {
+        return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     }
 </script>
 
