@@ -39,7 +39,7 @@
 
         .container {
             width: 100%;
-            max-width: 480px;
+            max-width: 550px;
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 16px;
@@ -284,6 +284,54 @@
             border-color: var(--accent-blue);
         }
 
+        /* Lesson & Quiz Styles */
+        .lesson-card {
+            background: #0d1117;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .lesson-card h3 {
+            color: var(--accent-green);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .lesson-card p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .code-box {
+            background: #000;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 10px;
+            font-family: monospace;
+            color: var(--accent-green);
+            margin-top: 10px;
+            direction: ltr;
+            text-align: left;
+        }
+
+        .quiz-option {
+            display: block;
+            background: #161b22;
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            border-radius: 6px;
+            margin: 8px 0;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--accent-blue);
+        }
+
         .footer {
             margin-top: 24px;
             text-align: center;
@@ -296,6 +344,10 @@
         .footer p span {
             color: var(--accent-green);
         }
+
+        .hidden {
+            display: none !important;
+        }
     </style>
 </head>
 <body>
@@ -303,7 +355,7 @@
 <div class="container">
     <!-- Top Nav -->
     <div class="top-nav">
-        <button class="admin-btn">
+        <button class="admin-btn" onclick="alert('لوحة التحكم قيد التطوير')">
             <i class="fa-solid fa-user-shield"></i>
             لوحة التحكم
         </button>
@@ -313,75 +365,117 @@
         </div>
     </div>
 
-    <!-- Header -->
-    <div class="header">
-        <div class="logo-icon">
-            <i class="fa-solid fa-terminal"></i>
-        </div>
-        <h1>منصة الهكر العربي</h1>
-        <p>اختبارات وتقييم المهارات في الأمن السيبراني</p>
-    </div>
-
-    <!-- Main Registration Form -->
-    <form onsubmit="return false;">
-        <div class="form-group">
-            <label for="track">المسار التعليمي / التخصص</label>
-            <div class="input-wrapper">
-                <i class="fa-solid fa-layer-group"></i>
-                <select id="track" class="custom-input">
-                    <option value="web">اختراق التطبيقات والويب (Web Pentesting)</option>
-                    <option value="network">أمن الشبكات والإنترنت (Network Security)</option>
-                    <option value="reverse">الهندسة العكسية والبرمجيات الخبيثة (Reverse Engineering)</option>
-                    <option value="soc">تحليل الحوادث ومراقبة SOC (Blue Teaming)</option>
-                </select>
+    <!-- MAIN LOGIN / REGISTER SECTION -->
+    <div id="login-section">
+        <div class="header">
+            <div class="logo-icon">
+                <i class="fa-solid fa-terminal"></i>
             </div>
+            <h1>منصة الهكر العربي</h1>
+            <p>اختبارات وتقييم المهارات في الأمن السيبراني</p>
         </div>
 
-        <div class="form-group">
-            <label for="username">الاسم بالكامل / المقب المتخصص</label>
-            <div class="input-wrapper">
-                <i class="fa-solid fa-user-ninja"></i>
-                <input type="text" id="username" class="custom-input" placeholder="أدخل اسمك أو الكود الخاص بك">
+        <form onsubmit="startApp(event)">
+            <div class="form-group">
+                <label for="track">المسار التعليمي / التخصص</label>
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <select id="track" class="custom-input">
+                        <option value="web">اختراق التطبيقات والويب (Web Pentesting)</option>
+                        <option value="network">أمن الشبكات والإنترنت (Network Security)</option>
+                        <option value="reverse">الهندسة العكسية والبرمجيات الخبيثة (Reverse Engineering)</option>
+                        <option value="soc">تحليل الحوادث ومراقبة SOC (Blue Teaming)</option>
+                    </select>
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label for="phone">رقم الهاتف أو المعرّف</label>
-            <div class="input-wrapper">
-                <i class="fa-solid fa-mobile-screen-button"></i>
-                <input type="tel" id="phone" class="custom-input" placeholder="01XXXXXXXXX">
+            <div class="form-group">
+                <label for="username">الاسم بالكامل / اللقب المتخصص</label>
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-user-ninja"></i>
+                    <input type="text" id="username" class="custom-input" placeholder="أدخل اسمك أو الكود الخاص بك" required>
+                </div>
             </div>
+
+            <div class="form-group">
+                <label for="phone">رقم الهاتف أو المعرّف</label>
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                    <input type="tel" id="phone" class="custom-input" placeholder="01XXXXXXXXX" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-primary">
+                <i class="fa-solid fa-code"></i>
+                بدء الاختبار والشروحات
+            </button>
+        </form>
+
+        <div class="divider">
+            <span>أو</span>
         </div>
 
-        <button type="submit" class="btn-primary">
-            <i class="fa-solid fa-code"></i>
-            بدء الاختبار السيبراني
+        <button class="btn-gold" onclick="alert('قائمة المتصدرين: 1. عبدالله علي (1500 نقطة)')">
+            <i class="fa-solid fa-trophy"></i>
+            قائمة المتصدرين والجوائز
         </button>
-    </form>
 
-    <div class="divider">
-        <span>أو</span>
+        <div class="card-secondary">
+            <div class="card-title">
+                <i class="fa-solid fa-key"></i>
+                التحقق من النتيجة أو الشهادة
+            </div>
+            <div class="input-wrapper">
+                <i class="fa-solid fa-lock"></i>
+                <input type="text" id="cert-code" class="custom-input" placeholder="أدخل الكود السري للاختبار">
+            </div>
+            <button class="btn-secondary" onclick="checkCert()">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                عرض النتيجة
+            </button>
+        </div>
     </div>
 
-    <!-- Leaderboard Button -->
-    <button class="btn-gold">
-        <i class="fa-solid fa-trophy"></i>
-        قائمة المتصدرين والجوائز
-    </button>
+    <!-- DASHBOARD & CONTENT SECTION (المحتوى والشروحات) -->
+    <div id="content-section" class="hidden">
+        <div class="header">
+            <h2 id="welcome-msg" style="color: var(--accent-green); font-size: 1.3rem;">مرحباً بك!</h2>
+            <p id="track-msg">المسار: اختراق التطبيقات والويب</p>
+        </div>
 
-    <!-- Result Verification Box -->
-    <div class="card-secondary" style="margin-top: 16px;">
-        <div class="card-title">
-            <i class="fa-solid fa-key"></i>
-            التحقق من النتيجة أو الشهادة
+        <!-- الشروحات -->
+        <h3 style="color: var(--text-heading); margin-bottom: 12px;"><i class="fa-solid fa-book-open"></i> الشروحات السيبرانية</h3>
+        
+        <div class="lesson-card">
+            <h3>الدرس الأول: ثغرة SQL Injection</h3>
+            <p>ثغرة حقن أوامر SQL تحدث عندما يتم إدخال بيانات من المستخدم مباشرة إلى الاستعلام دون تنقيح.</p>
+            <div class="code-box">SELECT * FROM users WHERE user = 'admin' AND pass = '' OR '1'='1';</div>
         </div>
-        <div class="input-wrapper">
-            <i class="fa-solid fa-lock"></i>
-            <input type="text" class="custom-input" placeholder="أدخل الكود السري للاختبار">
+
+        <div class="lesson-card">
+            <h3>الدرس الثاني: ثغرة XSS (Cross-Site Scripting)</h3>
+            <p>تسمح للمخترق بحقن أكواد JavaScript خبيثة داخل صفحات الويب ليتم تنفيذها في متصفح الضحية.</p>
+            <div class="code-box">&lt;script&gt;alert('XSS Payload!');&lt;/script&gt;</div>
         </div>
-        <button class="btn-secondary">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            عرض النتيجة
+
+        <!-- الاختبار التفاعلي -->
+        <h3 style="color: var(--text-heading); margin: 20px 0 12px;"><i class="fa-solid fa-vial"></i> اختبر مهاراتك الان</h3>
+        <div class="lesson-card">
+            <p><strong>سؤال:</strong> ما الثغرة التي تمكن المخترق من قراءة قاعدة البيانات مباشرة؟</p>
+            <label class="quiz-option">
+                <input type="radio" name="q1" value="wrong"> XSS
+            </label>
+            <label class="quiz-option">
+                <input type="radio" name="q1" value="correct"> SQL Injection
+            </label>
+            <label class="quiz-option">
+                <input type="radio" name="q1" value="wrong"> CSRF
+            </label>
+            <button class="btn-primary" style="margin-top: 10px;" onclick="submitQuiz()">تسليم الإجابة</button>
+        </div>
+
+        <button class="btn-secondary" style="margin-top: 20px;" onclick="logout()">
+            <i class="fa-solid fa-right-from-bracket"></i> تسجيل الخروج
         </button>
     </div>
 
@@ -391,6 +485,53 @@
         <p style="margin-top: 4px;">جميع الحقوق محفوظة &copy; 2026</p>
     </div>
 </div>
+
+<script>
+    function startApp(event) {
+        event.preventDefault();
+        const username = document.getElementById('username').value;
+        const trackSelect = document.getElementById('track');
+        const trackText = trackSelect.options[trackSelect.selectedIndex].text;
+
+        document.getElementById('welcome-msg').innerText = "مرحباً بك، " + username;
+        document.getElementById('track-msg').innerText = "المسار الحالي: " + trackText;
+
+        document.getElementById('login-section').classList.add('hidden');
+        document.getElementById('content-section').classList.remove('hidden');
+    }
+
+    function logout() {
+        document.getElementById('content-section').classList.add('hidden');
+        document.getElementById('login-section').classList.remove('hidden');
+    }
+
+    function submitQuiz() {
+        const options = document.getElementsByName('q1');
+        let selected = false;
+        for (let opt of options) {
+            if (opt.checked) {
+                selected = true;
+                if (opt.value === 'correct') {
+                    alert('إجابة صحيحة! أحسنت 🔥');
+                } else {
+                    alert('إجابة خاطئة! حاول مرة أخرى.');
+                }
+            }
+        }
+        if (!selected) alert('برجاء اختيار إجابة أولاً!');
+    }
+
+    function checkCert() {
+        const code = document.getElementById('cert-code').value;
+        if (code === "12345") {
+            alert('الشهادة معتمدة لصالح: عبدالله علي - التقييم: ممتاز!');
+        } else if (code.trim() === "") {
+            alert('برجاء إدخال كود الشهادة.');
+        } else {
+            alert('الكود غير صحيح أو الشهادة غير موجودة.');
+        }
+    }
+</script>
 
 </body>
 </html>
