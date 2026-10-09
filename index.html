@@ -236,6 +236,17 @@
             margin-top: 10px;
         }
 
+        .btn-danger {
+            width: auto;
+            padding: 10px 12px;
+            background: rgba(255,71,87,0.12);
+            color: var(--danger-color);
+            border: 1px solid rgba(255,71,87,0.15);
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
         .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(0, 255, 136, 0.4);
@@ -843,6 +854,7 @@
                 <button class="tab-btn active" data-admin-tab="addLessonTab">إضافة درس</button>
                 <button class="tab-btn" data-admin-tab="addExamTab">إضافة اختبار</button>
                 <button class="tab-btn" data-admin-tab="addAdminTab">إضافة مشرف</button>
+                <button class="tab-btn" data-admin-tab="storageTab">إدارة التخزين</button>
             </div>
 
             <div id="addLessonTab" class="admin-tab-content active">
@@ -868,7 +880,7 @@
                         <input type="text" id="examTitle" placeholder="مثال: اختبار الفلسفة الأسبوعي">
                     </div>
                     <div class="form-group">
-                        <label>رابط الاختبار</label>
+                        <label>رابط الاختبار (اختياري)</label>
                         <input type="text" id="examLink" placeholder="رابط Google Form">
                     </div>
                     <button class="btn-primary" onclick="addNewExam()">نشر الاختبار</button>
@@ -887,6 +899,23 @@
                         <input type="text" id="newAdminCode" value="hAf!?2N2" readonly>
                     </div>
                     <button class="btn-primary" onclick="addAdminUser()">إضافة المشرف</button>
+                </div>
+            </div>
+
+            <div id="storageTab" class="admin-tab-content">
+                <div class="card">
+                    <h3><i class="fa-solid fa-database"></i> إدارة التخزين</h3>
+                    <p style="color:var(--text-muted); margin-bottom:10px;">
+                        تحكم في بيانات localStorage المرتبطة بالمنصة.
+                    </p>
+                    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                        <button class="btn-danger" onclick="clearLessons()">مسح كل الدروس</button>
+                        <button class="btn-danger" onclick="clearExams()">مسح كل الاختبارات</button>
+                        <button class="btn-danger" onclick="clearAllData()">مسح جميع بيانات المنصة</button>
+                    </div>
+                    <p style="font-size:0.85rem; color:var(--text-muted); margin-top:12px;">
+                        ملاحظة: مسح جميع البيانات سيعيد تحميل القيم الافتراضية (إن وجدت).
+                    </p>
                 </div>
             </div>
         </div>
@@ -931,7 +960,7 @@
                     },
                     {
                         q: "أي من التالي يعد أسلوباً فعالاً للتعلم؟",
-                        options: ["الدراسة العشوائية", "التكرار المنتظم مع الفهم", "تأجيل كل شيء", "الحفظ دون مراجعة",],
+                        options: ["الدراسة العشوائية", "التكرار المنتظم مع الفهم", "تأجيل كل شيء", "الحفظ دون مراجعة"],
                         answer: 1
                     },
                     {
@@ -973,12 +1002,6 @@
         let currentExamAnswers = {};
         let currentExamIndex = 0;
 
-        const state = {
-            isAdminMode: false,
-            currentStudent: null,
-            currentExam: null
-        };
-
         const elements = {
             loginSection: document.getElementById('loginSection'),
             studentDashboard: document.getElementById('studentDashboard'),
@@ -1007,9 +1030,10 @@
             const storedLessons = JSON.parse(localStorage.getItem(STORAGE_KEYS.lessons) || "null");
             const storedExams = JSON.parse(localStorage.getItem(STORAGE_KEYS.exams) || "null");
 
-            lessonData = Array.isArray(storedLessons) && storedLessons.length ? storedLessons : defaultLessons;
-            examData = Array.isArray(storedExams) && storedExams.length ? storedExams : defaultExams;
+            lessonData = Array.isArray(storedLessons) && storedLessons.length ? storedLessons : defaultLessons.slice();
+            examData = Array.isArray(storedExams) && storedExams.length ? storedExams : defaultExams.slice();
 
+            // persist back (in case default was used)
             localStorage.setItem(STORAGE_KEYS.lessons, JSON.stringify(lessonData));
             localStorage.setItem(STORAGE_KEYS.exams, JSON.stringify(examData));
         }
@@ -1026,6 +1050,8 @@
             elements.statusMsg.textContent = message;
             elements.statusMsg.className = `status-msg ${type}`;
             elements.statusMsg.style.display = 'block';
+            // auto-hide after 3.5s
+            setTimeout(hideStatus, 3500);
         }
 
         function hideStatus() {
@@ -1062,6 +1088,10 @@
                 elements.academicGroup.style.display = 'block';
                 elements.codeLabel.textContent = 'كود الطالب';
             }
+
+            // إعادة رسم القوائم حتى تظهر/تختفي أزرار الحذف
+            renderLessons();
+            renderExams();
         }
 
         function loginUser(name, code) {
@@ -1072,15 +1102,17 @@
                         elements.loginSection.style.display = 'none';
                         elements.studentDashboard.style.display = 'none';
                         elements.adminDashboard.style.display = 'block';
-                        state.currentStudent = name;
+                        currentStudent = name;
                         resetLoginForm();
+                        // Ensure admin tab default active
+                        switchAdminTab('addLessonTab');
                     }, 800);
                 } else {
                     showStatus('❌ كود الإدارة غير صحيح!', 'error');
                 }
             } else {
                 if (code === STUDENT_SECRET) {
-                    state.currentStudent = name;
+                    currentStudent = name;
                     showStatus(`✅ أهلاً يا ${name}! مرحباً بك في منبر المتفوقين`, 'success');
                     elements.studentWelcomeName.textContent = `أهلاً بك، الطالب ${name} 👋`;
                     renderLessons();
@@ -1090,6 +1122,8 @@
                         elements.adminDashboard.style.display = 'none';
                         elements.studentDashboard.style.display = 'block';
                         resetLoginForm();
+                        // Ensure student tab default
+                        switchTab('lessonsTab');
                     }, 800);
                 } else {
                     showStatus('❌ كود الطالب غير صحيح!', 'error');
@@ -1097,26 +1131,52 @@
             }
         }
 
+        // حذف درس محدد
+        function deleteLesson(id) {
+            if (!confirm('هل أنت متأكد أنك تريد حذف هذا الدرس نهائياً؟')) return;
+            lessonData = lessonData.filter(l => Number(l.id) !== Number(id));
+            saveLessons();
+            renderLessons();
+            showStatus('✅ تم حذف الدرس بنجاح', 'success');
+        }
+
+        // حذف اختبار محدد
+        function deleteExam(id) {
+            if (!confirm('هل أنت متأكد أنك تريد حذف هذا الاختبار نهائياً؟')) return;
+            examData = examData.filter(e => Number(e.id) !== Number(id));
+            saveExams();
+            renderExams();
+            showStatus('✅ تم حذف الاختبار بنجاح', 'success');
+        }
+
         function renderLessons() {
             elements.lessonsContainer.innerHTML = lessonData.map(lesson => `
                 <div class="card">
-                    <h3><i class="fa-solid fa-play-circle"></i> ${lesson.title}</h3>
+                    <h3><i class="fa-solid fa-play-circle"></i> ${escapeHtml(lesson.title)}</h3>
                     <p>محتوى تعليمي ممتاز مصمم خصيصاً لمساعدتك على التفوق والنجاح 🎯</p>
-                    <p style="color: var(--accent-green); font-size: 0.85rem;">📌 ${lesson.subject || 'عام'}</p>
-                    <a href="${lesson.link || '#'}" target="_blank" class="btn-primary" style="text-decoration:none;">مشاهدة الشرح</a>
+                    <p style="color: var(--accent-green); font-size: 0.85rem;">📌 ${escapeHtml(lesson.subject || 'عام')}</p>
+                    <div style="display:flex; gap:8px; margin-top:10px; align-items:center;">
+                        <a href="${lesson.link || '#'}" target="_blank" class="btn-primary" style="text-decoration:none;">مشاهدة الشرح</a>
+                        ${isAdminMode ? `<button class="btn-danger" onclick="deleteLesson(${lesson.id})"><i class="fa-solid fa-trash"></i> حذف</button>` : ''}
+                    </div>
                 </div>
-            `).join('');
+            `).join('') || '<p style="color:var(--text-muted);">لا توجد دروس حالياً.</p>';
         }
 
         function renderExams() {
             elements.examsContainer.innerHTML = examData.map(exam => `
                 <div class="card">
-                    <h3><i class="fa-solid fa-file-signature"></i> ${exam.title}</h3>
+                    <h3><i class="fa-solid fa-file-signature"></i> ${escapeHtml(exam.title)}</h3>
                     <p>اختبار شامل لقياس فهمك واستيعابك للمفاهيم الأكاديمية ✅</p>
-                    <p style="color: var(--accent-blue); font-size: 0.85rem;">⏱️ المدة: ${exam.duration || 'ساعة واحدة'}</p>
-                    <button class="btn-primary" style="background:var(--accent-blue); text-decoration:none; border:none;" onclick="${exam.questions && exam.questions.length ? `openExam(${exam.id})` : `window.open('${exam.link || '#'}','_blank')`}">ابدأ الاختبار</button>
+                    <p style="color: var(--accent-blue); font-size: 0.85rem;">⏱️ المدة: ${escapeHtml(exam.duration || 'ساعة واحدة')}</p>
+                    <div style="display:flex; gap:8px; margin-top:10px; align-items:center;">
+                        ${exam.questions && exam.questions.length
+                            ? `<button class="btn-primary" style="background:var(--accent-blue); min-width:auto;" onclick="openExam(${exam.id})">ابدأ الاختبار</button>`
+                            : `<a href="${exam.link || '#'}" target="_blank" class="btn-primary" style="background:var(--accent-blue); min-width:auto; text-decoration:none;">فتح الرابط</a>`}
+                        ${isAdminMode ? `<button class="btn-danger" onclick="deleteExam(${exam.id})"><i class="fa-solid fa-trash"></i> حذف</button>` : ''}
+                    </div>
                 </div>
-            `).join('');
+            `).join('') || '<p style="color:var(--text-muted);">لا توجد اختبارات حالياً.</p>';
         }
 
         function addNewLesson() {
@@ -1146,8 +1206,8 @@
             const title = document.getElementById('examTitle').value.trim();
             const link = document.getElementById('examLink').value.trim();
 
-            if (!title || !link) {
-                showStatus('❌ يرجى تعبئة جميع البيانات', 'error');
+            if (!title) {
+                showStatus('❌ يرجى تعبئة عنوان الاختبار', 'error');
                 return;
             }
 
@@ -1155,7 +1215,8 @@
                 id: Date.now(),
                 title,
                 duration: "ساعة واحدة",
-                link,
+                link: link || '',
+                // نضيف أسئلة افتراضية بسيطة ليعمل نظام الاختبارات فوراً
                 questions: [
                     {
                         q: "ما الهدف الرئيسي من هذا الاختبار؟",
@@ -1275,7 +1336,7 @@
 
             if (/(واجب|حل|homework|assignment)/.test(text)) {
                 return [
-                    "الواجبات ضرورية جداً! 📝 حاول تكملتها يومياً",
+                    "الواجبات ضرورية جداً! 📝 حاول تكملها يومياً",
                     "الالتزام بالواجبات يرفع درجاتك! ابدأ اليوم 💪",
                     "لا تتردد في طلب المساعدة إذا واجهت صعوبة في أي واجب 🤝"
                 ][Math.floor(Math.random() * 3)];
@@ -1363,7 +1424,7 @@
             let optionsHTML = question.options.map((option, optionIndex) => `
                 <label class="quiz-option">
                     <input type="radio" name="answer_${currentExamIndex}" value="${optionIndex}" ${selectedValue === optionIndex ? 'checked' : ''} onchange="saveQuizAnswer(${currentExamIndex}, ${optionIndex})">
-                    <span>${option}</span>
+                    <span>${escapeHtml(option)}</span>
                 </label>
             `).join('');
 
@@ -1375,7 +1436,7 @@
             elements.quizContent.innerHTML = `
                 <div class="quiz-question">
                     <h4>السؤال ${currentExamIndex + 1} من ${currentExam.questions.length}</h4>
-                    <p style="margin-top:12px; font-size:1.05rem;">${question.q}</p>
+                    <p style="margin-top:12px; font-size:1.05rem;">${escapeHtml(question.q)}</p>
                     <div class="quiz-options">${optionsHTML}</div>
                 </div>
 
@@ -1469,6 +1530,41 @@
                     sendAiMessage();
                 }
             });
+
+            // close modal on overlay click
+            document.getElementById('examModal').addEventListener('click', function (e) {
+                if (e.target === this) closeExamModal();
+            });
+        }
+
+        // مسح كل الدروس
+        function clearLessons() {
+            if (!confirm('هل تريد مسح كل الدروس من التخزين؟ هذا لا يمكن التراجع عنه.')) return;
+            localStorage.removeItem(STORAGE_KEYS.lessons);
+            loadData();
+            renderLessons();
+            showStatus('✅ تم مسح جميع الدروس', 'success');
+        }
+
+        // مسح كل الاختبارات
+        function clearExams() {
+            if (!confirm('هل تريد مسح كل الاختبارات من التخزين؟ هذا لا يمكن التراجع عنه.')) return;
+            localStorage.removeItem(STORAGE_KEYS.exams);
+            loadData();
+            renderExams();
+            showStatus('✅ تم مسح جميع الاختبارات', 'success');
+        }
+
+        // مسح كل بيانات المنصة (الدروس، الاختبارات، المشرفين)
+        function clearAllData() {
+            if (!confirm('هل تريد مسح جميع بيانات المنصة (الدروس، الاختبارات، المشرفين)؟ هذا الإجراء لا يمكن التراجع عنه.')) return;
+            localStorage.removeItem(STORAGE_KEYS.lessons);
+            localStorage.removeItem(STORAGE_KEYS.exams);
+            localStorage.removeItem(STORAGE_KEYS.admins);
+            loadData();
+            renderLessons();
+            renderExams();
+            showStatus('✅ تم مسح جميع بيانات المنصة', 'success');
         }
 
         function init() {
@@ -1476,7 +1572,21 @@
             renderLessons();
             renderExams();
             initEvents();
-            toggleMode(false);
+            toggleMode(false); // تأكد أن الوضع الابتدائي طالب
+            // التأكد أن أزرار التبويبات الأولى ظاهرة بشكل صحيح
+            switchTab('lessonsTab');
+            switchAdminTab('addLessonTab');
+        }
+
+        // دالة مساعدة لتفادي XSS عند وضع النص في HTML
+        function escapeHtml(unsafe) {
+            if (unsafe === null || unsafe === undefined) return '';
+            return String(unsafe)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
         }
 
         init();
