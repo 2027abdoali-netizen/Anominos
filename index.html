@@ -106,7 +106,7 @@
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border-color);
             color: var(--text-muted);
-            padding: 8px 12px;
+            padding: 10px 16px;
             border-radius: 12px;
             cursor: pointer;
             font-size: clamp(0.7rem, 1.5vw, 0.85rem);
@@ -254,6 +254,8 @@
         .dashboard-view {
             display: none;
             padding: clamp(15px, 5vw, 30px);
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
         .dashboard-header {
@@ -319,10 +321,19 @@
             border: 1px solid var(--accent-green);
         }
 
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
         .content-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
         }
 
         @media (max-width: 480px) {
@@ -335,26 +346,41 @@
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 16px;
-            padding: clamp(15px, 4vw, 20px);
+            padding: clamp(15px, 4vw, 25px);
             transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
         .card:hover {
             border-color: var(--accent-blue);
-            transform: translateY(-3px);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 229, 255, 0.1);
         }
 
         .card h3 {
-            font-size: clamp(0.95rem, 3vw, 1.1rem);
-            margin-bottom: 10px;
+            font-size: clamp(0.95rem, 3vw, 1.15rem);
+            margin: 0;
             color: var(--accent-blue);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .card p {
             color: var(--text-muted);
             font-size: clamp(0.8rem, 2vw, 0.88rem);
-            margin-bottom: 15px;
+            margin: 0;
             line-height: 1.5;
+        }
+
+        .card .btn-primary {
+            margin-top: auto;
+            text-decoration: none;
+            text-align: center;
+            display: flex;
+            justify-content: center;
         }
 
         /* ===== AI CHAT BOX ===== */
@@ -420,6 +446,12 @@
             color: #fff;
             font-size: clamp(0.8rem, 2vw, 0.9rem);
             outline: none;
+            transition: all 0.3s;
+        }
+
+        .chat-input-area input:focus {
+            border-color: var(--accent-green);
+            box-shadow: 0 0 8px rgba(0, 255, 136, 0.2);
         }
 
         @media (max-width: 480px) {
@@ -490,6 +522,10 @@
             display: none;
         }
 
+        .admin-tab-content.active {
+            display: block;
+        }
+
         .admin-tab-content .form-group input[type="text"] {
             width: 100%;
             padding: 12px;
@@ -499,6 +535,12 @@
             color: #fff;
             font-size: clamp(0.85rem, 2vw, 0.95rem);
             margin-top: 5px;
+            transition: all 0.3s;
+        }
+
+        .admin-tab-content .form-group input[type="text"]:focus {
+            border-color: var(--accent-green);
+            box-shadow: 0 0 8px rgba(0, 255, 136, 0.2);
         }
 
         /* ===== SCROLLBAR STYLING ===== */
@@ -611,7 +653,7 @@
                 <i class="fa-solid fa-user-graduate"></i> بوابة الطالب
             </div>
             <button class="admin-toggle-btn" id="toggleModeBtn">
-                <i class="fa-solid fa-user-shield"></i> إدارة
+                <i class="fa-solid fa-gear"></i> إدارة
             </button>
         </div>
 
@@ -689,21 +731,21 @@
             </div>
 
             <!-- Lessons Tab -->
-            <div id="lessonsTab" class="tab-content">
+            <div id="lessonsTab" class="tab-content active">
                 <div class="content-grid" id="lessonsContainer">
                     <!-- Lessons rendered dynamically -->
                 </div>
             </div>
 
             <!-- Exams Tab -->
-            <div id="examsTab" class="tab-content" style="display: none;">
+            <div id="examsTab" class="tab-content">
                 <div class="content-grid" id="examsContainer">
                     <!-- Exams rendered dynamically -->
                 </div>
             </div>
 
             <!-- AI Tab -->
-            <div id="aiTab" class="tab-content" style="display: none;">
+            <div id="aiTab" class="tab-content">
                 <div class="ai-chat-box">
                     <div class="chat-messages" id="chatMessages">
                         <div class="chat-msg bot">أهلاً بك! 👋 أنا مساعدك الذكي في أكاديمية Abdo_zeinhom. كيف يمكنني مساعدتك اليوم؟ يمكنك السؤال عن أي موضوع دراسي أو طلب نصائح أو شرح أي درس! 📚</div>
@@ -733,7 +775,7 @@
             </div>
 
             <!-- Add Lesson -->
-            <div id="addLessonTab" class="admin-tab-content">
+            <div id="addLessonTab" class="admin-tab-content active">
                 <div class="card">
                     <h3><i class="fa-solid fa-plus"></i> إضافة درس جديد</h3>
                     <div class="form-group" style="margin-top: 15px;">
@@ -749,7 +791,7 @@
             </div>
 
             <!-- Add Exam -->
-            <div id="addExamTab" class="admin-tab-content" style="display: none;">
+            <div id="addExamTab" class="admin-tab-content">
                 <div class="card">
                     <h3><i class="fa-solid fa-file-pen"></i> إضافة اختبار جديد</h3>
                     <div class="form-group" style="margin-top: 15px;">
@@ -765,7 +807,7 @@
             </div>
 
             <!-- Add Admin -->
-            <div id="addAdminTab" class="admin-tab-content" style="display: none;">
+            <div id="addAdminTab" class="admin-tab-content">
                 <div class="card">
                     <h3><i class="fa-solid fa-user-plus"></i> تعيين مشرف جديد</h3>
                     <div class="form-group" style="margin-top: 15px;">
@@ -856,7 +898,7 @@
             ],
             motivate: [
                 "أنت قادر على النجاح! 💫 لا تستسلم وحاول أكثر",
-                "النجاح يتطلب إصرار والتز��م! أنت على الطريق الصحيح 🚀",
+                "النجاح يتطلب إصرار والتزام! أنت على الطريق الصحيح 🚀",
                 "تذكر: كل شخص ناجح بدأ من حيث أنت الآن! استمر 🌟"
             ],
             default: [
@@ -881,7 +923,7 @@
             statusMsg.style.display = 'none';
 
             if (isAdminMode) {
-                modeBadge.innerHTML = `<i class="fa-solid fa-user-shield"></i> بوابة الإدارة`;
+                modeBadge.innerHTML = `<i class="fa-solid fa-gear"></i> بوابة الإدارة`;
                 modeBadge.style.color = 'var(--accent-blue)';
                 modeBadge.style.borderColor = 'var(--accent-blue)';
                 toggleBtn.innerHTML = `<i class="fa-solid fa-user-graduate"></i> طالب`;
@@ -893,7 +935,7 @@
                 modeBadge.innerHTML = `<i class="fa-solid fa-user-graduate"></i> بوابة الطالب`;
                 modeBadge.style.color = 'var(--accent-green)';
                 modeBadge.style.borderColor = 'var(--accent-green)';
-                toggleBtn.innerHTML = `<i class="fa-solid fa-user-shield"></i> إدارة`;
+                toggleBtn.innerHTML = `<i class="fa-solid fa-gear"></i> إدارة`;
                 formTitle.textContent = 'تسجيل دخول الطالب';
                 submitBtn.innerHTML = `<span>دخول المنصة</span> <i class="fa-solid fa-arrow-left"></i>`;
                 academicGroup.style.display = 'block';
@@ -948,7 +990,7 @@
                     <h3><i class="fa-solid fa-play-circle"></i> ${lesson.title}</h3>
                     <p>محتوى تعليمي ممتاز مصمم خصيصاً لمساعدتك على التفوق والنجاح 🎯</p>
                     <p style="color: var(--accent-green); font-size: 0.85rem;">📌 ${lesson.subject}</p>
-                    <a href="${lesson.link}" class="btn-primary" style="text-decoration:none; text-align:center; display:block;">مشاهدة الشرح</a>
+                    <a href="${lesson.link}" class="btn-primary" style="text-decoration:none;">مشاهدة الشرح</a>
                 </div>
             `).join('');
         }
@@ -960,7 +1002,7 @@
                     <h3><i class="fa-solid fa-file-signature"></i> ${exam.title}</h3>
                     <p>اختبار شامل لقياس فهمك واستيعابك للمفاهيم الأكاديمية ✅</p>
                     <p style="color: var(--accent-blue); font-size: 0.85rem;">⏱️ المدة: ${exam.duration}</p>
-                    <a href="${exam.link}" class="btn-primary" style="background:var(--accent-blue); text-decoration:none; text-align:center; display:block;">بدء الاختبار</a>
+                    <a href="${exam.link}" class="btn-primary" style="background:var(--accent-blue); text-decoration:none;">بدء الاختبار</a>
                 </div>
             `).join('');
         }
@@ -1004,16 +1046,44 @@
 
         // ===== TAB SWITCHING =====
         function switchTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
-            document.querySelectorAll('.nav-tabs .tab-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(tabId).style.display = 'block';
+            // Hide all tab contents
+            const allTabs = document.querySelectorAll('#studentDashboard .tab-content');
+            allTabs.forEach(tab => {
+                tab.classList.remove('active');
+                tab.style.display = 'none';
+            });
+            
+            // Remove active class from all buttons
+            const allButtons = document.querySelectorAll('#studentDashboard .nav-tabs .tab-btn');
+            allButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Show selected tab
+            const selectedTab = document.getElementById(tabId);
+            selectedTab.classList.add('active');
+            selectedTab.style.display = 'block';
+            
+            // Add active class to clicked button
             event.currentTarget.classList.add('active');
         }
 
         function switchAdminTab(tabId) {
-            document.querySelectorAll('.admin-tab-content').forEach(el => el.style.display = 'none');
-            document.querySelectorAll('.nav-tabs .tab-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(tabId).style.display = 'block';
+            // Hide all admin tab contents
+            const allTabs = document.querySelectorAll('#adminDashboard .admin-tab-content');
+            allTabs.forEach(tab => {
+                tab.classList.remove('active');
+                tab.style.display = 'none';
+            });
+            
+            // Remove active class from all buttons
+            const allButtons = document.querySelectorAll('#adminDashboard .nav-tabs .tab-btn');
+            allButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Show selected tab
+            const selectedTab = document.getElementById(tabId);
+            selectedTab.classList.add('active');
+            selectedTab.style.display = 'block';
+            
+            // Add active class to clicked button
             event.currentTarget.classList.add('active');
         }
 
