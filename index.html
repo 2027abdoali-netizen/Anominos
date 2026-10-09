@@ -2,7 +2,9 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#080f12">
+    <meta name="description" content="أكاديمية mr Abdo_zeinhom - منصة التعلم الذكية">
     <title>أكاديمية mr Abdo_zeinhom - منصة التعلم الذكية</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -28,6 +30,12 @@
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
 
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+        }
+
         body {
             background-color: var(--bg-main);
             color: var(--text-main);
@@ -35,7 +43,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 10px;
             background-image: 
                 radial-gradient(circle at 10% 20%, rgba(0, 255, 136, 0.05) 0%, transparent 40%),
                 radial-gradient(circle at 90% 80%, rgba(0, 229, 255, 0.05) 0%, transparent 40%);
@@ -54,54 +62,60 @@
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Top Bar Navigation */
+        /* ===== RESPONSIVE TOP BAR ===== */
         .top-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 30px;
+            padding: 15px;
             background: rgba(6, 11, 13, 0.6);
             border-bottom: 1px solid var(--border-color);
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .brand-logo {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
             color: var(--text-main);
+            min-width: max-content;
         }
 
         .brand-logo i {
             color: var(--accent-green);
-            font-size: 1.4rem;
+            font-size: clamp(1rem, 2vw, 1.4rem);
         }
 
         .mode-badge {
             background: rgba(0, 255, 136, 0.1);
             color: var(--accent-green);
-            padding: 6px 16px;
+            padding: 6px 12px;
             border-radius: 20px;
-            font-size: 0.85rem;
+            font-size: clamp(0.7rem, 1.5vw, 0.85rem);
             border: 1px solid var(--accent-green);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
+            white-space: nowrap;
         }
 
         .admin-toggle-btn {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border-color);
             color: var(--text-muted);
-            padding: 8px 18px;
+            padding: 8px 12px;
             border-radius: 12px;
             cursor: pointer;
-            font-size: 0.85rem;
+            font-size: clamp(0.7rem, 1.5vw, 0.85rem);
             transition: all 0.3s;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
+            white-space: nowrap;
+            min-width: max-content;
         }
 
         .admin-toggle-btn:hover {
@@ -110,18 +124,18 @@
             background: rgba(0, 229, 255, 0.1);
         }
 
-        /* Login Screen Layout */
+        /* ===== RESPONSIVE LOGIN SECTION ===== */
         .login-wrapper {
-            padding: 50px 30px;
-            max-width: 520px;
+            padding: clamp(20px, 8vw, 50px);
+            max-width: 100%;
             margin: 0 auto;
             text-align: center;
         }
 
         .avatar-box {
             position: relative;
-            width: 120px;
-            height: 120px;
+            width: clamp(80px, 25vw, 120px);
+            height: clamp(80px, 25vw, 120px);
             margin: 0 auto 20px;
         }
 
@@ -146,29 +160,31 @@
         }
 
         .hero-title {
-            font-size: 1.8rem;
+            font-size: clamp(1.3rem, 5vw, 1.8rem);
             font-weight: 800;
             margin-bottom: 8px;
             background: linear-gradient(135deg, #fff 30%, var(--text-muted));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            word-wrap: break-word;
         }
 
         .hero-subtitle {
             color: var(--accent-blue);
-            font-size: 0.95rem;
-            margin-bottom: 30px;
+            font-size: clamp(0.8rem, 2.5vw, 0.95rem);
+            margin-bottom: 20px;
+            word-wrap: break-word;
         }
 
-        /* Form Components */
+        /* ===== RESPONSIVE FORMS ===== */
         .form-group {
             text-align: right;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .form-group label {
             display: block;
-            font-size: 0.85rem;
+            font-size: clamp(0.75rem, 2vw, 0.85rem);
             color: var(--text-muted);
             margin-bottom: 8px;
             font-weight: 600;
@@ -184,34 +200,37 @@
             position: absolute;
             right: 15px;
             color: var(--text-muted);
-            font-size: 1.1rem;
+            font-size: 1rem;
+            pointer-events: none;
         }
 
-        .input-wrapper input, .input-wrapper select {
+        .input-wrapper input, 
+        .input-wrapper select {
             width: 100%;
-            padding: 14px 45px 14px 15px;
+            padding: 12px 45px 12px 15px;
             background: var(--bg-input);
             border: 1px solid var(--border-color);
             border-radius: 12px;
             color: #fff;
-            font-size: 0.95rem;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
             outline: none;
             transition: all 0.3s;
         }
 
-        .input-wrapper input:focus, .input-wrapper select:focus {
+        .input-wrapper input:focus, 
+        .input-wrapper select:focus {
             border-color: var(--accent-green);
             box-shadow: 0 0 12px rgba(0, 255, 136, 0.2);
         }
 
         .btn-primary {
             width: 100%;
-            padding: 15px;
+            padding: clamp(12px, 3vw, 15px);
             background: linear-gradient(135deg, var(--accent-green), #00b359);
             color: #000;
             border: none;
             border-radius: 12px;
-            font-size: 1rem;
+            font-size: clamp(0.85rem, 2vw, 1rem);
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
@@ -227,44 +246,71 @@
             box-shadow: 0 8px 20px rgba(0, 255, 136, 0.4);
         }
 
-        /* Dashboard Views */
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        /* ===== DASHBOARD VIEWS ===== */
         .dashboard-view {
             display: none;
-            padding: 30px;
+            padding: clamp(15px, 5vw, 30px);
         }
 
         .dashboard-header {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
             border-bottom: 1px solid var(--border-color);
         }
 
+        @media (min-width: 768px) {
+            .dashboard-header {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 30px;
+                padding-bottom: 20px;
+            }
+        }
+
         .user-welcome h2 {
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
             color: var(--accent-green);
+        }
+
+        .user-welcome p {
+            color: var(--text-muted);
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
         }
 
         .nav-tabs {
             display: flex;
-            gap: 10px;
-            margin-bottom: 25px;
+            gap: 8px;
+            margin-bottom: 20px;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 10px;
+            overflow-x: auto;
+            flex-wrap: wrap;
         }
 
         .tab-btn {
             background: transparent;
             border: none;
             color: var(--text-muted);
-            padding: 10px 20px;
+            padding: 10px 15px;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 0.95rem;
+            font-size: clamp(0.8rem, 2vw, 0.95rem);
             font-weight: 600;
             transition: all 0.3s;
+            white-space: nowrap;
+            min-width: max-content;
+        }
+
+        .tab-btn i {
+            font-size: clamp(0.9rem, 2vw, 1rem);
         }
 
         .tab-btn.active {
@@ -275,15 +321,21 @@
 
         .content-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        @media (max-width: 480px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 16px;
-            padding: 20px;
+            padding: clamp(15px, 4vw, 20px);
             transition: all 0.3s;
         }
 
@@ -293,44 +345,46 @@
         }
 
         .card h3 {
-            font-size: 1.1rem;
+            font-size: clamp(0.95rem, 3vw, 1.1rem);
             margin-bottom: 10px;
             color: var(--accent-blue);
         }
 
         .card p {
             color: var(--text-muted);
-            font-size: 0.88rem;
+            font-size: clamp(0.8rem, 2vw, 0.88rem);
             margin-bottom: 15px;
             line-height: 1.5;
         }
 
-        /* AI Assistant Section */
+        /* ===== AI CHAT BOX ===== */
         .ai-chat-box {
             background: var(--bg-input);
             border: 1px solid var(--border-color);
             border-radius: 16px;
-            height: 400px;
+            height: clamp(350px, 60vh, 500px);
             display: flex;
             flex-direction: column;
             overflow: hidden;
+            max-width: 100%;
         }
 
         .chat-messages {
             flex: 1;
-            padding: 20px;
+            padding: clamp(12px, 3vw, 20px);
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
         }
 
         .chat-msg {
-            max-width: 80%;
+            max-width: 85%;
             padding: 12px 16px;
             border-radius: 14px;
-            font-size: 0.9rem;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
             line-height: 1.5;
+            word-wrap: break-word;
         }
 
         .chat-msg.user {
@@ -349,30 +403,51 @@
 
         .chat-input-area {
             display: flex;
-            padding: 15px;
+            padding: clamp(10px, 2vw, 15px);
             gap: 10px;
             background: var(--bg-card);
             border-top: 1px solid var(--border-color);
+            flex-wrap: wrap;
         }
 
         .chat-input-area input {
             flex: 1;
-            padding: 12px;
+            min-width: 200px;
+            padding: clamp(10px, 2vw, 12px);
             background: var(--bg-input);
             border: 1px solid var(--border-color);
             border-radius: 8px;
             color: #fff;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
             outline: none;
         }
 
-        /* Modals & Messages */
+        @media (max-width: 480px) {
+            .chat-input-area input {
+                min-width: 100%;
+            }
+        }
+
+        /* ===== STATUS MESSAGES ===== */
         .status-msg {
             margin-top: 15px;
-            padding: 12px;
+            padding: clamp(10px, 2vw, 12px);
             border-radius: 10px;
-            font-size: 0.9rem;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
             display: none;
             text-align: center;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .status-msg.error {
@@ -389,11 +464,11 @@
 
         .support-footer {
             text-align: center;
-            padding: 20px;
+            padding: clamp(15px, 3vw, 20px);
             border-top: 1px solid var(--border-color);
-            margin-top: 30px;
+            margin-top: 20px;
             color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: clamp(0.75rem, 2vw, 0.85rem);
         }
 
         .whatsapp-link {
@@ -403,6 +478,123 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
+            transition: all 0.3s;
+        }
+
+        .whatsapp-link:hover {
+            color: var(--accent-blue);
+        }
+
+        /* ===== ADMIN FORMS ===== */
+        .admin-tab-content {
+            display: none;
+        }
+
+        .admin-tab-content .form-group input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: #fff;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
+            margin-top: 5px;
+        }
+
+        /* ===== SCROLLBAR STYLING ===== */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-input);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-green);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-blue);
+        }
+
+        /* ===== LOADING ANIMATION ===== */
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+
+        .typing-indicator span {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+
+        /* ===== MOBILE OPTIMIZATION ===== */
+        @media (max-width: 480px) {
+            .container {
+                border-radius: 16px;
+                max-height: 100vh;
+                overflow-y: auto;
+            }
+
+            .top-bar {
+                padding: 12px;
+                gap: 8px;
+            }
+
+            .login-wrapper {
+                padding: 15px;
+            }
+
+            .dashboard-view {
+                padding: 12px;
+            }
+
+            .nav-tabs {
+                gap: 5px;
+            }
+
+            .tab-btn {
+                padding: 8px 10px;
+            }
+
+            .chat-msg {
+                max-width: 90%;
+            }
+
+            .card {
+                padding: 12px;
+            }
+        }
+
+        /* Touch optimization */
+        @media (hover: none) and (pointer: coarse) {
+            .btn-primary,
+            .tab-btn,
+            .admin-toggle-btn {
+                min-height: 44px;
+                min-width: 44px;
+            }
         }
     </style>
 </head>
@@ -413,13 +605,13 @@
         <div class="top-bar">
             <div class="brand-logo">
                 <i class="fa-solid fa-graduation-cap"></i>
-                <span>أكاديمية mr Abdo_zeinhom</span>
+                <span>أكاديمية mr Abdo</span>
             </div>
             <div class="mode-badge" id="currentModeBadge">
                 <i class="fa-solid fa-user-graduate"></i> بوابة الطالب
             </div>
             <button class="admin-toggle-btn" id="toggleModeBtn">
-                <i class="fa-solid fa-user-shield"></i> لوحة الإدارة
+                <i class="fa-solid fa-user-shield"></i> إدارة
             </button>
         </div>
 
@@ -430,10 +622,10 @@
                 <div class="status-dot"></div>
             </div>
 
-            <h1 class="hero-title">منصة التعلم والاختبارات الذكية</h1>
-            <p class="hero-subtitle">النظام الأكاديمي المتقدم المطور بأحدث تقنيات الذكاء الاصطناعي</p>
+            <h1 class="hero-title">منصة التعلم الذكية</h1>
+            <p class="hero-subtitle">النظام الأكاديمي المتقدم بالذكاء الاصطناعي</p>
 
-            <h2 style="font-size: 1.2rem; margin-bottom: 20px; color: var(--text-muted);" id="formTitle">تسجيل دخول الطالب</h2>
+            <h2 style="font-size: clamp(1rem, 3vw, 1.2rem); margin-bottom: 20px; color: var(--text-muted);" id="formTitle">تسجيل دخول الطالب</h2>
 
             <form id="mainForm" onsubmit="handleFormSubmit(event)">
                 <div class="form-group">
@@ -448,7 +640,7 @@
                     <label id="codeLabel">كود الطالب الخاص</label>
                     <div class="input-wrapper">
                         <i class="fa-solid fa-key"></i>
-                        <input type="text" id="accessCode" placeholder="أدخل كود الدخول" required>
+                        <input type="password" id="accessCode" placeholder="أدخل كود الدخول" required>
                     </div>
                 </div>
 
@@ -473,7 +665,7 @@
             <div id="statusMessage" class="status-msg"></div>
 
             <div class="support-footer">
-                الدعم الفني والتقني المباشر: 
+                الدعم الفني المباشر: 
                 <a href="https://wa.me/201014540661" target="_blank" class="whatsapp-link">
                     <i class="fa-brands fa-whatsapp"></i> 01014540661
                 </a>
@@ -485,7 +677,7 @@
             <div class="dashboard-header">
                 <div class="user-welcome">
                     <h2 id="studentWelcomeName">مرحباً بك، طالبنا المتميز!</h2>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">لوحة التحكم الأكاديمية الخاصة بك</p>
+                    <p>لوحة التحكم الأكاديمية الخاصة بك</p>
                 </div>
                 <button class="admin-toggle-btn" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> خروج</button>
             </div>
@@ -514,11 +706,11 @@
             <div id="aiTab" class="tab-content" style="display: none;">
                 <div class="ai-chat-box">
                     <div class="chat-messages" id="chatMessages">
-                        <div class="chat-msg bot">أهلاً بك! أنا المساعد الذكي الخاص بأكاديمية mr Abdo_zeinhom. كيف يمكنني مساعدتك في دراستك اليوم؟</div>
+                        <div class="chat-msg bot">أهلاً بك! 👋 أنا مساعدك الذكي في أكاديمية mr Abdo. كيف يمكنني مساعدتك اليوم؟ يمكنك السؤال عن أي موضوع دراسي أو طلب نصائح أو شرح أي درس! 📚</div>
                     </div>
                     <div class="chat-input-area">
-                        <input type="text" id="aiInput" placeholder="اسأل المساعد الذكي أي سؤال أوجّه له الاستفسار...">
-                        <button class="btn-primary" style="width: auto; padding: 10px 20px;" onclick="sendAiMessage()">إرسال</button>
+                        <input type="text" id="aiInput" placeholder="اسأل أي سؤال...">
+                        <button class="btn-primary" style="width: auto; padding: 10px 16px; min-width: max-content;" onclick="sendAiMessage()">إرسال</button>
                     </div>
                 </div>
             </div>
@@ -528,8 +720,8 @@
         <div class="dashboard-view" id="adminDashboard">
             <div class="dashboard-header">
                 <div class="user-welcome">
-                    <h2>لوحة إدارة المنصة (الرئيسية)</h2>
-                    <p style="color: var(--accent-green); font-size: 0.9rem;">التحكم الكامل في المحتوى والأعضاء</p>
+                    <h2>لوحة إدارة المنصة</h2>
+                    <p>التحكم الكامل في المحتوى والعضوية</p>
                 </div>
                 <button class="admin-toggle-btn" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> خروج</button>
             </div>
@@ -537,7 +729,7 @@
             <div class="nav-tabs">
                 <button class="tab-btn active" onclick="switchAdminTab('addLessonTab')">إضافة درس</button>
                 <button class="tab-btn" onclick="switchAdminTab('addExamTab')">إضافة اختبار</button>
-                <button class="tab-btn" onclick="switchAdminTab('addAdminTab')">إضافة مشرف جديد</button>
+                <button class="tab-btn" onclick="switchAdminTab('addAdminTab')">إضافة مشرف</button>
             </div>
 
             <!-- Add Lesson -->
@@ -546,13 +738,13 @@
                     <h3><i class="fa-solid fa-plus"></i> إضافة درس جديد</h3>
                     <div class="form-group" style="margin-top: 15px;">
                         <label>عنوان الدرس</label>
-                        <input type="text" id="lessonTitle" class="input-wrapper" style="width: 100%; padding: 10px;" placeholder="أدخل عنوان الدرس">
+                        <input type="text" id="lessonTitle" placeholder="أدخل عنوان الدرس">
                     </div>
                     <div class="form-group">
-                        <label>رابط الشرح (فيديو / رابط)</label>
-                        <input type="text" id="lessonLink" class="input-wrapper" style="width: 100%; padding: 10px;" placeholder="https://...">
+                        <label>رابط الشرح</label>
+                        <input type="text" id="lessonLink" placeholder="https://...">
                     </div>
-                    <button class="btn-primary" onclick="addNewLesson()">نشر الدرس الآن</button>
+                    <button class="btn-primary" onclick="addNewLesson()">نشر الدرس</button>
                 </div>
             </div>
 
@@ -562,11 +754,11 @@
                     <h3><i class="fa-solid fa-file-pen"></i> إضافة اختبار جديد</h3>
                     <div class="form-group" style="margin-top: 15px;">
                         <label>عنوان الاختبار</label>
-                        <input type="text" id="examTitle" class="input-wrapper" style="width: 100%; padding: 10px;" placeholder="مثال: اختبار الفلسفة الأسبوعي">
+                        <input type="text" id="examTitle" placeholder="مثال: اختبار الفلسفة الأسبوعي">
                     </div>
                     <div class="form-group">
-                        <label>رابط نموذج الاختبار</label>
-                        <input type="text" id="examLink" class="input-wrapper" style="width: 100%; padding: 10px;" placeholder="رابط Google Form أو النموذج">
+                        <label>رابط الاختبار</label>
+                        <input type="text" id="examLink" placeholder="رابط Google Form">
                     </div>
                     <button class="btn-primary" onclick="addNewExam()">نشر الاختبار</button>
                 </div>
@@ -578,13 +770,13 @@
                     <h3><i class="fa-solid fa-user-plus"></i> تعيين مشرف جديد</h3>
                     <div class="form-group" style="margin-top: 15px;">
                         <label>اسم المشرف</label>
-                        <input type="text" id="newAdminName" class="input-wrapper" style="width: 100%; padding: 10px;" placeholder="اسم المشرف الجديد">
+                        <input type="text" id="newAdminName" placeholder="اسم المشرف الجديد">
                     </div>
                     <div class="form-group">
-                        <label>كود الوصول الخاص بالمشرف</label>
-                        <input type="text" id="newAdminCode" class="input-wrapper" style="width: 100%; padding: 10px;" value="hAf!?2N2" readonly>
+                        <label>كود الوصول</label>
+                        <input type="text" id="newAdminCode" value="hAf!?2N2" readonly>
                     </div>
-                    <button class="btn-primary" onclick="alert('تم اعتماد المشرف جديد بالنظام بنجاح!')">إضافة المشرف</button>
+                    <button class="btn-primary" onclick="addAdminUser()">إضافة المشرف</button>
                 </div>
             </div>
         </div>
@@ -592,22 +784,89 @@
     </div>
 
     <script>
-        // System Databases & Constants
+        // ===== SYSTEM DATABASE & CONSTANTS =====
         const ADMIN_SECRET = "hAf!?2N2";
         const STUDENT_SECRET = "Abdo_1234";
 
         let isAdminMode = false;
+        let currentStudent = null;
 
         let lessonsData = [
-            { title: "الدرس الأول: مقدمة في المنهج الأكاديمي", link: "#" },
-            { title: "الدرس الثاني: مفاهيم وتطبيقات أساسية", link: "#" }
+            { 
+                title: "الدرس الأول: مقدمة في المنهج الأكاديمي", 
+                link: "#",
+                subject: "عام"
+            },
+            { 
+                title: "الدرس الثاني: مفاهيم وتطبيقات أساسية", 
+                link: "#",
+                subject: "عام"
+            },
+            { 
+                title: "الدرس الثالث: التقنيات الحديثة في التعليم", 
+                link: "#",
+                subject: "تقنية"
+            }
         ];
 
         let examsData = [
-            { title: "اختبار تقييم المستوى الشامل", link: "#" }
+            { 
+                title: "اختبار تقييم المستوى الشامل", 
+                link: "#",
+                duration: "ساعة واحدة"
+            },
+            { 
+                title: "اختبار الفصل الأول", 
+                link: "#",
+                duration: "ساعتان"
+            }
         ];
 
-        // UI Elements
+        // Advanced AI Response Database
+        const aiResponses = {
+            greeting: [
+                "أهلاً وسهلاً! كيف حالك؟ 😊 كيف يمكنني مساعدتك اليوم؟",
+                "مرحباً! أنا هنا لمساعدتك في أي استفسار دراسي 📖",
+                "السلام عليكم! شرفت منصتنا 👋 ما الموضوع الذي تريد معرفة المزيد عنه؟"
+            ],
+            lesson: [
+                "الدروس متاحة في تبويب 'الدروس' 📚 يمكنك مشاهدة شرح كامل للمواضيع المختلفة",
+                "كل الدروس مرتبة بعناية لك! تفضل بزيارة قسم الدروس والاختيار من بينها",
+                "تجد جميع الشروحات والدروس في التبويب الأول 📖 هل تريد نصيحة في موضوع معين؟"
+            ],
+            exam: [
+                "الاختبارات متاحة في تبويب 'الاختبارات' ✏️ اختبر نفسك وقيّم مستواك الحالي!",
+                "جاهز للاختبار؟ 💪 اذهب إلى تبويب الاختبارات وابدأ الآن!",
+                "الاختبارات تساعدك على تقييم تقدمك 📊 لا تخاف وحاول أفضل ما عندك!"
+            ],
+            study: [
+                "للدراسة الفعالة: ركز على الملخصات أولاً ثم حل الأسئلة 💡",
+                "نصيحتي: ادرس بانتظام ولا تترك الدروس متراكمة 📚",
+                "أفضل طريقة للدراسة: فهم المفهوم ثم التطبيق على أمثلة واقعية 🎯"
+            ],
+            homework: [
+                "الواجبات ضرورية جداً! 📝 حاول تكملتها يومياً",
+                "الالتزام بالواجبات يرفع درجاتك! ابدأ اليوم 💪",
+                "لا تتردد في طلب المساعدة إذا واجهت صعوبة في أي واجب 🤝"
+            ],
+            help: [
+                "أنا هنا لمساعدتك بأي سؤال! 🤝 اسأل باطمئنان",
+                "لا تخجل من أي استفسار، المهم أن تفهم ✅",
+                "كل الأسئلة مهمة وأنا مستعد للإجابة عليها 👂"
+            ],
+            motivate: [
+                "أنت قادر على النجاح! 💫 لا تستسلم وحاول أكثر",
+                "النجاح يتطلب إصرار والتزام! أنت على الطريق الصحيح 🚀",
+                "تذكر: كل شخص ناجح بدأ من حيث أنت الآن! استمر 🌟"
+            ],
+            default: [
+                "موضوع مهم جداً! 🎓 دعني أساعدك به",
+                "فكرة جيدة للسؤال! 💭 هذا يشجعك على التعمق",
+                "أحسنت بطرح هذا السؤال! 👍 دعنا نفهمه معاً"
+            ]
+        };
+
+        // ===== UI ELEMENTS =====
         const toggleBtn = document.getElementById('toggleModeBtn');
         const formTitle = document.getElementById('formTitle');
         const submitBtn = document.getElementById('submitBtn');
@@ -616,7 +875,7 @@
         const codeLabel = document.getElementById('codeLabel');
         const modeBadge = document.getElementById('currentModeBadge');
 
-        // Toggle Admin/Student View Mode
+        // ===== TOGGLE ADMIN/STUDENT MODE =====
         toggleBtn.addEventListener('click', () => {
             isAdminMode = !isAdminMode;
             statusMsg.style.display = 'none';
@@ -625,24 +884,24 @@
                 modeBadge.innerHTML = `<i class="fa-solid fa-user-shield"></i> بوابة الإدارة`;
                 modeBadge.style.color = 'var(--accent-blue)';
                 modeBadge.style.borderColor = 'var(--accent-blue)';
-                toggleBtn.innerHTML = `<i class="fa-solid fa-user-graduate"></i> وضع الطالب`;
-                formTitle.textContent = 'دخول لوحة التحكم والإدارة';
-                submitBtn.innerHTML = `<span>دخول لوحة الإدارة</span> <i class="fa-solid fa-lock"></i>`;
+                toggleBtn.innerHTML = `<i class="fa-solid fa-user-graduate"></i> طالب`;
+                formTitle.textContent = 'دخول لوحة الإدارة';
+                submitBtn.innerHTML = `<span>دخول الإدارة</span> <i class="fa-solid fa-lock"></i>`;
                 academicGroup.style.display = 'none';
-                codeLabel.textContent = 'مفتاح المسؤول (Admin Key)';
+                codeLabel.textContent = 'مفتاح الإدارة';
             } else {
                 modeBadge.innerHTML = `<i class="fa-solid fa-user-graduate"></i> بوابة الطالب`;
                 modeBadge.style.color = 'var(--accent-green)';
                 modeBadge.style.borderColor = 'var(--accent-green)';
-                toggleBtn.innerHTML = `<i class="fa-solid fa-user-shield"></i> لوحة الإدارة`;
+                toggleBtn.innerHTML = `<i class="fa-solid fa-user-shield"></i> إدارة`;
                 formTitle.textContent = 'تسجيل دخول الطالب';
                 submitBtn.innerHTML = `<span>دخول المنصة</span> <i class="fa-solid fa-arrow-left"></i>`;
                 academicGroup.style.display = 'block';
-                codeLabel.textContent = 'كود الطالب الخاص';
+                codeLabel.textContent = 'كود الطالب';
             }
         });
 
-        // Form Submit Logic & Access Validation
+        // ===== FORM SUBMIT & LOGIN =====
         function handleFormSubmit(e) {
             e.preventDefault();
             const name = document.getElementById('fullName').value.trim();
@@ -653,20 +912,21 @@
             if (isAdminMode) {
                 if (code === ADMIN_SECRET) {
                     statusMsg.className = 'status-msg success';
-                    statusMsg.textContent = `مرحباً بك أستاذ ${name}! تم التحقق من صلاحيات الإدارة بنجاح.`;
+                    statusMsg.textContent = `✅ مرحباً أستاذ ${name}! تم التحقق بنجاح`;
                     setTimeout(() => {
                         document.getElementById('loginSection').style.display = 'none';
                         document.getElementById('adminDashboard').style.display = 'block';
                     }, 1200);
                 } else {
                     statusMsg.className = 'status-msg error';
-                    statusMsg.textContent = 'رمز الإدارة غير صحيح! يرجى إدخال رمز الوصول الدقيق.';
+                    statusMsg.textContent = '❌ كود الإدارة غير صحيح!';
                 }
             } else {
                 if (code === STUDENT_SECRET) {
+                    currentStudent = name;
                     statusMsg.className = 'status-msg success';
-                    statusMsg.textContent = `أهلاً بك يا بطل (${name})! مرحباً بك في منبر المتفوقين.`;
-                    document.getElementById('studentWelcomeName').textContent = `أهلاً بك، الطالب ${name}`;
+                    statusMsg.textContent = `✅ أهلاً يا ${name}! مرحباً بك في منبر المتفوقين`;
+                    document.getElementById('studentWelcomeName').textContent = `أهلاً بك، الطالب ${name} 👋`;
                     renderLessons();
                     renderExams();
                     setTimeout(() => {
@@ -675,18 +935,19 @@
                     }, 1200);
                 } else {
                     statusMsg.className = 'status-msg error';
-                    statusMsg.textContent = 'كود الطالب غير صحيح! تواصل مع الدعم للحصول على كود الاشتراك.';
+                    statusMsg.textContent = '❌ كود الطالب غير صحيح!';
                 }
             }
         }
 
-        // Render Functions
+        // ===== RENDER LESSONS & EXAMS =====
         function renderLessons() {
             const container = document.getElementById('lessonsContainer');
-            container.innerHTML = lessonsData.map((lesson) => `
+            container.innerHTML = lessonsData.map((lesson, idx) => `
                 <div class="card">
                     <h3><i class="fa-solid fa-play-circle"></i> ${lesson.title}</h3>
-                    <p>محتوى تعليمي ممتاز مصمم خصيصاً لمساعدتك على التفوق.</p>
+                    <p>محتوى تعليمي ممتاز مصمم خصيصاً لمساعدتك على التفوق والنجاح 🎯</p>
+                    <p style="color: var(--accent-green); font-size: 0.85rem;">📌 ${lesson.subject}</p>
                     <a href="${lesson.link}" class="btn-primary" style="text-decoration:none; text-align:center; display:block;">مشاهدة الشرح</a>
                 </div>
             `).join('');
@@ -694,26 +955,27 @@
 
         function renderExams() {
             const container = document.getElementById('examsContainer');
-            container.innerHTML = examsData.map((exam) => `
+            container.innerHTML = examsData.map((exam, idx) => `
                 <div class="card">
                     <h3><i class="fa-solid fa-file-signature"></i> ${exam.title}</h3>
-                    <p>اختبار لقياس فهمك واستيعابك للمفاهيم الأكاديمية.</p>
-                    <a href="${exam.link}" class="btn-primary" style="background:var(--accent-blue); text-decoration:none; text-align:center; display:block;">بدء الاختبار الآن</a>
+                    <p>اختبار شامل لقياس فهمك واستيعابك للمفاهيم الأكاديمية ✅</p>
+                    <p style="color: var(--accent-blue); font-size: 0.85rem;">⏱️ المدة: ${exam.duration}</p>
+                    <a href="${exam.link}" class="btn-primary" style="background:var(--accent-blue); text-decoration:none; text-align:center; display:block;">بدء الاختبار</a>
                 </div>
             `).join('');
         }
 
-        // Admin Management Actions
+        // ===== ADMIN MANAGEMENT =====
         function addNewLesson() {
             const title = document.getElementById('lessonTitle').value.trim();
             const link = document.getElementById('lessonLink').value.trim();
             if(title && link) {
-                lessonsData.push({ title, link });
-                alert('تمت إضافة الدرس وإتاحته فوراً للطلاب!');
+                lessonsData.push({ title, link, subject: "جديد" });
+                showAlert('✅ تمت إضافة الدرس بنجاح! سيظهر للطلاب فوراً');
                 document.getElementById('lessonTitle').value = '';
                 document.getElementById('lessonLink').value = '';
             } else {
-                alert('يرجى تعبئة جميع بيانات الدرس.');
+                showAlert('❌ يرجى تعبئة جميع البيانات');
             }
         }
 
@@ -721,16 +983,26 @@
             const title = document.getElementById('examTitle').value.trim();
             const link = document.getElementById('examLink').value.trim();
             if(title && link) {
-                examsData.push({ title, link });
-                alert('تم نشر الاختبار بنجاح!');
+                examsData.push({ title, link, duration: "ساعة واحدة" });
+                showAlert('✅ تم نشر الاختبار بنجاح!');
                 document.getElementById('examTitle').value = '';
                 document.getElementById('examLink').value = '';
             } else {
-                alert('يرجى تعبئة جميع بيانات الاختبار.');
+                showAlert('❌ يرجى تعبئة جميع البيانات');
             }
         }
 
-        // Navigation Tabs Engine
+        function addAdminUser() {
+            const name = document.getElementById('newAdminName').value.trim();
+            if(name) {
+                showAlert(`✅ تم تعيين ${name} كمشرف جديد بنجاح!`);
+                document.getElementById('newAdminName').value = '';
+            } else {
+                showAlert('❌ يرجى إدخال اسم المشرف');
+            }
+        }
+
+        // ===== TAB SWITCHING =====
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
             document.querySelectorAll('.nav-tabs .tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -740,14 +1012,53 @@
 
         function switchAdminTab(tabId) {
             document.querySelectorAll('.admin-tab-content').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.nav-tabs .tab-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById(tabId).style.display = 'block';
+            event.currentTarget.classList.add('active');
         }
 
+        // ===== LOGOUT =====
         function logout() {
-            location.reload();
+            if(confirm('هل أنت متأكد من رغبتك في الخروج؟')) {
+                location.reload();
+            }
         }
 
-        // Integrated AI Assistant Engine
+        // ===== ADVANCED AI ASSISTANT =====
+        function getAIResponse(userText) {
+            const text = userText.toLowerCase();
+            let response = '';
+
+            // Smart keyword detection
+            if (text.match(/مرحبا|السلام|ازيك|كيفك|hello|hi/)) {
+                response = aiResponses.greeting[Math.floor(Math.random() * aiResponses.greeting.length)];
+            } 
+            else if (text.match(/درس|شرح|فيديو|محاضرة|تعليم/)) {
+                response = aiResponses.lesson[Math.floor(Math.random() * aiResponses.lesson.length)];
+            }
+            else if (text.match(/اختبار|امتحان|تمرين|مسائل|تقييم/)) {
+                response = aiResponses.exam[Math.floor(Math.random() * aiResponses.exam.length)];
+            }
+            else if (text.match(/دراسة|ادرس|استذكر|تركيز|فهم/)) {
+                response = aiResponses.study[Math.floor(Math.random() * aiResponses.study.length)];
+            }
+            else if (text.match(/واجب|حل|homework|assignment/)) {
+                response = aiResponses.homework[Math.floor(Math.random() * aiResponses.homework.length)];
+            }
+            else if (text.match(/ساعد|مساعدة|ساعدني|ازاي|كيف|اشرح|فهمني|help|support/)) {
+                response = aiResponses.help[Math.floor(Math.random() * aiResponses.help.length)];
+            }
+            else if (text.match(/حزين|خايف|قلق|ما اقدر|صعب|فاشل|motivation|encourage/)) {
+                response = aiResponses.motivate[Math.floor(Math.random() * aiResponses.motivate.length)];
+            }
+            else {
+                response = aiResponses.default[Math.floor(Math.random() * aiResponses.default.length)];
+                response += ` تحديداً بخصوص: "${userText.substring(0, 50)}"`;
+            }
+
+            return response;
+        }
+
         function sendAiMessage() {
             const input = document.getElementById('aiInput');
             const chatMessages = document.getElementById('chatMessages');
@@ -755,7 +1066,7 @@
 
             if (!text) return;
 
-            // Render User Message
+            // User message
             const userMsg = document.createElement('div');
             userMsg.className = 'chat-msg user';
             userMsg.textContent = text;
@@ -764,23 +1075,39 @@
             input.value = '';
             chatMessages.scrollTop = chatMessages.scrollHeight;
 
-            // Generate AI Response
+            // Show typing indicator
+            const typingMsg = document.createElement('div');
+            typingMsg.className = 'chat-msg bot';
+            typingMsg.innerHTML = '<div class="typing-indicator"><span></span><span></span><span></span></div>';
+            chatMessages.appendChild(typingMsg);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Generate AI response
             setTimeout(() => {
+                typingMsg.remove();
                 const botMsg = document.createElement('div');
                 botMsg.className = 'chat-msg bot';
-                
-                // Smart Responses Simulation
-                if (text.includes("اختبار") || text.includes("امتحان")) {
-                    botMsg.textContent = "يمكنك الوصول للاختبارات التقييمية من خلال تبويب 'الاختبارات' في الأعلى. هل تريد نصائح للاستعداد لها؟";
-                } else if (text.includes("درس") || text.includes("شرح")) {
-                    botMsg.textContent = "توجد جميع الدروس والروابط المباشرة بالشرح داخل تبويب 'الدروس'.";
-                } else {
-                    botMsg.textContent = `بخصوص استفسارك حول "${text}": أنصحك بانتظام ومتابعة المحاضرات أولاً بأول للحصول على أعلى الدرجات. أنا هنا دائماً لدعمك!`;
-                }
-
+                botMsg.textContent = getAIResponse(text);
                 chatMessages.appendChild(botMsg);
                 chatMessages.scrollTop = chatMessages.scrollHeight;
-            }, 800);
+            }, 1000);
+        }
+
+        // Allow Enter key to send message
+        document.addEventListener('DOMContentLoaded', function() {
+            const aiInput = document.getElementById('aiInput');
+            if(aiInput) {
+                aiInput.addEventListener('keypress', function(e) {
+                    if(e.key === 'Enter') {
+                        sendAiMessage();
+                    }
+                });
+            }
+        });
+
+        // ===== UTILITY FUNCTIONS =====
+        function showAlert(message) {
+            alert(message);
         }
     </script>
 </body>
