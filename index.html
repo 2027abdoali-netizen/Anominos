@@ -3,907 +3,785 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة الهكر العربي - التقييم والاختبارات السيبرانية</title>
-    <!-- Google Fonts & FontAwesome Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>أكاديمية mr Abdo_zeinhom - منصة التعلم الذكية</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0d1117;
-            --card-bg: #161b22;
-            --accent-green: #00ff66;
-            --accent-blue: #58a6ff;
-            --text-primary: #c9d1d9;
-            --text-heading: #ffffff;
-            --border-color: #30363d;
-            --shadow-glow: 0 0 15px rgba(0, 255, 102, 0.2);
+            --bg-main: #080f12;
+            --bg-card: #0f1d22;
+            --bg-input: #060b0d;
+            --accent-green: #00ff88;
+            --accent-blue: #00e5ff;
+            --accent-purple: #9d4edd;
+            --text-main: #ffffff;
+            --text-muted: #8b9bb4;
+            --border-color: #1a323b;
+            --danger-color: #ff4757;
+            --glass-bg: rgba(15, 29, 34, 0.75);
+            --shadow-glow: 0 0 25px rgba(0, 255, 136, 0.15);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Tajawal', sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-primary);
+            background-color: var(--bg-main);
+            color: var(--text-main);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
-            background-image: radial-gradient(circle at 50% 10%, rgba(0, 255, 102, 0.05), transparent 40%);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 255, 136, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 229, 255, 0.05) 0%, transparent 40%);
         }
 
         .container {
             width: 100%;
-            max-width: 480px;
-            background: var(--card-bg);
+            max-width: 1100px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
             border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 28px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), var(--shadow-glow);
             overflow: hidden;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-green), var(--accent-blue));
-        }
-
-        /* Top Bar Header */
-        .top-nav {
+        /* Top Bar Navigation */
+        .top-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 24px;
+            padding: 15px 30px;
+            background: rgba(6, 11, 13, 0.6);
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .admin-btn {
-            background: #21262d;
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text-main);
+        }
+
+        .brand-logo i {
             color: var(--accent-green);
-            border: 1px solid var(--border-color);
-            padding: 8px 14px;
-            border-radius: 8px;
+            font-size: 1.4rem;
+        }
+
+        .mode-badge {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--accent-green);
+            padding: 6px 16px;
+            border-radius: 20px;
             font-size: 0.85rem;
-            cursor: pointer;
+            border: 1px solid var(--accent-green);
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: all 0.3s ease;
         }
 
-        .admin-btn:hover {
-            border-color: var(--accent-green);
-            box-shadow: var(--shadow-glow);
-        }
-
-        .status-badge {
-            font-size: 0.75rem;
-            color: var(--accent-green);
-            background: rgba(0, 255, 102, 0.1);
-            padding: 4px 10px;
-            border-radius: 20px;
-            border: 1px solid rgba(0, 255, 102, 0.2);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            background-color: var(--accent-green);
-            border-radius: 50%;
-            box-shadow: 0 0 8px var(--accent-green);
-        }
-
-        /* Main Logo & Title */
-        .header {
-            text-align: center;
-            margin-bottom: 24px;
-        }
-
-        .logo-icon {
-            width: 70px;
-            height: 70px;
-            background: rgba(0, 255, 102, 0.1);
-            border: 2px solid var(--accent-green);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto 12px;
-            color: var(--accent-green);
-            font-size: 1.8rem;
-            box-shadow: var(--shadow-glow);
-        }
-
-        .header h1 {
-            color: var(--text-heading);
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .header p {
-            color: #8b949e;
+        .admin-toggle-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 8px 18px;
+            border-radius: 12px;
+            cursor: pointer;
             font-size: 0.85rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        /* Form Fields */
+        .admin-toggle-btn:hover {
+            color: var(--accent-blue);
+            border-color: var(--accent-blue);
+            background: rgba(0, 229, 255, 0.1);
+        }
+
+        /* Login Screen Layout */
+        .login-wrapper {
+            padding: 50px 30px;
+            max-width: 520px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .avatar-box {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+        }
+
+        .avatar-box img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-green);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+        }
+
+        .avatar-box .status-dot {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            width: 18px;
+            height: 18px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            border: 3px solid var(--bg-card);
+        }
+
+        .hero-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #fff 30%, var(--text-muted));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            color: var(--accent-blue);
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+        }
+
+        /* Form Components */
         .form-group {
-            margin-bottom: 16px;
+            text-align: right;
+            margin-bottom: 20px;
         }
 
         .form-group label {
             display: block;
             font-size: 0.85rem;
-            margin-bottom: 6px;
-            color: var(--text-heading);
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            font-weight: 600;
         }
 
         .input-wrapper {
             position: relative;
+            display: flex;
+            align-items: center;
         }
 
         .input-wrapper i {
             position: absolute;
-            right: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #8b949e;
+            right: 15px;
+            color: var(--text-muted);
+            font-size: 1.1rem;
         }
 
-        .custom-input, select.custom-input {
+        .input-wrapper input, .input-wrapper select {
             width: 100%;
-            padding: 12px 42px 12px 14px;
-            background-color: #0d1117;
+            padding: 14px 45px 14px 15px;
+            background: var(--bg-input);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
-            color: var(--text-heading);
-            font-size: 0.9rem;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 0.95rem;
             outline: none;
-            transition: border-color 0.3s;
+            transition: all 0.3s;
         }
 
-        .custom-input:focus {
+        .input-wrapper input:focus, .input-wrapper select:focus {
             border-color: var(--accent-green);
-            box-shadow: var(--shadow-glow);
+            box-shadow: 0 0 12px rgba(0, 255, 136, 0.2);
         }
 
-        select.custom-input option {
-            background-color: var(--card-bg);
-            color: var(--text-heading);
-        }
-
-        /* Buttons */
         .btn-primary {
             width: 100%;
-            padding: 12px;
-            background: linear-gradient(135deg, #238636, #2ea043);
-            color: #fff;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--accent-green), #00b359);
+            color: #000;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             font-size: 1rem;
             font-weight: 700;
             cursor: pointer;
+            transition: all 0.3s;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
+            gap: 10px;
+            margin-top: 10px;
         }
 
         .btn-primary:hover {
-            opacity: 0.9;
-            box-shadow: 0 0 15px rgba(46, 160, 67, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 255, 136, 0.4);
         }
 
-        .divider {
+        /* Dashboard Views */
+        .dashboard-view {
+            display: none;
+            padding: 30px;
+        }
+
+        .dashboard-header {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            text-align: center;
-            margin: 20px 0;
-            color: #8b949e;
-            font-size: 0.8rem;
-        }
-
-        .divider::before, .divider::after {
-            content: '';
-            flex: 1;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
             border-bottom: 1px solid var(--border-color);
         }
 
-        .divider span {
-            padding: 0 10px;
+        .user-welcome h2 {
+            font-size: 1.5rem;
+            color: var(--accent-green);
         }
 
-        .btn-gold {
-            width: 100%;
-            padding: 12px;
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .tab-btn {
             background: transparent;
-            color: #d29922;
-            border: 1px solid #d29922;
+            border: none;
+            color: var(--text-muted);
+            padding: 10px 20px;
             border-radius: 8px;
-            font-size: 0.95rem;
-            font-weight: 700;
             cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s;
         }
 
-        .btn-gold:hover {
-            background: rgba(210, 153, 34, 0.1);
-            box-shadow: 0 0 12px rgba(210, 153, 34, 0.3);
+        .tab-btn.active {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--accent-green);
+            border: 1px solid var(--accent-green);
         }
 
-        .card-secondary {
-            background-color: #0d1117;
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 16px;
-            margin-top: 10px;
+            border-radius: 16px;
+            padding: 20px;
+            transition: all 0.3s;
         }
 
-        .card-title {
-            font-size: 0.85rem;
+        .card:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-3px);
+        }
+
+        .card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
             color: var(--accent-blue);
-            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        /* AI Assistant Section */
+        .ai-chat-box {
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            height: 400px;
             display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .chat-msg {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 14px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .chat-msg.user {
+            align-self: flex-end;
+            background: var(--accent-green);
+            color: #000;
+            font-weight: 600;
+        }
+
+        .chat-msg.bot {
+            align-self: flex-start;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+        }
+
+        .chat-input-area {
+            display: flex;
+            padding: 15px;
+            gap: 10px;
+            background: var(--bg-card);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .chat-input-area input {
+            flex: 1;
+            padding: 12px;
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: #fff;
+            outline: none;
+        }
+
+        /* Modals & Messages */
+        .status-msg {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            display: none;
+            text-align: center;
+        }
+
+        .status-msg.error {
+            background: rgba(255, 71, 87, 0.15);
+            color: var(--danger-color);
+            border: 1px solid var(--danger-color);
+        }
+
+        .status-msg.success {
+            background: rgba(0, 255, 136, 0.15);
+            color: var(--accent-green);
+            border: 1px solid var(--accent-green);
+        }
+
+        .support-footer {
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+            margin-top: 30px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .whatsapp-link {
+            color: var(--accent-green);
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
             align-items: center;
             gap: 6px;
-        }
-
-        .btn-secondary {
-            width: 100%;
-            padding: 10px;
-            background-color: #21262d;
-            color: var(--accent-blue);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: border-color 0.3s;
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--accent-blue);
-        }
-
-        .footer {
-            margin-top: 24px;
-            text-align: center;
-            font-size: 0.75rem;
-            color: #8b949e;
-            border-top: 1px solid var(--border-color);
-            padding-top: 16px;
-        }
-
-        .footer p span {
-            color: var(--accent-green);
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <!-- Top Nav -->
-    <div class="top-nav">
-        <button class="admin-btn">
-            <i class="fa-solid fa-user-shield"></i>
-            لوحة التحكم
-        </button>
-        <div class="status-badge">
-            <div class="status-dot"></div>
-            النظام متصل
+    <div class="container">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="brand-logo">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>أكاديمية mr Abdo_zeinhom</span>
+            </div>
+            <div class="mode-badge" id="currentModeBadge">
+                <i class="fa-solid fa-user-graduate"></i> بوابة الطالب
+            </div>
+            <button class="admin-toggle-btn" id="toggleModeBtn">
+                <i class="fa-solid fa-user-shield"></i> لوحة الإدارة
+            </button>
         </div>
-    </div>
 
-    <!-- Header -->
-    <div class="header">
-        <div class="logo-icon">
-            <i class="fa-solid fa-terminal"></i>
-        </div>
-        <h1>منصة الهكر العربي</h1>
-        <p>اختبارات وتقييم المهارات في الأمن السيبراني</p>
-    </div>
+        <!-- LOGIN FORM SECTION -->
+        <div class="login-wrapper" id="loginSection">
+            <div class="avatar-box">
+                <img src="https://via.placeholder.com/120" alt="Logo" id="avatarImg">
+                <div class="status-dot"></div>
+            </div>
 
-    <!-- Main Registration Form -->
-    <form onsubmit="return false;">
-        <div class="form-group">
-            <label for="track">المسار التعليمي / التخصص</label>
-            <div class="input-wrapper">
-                <i class="fa-solid fa-layer-group"></i>
-                <select id="track" class="custom-input">
-                    <option value="web">اختراق التطبيقات والويب (Web Pentesting)</option>
-                    <option value="network">أمن الشبكات والإنترنت (Network Security)</option>
-                    <option value="reverse">الهندسة العكسية والبرمجيات الخبيثة (Reverse Engineering)</option>
-                    <option value="soc">تحليل الحوادث ومراقبة SOC (Blue Teaming)</option>
-                </select>
+            <h1 class="hero-title">منصة التعلم والاختبارات الذكية</h1>
+            <p class="hero-subtitle">النظام الأكاديمي المتقدم المطور بأحدث تقنيات الذكاء الاصطناعي</p>
+
+            <h2 style="font-size: 1.2rem; margin-bottom: 20px; color: var(--text-muted);" id="formTitle">تسجيل دخول الطالب</h2>
+
+            <form id="mainForm" onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label>الاسم الكامل</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" id="fullName" placeholder="أدخل اسمك الثلاثي" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label id="codeLabel">كود الطالب الخاص</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-key"></i>
+                        <input type="text" id="accessCode" placeholder="أدخل كود الدخول" required>
+                    </div>
+                </div>
+
+                <div class="form-group" id="academicGroup">
+                    <label>الصف الدراسي</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <select id="academicYear">
+                            <option value="1">الصف الأول الثانوي</option>
+                            <option value="2">الصف الثاني الثانوي</option>
+                            <option value="3">الصف الثالث الثانوي</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary" id="submitBtn">
+                    <span>دخول المنصة</span>
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+            </form>
+
+            <div id="statusMessage" class="status-msg"></div>
+
+            <div class="support-footer">
+                الدعم الفني والتقني المباشر: 
+                <a href="https://wa.me/201014540661" target="_blank" class="whatsapp-link">
+                    <i class="fa-brands fa-whatsapp"></i> 01014540661
+                </a>
             </div>
         </div>
 
-        <div class="form-group">
-            <label for="username">الاسم بالكامل / المقب المتخصص</label>
-            <div class="input-wrapper">
-                <i class="fa-solid fa-user-ninja"></i>
-                <input type="text" id="username" class="custom-input" placeholder="أدخل اسمك أو الكود الخاص بك">
+        <!-- STUDENT DASHBOARD -->
+        <div class="dashboard-view" id="studentDashboard">
+            <div class="dashboard-header">
+                <div class="user-welcome">
+                    <h2 id="studentWelcomeName">مرحباً بك، طالبنا المتميز!</h2>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">لوحة التحكم الأكاديمية الخاصة بك</p>
+                </div>
+                <button class="admin-toggle-btn" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> خروج</button>
+            </div>
+
+            <div class="nav-tabs">
+                <button class="tab-btn active" onclick="switchTab('lessonsTab')"><i class="fa-solid fa-book-open"></i> الدروس</button>
+                <button class="tab-btn" onclick="switchTab('examsTab')"><i class="fa-solid fa-pen-nib"></i> الاختبارات</button>
+                <button class="tab-btn" onclick="switchTab('aiTab')"><i class="fa-solid fa-robot"></i> المساعد الذكي</button>
+            </div>
+
+            <!-- Lessons Tab -->
+            <div id="lessonsTab" class="tab-content">
+                <div class="content-grid" id="lessonsContainer">
+                    <!-- Lessons rendered dynamically -->
+                </div>
+            </div>
+
+            <!-- Exams Tab -->
+            <div id="examsTab" class="tab-content" style="display: none;">
+                <div class="content-grid" id="examsContainer">
+                    <!-- Exams rendered dynamically -->
+                </div>
+            </div>
+
+            <!-- AI Tab -->
+            <div id="aiTab" class="tab-content" style="display: none;">
+                <div class="ai-chat-box">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="chat-msg bot">أهلاً بك! أنا المساعد الذكي الخاص بأكاديمية mr Abdo_zeinhom. كيف يمكنني مساعدتك في دراستك اليوم؟</div>
+                    </div>
+                    <div class="chat-input-area">
+                        <input type="text" id="aiInput" placeholder="اسأل المساعد الذكي أي سؤال أوجّه له الاستفسار...">
+                        <button class="btn-primary" style="width: auto; padding: 10px 20px;" onclick="sendAiMessage()">إرسال</button>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="form-group">
-            <label for="phone">رقم الهاتف أو المعرّف</label>
-            <div class="input-wrapper">
-                <i class="fa-solid fa-mobile-screen-button"></i>
-                <input type="tel" id="phone" class="custom-input" placeholder="01XXXXXXXXX">
+        <!-- ADMIN DASHBOARD -->
+        <div class="dashboard-view" id="adminDashboard">
+            <div class="dashboard-header">
+                <div class="user-welcome">
+                    <h2>لوحة إدارة المنصة (الرئيسية)</h2>
+                    <p style="color: var(--accent-green); font-size: 0.9rem;">التحكم الكامل في المحتوى والأعضاء</p>
+                </div>
+                <button class="admin-toggle-btn" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> خروج</button>
+            </div>
+
+            <div class="nav-tabs">
+                <button class="tab-btn active" onclick="switchAdminTab('addLessonTab')">إضافة درس</button>
+                <button class="tab-btn" onclick="switchAdminTab('addExamTab')">إضافة اختبار</button>
+                <button class="tab-btn" onclick="switchAdminTab('addAdminTab')">إضافة مشرف جديد</button>
+            </div>
+
+            <!-- Add Lesson -->
+            <div id="addLessonTab" class="admin-tab-content">
+                <div class="card">
+                    <h3><i class="fa-solid fa-plus"></i> إضافة درس جديد</h3>
+                    <div class="form-group" style="margin-top: 15px;">
+                        <label>عنوان الدرس</label>
+                        <input type="text" id="lessonTitle" class="input-wrapper" style="width: 100%; padding: 10px;" placeholder="أدخل عنوان الدرس">
+                    </div>
+                    <div class="form-group">
+                        <label>رابط الشرح (فيديو / رابط)</label>
+                        <input type="text" id="lessonLink" class="input-wrapper" style="width: 100%; padding: 10px;" placeholder="https://...">
+                    </div>
+                    <button class="btn-primary" onclick="addNewLesson()">نشر الدرس الآن</button>
+                </div>
+            </div>
+
+            <!-- Add Exam -->
+            <div id="addExamTab" class="admin-tab-content" style="display: none;">
+                <div class="card">
+                    <h3><i class="fa-solid fa-file-pen"></i> إضافة اختبار جديد</h3>
+                    <div class="form-group" style="margin-top: 15px;">
+                        <label>عنوان الاختبار</label>
+                        <input type="text" id="examTitle" class="input-wrapper" style="width: 100%; padding: 10px;" placeholder="مثال: اختبار الفلسفة الأسبوعي">
+                    </div>
+                    <div class="form-group">
+                        <label>رابط نموذج الاختبار</label>
+                        <input type="text" id="examLink" class="input-wrapper" style="width: 100%; padding: 10px;" placeholder="رابط Google Form أو النموذج">
+                    </div>
+                    <button class="btn-primary" onclick="addNewExam()">نشر الاختبار</button>
+                </div>
+            </div>
+
+            <!-- Add Admin -->
+            <div id="addAdminTab" class="admin-tab-content" style="display: none;">
+                <div class="card">
+                    <h3><i class="fa-solid fa-user-plus"></i> تعيين مشرف جديد</h3>
+                    <div class="form-group" style="margin-top: 15px;">
+                        <label>اسم المشرف</label>
+                        <input type="text" id="newAdminName" class="input-wrapper" style="width: 100%; padding: 10px;" placeholder="اسم المشرف الجديد">
+                    </div>
+                    <div class="form-group">
+                        <label>كود الوصول الخاص بالمشرف</label>
+                        <input type="text" id="newAdminCode" class="input-wrapper" style="width: 100%; padding: 10px;" value="hAf!?2N2" readonly>
+                    </div>
+                    <button class="btn-primary" onclick="alert('تم اعتماد المشرف جديد بالنظام بنجاح!')">إضافة المشرف</button>
+                </div>
             </div>
         </div>
 
-        <button type="submit" class="btn-primary">
-            <i class="fa-solid fa-code"></i>
-            بدء الاختبار السيبراني
-        </button>
-    </form>
-
-    <div class="divider">
-        <span>أو</span>
     </div>
 
-    <!-- Leaderboard Button -->
-    <button class="btn-gold">
-        <i class="fa-solid fa-trophy"></i>
-        قائمة المتصدرين والجوائز
-    </button>
+    <script>
+        // System Databases & Constants
+        const ADMIN_SECRET = "hAf!?2N2";
+        const STUDENT_SECRET = "Abdo_1234";
 
-    <!-- Result Verification Box -->
-    <div class="card-secondary" style="margin-top: 16px;">
-        <div class="card-title">
-            <i class="fa-solid fa-key"></i>
-            التحقق من النتيجة أو الشهادة
-        </div>
-        <div class="input-wrapper">
-            <i class="fa-solid fa-lock"></i>
-            <input type="text" class="custom-input" placeholder="أدخل الكود السري للاختبار">
-        </div>
-        <button class="btn-secondary">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            عرض النتيجة
-        </button>
-    </div>
+        let isAdminMode = false;
 
-    <!-- Footer Credit -->
-    <div class="footer">
-        <p>تطوير وتصميم: <span>فريق الهكر العربي</span></p>
-        <p style="margin-top: 4px;">جميع الحقوق محفوظة &copy; 2026</p>
-    </div>
-</div>
+        let lessonsData = [
+            { title: "الدرس الأول: مقدمة في المنهج الأكاديمي", link: "#" },
+            { title: "الدرس الثاني: مفاهيم وتطبيقات أساسية", link: "#" }
+        ];
 
+        let examsData = [
+            { title: "اختبار تقييم المستوى الشامل", link: "#" }
+        ];
+
+        // UI Elements
+        const toggleBtn = document.getElementById('toggleModeBtn');
+        const formTitle = document.getElementById('formTitle');
+        const submitBtn = document.getElementById('submitBtn');
+        const statusMsg = document.getElementById('statusMessage');
+        const academicGroup = document.getElementById('academicGroup');
+        const codeLabel = document.getElementById('codeLabel');
+        const modeBadge = document.getElementById('currentModeBadge');
+
+        // Toggle Admin/Student View Mode
+        toggleBtn.addEventListener('click', () => {
+            isAdminMode = !isAdminMode;
+            statusMsg.style.display = 'none';
+
+            if (isAdminMode) {
+                modeBadge.innerHTML = `<i class="fa-solid fa-user-shield"></i> بوابة الإدارة`;
+                modeBadge.style.color = 'var(--accent-blue)';
+                modeBadge.style.borderColor = 'var(--accent-blue)';
+                toggleBtn.innerHTML = `<i class="fa-solid fa-user-graduate"></i> وضع الطالب`;
+                formTitle.textContent = 'دخول لوحة التحكم والإدارة';
+                submitBtn.innerHTML = `<span>دخول لوحة الإدارة</span> <i class="fa-solid fa-lock"></i>`;
+                academicGroup.style.display = 'none';
+                codeLabel.textContent = 'مفتاح المسؤول (Admin Key)';
+            } else {
+                modeBadge.innerHTML = `<i class="fa-solid fa-user-graduate"></i> بوابة الطالب`;
+                modeBadge.style.color = 'var(--accent-green)';
+                modeBadge.style.borderColor = 'var(--accent-green)';
+                toggleBtn.innerHTML = `<i class="fa-solid fa-user-shield"></i> لوحة الإدارة`;
+                formTitle.textContent = 'تسجيل دخول الطالب';
+                submitBtn.innerHTML = `<span>دخول المنصة</span> <i class="fa-solid fa-arrow-left"></i>`;
+                academicGroup.style.display = 'block';
+                codeLabel.textContent = 'كود الطالب الخاص';
+            }
+        });
+
+        // Form Submit Logic & Access Validation
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('fullName').value.trim();
+            const code = document.getElementById('accessCode').value.trim();
+
+            statusMsg.style.display = 'block';
+
+            if (isAdminMode) {
+                if (code === ADMIN_SECRET) {
+                    statusMsg.className = 'status-msg success';
+                    statusMsg.textContent = `مرحباً بك أستاذ ${name}! تم التحقق من صلاحيات الإدارة بنجاح.`;
+                    setTimeout(() => {
+                        document.getElementById('loginSection').style.display = 'none';
+                        document.getElementById('adminDashboard').style.display = 'block';
+                    }, 1200);
+                } else {
+                    statusMsg.className = 'status-msg error';
+                    statusMsg.textContent = 'رمز الإدارة غير صحيح! يرجى إدخال رمز الوصول الدقيق.';
+                }
+            } else {
+                if (code === STUDENT_SECRET) {
+                    statusMsg.className = 'status-msg success';
+                    statusMsg.textContent = `أهلاً بك يا بطل (${name})! مرحباً بك في منبر المتفوقين.`;
+                    document.getElementById('studentWelcomeName').textContent = `أهلاً بك، الطالب ${name}`;
+                    renderLessons();
+                    renderExams();
+                    setTimeout(() => {
+                        document.getElementById('loginSection').style.display = 'none';
+                        document.getElementById('studentDashboard').style.display = 'block';
+                    }, 1200);
+                } else {
+                    statusMsg.className = 'status-msg error';
+                    statusMsg.textContent = 'كود الطالب غير صحيح! تواصل مع الدعم للحصول على كود الاشتراك.';
+                }
+            }
+        }
+
+        // Render Functions
+        function renderLessons() {
+            const container = document.getElementById('lessonsContainer');
+            container.innerHTML = lessonsData.map((lesson) => `
+                <div class="card">
+                    <h3><i class="fa-solid fa-play-circle"></i> ${lesson.title}</h3>
+                    <p>محتوى تعليمي ممتاز مصمم خصيصاً لمساعدتك على التفوق.</p>
+                    <a href="${lesson.link}" class="btn-primary" style="text-decoration:none; text-align:center; display:block;">مشاهدة الشرح</a>
+                </div>
+            `).join('');
+        }
+
+        function renderExams() {
+            const container = document.getElementById('examsContainer');
+            container.innerHTML = examsData.map((exam) => `
+                <div class="card">
+                    <h3><i class="fa-solid fa-file-signature"></i> ${exam.title}</h3>
+                    <p>اختبار لقياس فهمك واستيعابك للمفاهيم الأكاديمية.</p>
+                    <a href="${exam.link}" class="btn-primary" style="background:var(--accent-blue); text-decoration:none; text-align:center; display:block;">بدء الاختبار الآن</a>
+                </div>
+            `).join('');
+        }
+
+        // Admin Management Actions
+        function addNewLesson() {
+            const title = document.getElementById('lessonTitle').value.trim();
+            const link = document.getElementById('lessonLink').value.trim();
+            if(title && link) {
+                lessonsData.push({ title, link });
+                alert('تمت إضافة الدرس وإتاحته فوراً للطلاب!');
+                document.getElementById('lessonTitle').value = '';
+                document.getElementById('lessonLink').value = '';
+            } else {
+                alert('يرجى تعبئة جميع بيانات الدرس.');
+            }
+        }
+
+        function addNewExam() {
+            const title = document.getElementById('examTitle').value.trim();
+            const link = document.getElementById('examLink').value.trim();
+            if(title && link) {
+                examsData.push({ title, link });
+                alert('تم نشر الاختبار بنجاح!');
+                document.getElementById('examTitle').value = '';
+                document.getElementById('examLink').value = '';
+            } else {
+                alert('يرجى تعبئة جميع بيانات الاختبار.');
+            }
+        }
+
+        // Navigation Tabs Engine
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.nav-tabs .tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(tabId).style.display = 'block';
+            event.currentTarget.classList.add('active');
+        }
+
+        function switchAdminTab(tabId) {
+            document.querySelectorAll('.admin-tab-content').forEach(el => el.style.display = 'none');
+            document.getElementById(tabId).style.display = 'block';
+        }
+
+        function logout() {
+            location.reload();
+        }
+
+        // Integrated AI Assistant Engine
+        function sendAiMessage() {
+            const input = document.getElementById('aiInput');
+            const chatMessages = document.getElementById('chatMessages');
+            const text = input.value.trim();
+
+            if (!text) return;
+
+            // Render User Message
+            const userMsg = document.createElement('div');
+            userMsg.className = 'chat-msg user';
+            userMsg.textContent = text;
+            chatMessages.appendChild(userMsg);
+
+            input.value = '';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Generate AI Response
+            setTimeout(() => {
+                const botMsg = document.createElement('div');
+                botMsg.className = 'chat-msg bot';
+                
+                // Smart Responses Simulation
+                if (text.includes("اختبار") || text.includes("امتحان")) {
+                    botMsg.textContent = "يمكنك الوصول للاختبارات التقييمية من خلال تبويب 'الاختبارات' في الأعلى. هل تريد نصائح للاستعداد لها؟";
+                } else if (text.includes("درس") || text.includes("شرح")) {
+                    botMsg.textContent = "توجد جميع الدروس والروابط المباشرة بالشرح داخل تبويب 'الدروس'.";
+                } else {
+                    botMsg.textContent = `بخصوص استفسارك حول "${text}": أنصحك بانتظام ومتابعة المحاضرات أولاً بأول للحصول على أعلى الدرجات. أنا هنا دائماً لدعمك!`;
+                }
+
+                chatMessages.appendChild(botMsg);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 800);
+        }
+    </script>
 </body>
 </html>
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة الهكر العربي التعليمية - الشهادات والاختبارات</title>
-    <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Amiri:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        :root {
-            --bg-color: #0d1117;
-            --card-bg: #161b22;
-            --accent-green: #00ff66;
-            --accent-blue: #58a6ff;
-            --accent-red: #ff7b72;
-            --accent-gold: #d29922;
-            --text-primary: #c9d1d9;
-            --text-heading: #ffffff;
-            --border-color: #30363d;
-            --shadow-glow: 0 0 15px rgba(0, 255, 102, 0.2);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Tajawal', sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            background-image: radial-gradient(circle at 50% 10%, rgba(0, 255, 102, 0.05), transparent 40%);
-        }
-
-        /* Header */
-        header {
-            background: var(--card-bg);
-            border-bottom: 1px solid var(--border-color);
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-        }
-
-        .brand i {
-            font-size: 1.8rem;
-            color: var(--accent-green);
-        }
-
-        .brand h1 {
-            font-size: 1.3rem;
-            color: var(--text-heading);
-            font-weight: 700;
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .btn {
-            background: #21262d;
-            color: var(--text-heading);
-            border: 1px solid var(--border-color);
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .btn:hover {
-            border-color: var(--accent-green);
-            color: var(--accent-green);
-        }
-
-        .btn-green {
-            background: linear-gradient(135deg, #238636, #2ea043);
-            color: #fff;
-            border: none;
-            font-weight: 700;
-        }
-
-        .btn-green:hover {
-            box-shadow: 0 0 12px rgba(46, 160, 67, 0.4);
-            color: #fff;
-        }
-
-        .btn-gold {
-            background: linear-gradient(135deg, #b08800, #d29922);
-            color: #fff;
-            border: none;
-            font-weight: 700;
-        }
-
-        /* Layout
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>منصة الهكر العربي - التقييم والاختبارات السيبرانية</title>
-<!-- Google Fonts & FontAwesome Icons -->
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-:root {
---bg-color: #0d1117;
---card-bg: #161b22;
---accent-green: #00ff66;
---accent-blue: #58a6ff;
---text-primary: #c9d1d9;
---text-heading: #ffffff;
---border-color: #30363d;
---shadow-glow: 0 0 15px rgba(0, 255, 102, 0.2);
-}
-
-* {
-box-sizing: border-box;
-margin: 0;
-padding: 0;
-font-family: 'Tajawal', sans-serif;
-}
-
-body {
-background-color: var(--bg-color);
-color: var(--text-primary);
-min-height: 100vh;
-display: flex;
-justify-content: center;
-align-items: center;
-padding: 20px;
-background-image: radial-gradient(circle at 50% 10%, rgba(0, 255, 102, 0.05), transparent 40%);
-}
-
-.container {
-width: 100%;
-max-width: 480px;
-background: var(--card-bg);
-border: 1px solid var(--border-color);
-border-radius: 16px;
-padding: 28px;
-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-position: relative;
-overflow: hidden;
-}
-
-.container::before {
-content: '';
-position: absolute;
-top: 0;
-left: 0;
-right: 0;
-height: 4px;
-background: linear-gradient(90deg, var(--accent-green), var(--accent-blue));
-}
-
-/* Top Bar Header */
-.top-nav {
-display: flex;
-justify-content: space-between;
-align-items: center;
-margin-bottom: 24px;
-}
-
-.admin-btn {
-background: #21262d;
-color: var(--accent-green);
-border: 1px solid var(--border-color);
-padding: 8px 14px;
-border-radius: 8px;
-font-size: 0.85rem;
-cursor: pointer;
-display: flex;
-align-items: center;
-gap: 8px;
-transition: all 0.3s ease;
-}
-
-.admin-btn:hover {
-border-color: var(--accent-green);
-box-shadow: var(--shadow-glow);
-}
-
-.status-badge {
-font-size: 0.75rem;
-color: var(--accent-green);
-background: rgba(0, 255, 102, 0.1);
-padding: 4px 10px;
-border-radius: 20px;
-border: 1px solid rgba(0, 255, 102, 0.2);
-display: flex;
-align-items: center;
-gap: 6px;
-}
-
-.status-dot {
-width: 6px;
-height: 6px;
-background-color: var(--accent-green);
-border-radius: 50%;
-box-shadow: 0 0 8px var(--accent-green);
-}
-
-/* Main Logo & Title */
-.header {
-text-align: center;
-margin-bottom: 24px;
-}
-
-.logo-icon {
-width: 70px;
-height: 70px;
-background: rgba(0, 255, 102, 0.1);
-border: 2px solid var(--accent-green);
-border-radius: 50%;
-display: flex;
-justify-content: center;
-align-items: center;
-margin: 0 auto 12px;
-color: var(--accent-green);
-font-size: 1.8rem;
-box-shadow: var(--shadow-glow);
-}
-
-.header h1 {
-color: var(--text-heading);
-font-size: 1.5rem;
-font-weight: 700;
-margin-bottom: 4px;
-}
-
-.header p {
-color: #8b949e;
-font-size: 0.85rem;
-}
-
-/* Form Fields */
-.form-group {
-margin-bottom: 16px;
-}
-
-.form-group label {
-display: block;
-font-size: 0.85rem;
-margin-bottom: 6px;
-color: var(--text-heading);
-}
-
-.input-wrapper {
-position: relative;
-}
-
-.input-wrapper i {
-position: absolute;
-right: 14px;
-top: 50%;
-transform: translateY(-50%);
-color: #8b949e;
-}
-
-.custom-input, select.custom-input {
-width: 100%;
-padding: 12px 42px 12px 14px;
-background-color: #0d1117;
-border: 1px solid var(--border-color);
-border-radius: 8px;
-color: var(--text-heading);
-font-size: 0.9rem;
-outline: none;
-transition: border-color 0.3s;
-}
-
-.custom-input:focus {
-border-color: var(--accent-green);
-box-shadow: var(--shadow-glow);
-}
-
-select.custom-input option {
-background-color: var(--card-bg);
-color: var(--text-heading);
-}
-
-/* Buttons */
-.btn-primary {
-width: 100%;
-padding: 12px;
-background: linear-gradient(135deg, #238636, #2ea043);
-color: #fff;
-border: none;
-border-radius: 8px;
-font-size: 1rem;
-font-weight: 700;
-cursor: pointer;
-display: flex;
-justify-content: center;
-align-items: center;
-gap: 8px;
-transition: all 0.3s ease;
-}
-
-.btn-primary:hover {
-opacity: 0.9;
-box-shadow: 0 0 15px rgba(46, 160, 67, 0.4);
-}
-
-.divider {
-display: flex;
-align-items: center;
-text-align: center;
-margin: 20px 0;
-color: #8b949e;
-font-size: 0.8rem;
-}
-
-.divider::before, .divider::after {
-content: '';
-flex: 1;
-border-bottom: 1px solid var(--border-color);
-}
-
-.divider span {
-padding: 0 10px;
-}
-
-.btn-gold {
-width: 100%;
-padding: 12px;
-background: transparent;
-color: #d29922;
-border: 1px solid #d29922;
-border-radius: 8px;
-font-size: 0.95rem;
-font-weight: 700;
-cursor: pointer;
-display: flex;
-justify-content: center;
-align-items: center;
-gap: 8px;
-transition: all 0.3s ease;
-}
-
-.btn-gold:hover {
-background: rgba(210, 153, 34, 0.1);
-box-shadow: 0 0 12px rgba(210, 153, 34, 0.3);
-}
-
-.card-secondary {
-background-color: #0d1117;
-border: 1px solid var(--border-color);
-border-radius: 12px;
-padding: 16px;
-margin-top: 10px;
-}
-
-.card-title {
-font-size: 0.85rem;
-color: var(--accent-blue);
-margin-bottom: 12px;
-display: flex;
-align-items: center;
-gap: 6px;
-}
-
-.btn-secondary {
-width: 100%;
-padding: 10px;
-background-color: #21262d;
-color: var(--accent-blue);
-border: 1px solid var(--border-color);
-border-radius: 8px;
-font-size: 0.9rem;
-font-weight: 500;
-cursor: pointer;
-margin-top: 10px;
-transition: border-color 0.3s;
-}
-
-.btn-secondary:hover {
-border-color: var(--accent-blue);
-}
-
-.footer {
-margin-top: 24px;
-text-align: center;
-font-size: 0.75rem;
-color: #8b949e;
-border-top: 1px solid var(--border-color);
-padding-top: 16px;
-}
-
-.footer p span {
-color: var(--accent-green);
-}
-</style>
-</head>
-<body>
-
-<div class="container">
-<!-- Top Nav -->
-<div class="top-nav">
-<button class="admin-btn">
-<i class="fa-solid fa-user-shield"></i>
-لوحة التحكم
-</button>
-<div class="status-badge">
-<div class="status-dot"></div>
-النظام متصل
-</div>
-</div>
-
-<!-- Header -->
-<div class="header">
-<div class="logo-icon">
-<i class="fa-solid fa-terminal"></i>
-</div>
-<h1>منصة الهكر العربي</h1>
-<p>اختبارات وتقييم المهارات في الأمن السيبراني</p>
-</div>
-
-<!-- Main Registration Form -->
-<form onsubmit="return false;">
-<div class="form-group">
-<label for="track">المسار التعليمي / التخصص</label>
-<div class="input-wrapper">
-<i class="fa-solid fa-layer-group"></i>
-<select id="track" class="custom-input">
-<option value="web">اختراق التطبيقات والويب (Web Pentesting)</option>
-<option value="network">أمن الشبكات والإنترنت (Network Security)</option>
-<option value="reverse">الهندسة العكسية والبرمجيات الخبيثة (Reverse Engineering)</option>
-<option value="soc">تحليل الحوادث ومراقبة SOC (Blue Teaming)</option>
-</select>
-</div>
-</div>
-
-<div class="form-group">
-<label for="username">الاسم بالكامل / المقب المتخصص</label>
-<div class="input-wrapper">
-<i class="fa-solid fa-user-ninja"></i>
-<input type="text" id="username" class="custom-input" placeholder="أدخل اسمك أو الكود الخاص بك">
-</div>
-</div>
-
-<div class="form-group">
-<label for="phone">رقم الهاتف أو المعرّف</label>
-<div class="input-wrapper">
-<i class="fa-solid fa-mobile-screen-button"></i>
-<input type="tel" id="phone" class="custom-input" placeholder="01XXXXXXXXX">
-</div>
-</div>
-
-<button type="submit" class="btn-primary">
-<i class="fa-solid fa-code"></i>
-بدء الاختبار السيبراني
-</button>
-</form>
-
-<div class="divider">
-<span>أو</span>
-</div>
-
-<!-- Leaderboard Button -->
-<button class="btn-gold">
-<i class="fa-solid fa-trophy"></i>
-قائمة المتصدرين والجوائز
-</button>
-
-<!-- Result Verification Box -->
-<div class="card-secondary" style="margin-top: 16px;">
-<div class="card-title">
-<i class="fa-solid fa-key"></i>
-التحقق من النتيجة أو الشهادة
-</div>
-<div class="input-wrapper">
-<i class="fa-solid fa-lock"></i>
-<input type="text" class="custom-input" placeholder="أدخل الكود السري للاختبار">
-</div>
-<button class="btn-secondary">
-<i class="fa-solid fa-magnifying-glass"></i>
-عرض النتيجة
-</button>
-</div>
-
-<!-- Footer Credit -->
-<div class="footer">
-<p>تطوير وتصميم: <span>فريق الهكر العربي</span></p>
-<p style="margin-top: 4px;">جميع الحقوق محفوظة © 2026</p>
-</div>
-</div>
-
-</body>
-</html>
-
