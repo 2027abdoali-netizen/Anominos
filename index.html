@@ -44,7 +44,7 @@
             justify-content: center;
             align-items: center;
             padding: 10px;
-            background-image: 
+            background-image:
                 radial-gradient(circle at 10% 20%, rgba(0, 255, 136, 0.05) 0%, transparent 40%),
                 radial-gradient(circle at 90% 80%, rgba(0, 229, 255, 0.05) 0%, transparent 40%);
         }
@@ -62,7 +62,6 @@
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* ===== RESPONSIVE TOP BAR ===== */
         .top-bar {
             display: flex;
             justify-content: space-between;
@@ -124,7 +123,6 @@
             background: rgba(0, 229, 255, 0.1);
         }
 
-        /* ===== RESPONSIVE LOGIN SECTION ===== */
         .login-wrapper {
             padding: clamp(20px, 8vw, 50px);
             max-width: 100%;
@@ -148,7 +146,7 @@
             box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
         }
 
-        .avatar-box .status-dot {
+        .status-dot {
             position: absolute;
             bottom: 5px;
             right: 5px;
@@ -176,7 +174,6 @@
             word-wrap: break-word;
         }
 
-        /* ===== RESPONSIVE FORMS ===== */
         .form-group {
             text-align: right;
             margin-bottom: 15px;
@@ -204,8 +201,7 @@
             pointer-events: none;
         }
 
-        .input-wrapper input, 
-        .input-wrapper select {
+        .input-wrapper input, .input-wrapper select {
             width: 100%;
             padding: 12px 45px 12px 15px;
             background: var(--bg-input);
@@ -217,8 +213,7 @@
             transition: all 0.3s;
         }
 
-        .input-wrapper input:focus, 
-        .input-wrapper select:focus {
+        .input-wrapper input:focus, .input-wrapper select:focus {
             border-color: var(--accent-green);
             box-shadow: 0 0 12px rgba(0, 255, 136, 0.2);
         }
@@ -250,7 +245,6 @@
             transform: translateY(0);
         }
 
-        /* ===== DASHBOARD VIEWS ===== */
         .dashboard-view {
             display: none;
             padding: clamp(15px, 5vw, 30px);
@@ -383,7 +377,6 @@
             justify-content: center;
         }
 
-        /* ===== AI CHAT BOX ===== */
         .ai-chat-box {
             background: var(--bg-input);
             border: 1px solid var(--border-color);
@@ -460,7 +453,6 @@
             }
         }
 
-        /* ===== STATUS MESSAGES ===== */
         .status-msg {
             margin-top: 15px;
             padding: clamp(10px, 2vw, 12px);
@@ -517,7 +509,6 @@
             color: var(--accent-blue);
         }
 
-        /* ===== ADMIN FORMS ===== */
         .admin-tab-content {
             display: none;
         }
@@ -543,7 +534,6 @@
             box-shadow: 0 0 8px rgba(0, 255, 136, 0.2);
         }
 
-        /* ===== SCROLLBAR STYLING ===== */
         ::-webkit-scrollbar {
             width: 8px;
             height: 8px;
@@ -563,7 +553,6 @@
             background: var(--accent-blue);
         }
 
-        /* ===== LOADING ANIMATION ===== */
         .typing-indicator {
             display: flex;
             gap: 4px;
@@ -591,7 +580,94 @@
             30% { transform: translateY(-10px); }
         }
 
-        /* ===== MOBILE OPTIMIZATION ===== */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.75);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            width: min(900px, 100%);
+            max-height: 90vh;
+            overflow-y: auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .close-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .quiz-question {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: rgba(255,255,255,0.02);
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .quiz-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 12px 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--text-main);
+        }
+
+        .quiz-option:hover {
+            border-color: var(--accent-green);
+        }
+
+        .quiz-option input {
+            accent-color: var(--accent-green);
+        }
+
+        .quiz-actions {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
         @media (max-width: 480px) {
             .container {
                 border-radius: 16px;
@@ -627,13 +703,17 @@
             .card {
                 padding: 12px;
             }
+
+            .quiz-actions {
+                flex-direction: column;
+            }
         }
 
-        /* Touch optimization */
         @media (hover: none) and (pointer: coarse) {
             .btn-primary,
             .tab-btn,
-            .admin-toggle-btn {
+            .admin-toggle-btn,
+            .close-btn {
                 min-height: 44px;
                 min-width: 44px;
             }
@@ -643,21 +723,21 @@
 <body>
 
     <div class="container">
-        <!-- Top Bar -->
         <div class="top-bar">
             <div class="brand-logo">
                 <i class="fa-solid fa-graduation-cap"></i>
                 <span>Abdo_zeinhom</span>
             </div>
+
             <div class="mode-badge" id="currentModeBadge">
                 <i class="fa-solid fa-user-graduate"></i> بوابة الطالب
             </div>
+
             <button class="admin-toggle-btn" id="toggleModeBtn">
                 <i class="fa-solid fa-gear"></i> إدارة
             </button>
         </div>
 
-        <!-- LOGIN FORM SECTION -->
         <div class="login-wrapper" id="loginSection">
             <div class="avatar-box">
                 <img src="https://via.placeholder.com/120" alt="Logo" id="avatarImg">
@@ -669,7 +749,7 @@
 
             <h2 style="font-size: clamp(1rem, 3vw, 1.2rem); margin-bottom: 20px; color: var(--text-muted);" id="formTitle">تسجيل دخول الطالب</h2>
 
-            <form id="mainForm" onsubmit="handleFormSubmit(event)">
+            <form id="mainForm">
                 <div class="form-group">
                     <label>الاسم الكامل</label>
                     <div class="input-wrapper">
@@ -707,14 +787,13 @@
             <div id="statusMessage" class="status-msg"></div>
 
             <div class="support-footer">
-                الدعم الفني المباشر: 
+                الدعم الفني المباشر:
                 <a href="https://wa.me/201014540661" target="_blank" class="whatsapp-link">
                     <i class="fa-brands fa-whatsapp"></i> 01014540661
                 </a>
             </div>
         </div>
 
-        <!-- STUDENT DASHBOARD -->
         <div class="dashboard-view" id="studentDashboard">
             <div class="dashboard-header">
                 <div class="user-welcome">
@@ -725,26 +804,19 @@
             </div>
 
             <div class="nav-tabs">
-                <button class="tab-btn active" onclick="switchTab('lessonsTab')"><i class="fa-solid fa-book-open"></i> الدروس</button>
-                <button class="tab-btn" onclick="switchTab('examsTab')"><i class="fa-solid fa-pen-nib"></i> الاختبارات</button>
-                <button class="tab-btn" onclick="switchTab('aiTab')"><i class="fa-solid fa-robot"></i> المساعد الذكي</button>
+                <button class="tab-btn active" data-tab="lessonsTab"><i class="fa-solid fa-book-open"></i> الدروس</button>
+                <button class="tab-btn" data-tab="examsTab"><i class="fa-solid fa-pen-nib"></i> الاختبارات</button>
+                <button class="tab-btn" data-tab="aiTab"><i class="fa-solid fa-robot"></i> المساعد الذكي</button>
             </div>
 
-            <!-- Lessons Tab -->
             <div id="lessonsTab" class="tab-content active">
-                <div class="content-grid" id="lessonsContainer">
-                    <!-- Lessons rendered dynamically -->
-                </div>
+                <div class="content-grid" id="lessonsContainer"></div>
             </div>
 
-            <!-- Exams Tab -->
             <div id="examsTab" class="tab-content">
-                <div class="content-grid" id="examsContainer">
-                    <!-- Exams rendered dynamically -->
-                </div>
+                <div class="content-grid" id="examsContainer"></div>
             </div>
 
-            <!-- AI Tab -->
             <div id="aiTab" class="tab-content">
                 <div class="ai-chat-box">
                     <div class="chat-messages" id="chatMessages">
@@ -758,7 +830,6 @@
             </div>
         </div>
 
-        <!-- ADMIN DASHBOARD -->
         <div class="dashboard-view" id="adminDashboard">
             <div class="dashboard-header">
                 <div class="user-welcome">
@@ -769,12 +840,11 @@
             </div>
 
             <div class="nav-tabs">
-                <button class="tab-btn active" onclick="switchAdminTab('addLessonTab')">إضافة درس</button>
-                <button class="tab-btn" onclick="switchAdminTab('addExamTab')">إضافة اختبار</button>
-                <button class="tab-btn" onclick="switchAdminTab('addAdminTab')">إضافة مشرف</button>
+                <button class="tab-btn active" data-admin-tab="addLessonTab">إضافة درس</button>
+                <button class="tab-btn" data-admin-tab="addExamTab">إضافة اختبار</button>
+                <button class="tab-btn" data-admin-tab="addAdminTab">إضافة مشرف</button>
             </div>
 
-            <!-- Add Lesson -->
             <div id="addLessonTab" class="admin-tab-content active">
                 <div class="card">
                     <h3><i class="fa-solid fa-plus"></i> إضافة درس جديد</h3>
@@ -790,7 +860,6 @@
                 </div>
             </div>
 
-            <!-- Add Exam -->
             <div id="addExamTab" class="admin-tab-content">
                 <div class="card">
                     <h3><i class="fa-solid fa-file-pen"></i> إضافة اختبار جديد</h3>
@@ -806,7 +875,6 @@
                 </div>
             </div>
 
-            <!-- Add Admin -->
             <div id="addAdminTab" class="admin-tab-content">
                 <div class="card">
                     <h3><i class="fa-solid fa-user-plus"></i> تعيين مشرف جديد</h3>
@@ -822,363 +890,596 @@
                 </div>
             </div>
         </div>
+    </div>
 
+    <div id="examModal" class="modal" aria-modal="true" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="examModalTitle">اختبار</h3>
+                <button class="close-btn" onclick="closeExamModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div id="quizContent"></div>
+        </div>
     </div>
 
     <script>
-        // ===== SYSTEM DATABASE & CONSTANTS =====
         const ADMIN_SECRET = "hAf!?2N2";
         const STUDENT_SECRET = "Abdo_1234";
 
-        let isAdminMode = false;
-        let currentStudent = null;
-
-        let lessonsData = [
-            { 
-                title: "الدرس الأول: مقدمة في المنهج الأكاديمي", 
-                link: "#",
-                subject: "عام"
-            },
-            { 
-                title: "الدرس الثاني: مفاهيم وتطبيقات أساسية", 
-                link: "#",
-                subject: "عام"
-            },
-            { 
-                title: "الدرس الثالث: التقنيات الحديثة في التعليم", 
-                link: "#",
-                subject: "تقنية"
-            }
-        ];
-
-        let examsData = [
-            { 
-                title: "اختبار تقييم المستوى الشامل", 
-                link: "#",
-                duration: "ساعة واحدة"
-            },
-            { 
-                title: "اختبار الفصل الأول", 
-                link: "#",
-                duration: "ساعتان"
-            }
-        ];
-
-        // Advanced AI Response Database
-        const aiResponses = {
-            greeting: [
-                "أهلاً وسهلاً! كيف حالك؟ 😊 كيف يمكنني مساعدتك اليوم؟",
-                "مرحباً! أنا هنا لمساعدتك في أي استفسار دراسي 📖",
-                "السلام عليكم! شرفت منصتنا 👋 ما الموضوع الذي تريد معرفة المزيد عنه؟"
-            ],
-            lesson: [
-                "الدروس متاحة في تبويب 'الدروس' 📚 يمكنك مشاهدة شرح كامل للمواضيع المختلفة",
-                "كل الدروس مرتبة بعناية لك! تفضل بزيارة قسم الدروس والاختيار من بينها",
-                "تجد جميع الشروحات والدروس في التبويب الأول 📖 هل تريد نصيحة في موضوع معين؟"
-            ],
-            exam: [
-                "الاختبارات متاحة في تبويب 'الاختبارات' ✏️ اختبر نفسك وقيّم مستواك الحالي!",
-                "جاهز للاختبار؟ 💪 اذهب إلى تبويب الاختبارات وابدأ الآن!",
-                "الاختبارات تساعدك على تقييم تقدمك 📊 لا تخاف وحاول أفضل ما عندك!"
-            ],
-            study: [
-                "للدراسة الفعالة: ركز على الملخصات أولاً ثم حل الأسئلة 💡",
-                "نصيحتي: ادرس بانتظام ولا تترك الدروس متراكمة 📚",
-                "أفضل طريقة للدراسة: فهم المفهوم ثم التطبيق على أمثلة واقعية 🎯"
-            ],
-            homework: [
-                "الواجبات ضرورية جداً! 📝 حاول تكملتها يومياً",
-                "الالتزام بالواجبات يرفع درجاتك! ابدأ اليوم 💪",
-                "لا تتردد في طلب المساعدة إذا واجهت صعوبة في أي واجب 🤝"
-            ],
-            help: [
-                "أنا هنا لمساعدتك بأي سؤال! 🤝 اسأل باطمئنان",
-                "لا تخجل من أي استفسار، المهم أن تفهم ✅",
-                "كل الأسئلة مهمة وأنا مستعد للإجابة عليها 👂"
-            ],
-            motivate: [
-                "أنت قادر على النجاح! 💫 لا تستسلم وحاول أكثر",
-                "النجاح يتطلب إصرار والتزام! أنت على الطريق الصحيح 🚀",
-                "تذكر: كل شخص ناجح بدأ من حيث أنت الآن! استمر 🌟"
-            ],
-            default: [
-                "موضوع مهم جداً! 🎓 دعني أساعدك به",
-                "فكرة جيدة للسؤال! 💭 هذا يشجعك على التعمق",
-                "أحسنت بطرح هذا السؤال! 👍 دعنا نفهمه معاً"
-            ]
+        const STORAGE_KEYS = {
+            lessons: "abdo_lessons",
+            exams: "abdo_exams",
+            admins: "abdo_admin_users"
         };
 
-        // ===== UI ELEMENTS =====
-        const toggleBtn = document.getElementById('toggleModeBtn');
-        const formTitle = document.getElementById('formTitle');
-        const submitBtn = document.getElementById('submitBtn');
-        const statusMsg = document.getElementById('statusMessage');
-        const academicGroup = document.getElementById('academicGroup');
-        const codeLabel = document.getElementById('codeLabel');
-        const modeBadge = document.getElementById('currentModeBadge');
+        const defaultLessons = [
+            { id: 1, title: "الدرس الأول: مقدمة في المنهج الأكاديمي", link: "#", subject: "عام" },
+            { id: 2, title: "الدرس الثاني: مفاهيم وتطبيقات أساسية", link: "#", subject: "عام" },
+            { id: 3, title: "الدرس الثالث: التقنيات الحديثة في التعليم", link: "#", subject: "تقنية" }
+        ];
 
-        // ===== TOGGLE ADMIN/STUDENT MODE =====
-        toggleBtn.addEventListener('click', () => {
-            isAdminMode = !isAdminMode;
-            statusMsg.style.display = 'none';
+        const defaultExams = [
+            {
+                id: 1,
+                title: "اختبار تقييم المستوى الشامل",
+                duration: "45 دقيقة",
+                questions: [
+                    {
+                        q: "ما هي أهم خطوة عند دراسة أي موضوع جديد؟",
+                        options: ["تجاهل التفاصيل", "فهم الفكرة الأساسية ثم التطبيق", "تخزين كل شيء دون فهم", "تكرار الكلمات فقط"],
+                        answer: 1
+                    },
+                    {
+                        q: "أي من التالي يعد أسلوباً فعالاً للتعلم؟",
+                        options: ["الدراسة العشوائية", "التكرار المنتظم مع الفهم", "تأجيل كل شيء", "الحفظ دون مراجعة",],
+                        answer: 1
+                    },
+                    {
+                        q: "ما معنى التزامك اليومي بالدراسة؟",
+                        options: ["عدم المراجعة", "التعلم المستمر", "الاستسلام", "تحديد كل شيء كعمل صعب"],
+                        answer: 1
+                    }
+                ]
+            },
+            {
+                id: 2,
+                title: "اختبار الفصل الأول",
+                duration: "30 دقيقة",
+                questions: [
+                    {
+                        q: "ما الهدف من حل الأسئلة بعد الدراسة؟",
+                        options: ["التسلية فقط", "قياس الفهم", "إضاعة الوقت", "عدم التركيز"],
+                        answer: 1
+                    },
+                    {
+                        q: "كيف تتعامل مع سؤال صعب؟",
+                        options: ["تتركه", "تُعيد فهمه وتحاول مرة أخرى", "تتجاهله forever", "تغلق المنصة"],
+                        answer: 1
+                    },
+                    {
+                        q: "أيهما أفضل في التعلم؟",
+                        options: ["المذاكرة العشوائية", "الاستمرار والتطبيق", "تكرار صرفي", "إهمال الملاحظات"],
+                        answer: 1
+                    }
+                ]
+            }
+        ];
+
+        let isAdminMode = false;
+        let currentStudent = null;
+        let lessonData = [];
+        let examData = [];
+        let currentExam = null;
+        let currentExamAnswers = {};
+        let currentExamIndex = 0;
+
+        const state = {
+            isAdminMode: false,
+            currentStudent: null,
+            currentExam: null
+        };
+
+        const elements = {
+            loginSection: document.getElementById('loginSection'),
+            studentDashboard: document.getElementById('studentDashboard'),
+            adminDashboard: document.getElementById('adminDashboard'),
+            toggleBtn: document.getElementById('toggleModeBtn'),
+            formTitle: document.getElementById('formTitle'),
+            submitBtn: document.getElementById('submitBtn'),
+            statusMsg: document.getElementById('statusMessage'),
+            academicGroup: document.getElementById('academicGroup'),
+            codeLabel: document.getElementById('codeLabel'),
+            modeBadge: document.getElementById('currentModeBadge'),
+            fullName: document.getElementById('fullName'),
+            accessCode: document.getElementById('accessCode'),
+            studentWelcomeName: document.getElementById('studentWelcomeName'),
+            lessonsContainer: document.getElementById('lessonsContainer'),
+            examsContainer: document.getElementById('examsContainer'),
+            examModal: document.getElementById('examModal'),
+            examModalTitle: document.getElementById('examModalTitle'),
+            quizContent: document.getElementById('quizContent'),
+            mainForm: document.getElementById('mainForm'),
+            aiInput: document.getElementById('aiInput'),
+            chatMessages: document.getElementById('chatMessages')
+        };
+
+        function loadData() {
+            const storedLessons = JSON.parse(localStorage.getItem(STORAGE_KEYS.lessons) || "null");
+            const storedExams = JSON.parse(localStorage.getItem(STORAGE_KEYS.exams) || "null");
+
+            lessonData = Array.isArray(storedLessons) && storedLessons.length ? storedLessons : defaultLessons;
+            examData = Array.isArray(storedExams) && storedExams.length ? storedExams : defaultExams;
+
+            localStorage.setItem(STORAGE_KEYS.lessons, JSON.stringify(lessonData));
+            localStorage.setItem(STORAGE_KEYS.exams, JSON.stringify(examData));
+        }
+
+        function saveLessons() {
+            localStorage.setItem(STORAGE_KEYS.lessons, JSON.stringify(lessonData));
+        }
+
+        function saveExams() {
+            localStorage.setItem(STORAGE_KEYS.exams, JSON.stringify(examData));
+        }
+
+        function showStatus(message, type = 'success') {
+            elements.statusMsg.textContent = message;
+            elements.statusMsg.className = `status-msg ${type}`;
+            elements.statusMsg.style.display = 'block';
+        }
+
+        function hideStatus() {
+            elements.statusMsg.style.display = 'none';
+            elements.statusMsg.className = 'status-msg';
+        }
+
+        function resetLoginForm() {
+            elements.fullName.value = "";
+            elements.accessCode.value = "";
+            elements.academicYear.value = "1";
+        }
+
+        function toggleMode(forceMode) {
+            isAdminMode = typeof forceMode === 'boolean' ? forceMode : !isAdminMode;
+            hideStatus();
 
             if (isAdminMode) {
-                modeBadge.innerHTML = `<i class="fa-solid fa-gear"></i> بوابة الإدارة`;
-                modeBadge.style.color = 'var(--accent-blue)';
-                modeBadge.style.borderColor = 'var(--accent-blue)';
-                toggleBtn.innerHTML = `<i class="fa-solid fa-user-graduate"></i> طالب`;
-                formTitle.textContent = 'دخول لوحة الإدارة';
-                submitBtn.innerHTML = `<span>دخول الإدارة</span> <i class="fa-solid fa-lock"></i>`;
-                academicGroup.style.display = 'none';
-                codeLabel.textContent = 'مفتاح الإدارة';
+                elements.modeBadge.innerHTML = '<i class="fa-solid fa-gear"></i> بوابة الإدارة';
+                elements.modeBadge.style.color = 'var(--accent-blue)';
+                elements.modeBadge.style.borderColor = 'var(--accent-blue)';
+                elements.toggleBtn.innerHTML = '<i class="fa-solid fa-user-graduate"></i> طالب';
+                elements.formTitle.textContent = 'دخول لوحة الإدارة';
+                elements.submitBtn.innerHTML = '<span>دخول الإدارة</span> <i class="fa-solid fa-lock"></i>';
+                elements.academicGroup.style.display = 'none';
+                elements.codeLabel.textContent = 'مفتاح الإدارة';
             } else {
-                modeBadge.innerHTML = `<i class="fa-solid fa-user-graduate"></i> بوابة الطالب`;
-                modeBadge.style.color = 'var(--accent-green)';
-                modeBadge.style.borderColor = 'var(--accent-green)';
-                toggleBtn.innerHTML = `<i class="fa-solid fa-gear"></i> إدارة`;
-                formTitle.textContent = 'تسجيل دخول الطالب';
-                submitBtn.innerHTML = `<span>دخول المنصة</span> <i class="fa-solid fa-arrow-left"></i>`;
-                academicGroup.style.display = 'block';
-                codeLabel.textContent = 'كود الطالب';
+                elements.modeBadge.innerHTML = '<i class="fa-solid fa-user-graduate"></i> بوابة الطالب';
+                elements.modeBadge.style.color = 'var(--accent-green)';
+                elements.modeBadge.style.borderColor = 'var(--accent-green)';
+                elements.toggleBtn.innerHTML = '<i class="fa-solid fa-gear"></i> إدارة';
+                elements.formTitle.textContent = 'تسجيل دخول الطالب';
+                elements.submitBtn.innerHTML = '<span>دخول المنصة</span> <i class="fa-solid fa-arrow-left"></i>';
+                elements.academicGroup.style.display = 'block';
+                elements.codeLabel.textContent = 'كود الطالب';
             }
-        });
+        }
 
-        // ===== FORM SUBMIT & LOGIN =====
-        function handleFormSubmit(e) {
-            e.preventDefault();
-            const name = document.getElementById('fullName').value.trim();
-            const code = document.getElementById('accessCode').value.trim();
-
-            statusMsg.style.display = 'block';
-
+        function loginUser(name, code) {
             if (isAdminMode) {
                 if (code === ADMIN_SECRET) {
-                    statusMsg.className = 'status-msg success';
-                    statusMsg.textContent = `✅ مرحباً أستاذ ${name}! تم التحقق بنجاح`;
+                    showStatus(`✅ مرحباً أستاذ ${name}! تم التحقق بنجاح`, 'success');
                     setTimeout(() => {
-                        document.getElementById('loginSection').style.display = 'none';
-                        document.getElementById('adminDashboard').style.display = 'block';
-                    }, 1200);
+                        elements.loginSection.style.display = 'none';
+                        elements.studentDashboard.style.display = 'none';
+                        elements.adminDashboard.style.display = 'block';
+                        state.currentStudent = name;
+                        resetLoginForm();
+                    }, 800);
                 } else {
-                    statusMsg.className = 'status-msg error';
-                    statusMsg.textContent = '❌ كود الإدارة غير صحيح!';
+                    showStatus('❌ كود الإدارة غير صحيح!', 'error');
                 }
             } else {
                 if (code === STUDENT_SECRET) {
-                    currentStudent = name;
-                    statusMsg.className = 'status-msg success';
-                    statusMsg.textContent = `✅ أهلاً يا ${name}! مرحباً بك في منبر المتفوقين`;
-                    document.getElementById('studentWelcomeName').textContent = `أهلاً بك، الطالب ${name} 👋`;
+                    state.currentStudent = name;
+                    showStatus(`✅ أهلاً يا ${name}! مرحباً بك في منبر المتفوقين`, 'success');
+                    elements.studentWelcomeName.textContent = `أهلاً بك، الطالب ${name} 👋`;
                     renderLessons();
                     renderExams();
                     setTimeout(() => {
-                        document.getElementById('loginSection').style.display = 'none';
-                        document.getElementById('studentDashboard').style.display = 'block';
-                    }, 1200);
+                        elements.loginSection.style.display = 'none';
+                        elements.adminDashboard.style.display = 'none';
+                        elements.studentDashboard.style.display = 'block';
+                        resetLoginForm();
+                    }, 800);
                 } else {
-                    statusMsg.className = 'status-msg error';
-                    statusMsg.textContent = '❌ كود الطالب غير صحيح!';
+                    showStatus('❌ كود الطالب غير صحيح!', 'error');
                 }
             }
         }
 
-        // ===== RENDER LESSONS & EXAMS =====
         function renderLessons() {
-            const container = document.getElementById('lessonsContainer');
-            container.innerHTML = lessonsData.map((lesson, idx) => `
+            elements.lessonsContainer.innerHTML = lessonData.map(lesson => `
                 <div class="card">
                     <h3><i class="fa-solid fa-play-circle"></i> ${lesson.title}</h3>
                     <p>محتوى تعليمي ممتاز مصمم خصيصاً لمساعدتك على التفوق والنجاح 🎯</p>
-                    <p style="color: var(--accent-green); font-size: 0.85rem;">📌 ${lesson.subject}</p>
-                    <a href="${lesson.link}" class="btn-primary" style="text-decoration:none;">مشاهدة الشرح</a>
+                    <p style="color: var(--accent-green); font-size: 0.85rem;">📌 ${lesson.subject || 'عام'}</p>
+                    <a href="${lesson.link || '#'}" target="_blank" class="btn-primary" style="text-decoration:none;">مشاهدة الشرح</a>
                 </div>
             `).join('');
         }
 
         function renderExams() {
-            const container = document.getElementById('examsContainer');
-            container.innerHTML = examsData.map((exam, idx) => `
+            elements.examsContainer.innerHTML = examData.map(exam => `
                 <div class="card">
                     <h3><i class="fa-solid fa-file-signature"></i> ${exam.title}</h3>
                     <p>اختبار شامل لقياس فهمك واستيعابك للمفاهيم الأكاديمية ✅</p>
-                    <p style="color: var(--accent-blue); font-size: 0.85rem;">⏱️ المدة: ${exam.duration}</p>
-                    <a href="${exam.link}" class="btn-primary" style="background:var(--accent-blue); text-decoration:none;">بدء الاختبار</a>
+                    <p style="color: var(--accent-blue); font-size: 0.85rem;">⏱️ المدة: ${exam.duration || 'ساعة واحدة'}</p>
+                    <button class="btn-primary" style="background:var(--accent-blue); text-decoration:none; border:none;" onclick="${exam.questions && exam.questions.length ? `openExam(${exam.id})` : `window.open('${exam.link || '#'}','_blank')`}">ابدأ الاختبار</button>
                 </div>
             `).join('');
         }
 
-        // ===== ADMIN MANAGEMENT =====
         function addNewLesson() {
             const title = document.getElementById('lessonTitle').value.trim();
             const link = document.getElementById('lessonLink').value.trim();
-            if(title && link) {
-                lessonsData.push({ title, link, subject: "جديد" });
-                showAlert('✅ تمت إضافة الدرس بنجاح! سيظهر للطلاب فوراً');
-                document.getElementById('lessonTitle').value = '';
-                document.getElementById('lessonLink').value = '';
-            } else {
-                showAlert('❌ يرجى تعبئة جميع البيانات');
+
+            if (!title || !link) {
+                showStatus('❌ يرجى تعبئة جميع البيانات', 'error');
+                return;
             }
+
+            lessonData.push({
+                id: Date.now(),
+                title,
+                link,
+                subject: 'جديد'
+            });
+
+            saveLessons();
+            renderLessons();
+            document.getElementById('lessonTitle').value = '';
+            document.getElementById('lessonLink').value = '';
+            showStatus('✅ تمت إضافة الدرس بنجاح! سيظهر للطلاب فوراً', 'success');
         }
 
         function addNewExam() {
             const title = document.getElementById('examTitle').value.trim();
             const link = document.getElementById('examLink').value.trim();
-            if(title && link) {
-                examsData.push({ title, link, duration: "ساعة واحدة" });
-                showAlert('✅ تم نشر الاختبار بنجاح!');
-                document.getElementById('examTitle').value = '';
-                document.getElementById('examLink').value = '';
-            } else {
-                showAlert('❌ يرجى تعبئة جميع البيانات');
+
+            if (!title || !link) {
+                showStatus('❌ يرجى تعبئة جميع البيانات', 'error');
+                return;
             }
+
+            examData.push({
+                id: Date.now(),
+                title,
+                duration: "ساعة واحدة",
+                link,
+                questions: [
+                    {
+                        q: "ما الهدف الرئيسي من هذا الاختبار؟",
+                        options: ["التسلية فقط", "قياس الفهم", "تضييع الوقت", "عدم التفاعل"],
+                        answer: 1
+                    },
+                    {
+                        q: "ما أفضل طريقة للنجاح في الاختبار؟",
+                        options: ["تجاهل القراءة", "الاستعداد المسبق", "الاسترخاء التام", "عدم المراجعة"],
+                        answer: 1
+                    }
+                ]
+            });
+
+            saveExams();
+            renderExams();
+            document.getElementById('examTitle').value = '';
+            document.getElementById('examLink').value = '';
+            showStatus('✅ تم نشر الاختبار بنجاح!', 'success');
         }
 
         function addAdminUser() {
             const name = document.getElementById('newAdminName').value.trim();
-            if(name) {
-                showAlert(`✅ تم تعيين ${name} كمشرف جديد بنجاح!`);
-                document.getElementById('newAdminName').value = '';
-            } else {
-                showAlert('❌ يرجى إدخال اسم المشرف');
+            if (!name) {
+                showStatus('❌ يرجى إدخال اسم المشرف', 'error');
+                return;
+            }
+
+            const admins = JSON.parse(localStorage.getItem(STORAGE_KEYS.admins) || "[]");
+            admins.push({ name, code: ADMIN_SECRET });
+            localStorage.setItem(STORAGE_KEYS.admins, JSON.stringify(admins));
+
+            document.getElementById('newAdminName').value = '';
+            showStatus(`✅ تم تعيين ${name} كمشرف جديد بنجاح!`, 'success');
+        }
+
+        function logout() {
+            if (confirm('هل أنت متأكد من رغبتك في الخروج؟')) {
+                location.reload();
             }
         }
 
-        // ===== TAB SWITCHING =====
         function switchTab(tabId) {
-            // Hide all tab contents
             const allTabs = document.querySelectorAll('#studentDashboard .tab-content');
             allTabs.forEach(tab => {
                 tab.classList.remove('active');
                 tab.style.display = 'none';
             });
-            
-            // Remove active class from all buttons
-            const allButtons = document.querySelectorAll('#studentDashboard .nav-tabs .tab-btn');
+
+            const allButtons = document.querySelectorAll('#studentDashboard .tab-btn');
             allButtons.forEach(btn => btn.classList.remove('active'));
-            
-            // Show selected tab
+
             const selectedTab = document.getElementById(tabId);
-            selectedTab.classList.add('active');
-            selectedTab.style.display = 'block';
-            
-            // Add active class to clicked button
-            event.currentTarget.classList.add('active');
+            if (selectedTab) {
+                selectedTab.classList.add('active');
+                selectedTab.style.display = 'block';
+            }
+
+            const activeButton = document.querySelector(`#studentDashboard .tab-btn[data-tab="${tabId}"]`);
+            if (activeButton) activeButton.classList.add('active');
         }
 
         function switchAdminTab(tabId) {
-            // Hide all admin tab contents
             const allTabs = document.querySelectorAll('#adminDashboard .admin-tab-content');
             allTabs.forEach(tab => {
                 tab.classList.remove('active');
                 tab.style.display = 'none';
             });
-            
-            // Remove active class from all buttons
-            const allButtons = document.querySelectorAll('#adminDashboard .nav-tabs .tab-btn');
+
+            const allButtons = document.querySelectorAll('#adminDashboard .tab-btn');
             allButtons.forEach(btn => btn.classList.remove('active'));
-            
-            // Show selected tab
+
             const selectedTab = document.getElementById(tabId);
-            selectedTab.classList.add('active');
-            selectedTab.style.display = 'block';
-            
-            // Add active class to clicked button
-            event.currentTarget.classList.add('active');
-        }
-
-        // ===== LOGOUT =====
-        function logout() {
-            if(confirm('هل أنت متأكد من رغبتك في الخروج؟')) {
-                location.reload();
+            if (selectedTab) {
+                selectedTab.classList.add('active');
+                selectedTab.style.display = 'block';
             }
+
+            const activeButton = document.querySelector(`#adminDashboard .tab-btn[data-admin-tab="${tabId}"]`);
+            if (activeButton) activeButton.classList.add('active');
         }
 
-        // ===== ADVANCED AI ASSISTANT =====
         function getAIResponse(userText) {
             const text = userText.toLowerCase();
-            let response = '';
 
-            // Smart keyword detection
-            if (text.match(/مرحبا|السلام|ازيك|كيفك|hello|hi/)) {
-                response = aiResponses.greeting[Math.floor(Math.random() * aiResponses.greeting.length)];
-            } 
-            else if (text.match(/درس|شرح|فيديو|محاضرة|تعليم/)) {
-                response = aiResponses.lesson[Math.floor(Math.random() * aiResponses.lesson.length)];
-            }
-            else if (text.match(/اختبار|امتحان|تمرين|مسائل|تقييم/)) {
-                response = aiResponses.exam[Math.floor(Math.random() * aiResponses.exam.length)];
-            }
-            else if (text.match(/دراسة|ادرس|استذكر|تركيز|فهم/)) {
-                response = aiResponses.study[Math.floor(Math.random() * aiResponses.study.length)];
-            }
-            else if (text.match(/واجب|حل|homework|assignment/)) {
-                response = aiResponses.homework[Math.floor(Math.random() * aiResponses.homework.length)];
-            }
-            else if (text.match(/ساعد|مساعدة|ساعدني|ازاي|كيف|اشرح|فهمني|help|support/)) {
-                response = aiResponses.help[Math.floor(Math.random() * aiResponses.help.length)];
-            }
-            else if (text.match(/حزين|خايف|قلق|ما اقدر|صعب|فاشل|motivation|encourage/)) {
-                response = aiResponses.motivate[Math.floor(Math.random() * aiResponses.motivate.length)];
-            }
-            else {
-                response = aiResponses.default[Math.floor(Math.random() * aiResponses.default.length)];
-                response += ` تحديداً بخصوص: "${userText.substring(0, 50)}"`;
+            if (/(مرحبا|السلام|ازيك|كيفك|hello|hi)/.test(text)) {
+                return [
+                    "أهلاً وسهلاً! كيف حالك؟ 😊 كيف يمكنني مساعدتك اليوم؟",
+                    "مرحباً! أنا هنا لمساعدتك في أي استفسار دراسي 📖",
+                    "السلام عليكم! شرفت منصتنا 👋 ما الموضوع الذي تريد معرفة المزيد عنه؟"
+                ][Math.floor(Math.random() * 3)];
             }
 
-            return response;
+            if (/(درس|شرح|فيديو|محاضرة|تعليم|مادة)/.test(text)) {
+                return [
+                    "الدروس متاحة في تبويب 'الدروس' 📚 يمكنك مشاهدة شرح كامل للمواضيع المختلفة",
+                    "كل الدروس مرتبة بعناية لك! تفضل بزيارة قسم الدروس والاختيار من بينها",
+                    "تجد جميع الشروحات والدروس في التبويب الأول 📖 هل تريد نصيحة في موضوع معين؟"
+                ][Math.floor(Math.random() * 3)];
+            }
+
+            if (/(اختبار|امتحان|تمرين|مسائل|تقييم)/.test(text)) {
+                return [
+                    "الاختبارات متاحة في تبويب 'الاختبارات' ✏️ اختبر نفسك وقيّم مستواك الحالي!",
+                    "جاهز للاختبار؟ 💪 اذهب إلى تبويب الاختبارات وابدأ الآن!",
+                    "الاختبارات تساعدك على تقييم تقدمك 📊 لا تخاف وحاول أفضل ما عندك!"
+                ][Math.floor(Math.random() * 3)];
+            }
+
+            if (/(دراسة|ادرس|استذكر|تركيز|فهم|مذاكرة)/.test(text)) {
+                return [
+                    "للدراسة الفعالة: ركز على الملخصات أولاً ثم حل الأسئلة 💡",
+                    "نصيحتي: ادرس بانتظام ولا تترك الدروس متراكمة 📚",
+                    "أفضل طريقة للدراسة: فهم المفهوم ثم التطبيق على أمثلة واقعية 🎯"
+                ][Math.floor(Math.random() * 3)];
+            }
+
+            if (/(واجب|حل|homework|assignment)/.test(text)) {
+                return [
+                    "الواجبات ضرورية جداً! 📝 حاول تكملتها يومياً",
+                    "الالتزام بالواجبات يرفع درجاتك! ابدأ اليوم 💪",
+                    "لا تتردد في طلب المساعدة إذا واجهت صعوبة في أي واجب 🤝"
+                ][Math.floor(Math.random() * 3)];
+            }
+
+            if (/(ساعد|مساعدة|ساعدني|ازاي|كيف|اشرح|فهمني|help|support)/.test(text)) {
+                return [
+                    "أنا هنا لمساعدتك بأي سؤال! 🤝 اسأل باطمئنان",
+                    "لا تخجل من أي استفسار، المهم أن تفهم ✅",
+                    "كل الأسئلة مهمة وأنا مستعد للإجابة عليها 👂"
+                ][Math.floor(Math.random() * 3)];
+            }
+
+            if (/(حزين|خايف|قلق|ما اقدر|صعب|فاشل|motivation|encourage)/.test(text)) {
+                return [
+                    "أنت قادر على النجاح! 💫 لا تستسلم وحاول أكثر",
+                    "النجاح يتطلب إصرار والتزام! أنت على الطريق الصحيح 🚀",
+                    "تذكر: كل شخص ناجح بدأ من حيث أنت الآن! استمر 🌟"
+                ][Math.floor(Math.random() * 3)];
+            }
+
+            return [
+                "موضوع مهم جداً! 🎓 دعني أساعدك به",
+                "فكرة جيدة للسؤال! 💭 هذا يشجعك على التعمق",
+                "أحسنت بطرح هذا السؤال! 👍 دعنا نفهمه معاً"
+            ][Math.floor(Math.random() * 3)] + ` تحديداً بخصوص: "${userText.substring(0, 50)}"`;
         }
 
         function sendAiMessage() {
-            const input = document.getElementById('aiInput');
-            const chatMessages = document.getElementById('chatMessages');
-            const text = input.value.trim();
-
+            const text = elements.aiInput.value.trim();
             if (!text) return;
 
-            // User message
             const userMsg = document.createElement('div');
             userMsg.className = 'chat-msg user';
             userMsg.textContent = text;
-            chatMessages.appendChild(userMsg);
+            elements.chatMessages.appendChild(userMsg);
 
-            input.value = '';
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+            elements.aiInput.value = '';
+            elements.chatMessages.scrollTop = elements.chatMessages.scrollHeight;
 
-            // Show typing indicator
             const typingMsg = document.createElement('div');
             typingMsg.className = 'chat-msg bot';
             typingMsg.innerHTML = '<div class="typing-indicator"><span></span><span></span><span></span></div>';
-            chatMessages.appendChild(typingMsg);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+            elements.chatMessages.appendChild(typingMsg);
+            elements.chatMessages.scrollTop = elements.chatMessages.scrollHeight;
 
-            // Generate AI response
             setTimeout(() => {
                 typingMsg.remove();
+
                 const botMsg = document.createElement('div');
                 botMsg.className = 'chat-msg bot';
                 botMsg.textContent = getAIResponse(text);
-                chatMessages.appendChild(botMsg);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }, 1000);
+                elements.chatMessages.appendChild(botMsg);
+                elements.chatMessages.scrollTop = elements.chatMessages.scrollHeight;
+            }, 800);
         }
 
-        // Allow Enter key to send message
-        document.addEventListener('DOMContentLoaded', function() {
-            const aiInput = document.getElementById('aiInput');
-            if(aiInput) {
-                aiInput.addEventListener('keypress', function(e) {
-                    if(e.key === 'Enter') {
-                        sendAiMessage();
-                    }
-                });
+        function openExam(examId) {
+            currentExam = examData.find(exam => exam.id === Number(examId));
+            if (!currentExam || !currentExam.questions || !currentExam.questions.length) {
+                alert('هذا الاختبار لا يحتوي على أسئلة فعليه!');
+                return;
             }
-        });
 
-        // ===== UTILITY FUNCTIONS =====
-        function showAlert(message) {
-            alert(message);
+            currentExamAnswers = {};
+            currentExamIndex = 0;
+            elements.examModalTitle.textContent = currentExam.title;
+            elements.examModal.classList.add('active');
+            renderQuiz();
         }
+
+        function closeExamModal() {
+            elements.examModal.classList.remove('active');
+            currentExam = null;
+            currentExamAnswers = {};
+            currentExamIndex = 0;
+        }
+
+        function renderQuiz() {
+            if (!currentExam) return;
+
+            const question = currentExam.questions[currentExamIndex];
+            const selectedValue = currentExamAnswers[currentExamIndex] ?? null;
+
+            let optionsHTML = question.options.map((option, optionIndex) => `
+                <label class="quiz-option">
+                    <input type="radio" name="answer_${currentExamIndex}" value="${optionIndex}" ${selectedValue === optionIndex ? 'checked' : ''} onchange="saveQuizAnswer(${currentExamIndex}, ${optionIndex})">
+                    <span>${option}</span>
+                </label>
+            `).join('');
+
+            const prevBtn = currentExamIndex > 0 ? `<button class="btn-primary" style="width:auto;" onclick="goPrevQuestion()">السابق</button>` : `<span></span>`;
+            const nextBtn = currentExamIndex < currentExam.questions.length - 1
+                ? `<button class="btn-primary" style="width:auto; background: var(--accent-blue);" onclick="goNextQuestion()">التالي</button>`
+                : `<button class="btn-primary" style="width:auto; background: var(--accent-green);" onclick="submitExam()">إرسال الاختبار</button>`;
+
+            elements.quizContent.innerHTML = `
+                <div class="quiz-question">
+                    <h4>السؤال ${currentExamIndex + 1} من ${currentExam.questions.length}</h4>
+                    <p style="margin-top:12px; font-size:1.05rem;">${question.q}</p>
+                    <div class="quiz-options">${optionsHTML}</div>
+                </div>
+
+                <div class="quiz-actions">
+                    ${prevBtn}
+                    ${nextBtn}
+                </div>
+            `;
+        }
+
+        function saveQuizAnswer(questionIndex, value) {
+            currentExamAnswers[questionIndex] = Number(value);
+            renderQuiz();
+        }
+
+        function goNextQuestion() {
+            if (currentExamIndex < currentExam.questions.length - 1) {
+                currentExamIndex++;
+                renderQuiz();
+            }
+        }
+
+        function goPrevQuestion() {
+            if (currentExamIndex > 0) {
+                currentExamIndex--;
+                renderQuiz();
+            }
+        }
+
+        function submitExam() {
+            if (!currentExam) return;
+
+            let score = 0;
+            currentExam.questions.forEach((question, index) => {
+                if (Number(currentExamAnswers[index]) === Number(question.answer)) {
+                    score++;
+                }
+            });
+
+            const total = currentExam.questions.length;
+            const percent = Math.round((score / total) * 100);
+
+            elements.quizContent.innerHTML = `
+                <div class="quiz-question">
+                    <h4>نتيجة الاختبار</h4>
+                    <p style="margin-top:12px; font-size:1.1rem;">
+                        لقد حصلت على <strong>${score}</strong> من <strong>${total}</strong> نقطة
+                    </p>
+                    <p style="margin-top:12px; color: var(--accent-green); font-weight:700;">
+                        النسبة: ${percent}%
+                    </p>
+                    <p style="margin-top:12px; color: var(--text-muted);">
+                        ${percent >= 60 ? '✅ ممتاز! أنت على الطريق الصحيح.' : '💪 حاول مرة أخرى وستتحسن.'}
+                    </p>
+                </div>
+
+                <div class="quiz-actions">
+                    <button class="btn-primary" style="width:auto;" onclick="closeExamModal()">إغلاق</button>
+                </div>
+            `;
+        }
+
+        function initEvents() {
+            elements.toggleBtn.addEventListener('click', () => toggleMode());
+
+            elements.mainForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+                const name = elements.fullName.value.trim();
+                const code = elements.accessCode.value.trim();
+                if (!name || !code) {
+                    showStatus('❌ يرجى إدخال الاسم والكود', 'error');
+                    return;
+                }
+                loginUser(name, code);
+            });
+
+            document.querySelectorAll('.tab-btn[data-tab]').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    switchTab(this.dataset.tab);
+                });
+            });
+
+            document.querySelectorAll('.tab-btn[data-admin-tab]').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    switchAdminTab(this.dataset.adminTab);
+                });
+            });
+
+            elements.aiInput.addEventListener('keypress', function (event) {
+                if (event.key === 'Enter') {
+                    sendAiMessage();
+                }
+            });
+        }
+
+        function init() {
+            loadData();
+            renderLessons();
+            renderExams();
+            initEvents();
+            toggleMode(false);
+        }
+
+        init();
     </script>
 </body>
-</html>
+    </html>
