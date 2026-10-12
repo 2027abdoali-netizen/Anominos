@@ -1,1460 +1,2303 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>أكاديمية Abdo_zeinhom</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-
-  <style>
-    :root{
-      --bg:#081116;
-      --bg-2:#0d1b21;
-      --panel:#101f27;
-      --panel-2:#122832;
-      --soft:#173440;
-      --line:#264c5b;
-      --green:#34d399;
-      --cyan:#38bdf8;
-      --purple:#a78bfa;
-      --red:#f87171;
-      --yellow:#fbbf24;
-      --text:#edf6f9;
-      --muted:#a9bac6;
-      --shadow:0 20px 45px rgba(0,0,0,.32);
-      --radius:20px;
-    }
-
-    *{box-sizing:border-box}
-    html,body{
-      margin:0;
-      padding:0;
-      background:
-        radial-gradient(circle at top left, rgba(52,211,153,.10), transparent 28%),
-        radial-gradient(circle at bottom right, rgba(56,189,248,.10), transparent 26%),
-        var(--bg);
-      color:var(--text);
-      font-family:"Cairo",sans-serif;
-      min-height:100vh;
-    }
-
-    body{
-      display:flex;
-      justify-content:center;
-      align-items:flex-start;
-      padding:24px;
-    }
-
-    .app{
-      width:min(1200px,100%);
-      background:rgba(16,31,39,.86);
-      border:1px solid var(--line);
-      border-radius:28px;
-      box-shadow:var(--shadow);
-      backdrop-filter:blur(10px);
-      overflow:hidden;
-    }
-
-    .topbar{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:16px 22px;
-      background:rgba(9,17,22,.8);
-      border-bottom:1px solid var(--line);
-      gap:12px;
-      flex-wrap:wrap;
-    }
-
-    .brand{
-      display:flex; align-items:center; gap:10px;
-      font-weight:800; font-size:1.08rem; letter-spacing:.2px;
-    }
-
-    .brand .logo{
-      width:38px;height:38px;border-radius:12px;
-      background:linear-gradient(135deg,var(--green),var(--cyan));
-      color:#081116;display:grid;place-items:center;
-      box-shadow:0 10px 24px rgba(52,211,153,.25);
-    }
-
-    .mode-pill{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 14px; border-radius:999px;
-      font-size:.86rem; font-weight:700;
-      border:1px solid var(--green);
-      background:rgba(52,211,153,.12); color:var(--green);
-      white-space:nowrap;
-    }
-
-    .toggle-btn{
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.02);
-      color:var(--text);
-      border-radius:12px;
-      padding:10px 16px; cursor:pointer;
-      font:inherit; font-weight:700; transition:.2s ease;
-    }
-
-    .toggle-btn:hover{
-      transform:translateY(-1px);
-      border-color:var(--cyan); color:var(--cyan);
-    }
-
-    .page{ display:none; padding:26px; }
-    .page.active{ display:block; }
-
-    .auth-container{
-      max-width:620px; margin:0 auto;
-      padding:30px 10px 20px;
-    }
-
-    .auth-card{
-      background:rgba(18,40,50,.9);
-      border:1px solid var(--line);
-      border-radius:24px;
-      padding:28px 20px;
-      box-shadow:var(--shadow);
-    }
-
-    .profile{
-      width:120px;height:120px;border-radius:50%;
-      margin:0 auto 18px;
-      background:linear-gradient(145deg, rgba(52,211,153,.18), rgba(56,189,248,.12));
-      display:grid; place-items:center;
-      border:3px solid rgba(52,211,153,.7);
-      box-shadow:0 0 30px rgba(52,211,153,.18);
-      position:relative;
-    }
-
-    .profile i{font-size:3rem; color:var(--green);}
-    .profile::after{
-      content:""; position:absolute; width:16px;height:16px; border-radius:50%;
-      background:var(--green); right:12px; bottom:12px; border:3px solid var(--panel);
-    }
-
-    h1,h2,h3,p{margin:0;}
-
-    .hero-title{
-      text-align:center; font-size:clamp(1.4rem,3vw,2rem);
-      margin-bottom:8px; font-weight:800; color:#f4fbff;
-    }
-
-    .hero-sub{
-      text-align:center; color:var(--cyan); margin-bottom:26px; font-weight:600;
-    }
-
-    .form-title{
-      text-align:center; color:var(--muted); font-size:1.05rem; margin-bottom:22px;
-    }
-
-    .field{margin-bottom:16px;}
-    .field label{
-      display:block; margin-bottom:8px; color:var(--muted);
-      font-size:.9rem; font-weight:700;
-    }
-
-    .input-wrap{position:relative;}
-    .input-wrap i{
-      position:absolute; right:16px; top:50%; transform:translateY(-50%);
-      color:var(--muted); font-size:1rem;
-    }
-
-    .input-wrap input,.input-wrap select,
-    .field input[type="text"], .field textarea, .field select{
-      width:100%; border:1px solid var(--line);
-      border-radius:12px; background:rgba(2,10,15,.75);
-      color:var(--text); padding:14px 42px 14px 14px;
-      font:inherit; outline:none; transition:.2s ease;
-    }
-
-    .input-wrap input:focus,.input-wrap select:focus,
-    .field input[type="text"]:focus, .field textarea:focus, .field select:focus{
-      border-color:var(--green); box-shadow:0 0 0 3px rgba(52,211,153,.12);
-    }
-
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:8px;
-      width:100%; min-height:52px;
-      background:linear-gradient(135deg,var(--green),#12b981);
-      border:none; border-radius:12px; color:#081116;
-      font:inherit; font-weight:800; cursor:pointer;
-      transition:transform .2s ease, box-shadow .2s ease;
-      box-shadow:0 16px 24px rgba(52,211,153,.2);
-    }
-    .btn:hover{transform:translateY(-2px);}
-    .btn.small{
-      width:auto; min-width:120px; padding:10px 16px; min-height:42px; font-size:.88rem;
-    }
-    .btn.danger{
-      background:rgba(248,113,113,.08); border:1px solid rgba(248,113,113,.25); color:var(--red); box-shadow:none;
-    }
-    .btn.info{
-      background:linear-gradient(135deg,var(--cyan),#0ea5e9); color:#081116; box-shadow:none;
-    }
-
-    .status{
-      margin-top:18px; display:none;
-      border-radius:12px; padding:12px 14px;
-      text-align:center; font-size:.9rem; font-weight:700;
-    }
-
-    .status.error{
-      display:block; background:rgba(248,113,113,.12); border:1px solid rgba(248,113,113,.35); color:var(--red);
-    }
-
-    .status.success{
-      display:block; background:rgba(52,211,153,.12); border:1px solid rgba(52,211,153,.35); color:var(--green);
-    }
-
-    .support{
-      text-align:center; margin-top:22px; padding-top:16px; border-top:1px solid var(--line);
-      color:var(--muted); font-size:.9rem;
-    }
-
-    .support a{
-      color:var(--green); text-decoration:none; font-weight:700; margin-inline-start:6px;
-    }
-
-    .container{ padding:24px 18px 18px; }
-
-    .dashboard-header{
-      display:flex; justify-content:space-between; align-items:center;
-      gap:16px; margin-bottom:20px; padding-bottom:18px; border-bottom:1px solid var(--line); flex-wrap:wrap;
-    }
-
-    .welcome h2{
-      color:var(--green); font-size:clamp(1.1rem,2.5vw,1.5rem);
-    }
-
-    .welcome p{
-      color:var(--muted); font-size:.9rem; margin-top:6px;
-    }
-
-    .tabs{
-      display:flex; gap:8px; flex-wrap:wrap;
-      margin-bottom:20px; border-bottom:1px solid var(--line); padding-bottom:10px;
-    }
-
-    .tab-btn{
-      padding:10px 16px; background:transparent; color:var(--muted);
-      border:1px solid transparent; border-radius:10px;
-      font:inherit; cursor:pointer; font-weight:700; transition:.2s ease;
-    }
-
-    .tab-btn.active{
-      background:rgba(52,211,153,.12); color:var(--green); border-color:rgba(52,211,153,.45);
-    }
-
-    .tab-panel{display:none;}
-    .tab-panel.active{display:block;}
-
-    .grid{
-      display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:18px;
-    }
-
-    .card{
-      background:rgba(13,27,33,.9); border:1px solid var(--line);
-      border-radius:18px; padding:18px; display:flex; flex-direction:column; gap:12px; min-height:220px;
-    }
-
-    .card h3{
-      font-size:1.04rem; color:var(--cyan); min-height:48px; line-height:1.5;
-    }
-
-    .card p{
-      color:var(--muted); font-size:.9rem; line-height:1.7;
-    }
-
-    .chip{
-      display:inline-flex; align-items:center; gap:8px; width:max-content;
-      background:rgba(52,211,153,.08); border:1px solid rgba(52,211,153,.25); color:var(--green);
-      border-radius:999px; padding:5px 10px; font-size:.8rem; font-weight:700;
-    }
-
-    .actions-row{
-      margin-top:auto; display:flex; gap:8px; flex-wrap:wrap; align-items:center;
-    }
-
-    .link-btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      width:auto; min-width:120px; min-height:42px; padding:0 14px;
-      border-radius:10px; text-decoration:none; color:#081116;
-      font-weight:800; background:linear-gradient(135deg,var(--green),#22c55e); cursor:pointer;
-      border:none;
-    }
-
-    .link-btn.secondary{
-      background:linear-gradient(135deg,var(--cyan),#0ea5e9);
-    }
-
-    .admin-card{
-      background:rgba(13,27,33,.96); border:1px solid var(--line); border-radius:20px; padding:18px;
-    }
-
-    .admin-card h3{
-      margin-bottom:14px; font-size:1.08rem; color:var(--green);
-    }
-
-    .field textarea{
-      min-height:150px; resize:vertical; padding:14px 16px;
-    }
-
-    .question-builder{
-      background:rgba(255,255,255,.02);
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:12px 14px;
-      margin-bottom:14px;
-    }
-
-    .builder-head{
-      display:flex; justify-content:space-between; align-items:center;
-      gap:10px; margin-bottom:12px;
-      color:var(--cyan); font-weight:700;
-    }
-
-    .option-grid{
-      display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px;
-      margin-top:12px;
-    }
-
-    .option-line{
-      display:flex; flex-direction:column; gap:6px;
-      color:var(--muted); font-size:.85rem;
-    }
-
-    .option-line input, .builder-answer{
-      width:100%; padding:10px 12px; border-radius:10px; border:1px solid var(--line);
-      background:rgba(2,10,15,.75); color:var(--text); font:inherit;
-    }
-
-    .add-question-btn{
-      margin-top:12px;
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:10px 14px; border-radius:10px; border:1px solid var(--line);
-      background:rgba(56,189,248,.08); color:var(--cyan); cursor:pointer; font:inherit; font-weight:700;
-    }
-
-    .quiz-box{
-      display:flex; flex-direction:column; gap:18px;
-      margin-top:8px;
-    }
-
-    .question{
-      background:rgba(255,255,255,.02); border:1px solid var(--line); border-radius:16px; padding:16px 14px;
-    }
-
-    .question-title{
-      font-weight:800; margin-bottom:12px; line-height:1.7; color:var(--text);
-    }
-
-    .options{ display:grid; gap:10px; }
-
-    .option{
-      display:flex; align-items:center; gap:10px; padding:12px 14px; border-radius:12px;
-      background:rgba(2,10,15,.72); border:1px solid var(--line); cursor:pointer; transition:.2s ease;
-    }
-
-    .option:hover{ border-color:var(--green); }
-    .option input{ accent-color:var(--green); }
-
-    .exam-actions{
-      display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; margin-top:10px;
-    }
-
-    .timer-badge{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 12px; border-radius:999px;
-      background:rgba(251,191,36,.08); border:1px solid rgba(251,191,36,.35);
-      color:var(--yellow); font-weight:700;
-    }
-
-    .result-box{
-      background:rgba(52,211,153,.08); border:1px solid rgba(52,211,153,.35);
-      padding:16px 18px; border-radius:14px; color:var(--text);
-    }
-
-    .result-box strong{ color:var(--green); }
-
-    .lesson-modal-content{
-      line-height:1.9;
-      color:var(--text);
-      white-space:pre-wrap;
-      background:rgba(255,255,255,.02);
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:18px;
-      margin-top:8px;
-    }
-
-    .modal{
-      position:fixed; inset:0; display:none; background:rgba(0,0,0,.68);
-      justify-content:center; align-items:center; padding:24px; z-index:1000;
-    }
-    .modal.active{ display:flex; }
-
-    .modal-panel{
-      width:min(900px,100%); max-height:90vh; overflow:auto;
-      background:rgba(15,31,39,.98); border:1px solid var(--line); border-radius:22px; padding:20px; box-shadow:var(--shadow);
-    }
-
-    .modal-head{
-      display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:18px;
-    }
-    .modal-head h3{color:var(--green);}
-    .close-btn{
-      width:42px;height:42px;border-radius:10px;border:1px solid var(--line); background:transparent; color:var(--text);
-      cursor:pointer; font:inherit; font-size:1.2rem;
-    }
-
-    .small-note{font-size:.75rem; color:var(--muted);}
-
-    .rules{
-      display:grid; gap:14px; margin-top:16px; color:var(--muted); line-height:1.8;
-    }
-    .rules li{ margin-right:18px; }
-
-    @media (max-width:700px){
-      body{ padding:14px; }
-      .page{ padding:16px; }
-      .topbar{ padding:12px 14px; }
-      .brand{ font-size:.98rem }
-      .dashboard-header{ align-items:flex-start; }
-      .grid{ grid-template-columns:1fr; }
-      .support{ font-size:.82rem; }
-      .option-grid{ grid-template-columns:1fr; }
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Abdo_zeinhom Academy - المنصة التعليمية الاحترافية</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+    <style>
+        :root {
+            --primary: #34d399;
+            --secondary: #38bdf8;
+            --danger: #f87171;
+            --warning: #fbbf24;
+            --success: #34d399;
+            --bg: #0f172a;
+            --bg-alt: #1e293b;
+            --panel: #1a1f2e;
+            --border: #2d3748;
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, var(--bg) 0%, #1a2332 100%);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(15, 23, 42, 0.95);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0f172a;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .nav-menu button {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: color 0.3s;
+            font-weight: 600;
+        }
+
+        .nav-menu button:hover {
+            color: var(--primary);
+        }
+
+        .nav-menu button.active {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.5rem;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), #22c55e);
+            color: #0f172a;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(52, 211, 153, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+
+        .btn-danger {
+            background: rgba(248, 113, 113, 0.1);
+            border: 1px solid rgba(248, 113, 113, 0.3);
+            color: var(--danger);
+        }
+
+        .btn-danger:hover {
+            background: rgba(248, 113, 113, 0.2);
+        }
+
+        .btn-small {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.85rem;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.5rem 1rem;
+            background: var(--panel);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0f172a;
+            font-weight: 800;
+        }
+
+        .user-details h4 {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .user-details p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Login Page */
+        .login-container {
+            display: flex;
+            min-height: 100vh;
+            align-items: center;
+            justify-content: center;
+            gap: 3rem;
+            padding: 2rem;
+        }
+
+        .login-left {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .login-left h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .login-left p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .login-features {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--panel);
+            border-radius: 8px;
+            border-left: 3px solid var(--primary);
+        }
+
+        .feature-item i {
+            color: var(--primary);
+            font-size: 1.3rem;
+            min-width: 30px;
+        }
+
+        .login-form {
+            background: var(--panel);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .login-form h2 {
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.3);
+            color: var(--text);
+            font-family: 'Cairo', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.1);
+        }
+
+        .form-group input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .mode-toggle {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mode-toggle button {
+            flex: 1;
+            padding: 0.7rem;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-muted);
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .mode-toggle button.active {
+            background: var(--primary);
+            color: #0f172a;
+            border-color: var(--primary);
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .alert-success {
+            background: rgba(52, 211, 153, 0.1);
+            border: 1px solid rgba(52, 211, 153, 0.3);
+            color: var(--success);
+        }
+
+        .alert-error {
+            background: rgba(248, 113, 113, 0.1);
+            border: 1px solid rgba(248, 113, 113, 0.3);
+            color: var(--danger);
+        }
+
+        /* Dashboard */
+        .dashboard-header {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .dashboard-header h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .dashboard-header p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 5px 20px rgba(52, 211, 153, 0.1);
+        }
+
+        .stat-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .stat-card h4 {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .stat-card .value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text);
+        }
+
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .tab-btn:hover {
+            color: var(--primary);
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(52, 211, 153, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 1.5rem;
+            color: #0f172a;
+        }
+
+        .card-header h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-header p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .card-body p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .card-footer {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            background: rgba(52, 211, 153, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(52, 211, 153, 0.3);
+        }
+
+        .badge-info {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--secondary);
+            border-color: rgba(56, 189, 248, 0.3);
+        }
+
+        .lesson-content {
+            background: var(--bg-alt);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            line-height: 1.8;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            color: var(--text);
+        }
+
+        .exam-question {
+            background: var(--bg-alt);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            margin-bottom: 1.5rem;
+        }
+
+        .exam-question h4 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .options {
+            display: grid;
+            gap: 0.8rem;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .option:hover {
+            border-color: var(--primary);
+            background: rgba(52, 211, 153, 0.05);
+        }
+
+        .option input[type="radio"] {
+            cursor: pointer;
+            accent-color: var(--primary);
+        }
+
+        .timer {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem;
+            background: rgba(251, 191, 36, 0.1);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            border-radius: 8px;
+            color: var(--warning);
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .question-builder {
+            background: var(--bg-alt);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            margin-bottom: 1.5rem;
+        }
+
+        .question-builder h4 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal.active {
+            display: flex;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .modal-content {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            width: 100%;
+            max-width: 700px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .modal-header h3 {
+            font-size: 1.5rem;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: var(--primary);
+        }
+
+        .result-box {
+            background: rgba(52, 211, 153, 0.1);
+            border: 1px solid rgba(52, 211, 153, 0.3);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .result-box h3 {
+            color: var(--success);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .result-box .score {
+            font-size: 2.5rem;
+            color: var(--primary);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .result-box p {
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .members-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .member-card {
+            background: var(--bg-alt);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .member-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0f172a;
+            font-weight: 800;
+            font-size: 1.5rem;
+            margin: 0 auto 1rem;
+        }
+
+        .member-card h4 {
+            margin-bottom: 0.5rem;
+        }
+
+        .member-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .member-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .member-meta-item {
+            font-size: 0.8rem;
+        }
+
+        .member-meta-item strong {
+            color: var(--primary);
+            display: block;
+        }
+
+        .member-meta-item span {
+            color: var(--text-muted);
+            display: block;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--panel);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .table thead {
+            background: var(--bg-alt);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .table th, .table td {
+            padding: 1rem;
+            text-align: right;
+        }
+
+        .table th {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .table tbody tr {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .table tbody tr:hover {
+            background: rgba(52, 211, 153, 0.05);
+        }
+
+        @media (max-width: 768px) {
+            .navbar-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-menu {
+                gap: 1rem;
+            }
+
+            .login-container {
+                gap: 1rem;
+                flex-direction: column;
+            }
+
+            .login-left {
+                display: none;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="app">
-    <header class="topbar">
-      <div class="brand">
-        <div class="logo"><i class="fa-solid fa-graduation-cap"></i></div>
-        <span>Abdo_zeinhom Academy</span>
-      </div>
-
-      <div id="modeBadge" class="mode-pill">
-        <i class="fa-solid fa-user-graduate"></i>
-        بوابة الطالب
-      </div>
-
-      <button id="toggleModeBtn" class="toggle-btn" type="button">
-        <i class="fa-solid fa-gear"></i> إدارة
-      </button>
-    </header>
-
-    <main>
-      <section id="loginPage" class="page active">
-        <div class="auth-container">
-          <div class="auth-card">
-            <div class="profile">
-              <i class="fa-solid fa-user-shield"></i>
+    <!-- Login Page -->
+    <div id="loginPage" class="page active">
+        <div class="login-container">
+            <div class="login-left">
+                <h1>Abdo_zeinhom</h1>
+                <p>منصة تعليمية احترافية توفر أدوات متقدمة للطلاب والمشرفين والمعلمين</p>
+                <div class="login-features">
+                    <div class="feature-item">
+                        <i class="fas fa-book-open"></i>
+                        <div>
+                            <strong>دروس تفاعلية</strong>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">محتوى تعليمي غني داخل المنصة</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-brain"></i>
+                        <div>
+                            <strong>اختبارات ذكية</strong>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">اختبارات متعددة الخيارات مع توقيت محدد</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-chart-line"></i>
+                        <div>
+                            <strong>تقارير متقدمة</strong>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">تحليل شامل لأداء الطلاب</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <div>
+                            <strong>أمان عالي</strong>
+                            <p style="font-size: 0.85rem; color: var(--text-muted);">حماية كاملة للبيانات والخصوصية</p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <h1 class="hero-title">Abdo_zeinhom</h1>
-            <p class="hero-sub">النظام الأكاديمي المتقدم</p>
+            <div class="login-form">
+                <h2>تسجيل الدخول</h2>
+                <div id="loginAlert"></div>
 
-            <h2 id="formTitle" class="form-title">تسجيل دخول الطالب</h2>
-
-            <form id="authForm">
-              <div class="field">
-                <label id="nameLabel" for="fullName">الاسم الكامل</label>
-                <div class="input-wrap">
-                  <i class="fa-solid fa-user"></i>
-                  <input id="fullName" type="text" placeholder="أدخل الاسم كاملاً" required />
+                <div class="mode-toggle">
+                    <button class="active" data-mode="student">طالب</button>
+                    <button data-mode="supervisor">مشرف</button>
+                    <button data-mode="admin">مالك</button>
                 </div>
-              </div>
 
-              <div class="field">
-                <label id="codeLabel" for="accessCode">كود الطالب الخاص</label>
-                <div class="input-wrap">
-                  <i class="fa-solid fa-key"></i>
-                  <input id="accessCode" type="password" placeholder="أدخل كود الدخول" required />
-                </div>
-              </div>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="userName">الاسم الكامل</label>
+                        <input type="text" id="userName" placeholder="أدخل اسمك الكامل" required />
+                    </div>
 
-              <div class="field" id="academicField">
-                <label for="academicYear">الصف الدراسي</label>
-                <div class="input-wrap">
-                  <i class="fa-solid fa-layer-group"></i>
-                  <select id="academicYear">
-                    <option value="الصف الأول الثانوي">الصف الأول الثانوي</option>
-                    <option value="الصف الثاني الثانوي">الصف الثاني الثانوي</option>
-                    <option value="الصف الثالث الثانوي">الصف الثالث الثانوي</option>
-                  </select>
-                </div>
-              </div>
+                    <div class="form-group">
+                        <label for="userCode">كود الدخول</label>
+                        <input type="password" id="userCode" placeholder="أدخل كود الدخول" required />
+                    </div>
 
-              <button class="btn" type="submit" id="submitBtn">
-                <span>دخول المنصة</span>
-                <i class="fa-solid fa-arrow-left"></i>
-              </button>
-            </form>
+                    <div class="form-group" id="classField" style="display: block;">
+                        <label for="userClass">الصف الدراسي</label>
+                        <select id="userClass" required>
+                            <option value="">اختر الصف</option>
+                            <option value="الأول الثانوي">الصف الأول الثانوي</option>
+                            <option value="الثاني الثانوي">الصف الثاني الثانوي</option>
+                            <option value="الثالث الثانوي">الصف الثالث الثانوي</option>
+                        </select>
+                    </div>
 
-            <div id="status" class="status"></div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                        <i class="fas fa-sign-in-alt"></i> دخول المنصة
+                    </button>
+                </form>
 
-            <div class="support">
-              الدعم الفني:
-              <a href="https://wa.me/201014540661" target="_blank" rel="noreferrer">
-                <i class="fa-brands fa-whatsapp"></i> 01014540661
-              </a>
+                <p style="text-align: center; font-size: 0.9rem; color: var(--text-muted); margin-top: 1.5rem;">
+                    <i class="fas fa-lock"></i> كود الطالب: Abdo_1234<br>
+                    <i class="fas fa-lock"></i> كود المشرف: Abdo_super<br>
+                    <i class="fas fa-lock"></i> كود المالك: xzsawq21
+                </p>
             </div>
-          </div>
         </div>
-      </section>
-
-      <section id="studentPage" class="page">
-        <div class="container">
-          <div class="dashboard-header">
-            <div class="welcome">
-              <h2 id="studentWelcome">مرحباً بك، طالبنا المتميز!</h2>
-              <p>لوحة التحكم الأكاديمية الخاصة بك</p>
-            </div>
-            <button class="toggle-btn" type="button" onclick="logout()">
-              <i class="fa-solid fa-right-from-bracket"></i> خروج
-            </button>
-          </div>
-
-          <div class="tabs">
-            <button class="tab-btn active" data-tab="lessonsTab" type="button">الدروس</button>
-            <button class="tab-btn" data-tab="examsTab" type="button">الاختبارات</button>
-            <button class="tab-btn" data-tab="aiTab" type="button">المساعد الذكي</button>
-            <button class="tab-btn" data-tab="certTab" type="button">الشهادات</button>
-          </div>
-
-          <div id="lessonsTab" class="tab-panel active">
-            <div id="lessonsContainer" class="grid"></div>
-          </div>
-
-          <div id="examsTab" class="tab-panel">
-            <div id="examsContainer" class="grid"></div>
-          </div>
-
-          <div id="aiTab" class="tab-panel">
-            <div class="chat-box" style="display:flex; flex-direction:column; background:rgba(13,27,33,.8); border:1px solid var(--line); border-radius:18px; overflow:hidden; min-height:420px;">
-              <div id="chatMessages" class="chat-body" style="flex:1; padding:16px; overflow-y:auto; display:flex; flex-direction:column; gap:12px; max-height:55vh;">
-                <div class="msg bot" style="max-width:80%; padding:12px 14px; border-radius:14px; line-height:1.7; font-size:.95rem; word-break:break-word; background:rgba(255,255,255,.02); border:1px solid var(--line); color:var(--text); align-self:flex-start;">أهلاً بك! أنا مساعدك الذكي في أكاديمية Abdo_zeinhom، يمكنك السؤال عن أي درس أو اختبار أو موضوع تعليمي.</div>
-              </div>
-              <div class="chat-input" style="display:flex; gap:10px; padding:14px; border-top:1px solid var(--line); background:rgba(8,17,22,.9);">
-                <input id="aiInput" type="text" placeholder="اكتب سؤالاً..." style="flex:1; min-width:180px; border:1px solid var(--line); border-radius:10px; background:rgba(2,10,15,.75); color:var(--text); padding:12px 14px; font:inherit; outline:none;" />
-                <button class="btn small info" type="button" onclick="sendAiMessage()">إرسال</button>
-              </div>
-            </div>
-          </div>
-
-          <div id="certTab" class="tab-panel">
-            <div class="certificate-wrap">
-              <div class="admin-card">
-                <h3><i class="fa-solid fa-award"></i> إنشاء شهادة</h3>
-                <div class="field">
-                  <label>اسم المتدرب</label>
-                  <input id="certStudentName" type="text" placeholder="اسم الطالب" />
-                </div>
-                <div class="field">
-                  <label>اسم الدورة / البرنامج</label>
-                  <input id="certCourseName" type="text" placeholder="مثال: الاستكشاف الأمني" />
-                </div>
-                <div class="field">
-                  <label>اسم المشرف / المؤيد</label>
-                  <input id="certOwnerName" type="text" placeholder="اسم المشرف / المدير" />
-                </div>
-                <button class="btn small info" type="button" onclick="generateCertificate()">عرض الشهادة</button>
-              </div>
-
-              <div id="certificatePreview" style="margin-top:20px;"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="adminPage" class="page">
-        <div class="container">
-          <div class="dashboard-header">
-            <div class="welcome">
-              <h2>لوحة إدارة المنصة</h2>
-              <p>التحكم الكامل في المحتوى والعضوية والقواعد</p>
-            </div>
-            <button class="toggle-btn" type="button" onclick="logout()">
-              <i class="fa-solid fa-right-from-bracket"></i> خروج
-            </button>
-          </div>
-
-          <div class="tabs">
-            <button class="tab-btn active" data-admin-tab="addLessonTab" type="button">إضافة درس</button>
-            <button class="tab-btn" data-admin-tab="addExamTab" type="button">إضافة اختبار</button>
-            <button class="tab-btn" data-admin-tab="addAdminTab" type="button">إضافة مشرف</button>
-            <button class="tab-btn" data-admin-tab="rulesTab" type="button">القواعد</button>
-          </div>
-
-          <div id="addLessonTab" class="tab-panel active">
-            <div class="admin-card">
-              <h3><i class="fa-solid fa-book-open"></i> إضافة درس جديد</h3>
-
-              <div class="field">
-                <label>عنوان الدرس</label>
-                <input id="lessonTitle" type="text" placeholder="عنوان الدرس" />
-              </div>
-
-              <div class="field">
-                <label>نوع المحتوى</label>
-                <input id="lessonSubject" type="text" placeholder="مثال: أمن سيبراني / تقنية / عام" />
-              </div>
-
-              <div class="field">
-                <label>محتوى الدرس داخل المنصة</label>
-                <textarea id="lessonContent" placeholder="اكتب شرح الدرس هنا داخل المنصة..."></textarea>
-              </div>
-
-              <button class="btn" type="button" onclick="addLesson()">نشر الدرس</button>
-            </div>
-          </div>
-
-          <div id="addExamTab" class="tab-panel">
-            <div class="admin-card">
-              <h3><i class="fa-solid fa-file-pen"></i> إضافة اختبار جديد</h3>
-
-              <div class="field">
-                <label>عنوان الاختبار</label>
-                <input id="examTitle" type="text" placeholder="عنوان الاختبار" />
-              </div>
-
-              <div class="field">
-                <label>زمن الاختبار (دقائق)</label>
-                <input id="examDuration" type="number" min="1" value="30" />
-              </div>
-
-              <div id="questionBuilder"></div>
-
-              <button type="button" class="add-question-btn" onclick="addQuestionBuilderRow()">
-                <i class="fa-solid fa-plus"></i> إضافة سؤال جديد
-              </button>
-
-              <div style="margin-top:18px;">
-                <button class="btn" type="button" onclick="addExam()">نشر الاختبار</button>
-              </div>
-            </div>
-          </div>
-
-          <div id="addAdminTab" class="tab-panel">
-            <div class="admin-card">
-              <h3><i class="fa-solid fa-user-plus"></i> تعيين مشرف جديد</h3>
-              <div class="field">
-                <label>اسم المشرف</label>
-                <input id="newAdminName" type="text" placeholder="اسم المشرف الجديد" />
-              </div>
-              <div class="field">
-                <label>كود الوصول</label>
-                <input id="newAdminCode" type="text" value="xzsawq21" readonly />
-              </div>
-              <button class="btn" type="button" onclick="addAdminUser()">إضافة المشرف</button>
-            </div>
-          </div>
-
-          <div id="rulesTab" class="tab-panel">
-            <div class="admin-card">
-              <h3><i class="fa-solid fa-shield-halved"></i> القواعد والسياسات</h3>
-              <div class="rules">
-                <ol>
-                  <li>يُمنع تحميل أو نشر أي محتوى مسيء أو غير قانوني أو يخرق حقوق الآخرين.</li>
-                  <li>يجب أن يكون استخدام المنصة لأغراض تعليمية واقعية ومشروعة فقط.</li>
-                  <li>يجب الحفاظ على الخصوصية والبيانات الشخصية للطلاب والموظفين.</li>
-                  <li>المالك والمشرفون مسؤولون عن مراجعة وشهادة المحتوى الذي يتم نشره.</li>
-                  <li>يتم تسجيل النشاطات الرئيسية للرقابة وضمان سلامة المنصة.</li>
-                  <li>المنصة توفر الأدوات التعليمية فقط ولا تسمح بأي نشاط ضار أو غير آمن.</li>
-                  <li>جميع الحقوق محفوظة للمالك ومشرفي المنصة، وتخضع الخدمات لقوانين الاستخدام المعتمدة.</li>
-                </ol>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-  </div>
-
-  <div id="lessonModal" class="modal" aria-modal="true" role="dialog">
-    <div class="modal-panel">
-      <div class="modal-head">
-        <h3 id="lessonModalTitle">الدرس</h3>
-        <button class="close-btn" type="button" onclick="closeLessonModal()">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </div>
-      <div id="lessonModalContent" class="lesson-modal-content"></div>
     </div>
-  </div>
 
-  <div id="examModal" class="modal" aria-modal="true" role="dialog">
-    <div class="modal-panel">
-      <div class="modal-head">
-        <h3 id="examModalTitle">الاختبار</h3>
-        <button class="close-btn" type="button" onclick="closeExamModal()">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </div>
-      <div id="quizContent"></div>
+    <!-- Student Dashboard -->
+    <div id="studentPage" class="page">
+        <nav class="navbar">
+            <div class="navbar-content">
+                <div class="logo">
+                    <div class="logo-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <span>Abdo_zeinhom Academy</span>
+                </div>
+                <div class="nav-menu">
+                    <button class="tab-toggle active" data-section="student-home">الرئيسية</button>
+                    <button class="tab-toggle" data-section="student-lessons">الدروس</button>
+                    <button class="tab-toggle" data-section="student-exams">الاختبارات</button>
+                    <button class="tab-toggle" data-section="student-supervisors">المشرفون</button>
+                </div>
+                <div class="nav-actions">
+                    <div class="user-info">
+                        <div class="user-avatar" id="studentAvatar">ا</div>
+                        <div class="user-details">
+                            <h4 id="studentName">الطالب</h4>
+                            <p>طالب</p>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary btn-small" onclick="logout()"><i class="fas fa-sign-out-alt"></i></button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <!-- Student Home -->
+            <div id="student-home" class="tab-content active">
+                <div class="dashboard-header">
+                    <h2>مرحباً بك في لوحة التحكم</h2>
+                    <p>تابع تقدمك الأكاديمي وحسّن مستواك</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-book-reader"></i>
+                        <h4>الدروس المنجزة</h4>
+                        <div class="value" id="completedLessons">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-check-circle"></i>
+                        <h4>الاختبارات المكتملة</h4>
+                        <div class="value" id="completedExams">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-star"></i>
+                        <h4>المعدل الكلي</h4>
+                        <div class="value" id="overallGrade">0%</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <h4>عدد المشرفين</h4>
+                        <div class="value" id="supervisorCount">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Student Lessons -->
+            <div id="student-lessons" class="tab-content">
+                <div class="dashboard-header">
+                    <h2>الدروس المتاحة</h2>
+                    <p>اختر درساً لمشاهدة المحتوى التفاعلي</p>
+                </div>
+                <div id="studentLessonsContainer" class="cards-grid"></div>
+            </div>
+
+            <!-- Student Exams -->
+            <div id="student-exams" class="tab-content">
+                <div class="dashboard-header">
+                    <h2>الاختبارات المتاحة</h2>
+                    <p>اختبر معلوماتك وقيّم مستواك</p>
+                </div>
+                <div id="studentExamsContainer" class="cards-grid"></div>
+            </div>
+
+            <!-- Student Supervisors -->
+            <div id="student-supervisors" class="tab-content">
+                <div class="dashboard-header">
+                    <h2>المشرفون</h2>
+                    <p>اعرف من هم المشرفون عليك</p>
+                </div>
+                <div id="studentSupervisorsContainer" class="members-list"></div>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <script>
-    (function () {
-      const ADMIN_SECRET = "xzsawq21";
-      const STUDENT_SECRET = "Abdo_1234";
+    <!-- Supervisor Dashboard -->
+    <div id="supervisorPage" class="page">
+        <nav class="navbar">
+            <div class="navbar-content">
+                <div class="logo">
+                    <div class="logo-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <span>Abdo_zeinhom Academy</span>
+                </div>
+                <div class="nav-menu">
+                    <button class="tab-toggle active" data-section="supervisor-home">الرئيسية</button>
+                    <button class="tab-toggle" data-section="supervisor-lessons">إدارة الدروس</button>
+                    <button class="tab-toggle" data-section="supervisor-exams">إدارة الاختبارات</button>
+                    <button class="tab-toggle" data-section="supervisor-students">الطلاب</button>
+                    <button class="tab-toggle" data-section="supervisor-reports">التقارير</button>
+                </div>
+                <div class="nav-actions">
+                    <div class="user-info">
+                        <div class="user-avatar" id="supervisorAvatar">م</div>
+                        <div class="user-details">
+                            <h4 id="supervisorName">المشرف</h4>
+                            <p>مشرف</p>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary btn-small" onclick="logout()"><i class="fas fa-sign-out-alt"></i></button>
+                </div>
+            </div>
+        </nav>
 
-      const STORAGE_KEYS = {
-        lessons: "abdo_lessons",
-        exams: "abdo_exams",
-        admins: "abdo_admins",
-        students: "abdo_students",
-        certificate: "abdo_certificate"
-      };
+        <div class="container">
+            <!-- Supervisor Home -->
+            <div id="supervisor-home" class="tab-content active">
+                <div class="dashboard-header">
+                    <h2>لوحة تحكم المشرف</h2>
+                    <p>إدارة شاملة للدروس والاختبارات والطلاب</p>
+                </div>
 
-      const defaultLessons = [
-        {
-          id: 1,
-          title: "مقدمة في الأمن السيبراني",
-          subject: "أمن سيبراني",
-          content: `أهمية الأمن السيبراني:
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-book"></i>
+                        <h4>إجمالي الدروس</h4>
+                        <div class="value" id="totalLessons">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-file-alt"></i>
+                        <h4>إجمالي الاختبارات</h4>
+                        <div class="value" id="totalExams">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-user-graduate"></i>
+                        <h4>عدد الطلاب</h4>
+                        <div class="value" id="totalStudents">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-chart-pie"></i>
+                        <h4>متوسط الأداء</h4>
+                        <div class="value" id="averagePerformance">0%</div>
+                    </div>
+                </div>
+            </div>
 
-- حماية الأنظمة والبيانات من الوصول غير المصرح به
-- منع الاختراق والسرقة والاعتداء الإلكتروني
-- الحفاظ على الثقة والخصوصية
-- دعم استمرارية الأعمال
+            <!-- Supervisor Lessons -->
+            <div id="supervisor-lessons" class="tab-content">
+                <div class="dashboard-header">
+                    <h2>إدارة الدروس</h2>
+                    <p>أضف وعدّل وحذف الدروس</p>
+                </div>
 
-الأساسيات:
-1. السرية: التأكد من وصول المعلومات فقط للمستخدمين المصرح لهم
-2. النزاهة: منع التعديل غير المسموح به
-3. التوفر: ضمان أن الخدمات متاحة في الوقت المطلوب
+                <div style="background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; margin-bottom: 2rem;">
+                    <h3 style="margin-bottom: 1.5rem;">إضافة درس جديد</h3>
+                    <form id="addLessonForm" style="display: grid; gap: 1rem;">
+                        <div class="form-group">
+                            <label>عنوان الدرس</label>
+                            <input type="text" class="lessonTitle" placeholder="مثال: مقدمة في الأمن السيبراني" required />
+                        </div>
+                        <div class="form-group">
+                            <label>الموضوع/المجال</label>
+                            <input type="text" class="lessonSubject" placeholder="مثال: أمن سيبراني، شبكات، برمجة" required />
+                        </div>
+                        <div class="form-group">
+                            <label>محتوى الدرس (داخل المنصة)</label>
+                            <textarea class="lessonContent" placeholder="اكتب الشرح والمحتوى هنا..." style="width: 100%; min-height: 200px; padding: 1rem; border: 1px solid var(--border); border-radius: 8px; background: rgba(0,0,0,0.3); color: var(--text); font-family: Cairo, sans-serif;" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-plus"></i> إضافة الدرس
+                        </button>
+                    </form>
+                </div>
 
-نصائح عملية:
-- استخدم كلمات مرور قوية
-- فعّل التحقق بخطوتين
-- حدّث الأنظمة بانتظام
-- لا تفتح الروابط المشبوهة`
-        },
-        {
-          id: 2,
-          title: "أساسيات الشبكات",
-          subject: "شبكات",
-          content: `الشبكة هي نظام يربط الأجهزة مع بعضها البعض لتمكين تبادل البيانات.
+                <h3 style="margin-bottom: 1.5rem;">الدروس المنشورة</h3>
+                <div id="supervisorLessonsContainer" class="cards-grid"></div>
+            </div>
+
+            <!-- Supervisor Exams -->
+            <div id="supervisor-exams" class="tab-content">
+                <div class="dashboard-header">
+                    <h2>إدارة الاختبارات</h2>
+                    <p>أنشئ واختبر الأسئلة</p>
+                </div>
+
+                <div style="background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; margin-bottom: 2rem;">
+                    <h3 style="margin-bottom: 1.5rem;">إضافة اختبار جديد</h3>
+                    <form id="addExamForm" style="display: grid; gap: 1rem;">
+                        <div class="form-group">
+                            <label>عنوان الاختبار</label>
+                            <input type="text" class="examTitle" placeholder="مثال: اختبار الفصل الأول" required />
+                        </div>
+                        <div class="form-group">
+                            <label>مدة الاختبار (دقائق)</label>
+                            <input type="number" class="examDuration" min="5" value="30" required />
+                        </div>
+
+                        <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border);">
+                            <h4 style="color: var(--primary); margin-bottom: 1rem;">الأسئلة</h4>
+                            <div id="questionsList"></div>
+                            <button type="button" class="btn btn-secondary" id="addQuestionBtn" style="width: 100%; margin-top: 1rem;">
+                                <i class="fas fa-plus"></i> إضافة سؤال
+                            </button>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> حفظ الاختبار
+                        </button>
+                    </form>
+                </div>
+
+                <h3 style="margin-bottom: 1.5rem;">الاختبارات المنشورة</h3>
+                <div id="supervisorExamsContainer" class="cards-grid"></div>
+            </div>
+
+            <!-- Supervisor Students -->
+            <div id="supervisor-students" class="tab-content">
+                <div class="dashboard-header">
+                    <h2>الطلاب المسجلون</h2>
+                    <p>اعرف من هم الطلاب الذين يتابعون معك</p>
+                </div>
+                <div id="supervisorStudentsContainer" class="members-list"></div>
+            </div>
+
+            <!-- Supervisor Reports -->
+            <div id="supervisor-reports" class="tab-content">
+                <div class="dashboard-header">
+                    <h2>تقارير الأداء</h2>
+                    <p>حلل تقدم الطلاب</p>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>اسم الطالب</th>
+                            <th>الصف</th>
+                            <th>الدروس المنجزة</th>
+                            <th>الاختبارات المكتملة</th>
+                            <th>المعدل</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reportsTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="adminPage" class="page">
+        <nav class="navbar">
+            <div class="navbar-content">
+                <div class="logo">
+                    <div class="logo-icon"><i class="fas fa-crown"></i></div>
+                    <span>Abdo_zeinhom Academy</span>
+                </div>
+                <div class="nav-menu">
+                    <button class="tab-toggle active" data-section="admin-home">الرئيسية</button>
+                    <button class="tab-toggle" data-section="admin-supervisors">إدارة المشرفين</button>
+                    <button class="tab-toggle" data-section="admin-system">إعدادات النظام</button>
+                    <button class="tab-toggle" data-section="admin-analytics">الإحصائيات</button>
+                </div>
+                <div class="nav-actions">
+                    <div class="user-info">
+                        <div class="user-avatar" id="adminAvatar">م</div>
+                        <div class="user-details">
+                            <h4>المالك</h4>
+                            <p>مالك النظام</p>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary btn-small" onclick="logout()"><i class="fas fa-sign-out-alt"></i></button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <!-- Admin Home -->
+            <div id="admin-home" class="tab-content active">
+                <div class="dashboard-header">
+                    <h2>لوحة تحكم النظام</h2>
+                    <p>إدارة شاملة للمنصة</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <h4>إجمالي المشرفين</h4>
+                        <div class="value" id="adminTotalSupervisors">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-user-graduate"></i>
+                        <h4>إجمالي الطلاب</h4>
+                        <div class="value" id="adminTotalStudents">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-book"></i>
+                        <h4>إجمالي الدروس</h4>
+                        <div class="value" id="adminTotalLessons">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-file-alt"></i>
+                        <h4>إجمالي الاختبارات</h4>
+                        <div class="value" id="adminTotalExams">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Supervisors -->
+            <div id="admin-supervisors" class="tab-content">
+                <div class="dashboard-header">
+                    <h2>إدارة المشرفين</h2>
+                    <p>أضف وأدر المشرفين</p>
+                </div>
+
+                <div style="background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; margin-bottom: 2rem;">
+                    <h3 style="margin-bottom: 1.5rem;">إضافة مشرف جديد</h3>
+                    <form id="addSupervisorForm" style="display: grid; gap: 1rem;">
+                        <div class="form-group">
+                            <label>اسم المشرف</label>
+                            <input type="text" class="supervisorName" placeholder="أدخل اسم المشرف" required />
+                        </div>
+                        <div class="form-group">
+                            <label>رقم الهاتف (اختياري)</label>
+                            <input type="text" class="supervisorPhone" placeholder="01XXXXXXXXX" />
+                        </div>
+                        <div class="form-group">
+                            <label>البريد الإلكتروني (اختياري)</label>
+                            <input type="email" class="supervisorEmail" placeholder="example@gmail.com" />
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-user-plus"></i> إضافة مشرف
+                        </button>
+                    </form>
+                </div>
+
+                <h3 style="margin-bottom: 1.5rem;">المشرفون المسجلون</h3>
+                <div id="adminSupervisorsContainer" class="members-list"></div>
+            </div>
+
+            <!-- Admin System -->
+            <div id="admin-system" class="tab-content">
+                <div class="dashboard-header">
+                    <h2>إعدادات النظام</h2>
+                    <p>التحكم في إعدادات المنصة الرئيسية</p>
+                </div>
+
+                <div style="background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 2rem;">
+                    <div style="display: grid; gap: 1.5rem;">
+                        <div>
+                            <h4 style="margin-bottom: 1rem;">أكواد الدخول</h4>
+                            <div style="display: grid; gap: 1rem;">
+                                <div>
+                                    <label style="font-size: 0.9rem;">كود الطالب:</label>
+                                    <input type="text" value="Abdo_1234" readonly style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); background: rgba(0,0,0,0.3); color: var(--text); border-radius: 6px; margin-top: 0.5rem;" />
+                                </div>
+                                <div>
+                                    <label style="font-size: 0.9rem;">كود المشرف:</label>
+                                    <input type="text" value="Abdo_super" readonly style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); background: rgba(0,0,0,0.3); color: var(--text); border-radius: 6px; margin-top: 0.5rem;" />
+                                </div>
+                                <div>
+                                    <label style="font-size: 0.9rem;">كود المالك:</label>
+                                    <input type="text" value="xzsawq21" readonly style="width: 100%; padding: 0.75rem; border: 1px solid var(--border); background: rgba(0,0,0,0.3); color: var(--text); border-radius: 6px; margin-top: 0.5rem;" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="padding-top: 1rem; border-top: 1px solid var(--border);">
+                            <h4 style="margin-bottom: 1rem; color: var(--danger);">منطقة الخطر</h4>
+                            <button class="btn btn-danger" onclick="clearAllData()" style="width: 100%;">
+                                <i class="fas fa-trash"></i> حذف جميع البيانات
+                            </button>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 1rem;">تحذير: هذا الإجراء نهائي ولا يمكن التراجع عنه</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Analytics -->
+            <div id="admin-analytics" class="tab-content">
+                <div class="dashboard-header">
+                    <h2>الإحصائيات المتقدمة</h2>
+                    <p>تحليل شامل لأداء النظام</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-user-check"></i>
+                        <h4>الطلاب النشطون</h4>
+                        <div class="value" id="activeStudents">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-chart-bar"></i>
+                        <h4>نسبة الإنجاز</h4>
+                        <div class="value" id="completionRate">0%</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-medal"></i>
+                        <h4>أفضل أداء</h4>
+                        <div class="value" id="topPerformer">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-clock"></i>
+                        <h4>وقت الدراسة</h4>
+                        <div class="value" id="studyTime">-</div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 2rem;">
+                    <h3 style="margin-bottom: 1.5rem;">تقرير شامل</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>النوع</th>
+                                <th>الإجمالي</th>
+                                <th>المكتملة</th>
+                                <th>النسبة</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>الدروس</td>
+                                <td id="analyticsLessonTotal">0</td>
+                                <td id="analyticsLessonCompleted">0</td>
+                                <td id="analyticsLessonPercent">0%</td>
+                            </tr>
+                            <tr>
+                                <td>الاختبارات</td>
+                                <td id="analyticsExamTotal">0</td>
+                                <td id="analyticsExamCompleted">0</td>
+                                <td id="analyticsExamPercent">0%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lesson Modal -->
+    <div id="lessonModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="lessonModalTitle">الدرس</h3>
+                <button class="close-modal" onclick="closeLessonModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="lessonModalBody" class="lesson-content"></div>
+        </div>
+    </div>
+
+    <!-- Exam Modal -->
+    <div id="examModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="examModalTitle">الاختبار</h3>
+                <button class="close-modal" onclick="closeExamModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="examModalBody"></div>
+        </div>
+    </div>
+
+    <script>
+        // ==================== DATA MANAGEMENT ====================
+        const DB = {
+            lessons: 'academy_lessons',
+            exams: 'academy_exams',
+            supervisors: 'academy_supervisors',
+            students: 'academy_students',
+            studentProgress: 'academy_student_progress',
+            examResults: 'academy_exam_results'
+        };
+
+        const DEFAULT_SUPERVISORS = [
+            { id: 1, name: 'أ.د محمد علي', email: 'mohamad@academy.com', phone: '01012345678', joinDate: new Date().toISOString() },
+            { id: 2, name: 'أ.د فاطمة أحمد', email: 'fatima@academy.com', phone: '01098765432', joinDate: new Date().toISOString() },
+            { id: 3, name: 'أ.د سارة محمود', email: 'sara@academy.com', phone: '01111111111', joinDate: new Date().toISOString() }
+        ];
+
+        const DEFAULT_LESSONS = [
+            {
+                id: 1,
+                title: 'مقدمة في الأمن السيبراني',
+                subject: 'أمن سيبراني',
+                content: `أهمية الأمن السيبراني:
+
+الأمن السيبراني هو مجموعة من الممارسات والتقنيات والإجراءات المصممة لحماية الأنظمة والشبكات والبيانات من الوصول غير المصرح به والهجمات الإلكترونية.
+
+المزايا الرئيسية:
+1. حماية البيانات الحساسة والخصوصية
+2. منع الاختراق والسرقة الإلكترونية
+3. ضمان استمرارية العمل والخدمات
+4. الحفاظ على سمعة المؤسسة
+5. توفير الثقة للعملاء والمستخدمين
+
+أساسيات الأمن السيبراني:
+- السرية: التأكد من وصول المعلومات فقط للمستخدمين المصرح لهم
+- النزاهة: منع التعديل غير المسموح به للبيانات
+- التوفر: ضمان أن الخدمات متاحة في الوقت المطلوب
+
+نصائح عملية للحماية:
+✓ استخدم كلمات مرور قوية وفريدة
+✓ فعّل المصادقة بخطوتين (2FA)
+✓ حدّث الأنظمة والبرامج بانتظام
+✓ لا تفتح الملفات أو الروابط المشبوهة
+✓ احرص على النسخ الاحتياطية المنتظمة
+✓ استخدم برامج حماية موثوقة`,
+                supervisorId: 1,
+                createdDate: new Date().toISOString()
+            },
+            {
+                id: 2,
+                title: 'أساسيات الشبكات والاتصالات',
+                subject: 'شبكات',
+                content: `الشبكات الحاسوبية:
+
+الشبكة هي نظام يربط جهازي حاسوب أو أكثر ببعضهما البعض لتمكين تبادل البيانات والموارد.
 
 المكونات الأساسية:
-- الأجهزة: أجهزة الكمبيوتر، الجوالات، السيرفرات
-- الوسائط: كابلات أو شبكة لاسلكية
-- البروتوكولات: مثل TCP/IP
-- الأجهزة الشبكية: الراوتر، السويتش
+1. الأجهزة (Hardware)
+   - أجهزة الكمبيوتر والخوادم
+   - الهواتف الذكية والأجهزة اللوحية
+   - أجهزة توجيه البيانات (Routers)
 
-أهمية الشبكات:
-- مشاركة الملفات والبيانات
-- التواصل بين المستخدمين
-- الوصول إلى الإنترنت
-- توزيع الموارد`
+2. البرامج (Software)
+   - أنظمة التشغيل
+   - بروتوكولات الاتصال
+   - تطبيقات الشبكة
 
-        },
-        {
-          id: 3,
-          title: "التقنيات الحديثة في التعليم",
-          subject: "تقنية",
-          content: `تتطور التقنيات في التعليم بسرعة، وتساعد على:
-- تسهيل الوصول إلى المحتوى
-- زيادة التفاعل بين المتعلم والمعلم
-- دعم التعلم الذاتي
-- توفير تجربة تعليمية مرنة
+3. الوسائط (Media)
+   - الكابلات النحاسية والبصرية
+   - الشبكات اللاسلكية
+   - الأقمار الصناعية
 
-أمثلة:
-- المنصات التعليمية
-- الاختبارات الإلكترونية
-- الفيديوهات التعليمية
+أنواع الشبكات:
+- الشبكة المحلية (LAN)
+- الشبكة الواسعة (WAN)
+- شبكة الإنترنت الدولية
+- الشبكات الافتراضية الخاصة (VPN)
+
+فوائد الشبكات:
+✓ مشاركة الملفات والمعلومات
+✓ التواصل الفوري بين المستخدمين
+✓ الوصول المشترك للموارد
+✓ تحسين الإنتاجية والكفاءة`,
+                supervisorId: 2,
+                createdDate: new Date().toISOString()
+            },
+            {
+                id: 3,
+                title: 'التقنيات الحديثة في التعليم',
+                subject: 'تقنية',
+                content: `التحول الرقمي في التعليم:
+
+تشهد المنصات التعليمية تطوراً سريعاً في السنوات الأخيرة، حيث أصبحت التقنية جزءاً لا يتجزأ من العملية التعليمية.
+
+المزايا الرئيسية:
+1. المرونة والتعلم حسب الوتيرة الخاصة
+2. إمكانية الوصول من أي مكان وأي وقت
+3. تقييم فوري وتغذية راجعة سريعة
+4. محتوى تفاعلي وملائم
+5. توفير التكاليف
+
+التقنيات المستخدمة:
+- المنصات التعليمية الذكية
+- الفيديوهات التعليمية عالية الجودة
+- الواقع الافتراضي والمعزز
 - الذكاء الاصطناعي في التعليم
+- الاختبارات التكيفية
 
-الهدف هو رفع جودة التعلم وزيادة الفهم عبر أدوات ذكية وتفاعلية.`
-        }
-      ];
-
-      const defaultExams = [
-        {
-          id: 1,
-          title: "اختبار مستوى أولي",
-          duration: 45,
-          questions: [
-            {
-              q: "ما الهدف الأساسي من الأمن السيبراني؟",
-              options: ["زيادة السرعة", "حماية الأنظمة والبيانات", "تقليل التكلفة", "تثبيت البرامج"],
-              answer: 1
-            },
-            {
-              q: "ما هو العنصر الأساسي في حماية الحسابات؟",
-              options: ["اسم المستخدم", "كلمة المرور القوية", "حجم الشاشة", "اللون المفضل"],
-              answer: 1
-            },
-            {
-              q: "أي من التالي يمثل أفضل ممارسة أمنية؟",
-              options: ["عدم تحديث النظام", "استخدام كلمات مرور قوية ومراجعة منتظمة", "مشاركة كلمة المرور", "التخزين غير المنظم"],
-              answer: 1
+دور المشرفين:
+✓ إنشاء محتوى جذاب وفعّال
+✓ متابعة تقدم الطلاب
+✓ توفير الدعم والمساعدة
+✓ تقييم الأداء بشكل دوري
+✓ تطوير الاستراتيجيات التعليمية`,
+                supervisorId: 3,
+                createdDate: new Date().toISOString()
             }
-          ]
-        }
-      ];
+        ];
 
-      const defaultAdmins = [{ name: "المالك", code: ADMIN_SECRET }];
+        let currentUser = null;
+        let userRole = null;
+        let examTimer = null;
+        let examTime = 0;
+        let currentExamQuestions = [];
 
-      let isAdmin = false;
-      let currentUser = null;
-      let lessonData = [];
-      let examData = [];
-      let students = [];
-      let currentExam = null;
-      let examTimerInterval = null;
-      let examRemainingSeconds = 0;
-
-      const el = {
-        loginPage: document.getElementById("loginPage"),
-        studentPage: document.getElementById("studentPage"),
-        adminPage: document.getElementById("adminPage"),
-        authForm: document.getElementById("authForm"),
-        fullName: document.getElementById("fullName"),
-        accessCode: document.getElementById("accessCode"),
-        academicField: document.getElementById("academicField"),
-        academicYear: document.getElementById("academicYear"),
-        codeLabel: document.getElementById("codeLabel"),
-        nameLabel: document.getElementById("nameLabel"),
-        formTitle: document.getElementById("formTitle"),
-        submitBtn: document.getElementById("submitBtn"),
-        toggleModeBtn: document.getElementById("toggleModeBtn"),
-        modeBadge: document.getElementById("modeBadge"),
-        status: document.getElementById("status"),
-        studentWelcome: document.getElementById("studentWelcome"),
-        lessonsContainer: document.getElementById("lessonsContainer"),
-        examsContainer: document.getElementById("examsContainer"),
-        chatMessages: document.getElementById("chatMessages"),
-        aiInput: document.getElementById("aiInput"),
-        lessonModal: document.getElementById("lessonModal"),
-        lessonModalTitle: document.getElementById("lessonModalTitle"),
-        lessonModalContent: document.getElementById("lessonModalContent"),
-        examModal: document.getElementById("examModal"),
-        examModalTitle: document.getElementById("examModalTitle"),
-        quizContent: document.getElementById("quizContent"),
-        questionBuilder: document.getElementById("questionBuilder")
-      };
-
-      function safeStorageGet(key, fallback) {
-        try {
-          const raw = localStorage.getItem(key);
-          if (raw === null || raw === undefined) return fallback;
-          const parsed = JSON.parse(raw);
-          return parsed ?? fallback;
-        } catch {
-          return fallback;
-        }
-      }
-
-      function safeStorageSet(key, value) {
-        try {
-          localStorage.setItem(key, JSON.stringify(value));
-        } catch (e) {
-          console.warn("localStorage failed:", e);
-        }
-      }
-
-      function loadData() {
-        const storedLessons = safeStorageGet(STORAGE_KEYS.lessons, null);
-        const storedExams = safeStorageGet(STORAGE_KEYS.exams, null);
-        const storedAdmins = safeStorageGet(STORAGE_KEYS.admins, null);
-        const storedStudents = safeStorageGet(STORAGE_KEYS.students, null);
-
-        lessonData = Array.isArray(storedLessons) && storedLessons.length ? storedLessons : defaultLessons.slice();
-        examData = Array.isArray(storedExams) && storedExams.length ? storedExams : defaultExams.slice();
-        students = Array.isArray(storedStudents) ? storedStudents : [];
-        
-        if (!Array.isArray(storedAdmins) || storedAdmins.length === 0) {
-          safeStorageSet(STORAGE_KEYS.admins, defaultAdmins);
+        // ==================== UTILITY FUNCTIONS ====================
+        function getData(key) {
+            const data = localStorage.getItem(key);
+            return data ? JSON.parse(data) : [];
         }
 
-        safeStorageSet(STORAGE_KEYS.lessons, lessonData);
-        safeStorageSet(STORAGE_KEYS.exams, examData);
-        safeStorageSet(STORAGE_KEYS.students, students);
-      }
-
-      function setStatus(message, type = "success") {
-        el.status.textContent = message;
-        el.status.className = "status " + type;
-      }
-
-      function escapeHtml(str) {
-        return String(str ?? "")
-          .replace(/&/g, "&amp;")
-          .replace(/</g, "&lt;")
-          .replace(/>/g, "&gt;")
-          .replace(/"/g, "&quot;")
-          .replace(/'/g, "&#039;");
-      }
-
-      function toggleMode(forceMode) {
-        isAdmin = typeof forceMode === "boolean" ? forceMode : !isAdmin;
-
-        if (isAdmin) {
-          el.modeBadge.innerHTML = '<i class="fa-solid fa-gear"></i> بوابة الإدارة';
-          el.modeBadge.style.borderColor = "var(--cyan)";
-          el.modeBadge.style.color = "var(--cyan)";
-          el.modeBadge.style.background = "rgba(56,189,248,.12)";
-          el.formTitle.textContent = "دخول لوحة الإدارة";
-          el.submitBtn.innerHTML = '<span>دخول الإدارة</span><i class="fa-solid fa-lock"></i>';
-          el.codeLabel.textContent = "مفتاح الإدارة";
-          el.nameLabel.textContent = "اسم المسؤول";
-          el.academicField.style.display = "none";
-        } else {
-          el.modeBadge.innerHTML = '<i class="fa-solid fa-user-graduate"></i> بوابة الطالب';
-          el.modeBadge.style.borderColor = "var(--green)";
-          el.modeBadge.style.color = "var(--green)";
-          el.modeBadge.style.background = "rgba(52,211,153,.12)";
-          el.formTitle.textContent = "تسجيل دخول الطالب";
-          el.submitBtn.innerHTML = '<span>دخول المنصة</span><i class="fa-solid fa-arrow-left"></i>';
-          el.codeLabel.textContent = "كود الطالب الخاص";
-          el.nameLabel.textContent = "الاسم الكامل";
-          el.academicField.style.display = "block";
+        function setData(key, data) {
+            localStorage.setItem(key, JSON.stringify(data));
         }
 
-        renderLessons();
-        renderExams();
-      }
+        function initializeData() {
+            if (!getData(DB.lessons).length) {
+                setData(DB.lessons, DEFAULT_LESSONS);
+            }
+            if (!getData(DB.supervisors).length) {
+                setData(DB.supervisors, DEFAULT_SUPERVISORS);
+            }
+        }
 
-      function loginUser(name, code) {
-        if (isAdmin) {
-          const admins = safeStorageGet(STORAGE_KEYS.admins, []);
-          const validAdmin = admins.find(a =>
-            String(a.name).trim() === String(name).trim() &&
-            String(a.code) === String(code)
-          );
-
-          if (validAdmin) {
-            currentUser = name;
-            setStatus("✅ تم تسجيل دخول الإدارة بنجاح", "success");
-
+        function showAlert(message, type = 'success') {
+            const alertDiv = document.getElementById('loginAlert');
+            alertDiv.innerHTML = `
+                <div class="alert alert-${type}">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+                    <span>${message}</span>
+                </div>
+            `;
             setTimeout(() => {
-              el.loginPage.classList.remove("active");
-              el.studentPage.classList.remove("active");
-              el.adminPage.classList.add("active");
-              resetForm();
-              switchAdminTab("addLessonTab");
-              el.toggleModeBtn.style.display = "inline-flex";
-            }, 700);
-
-          } else {
-            setStatus("❌ اسم المسؤول أو كود الإدارة غير صحيح", "error");
-          }
-          return;
+                alertDiv.innerHTML = '';
+            }, 4000);
         }
 
-        if (code === STUDENT_SECRET) {
-          currentUser = name;
-          students.push({
-            name,
-            academicYear: el.academicYear.value,
-            date: new Date().toISOString()
-          });
-          safeStorageSet(STORAGE_KEYS.students, students);
-
-          el.studentWelcome.textContent = "مرحباً بك، " + name + "!";
-          setStatus("✅ تم تسجيل الدخول بنجاح", "success");
-
-          setTimeout(() => {
-            el.loginPage.classList.remove("active");
-            el.adminPage.classList.remove("active");
-            el.studentPage.classList.add("active");
-            resetForm();
-            switchStudentTab("lessonsTab");
-            el.toggleModeBtn.style.display = "none";
-          }, 700);
-
-        } else {
-          setStatus("❌ كود الطالب غير صحيح", "error");
-        }
-      }
-
-      function resetForm() {
-        el.fullName.value = "";
-        el.accessCode.value = "";
-        el.academicYear.value = "الصف الأول الثانوي";
-      }
-
-      function logout() {
-        if (confirm("هل أنت متأكد من الخروج؟")) {
-          location.reload();
-        }
-      }
-
-      function switchStudentTab(tabId) {
-        document.querySelectorAll(".tab-btn[data-tab]").forEach(btn => btn.classList.remove("active"));
-        document.querySelectorAll(".tab-panel").forEach(panel => panel.classList.remove("active"));
-
-        const tabBtn = document.querySelector('.tab-btn[data-tab="' + tabId + '"]');
-        if (tabBtn) tabBtn.classList.add("active");
-
-        const panel = document.getElementById(tabId);
-        if (panel) panel.classList.add("active");
-      }
-
-      function switchAdminTab(tabId) {
-        document.querySelectorAll(".tab-btn[data-admin-tab]").forEach(btn => btn.classList.remove("active"));
-        document.querySelectorAll("#adminPage .tab-panel").forEach(panel => panel.classList.remove("active"));
-
-        const btn = document.querySelector('.tab-btn[data-admin-tab="' + tabId + '"]');
-        if (btn) btn.classList.add("active");
-
-        const panel = document.getElementById(tabId);
-        if (panel) panel.classList.add("active");
-      }
-
-      function renderLessons() {
-        const list = lessonData;
-
-        if (!list.length) {
-          el.lessonsContainer.innerHTML = '<div class="card"><h3>لا توجد دروس</h3><p>لا يوجد محتوى منشور حتى الآن.</p></div>';
-          return;
+        function formatDate(date) {
+            return new Date(date).toLocaleDateString('ar-EG');
         }
 
-        el.lessonsContainer.innerHTML = list.map(lesson => {
-          const subject = escapeHtml(lesson.subject || "عام");
-          const title = escapeHtml(lesson.title);
-          const contentPreview = escapeHtml((lesson.content || "").slice(0, 120));
-          return `
-            <div class="card">
-              <div class="chip"><i class="fa-solid fa-book-open"></i> ${subject}</div>
-              <h3>${title}</h3>
-              <p>${contentPreview}${(lesson.content || "").length > 120 ? "..." : ""}</p>
-
-              <div class="actions-row">
-                <button class="link-btn" type="button" onclick="openLesson(${lesson.id})">فتح الدرس</button>
-                ${isAdmin ? `<button class="btn danger small" type="button" onclick="deleteLesson(${lesson.id})"><i class="fa-solid fa-trash"></i> حذف</button>` : ""}
-              </div>
-            </div>
-          `;
-        }).join("");
-      }
-
-      function renderExams() {
-        const list = examData;
-
-        if (!list.length) {
-          el.examsContainer.innerHTML = '<div class="card"><h3>لا توجد اختبارات</h3><p>سيظهر هنا المحتوى التجريبي عند إضافة أول اختبار.</p></div>';
-          return;
+        function getInitials(name) {
+            return name.split(' ').map(n => n[0]).join('').substring(0, 2);
         }
 
-        el.examsContainer.innerHTML = list.map(exam => {
-          const title = escapeHtml(exam.title);
-          const duration = Number(exam.duration || 30);
-          const totalQuestions = Array.isArray(exam.questions) ? exam.questions.length : 0;
+        // ==================== AUTHENTICATION ====================
+        document.querySelectorAll('.mode-toggle button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.mode-toggle button').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
 
-          return `
-            <div class="card">
-              <div class="chip"><i class="fa-solid fa-pen-nib"></i> ${duration} دقيقة</div>
-              <h3>${title}</h3>
-              <p>عدد الأسئلة: ${totalQuestions} • اختبار متعدد الخيارات</p>
+                const mode = this.dataset.mode;
+                const classField = document.getElementById('classField');
+                
+                if (mode === 'student') {
+                    classField.style.display = 'block';
+                } else {
+                    classField.style.display = 'none';
+                }
+            });
+        });
 
-              <div class="actions-row">
-                <button class="link-btn secondary" type="button" onclick="openExam(${exam.id})">ابدأ الاختبار</button>
-                ${isAdmin ? `<button class="btn danger small" type="button" onclick="deleteExam(${exam.id})"><i class="fa-solid fa-trash"></i> حذف</button>` : ""}
-              </div>
-            </div>
-          `;
-        }).join("");
-      }
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
 
-      function showStatusMessage(msg, type = "success") {
-        setStatus(msg, type);
-      }
+            const name = document.getElementById('userName').value.trim();
+            const code = document.getElementById('userCode').value.trim();
+            const classVal = document.getElementById('userClass').value;
 
-      function openLesson(id) {
-        const lesson = lessonData.find(item => Number(item.id) === Number(id));
-        if (!lesson) return;
+            const mode = document.querySelector('.mode-toggle button.active').dataset.mode;
 
-        el.lessonModalTitle.textContent = lesson.title;
-        el.lessonModalContent.textContent = lesson.content || "لا يوجد شرح لهذا الدرس.";
-        el.lessonModal.classList.add("active");
-      }
+            let isValid = false;
 
-      function closeLessonModal() {
-        el.lessonModal.classList.remove("active");
-      }
+            if (mode === 'student' && code === 'Abdo_1234') {
+                isValid = true;
+                userRole = 'student';
+                currentUser = { name, code, class: classVal };
+            } else if (mode === 'supervisor' && code === 'Abdo_super') {
+                isValid = true;
+                userRole = 'supervisor';
+                currentUser = { name, code };
+            } else if (mode === 'admin' && code === 'xzsawq21') {
+                isValid = true;
+                userRole = 'admin';
+                currentUser = { name, code };
+            }
 
-      function openExam(examId) {
-        const exam = examData.find(e => Number(e.id) === Number(examId));
-        if (!exam) return;
+            if (!isValid) {
+                showAlert('كود الدخول غير صحيح!', 'error');
+                return;
+            }
 
-        currentExam = exam;
-        examRemainingSeconds = Number(exam.duration || 30) * 60;
+            document.getElementById('loginPage').classList.remove('active');
 
-        el.examModalTitle.textContent = exam.title;
-        el.quizContent.innerHTML = `
-          <div class="exam-box">
-            <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;">
-              <div class="timer-badge"><i class="fa-solid fa-clock"></i> <span id="examTimerText">${formatTime(examRemainingSeconds)}</span></div>
-              <div class="small-note">عدد الأسئلة: ${exam.questions.length}</div>
-            </div>
+            if (userRole === 'student') {
+                loadStudentDashboard();
+                document.getElementById('studentPage').classList.add('active');
+            } else if (userRole === 'supervisor') {
+                loadSupervisorDashboard();
+                document.getElementById('supervisorPage').classList.add('active');
+            } else if (userRole === 'admin') {
+                loadAdminDashboard();
+                document.getElementById('adminPage').classList.add('active');
+            }
+        });
 
-            <div class="quiz-box">
-              ${exam.questions.map((question, qIndex) => `
-                <div class="question">
-                  <div class="question-title">${qIndex + 1}. ${escapeHtml(question.q)}</div>
-                  <div class="options">
-                    ${question.options.map((option, optionIndex) => `
-                      <label class="option">
-                        <input type="radio" name="q_${qIndex}" value="${optionIndex}" />
-                        <span>${escapeHtml(option)}</span>
-                      </label>
-                    `).join("")}
-                  </div>
+        function logout() {
+            currentUser = null;
+            userRole = null;
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('loginPage').classList.add('active');
+            document.getElementById('loginForm').reset();
+        }
+
+        // ==================== STUDENT FUNCTIONS ====================
+        function loadStudentDashboard() {
+            const students = getData(DB.students) || [];
+            const student = students.find(s => s.name === currentUser.name) || {
+                id: Date.now(),
+                name: currentUser.name,
+                class: currentUser.class,
+                joinDate: new Date().toISOString(),
+                lessonsCompleted: 0,
+                examsCompleted: 0
+            };
+
+            if (!students.find(s => s.id === student.id)) {
+                students.push(student);
+                setData(DB.students, students);
+            }
+
+            const initials = getInitials(student.name);
+            document.getElementById('studentAvatar').textContent = initials;
+            document.getElementById('studentName').textContent = student.name;
+
+            updateStudentStats();
+            renderStudentLessons();
+            renderStudentExams();
+            renderStudentSupervisors();
+            setupStudentTabs();
+        }
+
+        function updateStudentStats() {
+            const students = getData(DB.students);
+            const student = students.find(s => s.name === currentUser.name);
+            const supervisors = getData(DB.supervisors);
+
+            document.getElementById('completedLessons').textContent = student?.lessonsCompleted || 0;
+            document.getElementById('completedExams').textContent = student?.examsCompleted || 0;
+
+            const results = getData(DB.examResults) || [];
+            const studentResults = results.filter(r => r.studentName === currentUser.name);
+            const avgGrade = studentResults.length 
+                ? Math.round(studentResults.reduce((sum, r) => sum + r.percentage, 0) / studentResults.length)
+                : 0;
+            
+            document.getElementById('overallGrade').textContent = avgGrade + '%';
+            document.getElementById('supervisorCount').textContent = supervisors.length;
+        }
+
+        function renderStudentLessons() {
+            const lessons = getData(DB.lessons);
+            const container = document.getElementById('studentLessonsContainer');
+
+            container.innerHTML = lessons.map(lesson => `
+                <div class="card">
+                    <div class="card-header">
+                        <h3>${lesson.title}</h3>
+                        <p>${lesson.subject}</p>
+                    </div>
+                    <div class="card-body">
+                        <p>${lesson.content.substring(0, 100)}...</p>
+                        <span class="badge badge-info">متاح الآن</span>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary btn-small" onclick="openLesson(${lesson.id})">
+                            <i class="fas fa-book-open"></i> اقرأ الدرس
+                        </button>
+                    </div>
                 </div>
-              `).join("")}
-            </div>
-
-            <div class="exam-actions">
-              <button class="btn small" type="button" onclick="submitExam()">إرسال الإجابة</button>
-            </div>
-          </div>
-        `;
-
-        el.examModal.classList.add("active");
-        startExamTimer();
-      }
-
-      function formatTime(totalSeconds) {
-        const minutes = Math.floor(totalSeconds / 60);
-        const seconds = totalSeconds % 60;
-        return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
-      }
-
-      function startExamTimer() {
-        clearInterval(examTimerInterval);
-
-        examTimerInterval = setInterval(() => {
-          if (!currentExam) {
-            clearInterval(examTimerInterval);
-            return;
-          }
-
-          examRemainingSeconds -= 1;
-
-          const timerEl = document.getElementById("examTimerText");
-          if (timerEl) {
-            timerEl.textContent = formatTime(examRemainingSeconds);
-          }
-
-          if (examRemainingSeconds <= 0) {
-            clearInterval(examTimerInterval);
-            submitExam(true);
-          }
-        }, 1000);
-      }
-
-      function closeExamModal() {
-        clearInterval(examTimerInterval);
-        currentExam = null;
-        el.examModal.classList.remove("active");
-      }
-
-      function submitExam(forceTimeout = false) {
-        if (!currentExam) return;
-
-        clearInterval(examTimerInterval);
-
-        const selectedAnswers = currentExam.questions.map((q, qIndex) => {
-          const checked = document.querySelector(`input[name="q_${qIndex}"]:checked`);
-          return checked ? Number(checked.value) : -1;
-        });
-
-        let correct = 0;
-        currentExam.questions.forEach((q, index) => {
-          if (selectedAnswers[index] === Number(q.answer)) {
-            correct += 1;
-          }
-        });
-
-        const total = currentExam.questions.length;
-        const percent = total ? Math.round((correct / total) * 100) : 0;
-
-        el.quizContent.innerHTML = `
-          <div class="result-box">
-            <h3 style="margin-bottom:10px; color:var(--green);">${forceTimeout ? "انتهى الوقت!" : "تم إرسال الإجابة بنجاح"}</h3>
-            <p>النتيجة: <strong>${correct}/${total}</strong></p>
-            <p>النسبة: <strong>${percent}%</strong></p>
-            <p>${percent >= 60 ? "أحسنت! استمر بالتفوق." : "يمكنك المحاولة مرة أخرى، والنجاح يأتي بالتدريب."}</p>
-            <div style="margin-top:14px;">
-              <button class="btn small" type="button" onclick="closeExamModal()">إغلاق</button>
-            </div>
-          </div>
-        `;
-
-        currentExam = null;
-      }
-
-      function addQuestionBuilderRow() {
-        const row = document.createElement("div");
-        row.className = "question-builder";
-
-        row.innerHTML = `
-          <div class="builder-head">
-            <span>السؤال ${el.questionBuilder.children.length + 1}</span>
-            <button class="btn danger small" type="button" onclick="this.parentElement.parentElement.remove()">حذف السؤال</button>
-          </div>
-
-          <div class="field">
-            <label>نص السؤال</label>
-            <input type="text" class="question-text" placeholder="اكتب نص السؤال..." />
-          </div>
-
-          <div class="option-grid">
-            ${[0,1,2,3].map(index => `
-              <div class="option-line">
-                <label>الخيار ${index + 1}</label>
-                <input type="text" class="builder-option" data-index="${index}" placeholder="اكتب الخيار ${index + 1}" />
-              </div>
-            `).join("")}
-          </div>
-
-          <div class="field" style="margin-top:12px;">
-            <label>الإجابة الصحيحة</label>
-            <select class="builder-answer">
-              <option value="0">الخيار 1</option>
-              <option value="1">الخيار 2</option>
-              <option value="2">الخيار 3</option>
-              <option value="3">الخيار 4</option>
-            </select>
-          </div>
-        `;
-
-        el.questionBuilder.appendChild(row);
-      }
-
-      function addExam() {
-        const title = document.getElementById("examTitle").value.trim();
-        const duration = Number(document.getElementById("examDuration").value || 30);
-
-        if (!title) {
-          showStatusMessage("❌ يرجى إدخال عنوان الاختبار", "error");
-          return;
+            `).join('');
         }
 
-        const rows = [...el.questionBuilder.querySelectorAll(".question-builder")];
-        if (!rows.length) {
-          showStatusMessage("❌ يجب إضافة سؤال واحد على الأقل", "error");
-          return;
+        function renderStudentExams() {
+            const exams = getData(DB.exams);
+            const container = document.getElementById('studentExamsContainer');
+
+            container.innerHTML = exams.map(exam => `
+                <div class="card">
+                    <div class="card-header">
+                        <h3>${exam.title}</h3>
+                        <p><i class="fas fa-clock"></i> ${exam.duration} دقيقة</p>
+                    </div>
+                    <div class="card-body">
+                        <p>عدد الأسئلة: ${exam.questions.length}</p>
+                        <p>النوع: متعدد الخيارات</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary btn-small" onclick="openExam(${exam.id})">
+                            <i class="fas fa-play"></i> ابدأ الاختبار
+                        </button>
+                    </div>
+                </div>
+            `).join('');
         }
 
-        const questions = rows.map((row, rowIndex) => {
-          const text = row.querySelector(".question-text").value.trim();
-          const options = [...row.querySelectorAll(".builder-option")].map(input => input.value.trim());
-          const validOptions = options.filter(value => value.length > 0);
+        function renderStudentSupervisors() {
+            const supervisors = getData(DB.supervisors);
+            const container = document.getElementById('studentSupervisorsContainer');
 
-          const answer = Number(row.querySelector(".builder-answer").value || 0);
-
-          if (!text || validOptions.length < 2) {
-            return null;
-          }
-
-          return {
-            q: text,
-            options: validOptions,
-            answer: Number(answer)
-          };
-        }).filter(Boolean);
-
-        if (!questions.length) {
-          showStatusMessage("❌ يجب كتابة نص السؤال والخيارات بشكل صحيح", "error");
-          return;
+            container.innerHTML = supervisors.map(supervisor => `
+                <div class="member-card">
+                    <div class="member-avatar">${getInitials(supervisor.name)}</div>
+                    <h4>${supervisor.name}</h4>
+                    <p style="font-style: italic; color: var(--primary);">مشرف تربوي</p>
+                    <div class="member-meta">
+                        <div class="member-meta-item">
+                            <strong><i class="fas fa-envelope"></i></strong>
+                            <span>${supervisor.email || 'غير متوفر'}</span>
+                        </div>
+                        <div class="member-meta-item">
+                            <strong><i class="fas fa-phone"></i></strong>
+                            <span>${supervisor.phone || 'غير متوفر'}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
         }
 
-        examData.push({
-          id: Date.now(),
-          title,
-          duration: Math.max(1, duration),
-          questions
-        });
+        function setupStudentTabs() {
+            document.querySelectorAll('#studentPage .tab-toggle').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const sectionId = this.dataset.section;
+                    
+                    document.querySelectorAll('#studentPage .tab-toggle').forEach(b => b.classList.remove('active'));
+                    document.querySelectorAll('#studentPage .tab-content').forEach(c => c.classList.remove('active'));
 
-        safeStorageSet(STORAGE_KEYS.exams, examData);
-        renderExams();
-
-        document.getElementById("examTitle").value = "";
-        document.getElementById("examDuration").value = 30;
-        el.questionBuilder.innerHTML = "";
-
-        showStatusMessage("✅ تم نشر الاختبار بنجاح", "success");
-      }
-
-      function addLesson() {
-        const title = document.getElementById("lessonTitle").value.trim();
-        const subject = document.getElementById("lessonSubject").value.trim() || "عام";
-        const content = document.getElementById("lessonContent").value.trim();
-
-        if (!title || !content) {
-          showStatusMessage("❌ يرجى إدخال عنوان الدرس ومحتواه", "error");
-          return;
+                    this.classList.add('active');
+                    document.getElementById(sectionId).classList.add('active');
+                });
+            });
         }
 
-        lessonData.push({
-          id: Date.now(),
-          title,
-          subject,
-          content
-        });
+        function openLesson(id) {
+            const lessons = getData(DB.lessons);
+            const lesson = lessons.find(l => l.id === id);
+            
+            if (!lesson) return;
 
-        safeStorageSet(STORAGE_KEYS.lessons, lessonData);
-        renderLessons();
-
-        document.getElementById("lessonTitle").value = "";
-        document.getElementById("lessonSubject").value = "";
-        document.getElementById("lessonContent").value = "";
-
-        showStatusMessage("✅ تم إضافة الدرس بنجاح", "success");
-      }
-
-      function deleteLesson(id) {
-        const item = lessonData.find(l => Number(l.id) === Number(id));
-        if (!item) return;
-
-        const confirmDelete = confirm("هل أنت متأكد من حذف هذا الدرس نهائياً؟");
-        if (!confirmDelete) return;
-
-        lessonData = lessonData.filter(l => Number(l.id) !== Number(id));
-        safeStorageSet(STORAGE_KEYS.lessons, lessonData);
-        renderLessons();
-        showStatusMessage("✅ تم حذف الدرس نهائياً", "success");
-      }
-
-      function deleteExam(id) {
-        const item = examData.find(e => Number(e.id) === Number(id));
-        if (!item) return;
-
-        const confirmDelete = confirm("هل أنت متأكد من حذف هذا الاختبار نهائياً؟");
-        if (!confirmDelete) return;
-
-        examData = examData.filter(e => Number(e.id) !== Number(id));
-        safeStorageSet(STORAGE_KEYS.exams, examData);
-        renderExams();
-        showStatusMessage("✅ تم حذف الاختبار نهائياً", "success");
-      }
-
-      function addAdminUser() {
-        const name = document.getElementById("newAdminName").value.trim();
-        if (!name) {
-          showStatusMessage("❌ يرجى إدخال اسم المشرف", "error");
-          return;
+            document.getElementById('lessonModalTitle').textContent = lesson.title;
+            document.getElementById('lessonModalBody').textContent = lesson.content;
+            document.getElementById('lessonModal').classList.add('active');
         }
 
-        const admins = safeStorageGet(STORAGE_KEYS.admins, []);
-        const exists = admins.some(a => String(a.name).trim() === name);
-
-        if (exists) {
-          showStatusMessage("⚠️ هذا الاسم موجود بالفعل في قائمة المشرفين", "error");
-          return;
+        function closeLessonModal() {
+            document.getElementById('lessonModal').classList.remove('active');
         }
 
-        admins.push({ name, code: ADMIN_SECRET });
-        safeStorageSet(STORAGE_KEYS.admins, admins);
+        function openExam(id) {
+            const exams = getData(DB.exams);
+            const exam = exams.find(e => e.id === id);
+            
+            if (!exam) return;
 
-        document.getElementById("newAdminName").value = "";
-        showStatusMessage("✅ تم إضافة المشرف بنجاح", "success");
-      }
+            currentExamQuestions = exam.questions;
+            examTime = exam.duration * 60;
 
-      function sendAiMessage() {
-        const text = el.aiInput.value.trim();
-        if (!text) return;
-
-        const newUserMsg = document.createElement("div");
-        newUserMsg.className = "msg user";
-        newUserMsg.textContent = text;
-        el.chatMessages.appendChild(newUserMsg);
-
-        const botReply = document.createElement("div");
-        botReply.className = "msg bot";
-
-        const lower = text.toLowerCase();
-        let answer = "يمكنك سؤالني عن أي درس أو اختبار أو موضوع تعليمي.";
-
-        if (lower.includes("درس") || lower.includes("محتوى")) {
-          answer = "الدروس متاحة داخل المنصة من تبويب الدروس، ويمكنك فتح أي درس ومشاهدة الشرح مباشرة من الصفحة.";
-        } else if (lower.includes("اختبار") || lower.includes("امتحان")) {
-          answer = "الاختبارات متاحة داخل المنصة من تبويب الاختبارات، وكل اختبار يفتح داخل الصفحة ويحتوي على أسئلة متعددة وتوقيت محدد.";
-        } else if (lower.includes("أمن") || lower.includes("سيبر")) {
-          answer = "الأمن السيبراني يركز على حماية الأنظمة والبيانات، وتجنب الاختراق، واستخدام كلمات مرور قوية، والتحديث المستمر.";
-        } else if (lower.includes("شبكات")) {
-          answer = "الشبكات هي وسيلة ربط الأجهزة وتبادل البيانات، وتحتاج إلى معرفة البروتوكولات والراوتر والسويتش.";
-        } else if (lower.includes("تعلم") || lower.includes("تكنولوجيا")) {
-          answer = "التعلم الإلكتروني يعتمد على التنظيم، المتابعة اليومية، استخدام المنصات، ومراجعة الدروس بانتظام.";
-        }
-
-        botReply.textContent = answer;
-        el.chatMessages.appendChild(botReply);
-        el.aiInput.value = "";
-        el.chatMessages.scrollTop = el.chatMessages.scrollHeight;
-      }
-
-      function generateCertificate() {
-        const studentName = document.getElementById("certStudentName").value.trim() || "الطالب";
-        const courseName = document.getElementById("certCourseName").value.trim() || "الدورة التدريبية";
-        const ownerName = document.getElementById("certOwnerName").value.trim() || "المشرف";
-
-        const preview = document.getElementById("certificatePreview");
-        preview.innerHTML = `
-          <div class="certificate-wrap">
-            <div class="certificate">
-              <div class="certificate-inner">
-                <div class="cert-badge"><i class="fa-solid fa-award"></i></div>
-                <div class="cert-title">شهادة إكمال</div>
-                <div class="cert-sub">أكاديمية Abdo_zeinhom</div>
-                <div class="cert-name">${escapeHtml(studentName)}</div>
-                <div class="cert-text">
-                  تم منح هذه الشهادة للطالب/ة المذكور أعلاه لإتمام الدورة / البرنامج:
-                  <strong>${escapeHtml(courseName)}</strong>
-                  بنجاح، مع التقدير والاحترام من فريق الأكاديمية.
+            document.getElementById('examModalTitle').textContent = exam.title;
+            document.getElementById('examModalBody').innerHTML = `
+                <div class="timer">
+                    <i class="fas fa-hourglass-end"></i>
+                    <span id="examTimer">${exam.duration}:00</span>
                 </div>
 
-                <div class="cert-signs">
-                  <div class="sign">${escapeHtml(ownerName)}<br>المشرف / المؤيد</div>
-                  <div class="sign">Abdo_zeinhom Academy<br>المنصة التعليمية</div>
+                <div class="quiz-box">
+                    ${exam.questions.map((q, idx) => `
+                        <div class="exam-question">
+                            <h4>${idx + 1}. ${q.q}</h4>
+                            <div class="options">
+                                ${q.options.map((opt, optIdx) => `
+                                    <label class="option">
+                                        <input type="radio" name="q${idx}" value="${optIdx}" />
+                                        <span>${opt}</span>
+                                    </label>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `).join('')}
                 </div>
-              </div>
-            </div>
-          </div>
-        `;
-      }
 
-      document.getElementById("toggleModeBtn").addEventListener("click", function () {
-        toggleMode();
-      });
+                <div style="margin-top: 2rem;">
+                    <button class="btn btn-primary" onclick="submitExam(${id})" style="width: 100%;">
+                        <i class="fas fa-check"></i> إرسال الإجابة
+                    </button>
+                </div>
+            `;
 
-      document.getElementById("authForm").addEventListener("submit", function (e) {
-        e.preventDefault();
-        const name = document.getElementById("fullName").value.trim();
-        const code = document.getElementById("accessCode").value.trim();
-
-        if (!name || !code) {
-          setStatus("❌ يرجى إدخال الاسم وكود الدخول", "error");
-          return;
+            document.getElementById('examModal').classList.add('active');
+            startExamTimer(exam.duration);
         }
 
-        loginUser(name, code);
-      });
+        function startExamTimer(duration) {
+            clearInterval(examTimer);
+            let remaining = duration * 60;
 
-      document.getElementById("aiInput").addEventListener("keydown", function (e) {
-        if (e.key === "Enter") {
-          sendAiMessage();
+            examTimer = setInterval(() => {
+                remaining--;
+
+                const mins = Math.floor(remaining / 60);
+                const secs = remaining % 60;
+                document.getElementById('examTimer').textContent = 
+                    `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+
+                if (remaining <= 0) {
+                    clearInterval(examTimer);
+                    submitExam();
+                }
+            }, 1000);
         }
-      });
 
-      el.toggleModeBtn.style.display = "inline-flex";
+        function submitExam(examId) {
+            clearInterval(examTimer);
 
-      loadData();
-      renderLessons();
-      renderExams();
-      addQuestionBuilderRow();
-      toggleMode(false);
-    })();
-  </script>
+            const answers = [];
+            currentExamQuestions.forEach((q, idx) => {
+                const selected = document.querySelector(`input[name="q${idx}"]:checked`);
+                answers.push(selected ? Number(selected.value) : -1);
+            });
+
+            let correct = 0;
+            currentExamQuestions.forEach((q, idx) => {
+                if (answers[idx] === Number(q.answer)) {
+                    correct++;
+                }
+            });
+
+            const percentage = Math.round((correct / currentExamQuestions.length) * 100);
+            const results = getData(DB.examResults) || [];
+            results.push({
+                id: Date.now(),
+                studentName: currentUser.name,
+                examId: examId,
+                correct: correct,
+                total: currentExamQuestions.length,
+                percentage: percentage,
+                date: new Date().toISOString()
+            });
+            setData(DB.examResults, results);
+
+            document.getElementById('examModalBody').innerHTML = `
+                <div class="result-box">
+                    <h3>تم إرسال الإجابة بنجاح!</h3>
+                    <div class="score">${percentage}%</div>
+                    <p><strong>${correct}/${currentExamQuestions.length}</strong> إجابات صحيحة</p>
+                    <p>${percentage >= 60 ? '🎉 أحسنت! استمر بالتفوق' : '💪 حاول مرة أخرى والنجاح قادم'}</p>
+                    <button class="btn btn-secondary" onclick="closeExamModal()" style="margin-top: 1.5rem; width: 100%;">
+                        إغلاق
+                    </button>
+                </div>
+            `;
+
+            updateStudentStats();
+        }
+
+        function closeExamModal() {
+            clearInterval(examTimer);
+            document.getElementById('examModal').classList.remove('active');
+        }
+
+        // ==================== SUPERVISOR FUNCTIONS ====================
+        function loadSupervisorDashboard() {
+            const supervisors = getData(DB.supervisors);
+            const supervisor = supervisors.find(s => s.name === currentUser.name) || {
+                id: Date.now(),
+                name: currentUser.name,
+                joinDate: new Date().toISOString()
+            };
+
+            const initials = getInitials(supervisor.name);
+            document.getElementById('supervisorAvatar').textContent = initials;
+            document.getElementById('supervisorName').textContent = supervisor.name;
+
+            updateSupervisorStats();
+            renderSupervisorLessons();
+            renderSupervisorExams();
+            renderSupervisorStudents();
+            updateReportsTable();
+            setupSupervisorTabs();
+            setupSupervisorForms();
+        }
+
+        function updateSupervisorStats() {
+            const lessons = getData(DB.lessons);
+            const exams = getData(DB.exams);
+            const students = getData(DB.students);
+            const results = getData(DB.examResults) || [];
+
+            document.getElementById('totalLessons').textContent = lessons.length;
+            document.getElementById('totalExams').textContent = exams.length;
+            document.getElementById('totalStudents').textContent = students.length;
+
+            const avgGrade = results.length
+                ? Math.round(results.reduce((sum, r) => sum + r.percentage, 0) / results.length)
+                : 0;
+            document.getElementById('averagePerformance').textContent = avgGrade + '%';
+        }
+
+        function renderSupervisorLessons() {
+            const lessons = getData(DB.lessons);
+            const container = document.getElementById('supervisorLessonsContainer');
+
+            container.innerHTML = lessons.map(lesson => `
+                <div class="card">
+                    <div class="card-header">
+                        <h3>${lesson.title}</h3>
+                        <p>${lesson.subject}</p>
+                    </div>
+                    <div class="card-body">
+                        <p>${lesson.content.substring(0, 100)}...</p>
+                        <span class="badge">تاريخ الإنشاء: ${formatDate(lesson.createdDate)}</span>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-secondary btn-small" onclick="editLesson(${lesson.id})">
+                            <i class="fas fa-edit"></i> تحرير
+                        </button>
+                        <button class="btn btn-danger btn-small" onclick="deleteLesson(${lesson.id})">
+                            <i class="fas fa-trash"></i> حذف
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderSupervisorExams() {
+            const exams = getData(DB.exams);
+            const container = document.getElementById('supervisorExamsContainer');
+
+            container.innerHTML = exams.map(exam => `
+                <div class="card">
+                    <div class="card-header">
+                        <h3>${exam.title}</h3>
+                        <p>${exam.questions.length} أسئلة • ${exam.duration} دقيقة</p>
+                    </div>
+                    <div class="card-body">
+                        <p>الأسئلة: ${exam.questions.length}</p>
+                        <span class="badge badge-info">${formatDate(exam.createdDate || new Date().toISOString())}</span>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-secondary btn-small" onclick="editExam(${exam.id})">
+                            <i class="fas fa-edit"></i> تحرير
+                        </button>
+                        <button class="btn btn-danger btn-small" onclick="deleteExam(${exam.id})">
+                            <i class="fas fa-trash"></i> حذف
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderSupervisorStudents() {
+            const students = getData(DB.students);
+            const container = document.getElementById('supervisorStudentsContainer');
+
+            container.innerHTML = students.map(student => `
+                <div class="member-card">
+                    <div class="member-avatar">${getInitials(student.name)}</div>
+                    <h4>${student.name}</h4>
+                    <p>${student.class}</p>
+                    <div class="member-meta">
+                        <div class="member-meta-item">
+                            <strong>دروس</strong>
+                            <span>${student.lessonsCompleted || 0}</span>
+                        </div>
+                        <div class="member-meta-item">
+                            <strong>اختبارات</strong>
+                            <span>${student.examsCompleted || 0}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateReportsTable() {
+            const students = getData(DB.students);
+            const results = getData(DB.examResults) || [];
+            const tbody = document.getElementById('reportsTableBody');
+
+            tbody.innerHTML = students.map(student => {
+                const studentResults = results.filter(r => r.studentName === student.name);
+                const avgGrade = studentResults.length
+                    ? Math.round(studentResults.reduce((sum, r) => sum + r.percentage, 0) / studentResults.length)
+                    : 0;
+
+                return `
+                    <tr>
+                        <td>${student.name}</td>
+                        <td>${student.class}</td>
+                        <td>${student.lessonsCompleted || 0}</td>
+                        <td>${student.examsCompleted || 0}</td>
+                        <td><strong style="color: var(--primary);">${avgGrade}%</strong></td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function setupSupervisorTabs() {
+            document.querySelectorAll('#supervisorPage .tab-toggle').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const sectionId = this.dataset.section;
+                    
+                    document.querySelectorAll('#supervisorPage .tab-toggle').forEach(b => b.classList.remove('active'));
+                    document.querySelectorAll('#supervisorPage .tab-content').forEach(c => c.classList.remove('active'));
+
+                    this.classList.add('active');
+                    document.getElementById(sectionId).classList.add('active');
+                });
+            });
+        }
+
+        function setupSupervisorForms() {
+            document.getElementById('addLessonForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const title = this.querySelector('.lessonTitle').value.trim();
+                const subject = this.querySelector('.lessonSubject').value.trim();
+                const content = this.querySelector('.lessonContent').value.trim();
+
+                if (!title || !subject || !content) {
+                    showAlert('يرجى تعبئة جميع الحقول', 'error');
+                    return;
+                }
+
+                const lessons = getData(DB.lessons);
+                lessons.push({
+                    id: Date.now(),
+                    title,
+                    subject,
+                    content,
+                    supervisorId: 1,
+                    createdDate: new Date().toISOString()
+                });
+                setData(DB.lessons, lessons);
+
+                this.reset();
+                renderSupervisorLessons();
+                showAlert('تم إضافة الدرس بنجاح!', 'success');
+                updateSupervisorStats();
+            });
+
+            document.getElementById('addExamForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const title = this.querySelector('.examTitle').value.trim();
+                const duration = parseInt(this.querySelector('.examDuration').value) || 30;
+
+                const questions = [];
+                document.querySelectorAll('#questionsList .question-builder').forEach((qDiv, idx) => {
+                    const questionText = qDiv.querySelector('.q-text')?.value.trim() || '';
+                    const options = [];
+                    qDiv.querySelectorAll('.q-option').forEach(input => {
+                        const val = input.value.trim();
+                        if (val) options.push(val);
+                    });
+                    const answer = qDiv.querySelector('.q-answer')?.value || '0';
+
+                    if (questionText && options.length >= 2) {
+                        questions.push({
+                            q: questionText,
+                            options: options,
+                            answer: parseInt(answer)
+                        });
+                    }
+                });
+
+                if (!title || questions.length === 0) {
+                    showAlert('يرجى إضافة عنوان واختبار الأسئلة', 'error');
+                    return;
+                }
+
+                const exams = getData(DB.exams);
+                exams.push({
+                    id: Date.now(),
+                    title,
+                    duration,
+                    questions,
+                    createdDate: new Date().toISOString()
+                });
+                setData(DB.exams, exams);
+
+                document.getElementById('questionsList').innerHTML = '';
+                this.reset();
+                renderSupervisorExams();
+                showAlert('تم إضافة الاختبار بنجاح!', 'success');
+                updateSupervisorStats();
+            });
+
+            document.getElementById('addQuestionBtn').addEventListener('click', function() {
+                const questionsList = document.getElementById('questionsList');
+                const questionNum = questionsList.children.length + 1;
+
+                const qDiv = document.createElement('div');
+                qDiv.className = 'question-builder';
+                qDiv.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <h4 style="color: var(--primary); margin: 0;">السؤال ${questionNum}</h4>
+                        <button type="button" class="btn btn-danger btn-small" onclick="this.parentElement.parentElement.remove()">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="q-text" placeholder="نص السؤال" required />
+                    </div>
+                    <div class="options-grid">
+                        <div class="form-group">
+                            <label style="font-size: 0.85rem;">الخيار 1</label>
+                            <input type="text" class="q-option" placeholder="أدخل الخيار" required />
+                        </div>
+                        <div class="form-group">
+                            <label style="font-size: 0.85rem;">الخيار 2</label>
+                            <input type="text" class="q-option" placeholder="أدخل الخيار" required />
+                        </div>
+                        <div class="form-group">
+                            <label style="font-size: 0.85rem;">الخيار 3</label>
+                            <input type="text" class="q-option" placeholder="أدخل الخيار" />
+                        </div>
+                        <div class="form-group">
+                            <label style="font-size: 0.85rem;">الخيار 4</label>
+                            <input type="text" class="q-option" placeholder="أدخل الخيار" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>الإجابة الصحيحة</label>
+                        <select class="q-answer" required>
+                            <option value="0">الخيار 1</option>
+                            <option value="1">الخيار 2</option>
+                            <option value="2">الخيار 3</option>
+                            <option value="3">الخيار 4</option>
+                        </select>
+                    </div>
+                `;
+                questionsList.appendChild(qDiv);
+            });
+        }
+
+        function deleteLesson(id) {
+            if (!confirm('هل تريد حذف هذا الدرس نهائياً؟')) return;
+
+            const lessons = getData(DB.lessons);
+            setData(DB.lessons, lessons.filter(l => l.id !== id));
+            renderSupervisorLessons();
+            showAlert('تم حذف الدرس بنجاح!', 'success');
+            updateSupervisorStats();
+        }
+
+        function deleteExam(id) {
+            if (!confirm('هل تريد حذف هذا الاختبار نهائياً؟')) return;
+
+            const exams = getData(DB.exams);
+            setData(DB.exams, exams.filter(e => e.id !== id));
+            renderSupervisorExams();
+            showAlert('تم حذف الاختبار بنجاح!', 'success');
+            updateSupervisorStats();
+        }
+
+        function editLesson(id) {
+            showAlert('ميزة التحرير قيد التطوير', 'error');
+        }
+
+        function editExam(id) {
+            showAlert('ميزة التحرير قيد التطوير', 'error');
+        }
+
+        // ==================== ADMIN FUNCTIONS ====================
+        function loadAdminDashboard() {
+            document.getElementById('adminAvatar').textContent = 'م';
+            updateAdminStats();
+            renderAdminSupervisors();
+            setupAdminTabs();
+            setupAdminForms();
+        }
+
+        function updateAdminStats() {
+            const supervisors = getData(DB.supervisors);
+            const students = getData(DB.students);
+            const lessons = getData(DB.lessons);
+            const exams = getData(DB.exams);
+            const results = getData(DB.examResults) || [];
+
+            document.getElementById('adminTotalSupervisors').textContent = supervisors.length;
+            document.getElementById('adminTotalStudents').textContent = students.length;
+            document.getElementById('adminTotalLessons').textContent = lessons.length;
+            document.getElementById('adminTotalExams').textContent = exams.length;
+
+            // Analytics
+            document.getElementById('activeStudents').textContent = students.length;
+            const completedCount = results.length;
+            const totalCount = (students.length * exams.length) || 1;
+            const completionRate = Math.round((completedCount / totalCount) * 100) || 0;
+            document.getElementById('completionRate').textContent = completionRate + '%';
+
+            const topStudent = students.reduce((best, current) => {
+                const currentAvg = results
+                    .filter(r => r.studentName === current.name)
+                    .reduce((sum, r) => sum + r.percentage, 0) / 
+                    results.filter(r => r.studentName === current.name).length || 0;
+                
+                const bestAvg = results
+                    .filter(r => r.studentName === best.name)
+                    .reduce((sum, r) => sum + r.percentage, 0) / 
+                    results.filter(r => r.studentName === best.name).length || 0;
+
+                return currentAvg > bestAvg ? current : best;
+            }, students[0] || {});
+
+            document.getElementById('topPerformer').textContent = topStudent.name || '-';
+            document.getElementById('studyTime').textContent = '-';
+
+            // Analytics Table
+            document.getElementById('analyticsLessonTotal').textContent = lessons.length;
+            document.getElementById('analyticsExamTotal').textContent = exams.length;
+        }
+
+        function renderAdminSupervisors() {
+            const supervisors = getData(DB.supervisors);
+            const container = document.getElementById('adminSupervisorsContainer');
+
+            container.innerHTML = supervisors.map(supervisor => `
+                <div class="member-card">
+                    <div class="member-avatar">${getInitials(supervisor.name)}</div>
+                    <h4>${supervisor.name}</h4>
+                    <p style="color: var(--primary); font-weight: 700;">مشرف تربوي</p>
+                    <div class="member-meta">
+                        <div class="member-meta-item">
+                            <strong>📧 البريد</strong>
+                            <span style="font-size: 0.8rem;">${supervisor.email || '-'}</span>
+                        </div>
+                        <div class="member-meta-item">
+                            <strong>📱 الهاتف</strong>
+                            <span style="font-size: 0.8rem;">${supervisor.phone || '-'}</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-danger btn-small" style="width: 100%; margin-top: 1rem;" onclick="deleteSupervisor(${supervisor.id})">
+                        <i class="fas fa-trash"></i> حذف
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function setupAdminTabs() {
+            document.querySelectorAll('#adminPage .tab-toggle').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const sectionId = this.dataset.section;
+                    
+                    document.querySelectorAll('#adminPage .tab-toggle').forEach(b => b.classList.remove('active'));
+                    document.querySelectorAll('#adminPage .tab-content').forEach(c => c.classList.remove('active'));
+
+                    this.classList.add('active');
+                    document.getElementById(sectionId).classList.add('active');
+                });
+            });
+        }
+
+        function setupAdminForms() {
+            document.getElementById('addSupervisorForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const name = this.querySelector('.supervisorName').value.trim();
+                const phone = this.querySelector('.supervisorPhone').value.trim();
+                const email = this.querySelector('.supervisorEmail').value.trim();
+
+                if (!name) {
+                    showAlert('يرجى إدخال اسم المشرف', 'error');
+                    return;
+                }
+
+                const supervisors = getData(DB.supervisors);
+                supervisors.push({
+                    id: Date.now(),
+                    name,
+                    phone,
+                    email,
+                    joinDate: new Date().toISOString()
+                });
+                setData(DB.supervisors, supervisors);
+
+                this.reset();
+                renderAdminSupervisors();
+                showAlert('تم إضافة المشرف بنجاح!', 'success');
+                updateAdminStats();
+            });
+        }
+
+        function deleteSupervisor(id) {
+            if (!confirm('هل تريد حذف هذا المشرف؟')) return;
+
+            const supervisors = getData(DB.supervisors);
+            setData(DB.supervisors, supervisors.filter(s => s.id !== id));
+            renderAdminSupervisors();
+            showAlert('تم حذف المشرف بنجاح!', 'success');
+            updateAdminStats();
+        }
+
+        function clearAllData() {
+            if (!confirm('هل أنت متأكد من حذف جميع البيانات؟ هذا الإجراء نهائي!')) return;
+
+            Object.values(DB).forEach(key => localStorage.removeItem(key));
+            initializeData();
+            showAlert('تم حذف جميع البيانات! إعادة تحميل الصفحة...', 'success');
+            setTimeout(() => location.reload(), 1500);
+        }
+
+        // ==================== INITIALIZATION ====================
+        initializeData();
+    </script>
 </body>
 </html>
