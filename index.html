@@ -3,1317 +3,1458 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CyberClash Academy</title>
+  <title>أكاديمية Abdo_zeinhom</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
   <style>
     :root{
-      --bg:#07141a;
-      --bg2:#0d1d25;
-      --panel:#101f28;
-      --panel2:#0b181e;
-      --line:#1c3946;
-      --green:#2de6a5;
-      --green2:#1ecb8b;
-      --blue:#4bc0ff;
-      --purple:#a76eff;
-      --orange:#ffb441;
-      --red:#ff4d5a;
-      --text:#edf7ff;
-      --muted:#9bb4c2;
-      --shadow:0 12px 30px rgba(0,0,0,.35);
-      --radius:18px;
+      --bg:#081116;
+      --bg-2:#0d1b21;
+      --panel:#101f27;
+      --panel-2:#122832;
+      --soft:#173440;
+      --line:#264c5b;
+      --green:#34d399;
+      --cyan:#38bdf8;
+      --purple:#a78bfa;
+      --red:#f87171;
+      --yellow:#fbbf24;
+      --text:#edf6f9;
+      --muted:#a9bac6;
+      --shadow:0 20px 45px rgba(0,0,0,.32);
+      --radius:20px;
     }
 
-    *{box-sizing:border-box;margin:0;padding:0;font-family:'Cairo',sans-serif}
-    html,body{height:100%;background:linear-gradient(135deg,#07141a,#0c1e24 30%,#0d1b1f 100%);color:var(--text)}
-    body{display:flex;align-items:center;justify-content:center;padding:24px;overflow-x:hidden}
-    a{color:inherit;text-decoration:none}
+    *{box-sizing:border-box}
+    html,body{
+      margin:0;
+      padding:0;
+      background:
+        radial-gradient(circle at top left, rgba(52,211,153,.10), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(56,189,248,.10), transparent 26%),
+        var(--bg);
+      color:var(--text);
+      font-family:"Cairo",sans-serif;
+      min-height:100vh;
+    }
 
-    .hidden{display:none !important}
+    body{
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+      padding:24px;
+    }
 
-    .app-shell{
-      position:relative;
+    .app{
       width:min(1200px,100%);
-      min-height:840px;
-      background:rgba(12,27,32,.82);
+      background:rgba(16,31,39,.86);
       border:1px solid var(--line);
       border-radius:28px;
       box-shadow:var(--shadow);
+      backdrop-filter:blur(10px);
       overflow:hidden;
-      backdrop-filter:blur(14px);
     }
 
     .topbar{
-      display:flex;align-items:center;justify-content:space-between;
-      gap:12px;padding:18px 22px;
-      background:rgba(5,12,16,.8);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:16px 22px;
+      background:rgba(9,17,22,.8);
       border-bottom:1px solid var(--line);
+      gap:12px;
+      flex-wrap:wrap;
     }
 
     .brand{
-      display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.2rem;
-      letter-spacing:.5px;
+      display:flex; align-items:center; gap:10px;
+      font-weight:800; font-size:1.08rem; letter-spacing:.2px;
     }
 
     .brand .logo{
-      width:42px;height:42px;border-radius:50%;
-      display:grid;place-items:center;background:linear-gradient(135deg,var(--green),var(--blue));
-      color:#041914;font-weight:900;
-      box-shadow:0 0 18px rgba(45,230,165,.4);
+      width:38px;height:38px;border-radius:12px;
+      background:linear-gradient(135deg,var(--green),var(--cyan));
+      color:#081116;display:grid;place-items:center;
+      box-shadow:0 10px 24px rgba(52,211,153,.25);
     }
 
-    .badge{
-      padding:8px 14px;border-radius:999px;border:1px solid rgba(45,230,165,.4);
-      background:rgba(45,230,165,.08);color:var(--green);font-size:.85rem;font-weight:700;
+    .mode-pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 14px; border-radius:999px;
+      font-size:.86rem; font-weight:700;
+      border:1px solid var(--green);
+      background:rgba(52,211,153,.12); color:var(--green);
+      white-space:nowrap;
     }
 
-    .toggle-mode{
+    .toggle-btn{
       border:1px solid var(--line);
-      background:rgba(255,255,255,.03);
+      background:rgba(255,255,255,.02);
       color:var(--text);
-      padding:10px 16px;border-radius:12px;cursor:pointer;font-weight:700;
-      transition:.2s ease;
+      border-radius:12px;
+      padding:10px 16px; cursor:pointer;
+      font:inherit; font-weight:700; transition:.2s ease;
     }
 
-    .toggle-mode:hover{border-color:var(--blue);transform:translateY(-1px)}
+    .toggle-btn:hover{
+      transform:translateY(-1px);
+      border-color:var(--cyan); color:var(--cyan);
+    }
 
-    .screen{display:none;padding:28px}
-    .screen.active{display:block}
+    .page{ display:none; padding:26px; }
+    .page.active{ display:block; }
+
+    .auth-container{
+      max-width:620px; margin:0 auto;
+      padding:30px 10px 20px;
+    }
 
     .auth-card{
-      max-width:760px;margin:18px auto 0;background:linear-gradient(180deg,rgba(17,29,35,.94),rgba(11,21,26,.97));
-      border:1px solid var(--line);border-radius:24px;padding:32px 24px;box-shadow:var(--shadow);
+      background:rgba(18,40,50,.9);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:28px 20px;
+      box-shadow:var(--shadow);
     }
 
-    .auth-head{text-align:center;margin-bottom:18px}
-    .auth-head h1{
-      font-size:clamp(1.8rem,4vw,2.5rem);font-weight:800;
-      background:linear-gradient(90deg,#fff,var(--muted));-webkit-background-clip:text;-webkit-text-fill-color:transparent;
-      margin-bottom:8px
-    }
-    .auth-head p{color:var(--muted);font-size:1rem}
-
-    .auth-grid{
-      display:grid;grid-template-columns:1.2fr .8fr;gap:20px;align-items:stretch;
+    .profile{
+      width:120px;height:120px;border-radius:50%;
+      margin:0 auto 18px;
+      background:linear-gradient(145deg, rgba(52,211,153,.18), rgba(56,189,248,.12));
+      display:grid; place-items:center;
+      border:3px solid rgba(52,211,153,.7);
+      box-shadow:0 0 30px rgba(52,211,153,.18);
+      position:relative;
     }
 
-    .panel{
-      background:rgba(255,255,255,.02);border:1px solid var(--line);border-radius:20px;padding:20px;
+    .profile i{font-size:3rem; color:var(--green);}
+    .profile::after{
+      content:""; position:absolute; width:16px;height:16px; border-radius:50%;
+      background:var(--green); right:12px; bottom:12px; border:3px solid var(--panel);
     }
 
-    .field{margin-bottom:16px}
+    h1,h2,h3,p{margin:0;}
+
+    .hero-title{
+      text-align:center; font-size:clamp(1.4rem,3vw,2rem);
+      margin-bottom:8px; font-weight:800; color:#f4fbff;
+    }
+
+    .hero-sub{
+      text-align:center; color:var(--cyan); margin-bottom:26px; font-weight:600;
+    }
+
+    .form-title{
+      text-align:center; color:var(--muted); font-size:1.05rem; margin-bottom:22px;
+    }
+
+    .field{margin-bottom:16px;}
     .field label{
-      display:block;color:var(--muted);font-size:.88rem;font-weight:700;margin-bottom:8px
-    }
-    .input-wrap{position:relative}
-    .input-wrap i{
-      position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:.95rem;
-    }
-    .input-wrap input, .input-wrap select{
-      width:100%;border:1px solid var(--line);background:#050d11;color:var(--text);padding:14px 42px 14px 16px;
-      border-radius:12px;font-size:1rem;outline:none;transition:.2s ease;
-    }
-    .input-wrap input:focus, .input-wrap select:focus{
-      border-color:var(--green);box-shadow:0 0 0 3px rgba(45,230,165,.12);
+      display:block; margin-bottom:8px; color:var(--muted);
+      font-size:.9rem; font-weight:700;
     }
 
-    .primary-btn{
-      width:100%;padding:14px 18px;border:none;border-radius:12px;
-      cursor:pointer;font-weight:800;font-size:1rem;color:#041914;
-      background:linear-gradient(135deg,var(--green),var(--green2));
-      box-shadow:0 10px 25px rgba(45,230,165,.18);transition:.2s ease;
+    .input-wrap{position:relative;}
+    .input-wrap i{
+      position:absolute; right:16px; top:50%; transform:translateY(-50%);
+      color:var(--muted); font-size:1rem;
     }
-    .primary-btn:hover{transform:translateY(-1px);box-shadow:0 12px 32px rgba(45,230,165,.24)}
-    .danger-btn{
-      border:1px solid rgba(255,77,90,.35);background:rgba(255,77,90,.08);color:#ff8d97;padding:10px 14px;border-radius:12px;cursor:pointer;font-weight:700;
+
+    .input-wrap input,.input-wrap select,
+    .field input[type="text"], .field textarea, .field select{
+      width:100%; border:1px solid var(--line);
+      border-radius:12px; background:rgba(2,10,15,.75);
+      color:var(--text); padding:14px 42px 14px 14px;
+      font:inherit; outline:none; transition:.2s ease;
     }
-    .secondary-btn{
-      border:1px solid var(--line);background:transparent;color:var(--text);padding:10px 14px;border-radius:12px;cursor:pointer;font-weight:700;
+
+    .input-wrap input:focus,.input-wrap select:focus,
+    .field input[type="text"]:focus, .field textarea:focus, .field select:focus{
+      border-color:var(--green); box-shadow:0 0 0 3px rgba(52,211,153,.12);
+    }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      width:100%; min-height:52px;
+      background:linear-gradient(135deg,var(--green),#12b981);
+      border:none; border-radius:12px; color:#081116;
+      font:inherit; font-weight:800; cursor:pointer;
+      transition:transform .2s ease, box-shadow .2s ease;
+      box-shadow:0 16px 24px rgba(52,211,153,.2);
+    }
+    .btn:hover{transform:translateY(-2px);}
+    .btn.small{
+      width:auto; min-width:120px; padding:10px 16px; min-height:42px; font-size:.88rem;
+    }
+    .btn.danger{
+      background:rgba(248,113,113,.08); border:1px solid rgba(248,113,113,.25); color:var(--red); box-shadow:none;
+    }
+    .btn.info{
+      background:linear-gradient(135deg,var(--cyan),#0ea5e9); color:#081116; box-shadow:none;
     }
 
     .status{
-      margin-top:14px;display:none;padding:12px 14px;border-radius:12px;font-size:.92rem;font-weight:700;
+      margin-top:18px; display:none;
+      border-radius:12px; padding:12px 14px;
+      text-align:center; font-size:.9rem; font-weight:700;
     }
-    .status.success{display:block;background:rgba(45,230,165,.08);border:1px solid rgba(45,230,165,.32);color:var(--green)}
-    .status.error{display:block;background:rgba(255,77,90,.08);border:1px solid rgba(255,77,90,.32);color:#ff8e9a}
 
-    .rules{
-      margin-top:18px;padding:16px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.02)
+    .status.error{
+      display:block; background:rgba(248,113,113,.12); border:1px solid rgba(248,113,113,.35); color:var(--red);
     }
-    .rules h3{font-size:1rem;margin-bottom:10px;color:var(--blue)}
-    .rules ul{padding-right:18px;color:var(--muted);line-height:1.9;font-size:.92rem}
+
+    .status.success{
+      display:block; background:rgba(52,211,153,.12); border:1px solid rgba(52,211,153,.35); color:var(--green);
+    }
 
     .support{
-      margin-top:18px;text-align:center;color:var(--muted);font-size:.9rem
-    }
-    .support a{color:var(--green);font-weight:700}
-
-    .dashboard{
-      background:rgba(8,20,25,.7);border:1px solid var(--line);border-radius:24px;padding:18px;
+      text-align:center; margin-top:22px; padding-top:16px; border-top:1px solid var(--line);
+      color:var(--muted); font-size:.9rem;
     }
 
-    .dashboard-top{
-      display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
-      margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--line);
+    .support a{
+      color:var(--green); text-decoration:none; font-weight:700; margin-inline-start:6px;
     }
-    .title{
-      font-size:clamp(1.2rem,3vw,1.8rem);font-weight:800;color:var(--green);
+
+    .container{ padding:24px 18px 18px; }
+
+    .dashboard-header{
+      display:flex; justify-content:space-between; align-items:center;
+      gap:16px; margin-bottom:20px; padding-bottom:18px; border-bottom:1px solid var(--line); flex-wrap:wrap;
     }
-    .subtitle{color:var(--muted);font-size:.9rem;margin-top:2px}
+
+    .welcome h2{
+      color:var(--green); font-size:clamp(1.1rem,2.5vw,1.5rem);
+    }
+
+    .welcome p{
+      color:var(--muted); font-size:.9rem; margin-top:6px;
+    }
 
     .tabs{
-      display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;
-    }
-    .tab-btn{
-      background:transparent;border:1px solid var(--line);color:var(--muted);padding:10px 16px;border-radius:12px;
-      font-weight:700;cursor:pointer;transition:.2s ease
-    }
-    .tab-btn.active{
-      background:rgba(45,230,165,.08);border-color:rgba(45,230,165,.42);color:var(--green)
+      display:flex; gap:8px; flex-wrap:wrap;
+      margin-bottom:20px; border-bottom:1px solid var(--line); padding-bottom:10px;
     }
 
-    .tab-panel{display:none}
-    .tab-panel.active{display:block}
+    .tab-btn{
+      padding:10px 16px; background:transparent; color:var(--muted);
+      border:1px solid transparent; border-radius:10px;
+      font:inherit; cursor:pointer; font-weight:700; transition:.2s ease;
+    }
+
+    .tab-btn.active{
+      background:rgba(52,211,153,.12); color:var(--green); border-color:rgba(52,211,153,.45);
+    }
+
+    .tab-panel{display:none;}
+    .tab-panel.active{display:block;}
 
     .grid{
-      display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;
+      display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:18px;
     }
 
     .card{
-      background:linear-gradient(180deg,rgba(16,31,40,.95),rgba(11,20,26,.95));
-      border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:12px;
-      min-height:210px;transition:.2s ease;
+      background:rgba(13,27,33,.9); border:1px solid var(--line);
+      border-radius:18px; padding:18px; display:flex; flex-direction:column; gap:12px; min-height:220px;
     }
 
-    .card:hover{transform:translateY(-2px);border-color:rgba(75,192,255,.4)}
-    .card h3{font-size:1.08rem;color:var(--blue);line-height:1.5}
-    .card .meta{color:var(--muted);font-size:.9rem}
-    .card .tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}
-    .card .tools a, .card .tools button{
-      border:none;border-radius:10px;padding:9px 12px;cursor:pointer;font-weight:700;font-size:.85rem;
-    }
-    .card .tools a{background:linear-gradient(135deg,var(--blue),#56d6ff);color:#04161a;display:inline-flex;align-items:center;justify-content:center}
-    .card .tools .delete{background:rgba(255,77,90,.08);color:#ff8d97;border:1px solid rgba(255,77,90,.28)}
-
-    .student-wrap .cards-grid{
-      display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;
+    .card h3{
+      font-size:1.04rem; color:var(--cyan); min-height:48px; line-height:1.5;
     }
 
-    .empty{
-      background:rgba(255,255,255,.02);border:1px dashed var(--line);border-radius:16px;padding:22px;color:var(--muted);text-align:center;
+    .card p{
+      color:var(--muted); font-size:.9rem; line-height:1.7;
     }
 
-    .admin-panel{
-      background:rgba(255,255,255,.02);border:1px solid var(--line);border-radius:18px;padding:18px;
+    .chip{
+      display:inline-flex; align-items:center; gap:8px; width:max-content;
+      background:rgba(52,211,153,.08); border:1px solid rgba(52,211,153,.25); color:var(--green);
+      border-radius:999px; padding:5px 10px; font-size:.8rem; font-weight:700;
     }
 
-    .two-col{
-      display:grid;grid-template-columns:1fr 1fr;gap:18px;
-    }
-    @media (max-width: 820px){
-      .auth-grid,.two-col{grid-template-columns:1fr}
-      .app-shell{min-height:auto}
-      body{padding:14px}
-      .screen{padding:16px}
-      .topbar{flex-wrap:wrap}
+    .actions-row{
+      margin-top:auto; display:flex; gap:8px; flex-wrap:wrap; align-items:center;
     }
 
-    .mini-list{
-      display:flex;flex-direction:column;gap:10px;margin-top:12px
-    }
-    .mini-item{
-      display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.015)
-    }
-    .mini-item small{color:var(--muted)}
-    .mini-item strong{font-size:.93rem}
-
-    .chat-box{
-      background:rgba(0,0,0,.14);border:1px solid var(--line);border-radius:18px;overflow:hidden;
-      display:flex;flex-direction:column;height:520px;
-    }
-    .chat-body{
-      flex:1;padding:16px;overflow:auto;display:flex;flex-direction:column;gap:12px;background:rgba(255,255,255,.01)
-    }
-    .msg{
-      max-width:80%;padding:12px 14px;border-radius:16px;line-height:1.7;font-size:.95rem;
-    }
-    .msg.user{align-self:flex-end;background:linear-gradient(135deg,var(--green),#74f3c5);color:#041914;font-weight:700}
-    .msg.bot{align-self:flex-start;background:rgba(16,31,40,.95);border:1px solid var(--line);color:var(--text)}
-    .chat-input{
-      display:flex;gap:10px;padding:12px;border-top:1px solid var(--line);background:rgba(9,18,22,.95)
-    }
-    .chat-input input{
-      flex:1;border:1px solid var(--line);background:#07141a;color:var(--text);border-radius:12px;padding:12px 14px;outline:none
-    }
-    .chat-input button{
-      border:none;border-radius:12px;padding:12px 16px;background:linear-gradient(135deg,var(--blue),#7de0ff);color:#04161a;font-weight:800;cursor:pointer;
+    .link-btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      width:auto; min-width:120px; min-height:42px; padding:0 14px;
+      border-radius:10px; text-decoration:none; color:#081116;
+      font-weight:800; background:linear-gradient(135deg,var(--green),#22c55e); cursor:pointer;
+      border:none;
     }
 
-    .certificate-preview{
-      border:1px solid var(--line);border-radius:18px;padding:20px;background:linear-gradient(135deg,#0d2028,#0a1a22);
-      position:relative;overflow:hidden;
+    .link-btn.secondary{
+      background:linear-gradient(135deg,var(--cyan),#0ea5e9);
     }
-    .certificate-preview::before{
-      content:"";position:absolute;inset:12px;border:2px solid rgba(255,255,255,.08);border-radius:12px;
+
+    .admin-card{
+      background:rgba(13,27,33,.96); border:1px solid var(--line); border-radius:20px; padding:18px;
     }
-    .cert-inner{position:relative;z-index:1;text-align:center;padding:16px}
-    .cert-inner h2{color:var(--green);font-size:1.8rem;margin-bottom:12px}
-    .cert-inner .title{font-size:1rem;color:var(--muted);margin-bottom:18px}
-    .cert-inner .name{font-size:2rem;font-weight:800;margin:8px 0;color:var(--text)}
-    .cert-inner .sub{color:var(--muted);margin-top:12px}
-    .cert-inner .signature{margin-top:26px;display:flex;justify-content:space-between;gap:18px;color:var(--muted);font-size:.8rem}
+
+    .admin-card h3{
+      margin-bottom:14px; font-size:1.08rem; color:var(--green);
+    }
+
+    .field textarea{
+      min-height:150px; resize:vertical; padding:14px 16px;
+    }
+
+    .question-builder{
+      background:rgba(255,255,255,.02);
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:12px 14px;
+      margin-bottom:14px;
+    }
+
+    .builder-head{
+      display:flex; justify-content:space-between; align-items:center;
+      gap:10px; margin-bottom:12px;
+      color:var(--cyan); font-weight:700;
+    }
+
+    .option-grid{
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px;
+      margin-top:12px;
+    }
+
+    .option-line{
+      display:flex; flex-direction:column; gap:6px;
+      color:var(--muted); font-size:.85rem;
+    }
+
+    .option-line input, .builder-answer{
+      width:100%; padding:10px 12px; border-radius:10px; border:1px solid var(--line);
+      background:rgba(2,10,15,.75); color:var(--text); font:inherit;
+    }
+
+    .add-question-btn{
+      margin-top:12px;
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 14px; border-radius:10px; border:1px solid var(--line);
+      background:rgba(56,189,248,.08); color:var(--cyan); cursor:pointer; font:inherit; font-weight:700;
+    }
+
+    .quiz-box{
+      display:flex; flex-direction:column; gap:18px;
+      margin-top:8px;
+    }
+
+    .question{
+      background:rgba(255,255,255,.02); border:1px solid var(--line); border-radius:16px; padding:16px 14px;
+    }
+
+    .question-title{
+      font-weight:800; margin-bottom:12px; line-height:1.7; color:var(--text);
+    }
+
+    .options{ display:grid; gap:10px; }
+
+    .option{
+      display:flex; align-items:center; gap:10px; padding:12px 14px; border-radius:12px;
+      background:rgba(2,10,15,.72); border:1px solid var(--line); cursor:pointer; transition:.2s ease;
+    }
+
+    .option:hover{ border-color:var(--green); }
+    .option input{ accent-color:var(--green); }
+
+    .exam-actions{
+      display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; margin-top:10px;
+    }
+
+    .timer-badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 12px; border-radius:999px;
+      background:rgba(251,191,36,.08); border:1px solid rgba(251,191,36,.35);
+      color:var(--yellow); font-weight:700;
+    }
+
+    .result-box{
+      background:rgba(52,211,153,.08); border:1px solid rgba(52,211,153,.35);
+      padding:16px 18px; border-radius:14px; color:var(--text);
+    }
+
+    .result-box strong{ color:var(--green); }
+
+    .lesson-modal-content{
+      line-height:1.9;
+      color:var(--text);
+      white-space:pre-wrap;
+      background:rgba(255,255,255,.02);
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:18px;
+      margin-top:8px;
+    }
+
+    .modal{
+      position:fixed; inset:0; display:none; background:rgba(0,0,0,.68);
+      justify-content:center; align-items:center; padding:24px; z-index:1000;
+    }
+    .modal.active{ display:flex; }
+
+    .modal-panel{
+      width:min(900px,100%); max-height:90vh; overflow:auto;
+      background:rgba(15,31,39,.98); border:1px solid var(--line); border-radius:22px; padding:20px; box-shadow:var(--shadow);
+    }
+
+    .modal-head{
+      display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:18px;
+    }
+    .modal-head h3{color:var(--green);}
+    .close-btn{
+      width:42px;height:42px;border-radius:10px;border:1px solid var(--line); background:transparent; color:var(--text);
+      cursor:pointer; font:inherit; font-size:1.2rem;
+    }
+
+    .small-note{font-size:.75rem; color:var(--muted);}
+
+    .rules{
+      display:grid; gap:14px; margin-top:16px; color:var(--muted); line-height:1.8;
+    }
+    .rules li{ margin-right:18px; }
+
+    @media (max-width:700px){
+      body{ padding:14px; }
+      .page{ padding:16px; }
+      .topbar{ padding:12px 14px; }
+      .brand{ font-size:.98rem }
+      .dashboard-header{ align-items:flex-start; }
+      .grid{ grid-template-columns:1fr; }
+      .support{ font-size:.82rem; }
+      .option-grid{ grid-template-columns:1fr; }
+    }
   </style>
 </head>
 <body>
-  <div class="app-shell">
+  <div class="app">
     <header class="topbar">
       <div class="brand">
-        <div class="logo">C</div>
-        <span>CyberClash Academy</span>
+        <div class="logo"><i class="fa-solid fa-graduation-cap"></i></div>
+        <span>Abdo_zeinhom Academy</span>
       </div>
-      <div class="badge" id="modeBadge">بوابة الطالب</div>
-      <button class="toggle-mode" id="modeToggleBtn">إدارة</button>
+
+      <div id="modeBadge" class="mode-pill">
+        <i class="fa-solid fa-user-graduate"></i>
+        بوابة الطالب
+      </div>
+
+      <button id="toggleModeBtn" class="toggle-btn" type="button">
+        <i class="fa-solid fa-gear"></i> إدارة
+      </button>
     </header>
 
-    <section id="loginScreen" class="screen active">
-      <div class="auth-card">
-        <div class="auth-head">
-          <h1>CyberClash Academy</h1>
-          <p>منصة تعليمية ذكية للأمن السيبراني والمهارات التقنية</p>
-        </div>
+    <main>
+      <section id="loginPage" class="page active">
+        <div class="auth-container">
+          <div class="auth-card">
+            <div class="profile">
+              <i class="fa-solid fa-user-shield"></i>
+            </div>
 
-        <div class="auth-grid">
-          <div class="panel">
-            <form id="loginForm">
+            <h1 class="hero-title">Abdo_zeinhom</h1>
+            <p class="hero-sub">النظام الأكاديمي المتقدم</p>
+
+            <h2 id="formTitle" class="form-title">تسجيل دخول الطالب</h2>
+
+            <form id="authForm">
               <div class="field">
-                <label>الاسم الكامل</label>
+                <label id="nameLabel" for="fullName">الاسم الكامل</label>
                 <div class="input-wrap">
                   <i class="fa-solid fa-user"></i>
-                  <input id="fullName" type="text" placeholder="اكتب اسمك بالكامل" required />
+                  <input id="fullName" type="text" placeholder="أدخل الاسم كاملاً" required />
                 </div>
               </div>
 
               <div class="field">
-                <label id="codeLabel">كود الطالب</label>
+                <label id="codeLabel" for="accessCode">كود الطالب الخاص</label>
                 <div class="input-wrap">
                   <i class="fa-solid fa-key"></i>
-                  <input id="accessCode" type="password" placeholder="اكتب كود الدخول" required />
+                  <input id="accessCode" type="password" placeholder="أدخل كود الدخول" required />
                 </div>
               </div>
 
-              <button class="primary-btn" type="submit" id="submitBtn">دخول المنصة</button>
+              <div class="field" id="academicField">
+                <label for="academicYear">الصف الدراسي</label>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-layer-group"></i>
+                  <select id="academicYear">
+                    <option value="الصف الأول الثانوي">الصف الأول الثانوي</option>
+                    <option value="الصف الثاني الثانوي">الصف الثاني الثانوي</option>
+                    <option value="الصف الثالث الثانوي">الصف الثالث الثانوي</option>
+                  </select>
+                </div>
+              </div>
+
+              <button class="btn" type="submit" id="submitBtn">
+                <span>دخول المنصة</span>
+                <i class="fa-solid fa-arrow-left"></i>
+              </button>
             </form>
 
-            <div class="status" id="statusBox"></div>
-          </div>
+            <div id="status" class="status"></div>
 
-          <div class="panel">
-            <div class="rules">
-              <h3>القواعد والقوانين</h3>
-              <ul>
-                <li>منصة تعليمية مخصصة للتعلم الآمن والمحتوى الأكاديمي.</li>
-                <li>يجب احترام حقوق المالك والمشرفين والطلاب.</li>
-                <li>لا ينقل المحتوى أو يشاركه إلا بموافقة المسؤلين.</li>
-                <li>يُحظر الإساءة أو العبث في الدروس أو الاختبارات.</li>
-                <li>يتم احتساب أنشطة الطلاب داخل النظام الخاص بالمنصة.</li>
-              </ul>
+            <div class="support">
+              الدعم الفني:
+              <a href="https://wa.me/201014540661" target="_blank" rel="noreferrer">
+                <i class="fa-brands fa-whatsapp"></i> 01014540661
+              </a>
             </div>
           </div>
         </div>
+      </section>
 
-        <div class="support">
-          الدعم الفني:
-          <a href="https://wa.me/201014540661" target="_blank" rel="noreferrer">تواصل عبر واتساب</a>
+      <section id="studentPage" class="page">
+        <div class="container">
+          <div class="dashboard-header">
+            <div class="welcome">
+              <h2 id="studentWelcome">مرحباً بك، طالبنا المتميز!</h2>
+              <p>لوحة التحكم الأكاديمية الخاصة بك</p>
+            </div>
+            <button class="toggle-btn" type="button" onclick="logout()">
+              <i class="fa-solid fa-right-from-bracket"></i> خروج
+            </button>
+          </div>
+
+          <div class="tabs">
+            <button class="tab-btn active" data-tab="lessonsTab" type="button">الدروس</button>
+            <button class="tab-btn" data-tab="examsTab" type="button">الاختبارات</button>
+            <button class="tab-btn" data-tab="aiTab" type="button">المساعد الذكي</button>
+            <button class="tab-btn" data-tab="certTab" type="button">الشهادات</button>
+          </div>
+
+          <div id="lessonsTab" class="tab-panel active">
+            <div id="lessonsContainer" class="grid"></div>
+          </div>
+
+          <div id="examsTab" class="tab-panel">
+            <div id="examsContainer" class="grid"></div>
+          </div>
+
+          <div id="aiTab" class="tab-panel">
+            <div class="chat-box" style="display:flex; flex-direction:column; background:rgba(13,27,33,.8); border:1px solid var(--line); border-radius:18px; overflow:hidden; min-height:420px;">
+              <div id="chatMessages" class="chat-body" style="flex:1; padding:16px; overflow-y:auto; display:flex; flex-direction:column; gap:12px; max-height:55vh;">
+                <div class="msg bot" style="max-width:80%; padding:12px 14px; border-radius:14px; line-height:1.7; font-size:.95rem; word-break:break-word; background:rgba(255,255,255,.02); border:1px solid var(--line); color:var(--text); align-self:flex-start;">أهلاً بك! أنا مساعدك الذكي في أكاديمية Abdo_zeinhom، يمكنك السؤال عن أي درس أو اختبار أو موضوع تعليمي.</div>
+              </div>
+              <div class="chat-input" style="display:flex; gap:10px; padding:14px; border-top:1px solid var(--line); background:rgba(8,17,22,.9);">
+                <input id="aiInput" type="text" placeholder="اكتب سؤالاً..." style="flex:1; min-width:180px; border:1px solid var(--line); border-radius:10px; background:rgba(2,10,15,.75); color:var(--text); padding:12px 14px; font:inherit; outline:none;" />
+                <button class="btn small info" type="button" onclick="sendAiMessage()">إرسال</button>
+              </div>
+            </div>
+          </div>
+
+          <div id="certTab" class="tab-panel">
+            <div class="certificate-wrap">
+              <div class="admin-card">
+                <h3><i class="fa-solid fa-award"></i> إنشاء شهادة</h3>
+                <div class="field">
+                  <label>اسم المتدرب</label>
+                  <input id="certStudentName" type="text" placeholder="اسم الطالب" />
+                </div>
+                <div class="field">
+                  <label>اسم الدورة / البرنامج</label>
+                  <input id="certCourseName" type="text" placeholder="مثال: الاستكشاف الأمني" />
+                </div>
+                <div class="field">
+                  <label>اسم المشرف / المؤيد</label>
+                  <input id="certOwnerName" type="text" placeholder="اسم المشرف / المدير" />
+                </div>
+                <button class="btn small info" type="button" onclick="generateCertificate()">عرض الشهادة</button>
+              </div>
+
+              <div id="certificatePreview" style="margin-top:20px;"></div>
+            </div>
+          </div>
         </div>
+      </section>
+
+      <section id="adminPage" class="page">
+        <div class="container">
+          <div class="dashboard-header">
+            <div class="welcome">
+              <h2>لوحة إدارة المنصة</h2>
+              <p>التحكم الكامل في المحتوى والعضوية والقواعد</p>
+            </div>
+            <button class="toggle-btn" type="button" onclick="logout()">
+              <i class="fa-solid fa-right-from-bracket"></i> خروج
+            </button>
+          </div>
+
+          <div class="tabs">
+            <button class="tab-btn active" data-admin-tab="addLessonTab" type="button">إضافة درس</button>
+            <button class="tab-btn" data-admin-tab="addExamTab" type="button">إضافة اختبار</button>
+            <button class="tab-btn" data-admin-tab="addAdminTab" type="button">إضافة مشرف</button>
+            <button class="tab-btn" data-admin-tab="rulesTab" type="button">القواعد</button>
+          </div>
+
+          <div id="addLessonTab" class="tab-panel active">
+            <div class="admin-card">
+              <h3><i class="fa-solid fa-book-open"></i> إضافة درس جديد</h3>
+
+              <div class="field">
+                <label>عنوان الدرس</label>
+                <input id="lessonTitle" type="text" placeholder="عنوان الدرس" />
+              </div>
+
+              <div class="field">
+                <label>نوع المحتوى</label>
+                <input id="lessonSubject" type="text" placeholder="مثال: أمن سيبراني / تقنية / عام" />
+              </div>
+
+              <div class="field">
+                <label>محتوى الدرس داخل المنصة</label>
+                <textarea id="lessonContent" placeholder="اكتب شرح الدرس هنا داخل المنصة..."></textarea>
+              </div>
+
+              <button class="btn" type="button" onclick="addLesson()">نشر الدرس</button>
+            </div>
+          </div>
+
+          <div id="addExamTab" class="tab-panel">
+            <div class="admin-card">
+              <h3><i class="fa-solid fa-file-pen"></i> إضافة اختبار جديد</h3>
+
+              <div class="field">
+                <label>عنوان الاختبار</label>
+                <input id="examTitle" type="text" placeholder="عنوان الاختبار" />
+              </div>
+
+              <div class="field">
+                <label>زمن الاختبار (دقائق)</label>
+                <input id="examDuration" type="number" min="1" value="30" />
+              </div>
+
+              <div id="questionBuilder"></div>
+
+              <button type="button" class="add-question-btn" onclick="addQuestionBuilderRow()">
+                <i class="fa-solid fa-plus"></i> إضافة سؤال جديد
+              </button>
+
+              <div style="margin-top:18px;">
+                <button class="btn" type="button" onclick="addExam()">نشر الاختبار</button>
+              </div>
+            </div>
+          </div>
+
+          <div id="addAdminTab" class="tab-panel">
+            <div class="admin-card">
+              <h3><i class="fa-solid fa-user-plus"></i> تعيين مشرف جديد</h3>
+              <div class="field">
+                <label>اسم المشرف</label>
+                <input id="newAdminName" type="text" placeholder="اسم المشرف الجديد" />
+              </div>
+              <div class="field">
+                <label>كود الوصول</label>
+                <input id="newAdminCode" type="text" value="xzsawq21" readonly />
+              </div>
+              <button class="btn" type="button" onclick="addAdminUser()">إضافة المشرف</button>
+            </div>
+          </div>
+
+          <div id="rulesTab" class="tab-panel">
+            <div class="admin-card">
+              <h3><i class="fa-solid fa-shield-halved"></i> القواعد والسياسات</h3>
+              <div class="rules">
+                <ol>
+                  <li>يُمنع تحميل أو نشر أي محتوى مسيء أو غير قانوني أو يخرق حقوق الآخرين.</li>
+                  <li>يجب أن يكون استخدام المنصة لأغراض تعليمية واقعية ومشروعة فقط.</li>
+                  <li>يجب الحفاظ على الخصوصية والبيانات الشخصية للطلاب والموظفين.</li>
+                  <li>المالك والمشرفون مسؤولون عن مراجعة وشهادة المحتوى الذي يتم نشره.</li>
+                  <li>يتم تسجيل النشاطات الرئيسية للرقابة وضمان سلامة المنصة.</li>
+                  <li>المنصة توفر الأدوات التعليمية فقط ولا تسمح بأي نشاط ضار أو غير آمن.</li>
+                  <li>جميع الحقوق محفوظة للمالك ومشرفي المنصة، وتخضع الخدمات لقوانين الاستخدام المعتمدة.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="lessonModal" class="modal" aria-modal="true" role="dialog">
+    <div class="modal-panel">
+      <div class="modal-head">
+        <h3 id="lessonModalTitle">الدرس</h3>
+        <button class="close-btn" type="button" onclick="closeLessonModal()">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
       </div>
-    </section>
+      <div id="lessonModalContent" class="lesson-modal-content"></div>
+    </div>
+  </div>
 
-    <section id="studentScreen" class="screen">
-      <div class="dashboard">
-        <div class="dashboard-top">
-          <div>
-            <div class="title" id="studentWelcome">مرحباً بك</div>
-            <div class="subtitle">لوحة الطالب</div>
-          </div>
-          <button class="secondary-btn" id="logoutBtn">تسجيل الخروج</button>
-        </div>
-
-        <div class="tabs">
-          <button class="tab-btn active" data-panel="studentLessonsPanel">الدروس</button>
-          <button class="tab-btn" data-panel="studentExamsPanel">الاختبارات</button>
-          <button class="tab-btn" data-panel="studentAiPanel">المساعد الذكي</button>
-        </div>
-
-        <div id="studentLessonsPanel" class="tab-panel active">
-          <div class="student-wrap">
-            <div class="cards-grid" id="studentLessons"></div>
-          </div>
-        </div>
-
-        <div id="studentExamsPanel" class="tab-panel">
-          <div class="student-wrap">
-            <div class="cards-grid" id="studentExams"></div>
-          </div>
-        </div>
-
-        <div id="studentAiPanel" class="tab-panel">
-          <div class="chat-box">
-            <div class="chat-body" id="chatBody">
-              <div class="msg bot">مرحباً! أنا مساعدك الذكي في CyberClash Academy. اسأل عن أي درس أو اختبار أو موضوع تقني، وسأساعدك بسرعة.</div>
-            </div>
-            <div class="chat-input">
-              <input id="aiInput" type="text" placeholder="اسأل عن أي شيء..." />
-              <button id="sendAiBtn">إرسال</button>
-            </div>
-          </div>
-        </div>
+  <div id="examModal" class="modal" aria-modal="true" role="dialog">
+    <div class="modal-panel">
+      <div class="modal-head">
+        <h3 id="examModalTitle">الاختبار</h3>
+        <button class="close-btn" type="button" onclick="closeExamModal()">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
       </div>
-    </section>
-
-    <section id="adminScreen" class="screen">
-      <div class="dashboard">
-        <div class="dashboard-top">
-          <div>
-            <div class="title">لوحة الإدارة</div>
-            <div class="subtitle">المالك والمشرفون فقط</div>
-          </div>
-          <button class="secondary-btn" id="adminLogoutBtn">تسجيل الخروج</button>
-        </div>
-
-        <div class="tabs">
-          <button class="tab-btn active" data-panel="adminLessonsPanel">إدارة الدروس</button>
-          <button class="tab-btn" data-panel="adminExamsPanel">إدارة الاختبارات</button>
-          <button class="tab-btn" data-panel="adminUsersPanel">إدارة المشرفين</button>
-          <button class="tab-btn" data-panel="adminCertificatesPanel">الشهادات</button>
-          <button class="tab-btn" data-panel="adminRecyclePanel">سلة المهملات</button>
-        </div>
-
-        <div id="adminLessonsPanel" class="tab-panel active">
-          <div class="admin-panel">
-            <div class="two-col">
-              <div>
-                <h3 style="margin-bottom:12px;color:var(--green)">إضافة درس جديد</h3>
-                <div class="field">
-                  <label>عنوان الدرس</label>
-                  <div class="input-wrap">
-                    <input id="lessonTitle" type="text" placeholder="عنوان الدرس" />
-                  </div>
-                </div>
-                <div class="field">
-                  <label>رابط الدرس / الرابط التعليمي</label>
-                  <div class="input-wrap">
-                    <input id="lessonLink" type="text" placeholder="https://..." />
-                  </div>
-                </div>
-                <div class="field">
-                  <label>الفرع / المادة</label>
-                  <div class="input-wrap">
-                    <input id="lessonSubject" type="text" value="عام" />
-                  </div>
-                </div>
-                <button class="primary-btn" id="addLessonBtn">نشر الدرس</button>
-              </div>
-
-              <div>
-                <h3 style="margin-bottom:12px;color:var(--green)">الدروس الحالية</h3>
-                <div id="activeLessonsList" class="mini-list"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div id="adminExamsPanel" class="tab-panel">
-          <div class="admin-panel">
-            <div class="two-col">
-              <div>
-                <h3 style="margin-bottom:12px;color:var(--green)">إضافة اختبار جديد</h3>
-                <div class="field">
-                  <label>عنوان الاختبار</label>
-                  <div class="input-wrap">
-                    <input id="examTitle" type="text" placeholder="اختبار..." />
-                  </div>
-                </div>
-                <div class="field">
-                  <label>رابط الاختبار (اختياري)</label>
-                  <div class="input-wrap">
-                    <input id="examLink" type="text" placeholder="https://..." />
-                  </div>
-                </div>
-                <button class="primary-btn" id="addExamBtn">نشر الاختبار</button>
-              </div>
-
-              <div>
-                <h3 style="margin-bottom:12px;color:var(--green)">الاختبارات الحالية</h3>
-                <div id="activeExamsList" class="mini-list"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div id="adminUsersPanel" class="tab-panel">
-          <div class="admin-panel">
-            <div class="two-col">
-              <div>
-                <h3 style="margin-bottom:12px;color:var(--green)">إضافة مشرف جديد</h3>
-                <div class="field">
-                  <label>اسم المشرف</label>
-                  <div class="input-wrap">
-                    <input id="newSupervisorName" type="text" placeholder="اسم المشرف" />
-                  </div>
-                </div>
-                <div class="field">
-                  <label>كود المشرف</label>
-                  <div class="input-wrap">
-                    <input id="newSupervisorCode" type="text" value="SUP-2025" readonly />
-                  </div>
-                </div>
-                <button class="primary-btn" id="addSupervisorBtn">إضافة المشرف</button>
-              </div>
-
-              <div>
-                <h3 style="margin-bottom:12px;color:var(--green)">قائمة المشرفين</h3>
-                <div id="supervisorsList" class="mini-list"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div id="adminCertificatesPanel" class="tab-panel">
-          <div class="admin-panel">
-            <div class="two-col">
-              <div>
-                <h3 style="margin-bottom:12px;color:var(--green)">إنشاء شهادة</h3>
-                <div class="field">
-                  <label>اسم الطالب</label>
-                  <div class="input-wrap">
-                    <input id="certStudentName" type="text" placeholder="اسم الطالب" />
-                  </div>
-                </div>
-                <div class="field">
-                  <label>اسم البرنامج / الدورة</label>
-                  <div class="input-wrap">
-                    <input id="certCourseName" type="text" placeholder="مثال: Cyber Security Fundamentals" />
-                  </div>
-                </div>
-                <div class="field">
-                  <label>اسم المؤسسة</label>
-                  <div class="input-wrap">
-                    <input id="certInstitution" type="text" value="CyberClash Academy" />
-                  </div>
-                </div>
-                <button class="primary-btn" id="generateCertificateBtn">إنشاء الشهادة</button>
-              </div>
-
-              <div>
-                <h3 style="margin-bottom:12px;color:var(--green)">الشهادات المصدرة</h3>
-                <div id="certificatesList" class="mini-list"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div id="adminRecyclePanel" class="tab-panel">
-          <div class="admin-panel">
-            <div class="two-col">
-              <div>
-                <h3 style="margin-bottom:12px;color:var(--green)">الدروس المحذوفة</h3>
-                <div id="deletedLessonsList" class="mini-list"></div>
-              </div>
-
-              <div>
-                <h3 style="margin-bottom:12px;color:var(--green)">الاختبارات المحذوفة</h3>
-                <div id="deletedExamsList" class="mini-list"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+      <div id="quizContent"></div>
+    </div>
   </div>
 
   <script>
-    const OWNER_CODE = "xzsawq21";
-    const DEFAULT_SUPERVISOR_CODE = "SUP-2025";
-    const STUDENT_CODE = "STUDENT-2025";
-
-    const STORAGE = {
-      students: "cyberclash_students",
-      lessons: "cyberclash_lessons",
-      exams: "cyberclash_exams",
-      deletedLessons: "cyberclash_deleted_lessons",
-      deletedExams: "cyberclash_deleted_exams",
-      supervisors: "cyberclash_supervisors",
-      certificates: "cyberclash_certificates",
-      app: "cyberclash_app"
-    };
-
-    const appState = {
-      currentUser: null,
-      currentRole: "student",
-      lessons: [],
-      exams: [],
-      students: [],
-      supervisors: [],
-      deletedLessons: [],
-      deletedExams: [],
-      certificates: []
-    };
-
-    const defaultLessons = [
-      {id:1,title:"مقدمة للأمن السيبراني", link:"https://example.com/lesson1", subject:"أساسيات", createdAt:Date.now()},
-      {id:2,title:"بنية الشبكات", link:"https://example.com/lesson2", subject:"الشبكات", createdAt:Date.now()},
-      {id:3,title:"البرمجة الآمنة", link:"https://example.com/lesson3", subject:"البرمجة", createdAt:Date.now()}
-    ];
-
-    const defaultExams = [
-      {
-        id: 1,
-        title: "اختبار أساسيات الأمن",
-        link: "",
-        duration: "30 دقيقة",
-        questions: [
-          { q: "ما هي أول خطوة عند اكتشاف اختراق؟", options: ["إيقاف الخدمة فوراً","العزل والتحليل","حذف الملفات","إغلاق الحسابات"], answer: 1 },
-          { q: "ما هي أفضل ممارسات الأمان الأساسية؟", options: ["نفس كلمة المرور لكل شيء","تحديث الأنظمة والبرامج","تجاهل التنبيهات","إيقاف نظام الحماية"], answer: 1 },
-          { q: "ما معنى MFA؟", options: ["مصادقة متعددة العوامل","تحديث تلقائي","أمان البريد","إدارة المهام"], answer: 0 }
-        ]
-      }
-    ];
-
-    const elements = {
-      loginScreen: document.getElementById("loginScreen"),
-      studentScreen: document.getElementById("studentScreen"),
-      adminScreen: document.getElementById("adminScreen"),
-      modeBadge: document.getElementById("modeBadge"),
-      modeToggleBtn: document.getElementById("modeToggleBtn"),
-      loginForm: document.getElementById("loginForm"),
-      fullName: document.getElementById("fullName"),
-      accessCode: document.getElementById("accessCode"),
-      codeLabel: document.getElementById("codeLabel"),
-      statusBox: document.getElementById("statusBox"),
-      studentWelcome: document.getElementById("studentWelcome"),
-      studentLessons: document.getElementById("studentLessons"),
-      studentExams: document.getElementById("studentExams"),
-      chatBody: document.getElementById("chatBody"),
-      aiInput: document.getElementById("aiInput"),
-      sendAiBtn: document.getElementById("sendAiBtn"),
-      activeLessonsList: document.getElementById("activeLessonsList"),
-      activeExamsList: document.getElementById("activeExamsList"),
-      supervisorsList: document.getElementById("supervisorsList"),
-      certificatesList: document.getElementById("certificatesList"),
-      deletedLessonsList: document.getElementById("deletedLessonsList"),
-      deletedExamsList: document.getElementById("deletedExamsList"),
-      submitBtn: document.getElementById("submitBtn")
-    };
-
-    function saveData() {
-      localStorage.setItem(STORAGE.lessons, JSON.stringify(appState.lessons));
-      localStorage.setItem(STORAGE.exams, JSON.stringify(appState.exams));
-      localStorage.setItem(STORAGE.students, JSON.stringify(appState.students));
-      localStorage.setItem(STORAGE.supervisors, JSON.stringify(appState.supervisors));
-      localStorage.setItem(STORAGE.deletedLessons, JSON.stringify(appState.deletedLessons));
-      localStorage.setItem(STORAGE.deletedExams, JSON.stringify(appState.deletedExams));
-      localStorage.setItem(STORAGE.certificates, JSON.stringify(appState.certificates));
-    }
-
-    function loadData() {
-      appState.lessons = JSON.parse(localStorage.getItem(STORAGE.lessons) || "null") || defaultLessons.slice();
-      appState.exams = JSON.parse(localStorage.getItem(STORAGE.exams) || "null") || defaultExams.slice();
-      appState.students = JSON.parse(localStorage.getItem(STORAGE.students) || "null") || [];
-      appState.supervisors = JSON.parse(localStorage.getItem(STORAGE.supervisors) || "null") || [];
-      appState.deletedLessons = JSON.parse(localStorage.getItem(STORAGE.deletedLessons) || "null") || [];
-      appState.deletedExams = JSON.parse(localStorage.getItem(STORAGE.deletedExams) || "null") || [];
-      appState.certificates = JSON.parse(localStorage.getItem(STORAGE.certificates) || "null") || [];
-      saveData();
-    }
-
-    function showStatus(msg, type="success") {
-      elements.statusBox.textContent = msg;
-      elements.statusBox.className = "status " + type;
-    }
-
-    function setScreen(screen) {
-      elements.loginScreen.classList.toggle("active", screen === "login");
-      elements.studentScreen.classList.toggle("active", screen === "student");
-      elements.adminScreen.classList.toggle("active", screen === "admin");
-    }
-
-    function setMode(mode) {
-      appState.currentRole = mode;
-      if (mode === "student") {
-        elements.modeBadge.textContent = "بوابة الطالب";
-        elements.modeToggleBtn.textContent = "إدارة";
-        elements.codeLabel.textContent = "كود الطالب";
-        elements.submitBtn.textContent = "دخول المنصة";
-      } else {
-        elements.modeBadge.textContent = "بوابة الإدارة";
-        elements.modeToggleBtn.textContent = "طالب";
-        elements.codeLabel.textContent = "كود الإدارة";
-        elements.submitBtn.textContent = "دخول الإدارة";
-      }
-    }
-
-    function escapeHtml(str) {
-      return String(str)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-    }
-
-    function getUserByName(name) {
-      return appState.students.find(s => s.name.toLowerCase() === name.toLowerCase()) || null;
-    }
-
-    function registerStudent(name) {
-      const existing = getUserByName(name);
-      if (!existing) {
-        const student = { id: Date.now(), name, role: "student", joinedAt: new Date().toISOString() };
-        appState.students.push(student);
-        saveData();
-      }
-    }
-
-    function login(event) {
-      event.preventDefault();
-      const name = elements.fullName.value.trim();
-      const code = elements.accessCode.value.trim();
-
-      if (!name || !code) {
-        showStatus("يرجى تعبئة الحقول كاملة.", "error");
-        return;
-      }
-
-      const isOwner = code === OWNER_CODE;
-      const isSupervisor = appState.supervisors.some(s => s.code === code && s.active);
-      const isStudent = code === STUDENT_CODE;
-
-      if (appState.currentRole === "student" && (isStudent || isOwner || isSupervisor)) {
-        if (isOwner) {
-          appState.currentUser = { name, role: "owner", code };
-        } else if (isSupervisor) {
-          const sup = appState.supervisors.find(s => s.code === code);
-          appState.currentUser = { name: sup ? sup.name : name, role: "supervisor", code };
-        } else {
-          appState.currentUser = { name, role: "student", code };
-        }
-
-        if (appState.currentUser.role !== "student") {
-          registerStudent(name);
-        } else {
-          registerStudent(name);
-        }
-
-        setScreen("student");
-        elements.studentWelcome.textContent = "مرحباً بك " + name;
-        renderStudentLessons();
-        renderStudentExams();
-        showStatus("تم تسجيل الدخول بنجاح.", "success");
-        return;
-      }
-
-      if (appState.currentRole === "admin") {
-        if (isOwner) {
-          appState.currentUser = { name, role: "owner", code };
-          setScreen("admin");
-          renderAdminViews();
-          showStatus("مرحباً بك، المدير.", "success");
-          return;
-        }
-
-        if (isSupervisor) {
-          const sup = appState.supervisors.find(s => s.code === code);
-          appState.currentUser = { name: sup ? sup.name : name, role: "supervisor", code };
-          setScreen("admin");
-          renderAdminViews();
-          showStatus("مرحباً بك، المشرف.", "success");
-          return;
-        }
-      }
-
-      showStatus("كود الدخول غير صحيح.", "error");
-    }
-
-    function logout() {
-      appState.currentUser = null;
-      elements.fullName.value = "";
-      elements.accessCode.value = "";
-      setScreen("login");
-      showStatus("تم تسجيل الخروج بنجاح.", "success");
-    }
-
-    function switchTab(panelClass) {
-      document.querySelectorAll(".tab-btn").forEach(btn => {
-        btn.classList.toggle("active", btn.dataset.panel === panelClass);
-      });
-
-      document.querySelectorAll(".tab-panel").forEach(panel => {
-        panel.classList.toggle("active", panel.id === panelClass);
-      });
-    }
-
-    function renderStudentLessons() {
-      const container = elements.studentLessons;
-      if (!appState.lessons.length) {
-        container.innerHTML = '<div class="empty">لا توجد دروس حالياً.</div>';
-        return;
-      }
-
-      container.innerHTML = appState.lessons.map(lesson => `
-        <div class="card">
-          <h3>${escapeHtml(lesson.title)}</h3>
-          <div class="meta">المادة: ${escapeHtml(lesson.subject || "عام")}</div>
-          <div class="meta">نوع المحتوى: شرح تعليمي</div>
-          <div class="tools">
-            <a href="${lesson.link || '#'}" target="_blank" rel="noreferrer">فتح الدرس</a>
-          </div>
-        </div>
-      `).join("");
-    }
-
-    function renderStudentExams() {
-      const container = elements.studentExams;
-      if (!appState.exams.length) {
-        container.innerHTML = '<div class="empty">لا توجد اختبارات حالياً.</div>';
-        return;
-      }
-
-      container.innerHTML = appState.exams.map(exam => `
-        <div class="card">
-          <h3>${escapeHtml(exam.title)}</h3>
-          <div class="meta">المدة: ${escapeHtml(exam.duration || "30 دقيقة")}</div>
-          <div class="meta">الأسئلة: ${exam.questions ? exam.questions.length : 0}</div>
-          <div class="tools">
-            <button class="secondary-btn" data-exam-id="${exam.id}" onclick="openExam(${exam.id})">ابدأ الاختبار</button>
-            ${exam.link ? `<a href="${exam.link}" target="_blank" rel="noreferrer">رابط الاختبار</a>` : ""}
-          </div>
-        </div>
-      `).join("");
-    }
-
-    function renderAdminViews() {
-      renderActiveLessons();
-      renderActiveExams();
-      renderSupervisors();
-      renderCertificates();
-      renderDeletedLessons();
-      renderDeletedExams();
-    }
-
-    function renderActiveLessons() {
-      if (!appState.lessons.length) {
-        elements.activeLessonsList.innerHTML = '<div class="empty">لا توجد دروس.</div>';
-        return;
-      }
-
-      elements.activeLessonsList.innerHTML = appState.lessons.map(lesson => `
-        <div class="mini-item">
-          <div>
-            <strong>${escapeHtml(lesson.title)}</strong><br>
-            <small>${escapeHtml(lesson.subject || "عام")}</small>
-          </div>
-          <button class="danger-btn" onclick="deleteLesson(${lesson.id})">حذف</button>
-        </div>
-      `).join("");
-    }
-
-    function renderActiveExams() {
-      if (!appState.exams.length) {
-        elements.activeExamsList.innerHTML = '<div class="empty">لا توجد اختبارات.</div>';
-        return;
-      }
-
-      elements.activeExamsList.innerHTML = appState.exams.map(exam => `
-        <div class="mini-item">
-          <div>
-            <strong>${escapeHtml(exam.title)}</strong><br>
-            <small>${escapeHtml(exam.duration || "30 دقيقة")}</small>
-          </div>
-          <button class="danger-btn" onclick="deleteExam(${exam.id})">حذف</button>
-        </div>
-      `).join("");
-    }
-
-    function renderSupervisors() {
-      const list = appState.supervisors.length ? appState.supervisors : [];
-      elements.supervisorsList.innerHTML = list.map(s => `
-        <div class="mini-item">
-          <div>
-            <strong>${escapeHtml(s.name)}</strong><br>
-            <small>كود: ${escapeHtml(s.code)}</small>
-          </div>
-          <button class="danger-btn" onclick="removeSupervisor('${s.code}')">إزالة</button>
-        </div>
-      `).join("") || '<div class="empty">لا يوجد مشرفين مضافين.</div>';
-    }
-
-    function renderCertificates() {
-      if (!appState.certificates.length) {
-        elements.certificatesList.innerHTML = '<div class="empty">لا توجد شهادات منشأة.</div>';
-        return;
-      }
-
-      elements.certificatesList.innerHTML = appState.certificates.map(cert => `
-        <div class="mini-item">
-          <div>
-            <strong>${escapeHtml(cert.studentName)}</strong><br>
-            <small>${escapeHtml(cert.courseName)}</small>
-          </div>
-          <button class="secondary-btn" onclick="previewCertificate('${cert.id}')">عرض</button>
-        </div>
-      `).join("");
-    }
-
-    function renderDeletedLessons() {
-      if (!appState.deletedLessons.length) {
-        elements.deletedLessonsList.innerHTML = '<div class="empty">لا توجد دروس محذوفة.</div>';
-        return;
-      }
-
-      elements.deletedLessonsList.innerHTML = appState.deletedLessons.map(item => `
-        <div class="mini-item">
-          <div>
-            <strong>${escapeHtml(item.title)}</strong><br>
-            <small>تم الحذف</small>
-          </div>
-          <button class="secondary-btn" onclick="restoreLesson(${item.id})">استرجاع</button>
-        </div>
-      `).join("");
-    }
-
-    function renderDeletedExams() {
-      if (!appState.deletedExams.length) {
-        elements.deletedExamsList.innerHTML = '<div class="empty">لا توجد اختبارات محذوفة.</div>';
-        return;
-      }
-
-      elements.deletedExamsList.innerHTML = appState.deletedExams.map(item => `
-        <div class="mini-item">
-          <div>
-            <strong>${escapeHtml(item.title)}</strong><br>
-            <small>تم الحذف</small>
-          </div>
-          <button class="secondary-btn" onclick="restoreExam(${item.id})">استرجاع</button>
-        </div>
-      `).join("");
-    }
-
-    function addLesson() {
-      const title = document.getElementById("lessonTitle").value.trim();
-      const link = document.getElementById("lessonLink").value.trim();
-      const subject = document.getElementById("lessonSubject").value.trim() || "عام";
-
-      if (!title || !link) {
-        showStatus("يرجى إدخال عنوان الدرس ورابطه.", "error");
-        return;
-      }
-
-      appState.lessons.unshift({
-        id: Date.now(),
-        title,
-        link,
-        subject,
-        createdAt: Date.now()
-      });
-
-      saveData();
-      renderAdminViews();
-      renderStudentLessons();
-
-      document.getElementById("lessonTitle").value = "";
-      document.getElementById("lessonLink").value = "";
-      document.getElementById("lessonSubject").value = "عام";
-
-      showStatus("تم نشر الدرس بنجاح.", "success");
-    }
-
-    function deleteLesson(id) {
-      const lesson = appState.lessons.find(item => item.id === Number(id));
-      if (!lesson) return;
-
-      appState.lessons = appState.lessons.filter(item => item.id !== Number(id));
-      appState.deletedLessons.push({ ...lesson, deletedAt: Date.now() });
-      saveData();
-      renderAdminViews();
-      renderStudentLessons();
-      showStatus("تم نقل الدرس إلى سلة المهملات.", "success");
-    }
-
-    function restoreLesson(id) {
-      const item = appState.deletedLessons.find(x => x.id === Number(id));
-      if (!item) return;
-
-      appState.deletedLessons = appState.deletedLessons.filter(x => x.id !== Number(id));
-      appState.lessons.unshift(item);
-      saveData();
-      renderAdminViews();
-      renderStudentLessons();
-      showStatus("تم استرجاع الدرس بنجاح.", "success");
-    }
-
-    function addExam() {
-      const title = document.getElementById("examTitle").value.trim();
-      const link = document.getElementById("examLink").value.trim();
-
-      if (!title) {
-        showStatus("يرجى إدخال عنوان الاختبار.", "error");
-        return;
-      }
-
-      const defaultQuestions = [
-        { q: "ما الهدف الأساسي من هذا الاختبار؟", options: ["التسلية فقط","قياس الفهم","تضييع الوقت","إبعاد الطلاب"], answer: 1 },
-        { q: "ما أفضل طريقة للنجاح؟", options: ["التجاهل","الاستعداد والتطبيق","الإهمال","عدم المراجعة"], answer: 1 },
-        { q: "ما الذي يساعد على الفهم؟", options: ["التكرار المنظم","الاسترخاء التام","تخطي الدروس","تجاهل الأنشطة"], answer: 0 }
-      ];
-
-      appState.exams.unshift({
-        id: Date.now(),
-        title,
-        link: link || "",
-        duration: "30 دقيقة",
-        questions: defaultQuestions
-      });
-
-      saveData();
-      renderStudentExams();
-      renderAdminViews();
-
-      document.getElementById("examTitle").value = "";
-      document.getElementById("examLink").value = "";
-
-      showStatus("تم نشر الاختبار بنجاح.", "success");
-    }
-
-    function deleteExam(id) {
-      const exam = appState.exams.find(item => item.id === Number(id));
-      if (!exam) return;
-
-      appState.exams = appState.exams.filter(item => item.id !== Number(id));
-      appState.deletedExams.push({ ...exam, deletedAt: Date.now() });
-      saveData();
-      renderStudentExams();
-      renderAdminViews();
-      showStatus("تم نقل الاختبار إلى سلة المهملات.", "success");
-    }
-
-    function restoreExam(id) {
-      const item = appState.deletedExams.find(x => x.id === Number(id));
-      if (!item) return;
-
-      appState.deletedExams = appState.deletedExams.filter(x => x.id !== Number(id));
-      appState.exams.unshift(item);
-      saveData();
-      renderStudentExams();
-      renderAdminViews();
-      showStatus("تم استرجاع الاختبار بنجاح.", "success");
-    }
-
-    function addSupervisor() {
-      const name = document.getElementById("newSupervisorName").value.trim();
-      const code = document.getElementById("newSupervisorCode").value.trim() || DEFAULT_SUPERVISOR_CODE;
-
-      if (!name) {
-        showStatus("يرجى إدخال اسم المشرف.", "error");
-        return;
-      }
-
-      const exists = appState.supervisors.some(s => s.name.toLowerCase() === name.toLowerCase());
-      if (exists) {
-        showStatus("هذا المشرف موجود مسبقاً.", "error");
-        return;
-      }
-
-      appState.supervisors.push({
-        id: Date.now(),
-        name,
-        code,
-        active: true,
-        addedAt: new Date().toISOString()
-      });
-
-      saveData();
-      renderSupervisors();
-      document.getElementById("newSupervisorName").value = "";
-      showStatus("تم إضافة المشرف بنجاح.", "success");
-    }
-
-    function removeSupervisor(code) {
-      appState.supervisors = appState.supervisors.filter(s => s.code !== code);
-      saveData();
-      renderSupervisors();
-      showStatus("تم إزالة المشرف.", "success");
-    }
-
-    function generateCertificate() {
-      const studentName = document.getElementById("certStudentName").value.trim();
-      const courseName = document.getElementById("certCourseName").value.trim();
-      const institution = document.getElementById("certInstitution").value.trim() || "CyberClash Academy";
-
-      if (!studentName || !courseName) {
-        showStatus("يرجى إدخال اسم الطالب واسم الدورة.", "error");
-        return;
-      }
-
-      const cert = {
-        id: Date.now(),
-        studentName,
-        courseName,
-        institution,
-        issuedAt: new Date().toISOString()
+    (function () {
+      const ADMIN_SECRET = "xzsawq21";
+      const STUDENT_SECRET = "Abdo_1234";
+
+      const STORAGE_KEYS = {
+        lessons: "abdo_lessons",
+        exams: "abdo_exams",
+        admins: "abdo_admins",
+        students: "abdo_students",
+        certificate: "abdo_certificate"
       };
 
-      appState.certificates.unshift(cert);
-      saveData();
-      renderCertificates();
+      const defaultLessons = [
+        {
+          id: 1,
+          title: "مقدمة في الأمن السيبراني",
+          subject: "أمن سيبراني",
+          content: `أهمية الأمن السيبراني:
 
-      document.getElementById("certStudentName").value = "";
-      document.getElementById("certCourseName").value = "";
+- حماية الأنظمة والبيانات من الوصول غير المصرح به
+- منع الاختراق والسرقة والاعتداء الإلكتروني
+- الحفاظ على الثقة والخصوصية
+- دعم استمرارية الأعمال
 
-      showStatus("تم إنشاء الشهادة بنجاح.", "success");
-    }
+الأساسيات:
+1. السرية: التأكد من وصول المعلومات فقط للمستخدمين المصرح لهم
+2. النزاهة: منع التعديل غير المسموح به
+3. التوفر: ضمان أن الخدمات متاحة في الوقت المطلوب
 
-    function previewCertificate(id) {
-      const cert = appState.certificates.find(c => String(c.id) === String(id));
-      if (!cert) return;
+نصائح عملية:
+- استخدم كلمات مرور قوية
+- فعّل التحقق بخطوتين
+- حدّث الأنظمة بانتظام
+- لا تفتح الروابط المشبوهة`
+        },
+        {
+          id: 2,
+          title: "أساسيات الشبكات",
+          subject: "شبكات",
+          content: `الشبكة هي نظام يربط الأجهزة مع بعضها البعض لتمكين تبادل البيانات.
 
-      const popup = window.open("", "_blank", "width=900,height=700");
-      popup.document.write(`
-        <html dir="rtl" lang="ar">
-        <head>
-          <meta charset="UTF-8" />
-          <title>شهادة</title>
-          <style>
-            body {
-              font-family: 'Cairo', Arial, sans-serif;
-              display: grid;
-              place-items: center;
-              min-height: 100vh;
-              background: linear-gradient(135deg,#08181d,#0e242c);
-              color: #edf7ff;
-              margin: 0;
+المكونات الأساسية:
+- الأجهزة: أجهزة الكمبيوتر، الجوالات، السيرفرات
+- الوسائط: كابلات أو شبكة لاسلكية
+- البروتوكولات: مثل TCP/IP
+- الأجهزة الشبكية: الراوتر، السويتش
+
+أهمية الشبكات:
+- مشاركة الملفات والبيانات
+- التواصل بين المستخدمين
+- الوصول إلى الإنترنت
+- توزيع الموارد`
+
+        },
+        {
+          id: 3,
+          title: "التقنيات الحديثة في التعليم",
+          subject: "تقنية",
+          content: `تتطور التقنيات في التعليم بسرعة، وتساعد على:
+- تسهيل الوصول إلى المحتوى
+- زيادة التفاعل بين المتعلم والمعلم
+- دعم التعلم الذاتي
+- توفير تجربة تعليمية مرنة
+
+أمثلة:
+- المنصات التعليمية
+- الاختبارات الإلكترونية
+- الفيديوهات التعليمية
+- الذكاء الاصطناعي في التعليم
+
+الهدف هو رفع جودة التعلم وزيادة الفهم عبر أدوات ذكية وتفاعلية.`
+        }
+      ];
+
+      const defaultExams = [
+        {
+          id: 1,
+          title: "اختبار مستوى أولي",
+          duration: 45,
+          questions: [
+            {
+              q: "ما الهدف الأساسي من الأمن السيبراني؟",
+              options: ["زيادة السرعة", "حماية الأنظمة والبيانات", "تقليل التكلفة", "تثبيت البرامج"],
+              answer: 1
+            },
+            {
+              q: "ما هو العنصر الأساسي في حماية الحسابات؟",
+              options: ["اسم المستخدم", "كلمة المرور القوية", "حجم الشاشة", "اللون المفضل"],
+              answer: 1
+            },
+            {
+              q: "أي من التالي يمثل أفضل ممارسة أمنية؟",
+              options: ["عدم تحديث النظام", "استخدام كلمات مرور قوية ومراجعة منتظمة", "مشاركة كلمة المرور", "التخزين غير المنظم"],
+              answer: 1
             }
-            .cert{
-              width: min(800px, 92vw);
-              border: 1px solid #1c3946;
-              border-radius: 18px;
-              padding: 32px;
-              background: linear-gradient(135deg,#0d2028,#0a1a22);
-              box-shadow: 0 12px 30px rgba(0,0,0,.25);
-            }
-            h2{ color:#2de6a5; text-align:center; margin-bottom:18px; }
-            .name{ font-size: 2.2rem; font-weight: 900; text-align:center; margin: 18px 0; }
-            .body{ text-align:center; color:#cfdfe9; line-height:1.9; font-size: 1rem; }
-            .footer{ display:flex; justify-content:space-between; margin-top:28px; color:#9bb4c2; font-size:.9rem; }
-          </style>
-        </head>
-        <body>
-          <div class="cert">
-            <h2>شهادة إنجاز</h2>
-            <div class="body">
-              <p>تهدي هذه الشهادة إلى</p>
-              <div class="name">${escapeHtml(cert.studentName)}</div>
-              <p>لإكماله بنجاح دورة/برنامج:</p>
-              <strong>${escapeHtml(cert.courseName)}</strong><br/>
-              <p>بمؤسسة: ${escapeHtml(cert.institution)}</p>
+          ]
+        }
+      ];
+
+      const defaultAdmins = [{ name: "المالك", code: ADMIN_SECRET }];
+
+      let isAdmin = false;
+      let currentUser = null;
+      let lessonData = [];
+      let examData = [];
+      let students = [];
+      let currentExam = null;
+      let examTimerInterval = null;
+      let examRemainingSeconds = 0;
+
+      const el = {
+        loginPage: document.getElementById("loginPage"),
+        studentPage: document.getElementById("studentPage"),
+        adminPage: document.getElementById("adminPage"),
+        authForm: document.getElementById("authForm"),
+        fullName: document.getElementById("fullName"),
+        accessCode: document.getElementById("accessCode"),
+        academicField: document.getElementById("academicField"),
+        academicYear: document.getElementById("academicYear"),
+        codeLabel: document.getElementById("codeLabel"),
+        nameLabel: document.getElementById("nameLabel"),
+        formTitle: document.getElementById("formTitle"),
+        submitBtn: document.getElementById("submitBtn"),
+        toggleModeBtn: document.getElementById("toggleModeBtn"),
+        modeBadge: document.getElementById("modeBadge"),
+        status: document.getElementById("status"),
+        studentWelcome: document.getElementById("studentWelcome"),
+        lessonsContainer: document.getElementById("lessonsContainer"),
+        examsContainer: document.getElementById("examsContainer"),
+        chatMessages: document.getElementById("chatMessages"),
+        aiInput: document.getElementById("aiInput"),
+        lessonModal: document.getElementById("lessonModal"),
+        lessonModalTitle: document.getElementById("lessonModalTitle"),
+        lessonModalContent: document.getElementById("lessonModalContent"),
+        examModal: document.getElementById("examModal"),
+        examModalTitle: document.getElementById("examModalTitle"),
+        quizContent: document.getElementById("quizContent"),
+        questionBuilder: document.getElementById("questionBuilder")
+      };
+
+      function safeStorageGet(key, fallback) {
+        try {
+          const raw = localStorage.getItem(key);
+          if (raw === null || raw === undefined) return fallback;
+          const parsed = JSON.parse(raw);
+          return parsed ?? fallback;
+        } catch {
+          return fallback;
+        }
+      }
+
+      function safeStorageSet(key, value) {
+        try {
+          localStorage.setItem(key, JSON.stringify(value));
+        } catch (e) {
+          console.warn("localStorage failed:", e);
+        }
+      }
+
+      function loadData() {
+        const storedLessons = safeStorageGet(STORAGE_KEYS.lessons, null);
+        const storedExams = safeStorageGet(STORAGE_KEYS.exams, null);
+        const storedAdmins = safeStorageGet(STORAGE_KEYS.admins, null);
+        const storedStudents = safeStorageGet(STORAGE_KEYS.students, null);
+
+        lessonData = Array.isArray(storedLessons) && storedLessons.length ? storedLessons : defaultLessons.slice();
+        examData = Array.isArray(storedExams) && storedExams.length ? storedExams : defaultExams.slice();
+        students = Array.isArray(storedStudents) ? storedStudents : [];
+        
+        if (!Array.isArray(storedAdmins) || storedAdmins.length === 0) {
+          safeStorageSet(STORAGE_KEYS.admins, defaultAdmins);
+        }
+
+        safeStorageSet(STORAGE_KEYS.lessons, lessonData);
+        safeStorageSet(STORAGE_KEYS.exams, examData);
+        safeStorageSet(STORAGE_KEYS.students, students);
+      }
+
+      function setStatus(message, type = "success") {
+        el.status.textContent = message;
+        el.status.className = "status " + type;
+      }
+
+      function escapeHtml(str) {
+        return String(str ?? "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
+
+      function toggleMode(forceMode) {
+        isAdmin = typeof forceMode === "boolean" ? forceMode : !isAdmin;
+
+        if (isAdmin) {
+          el.modeBadge.innerHTML = '<i class="fa-solid fa-gear"></i> بوابة الإدارة';
+          el.modeBadge.style.borderColor = "var(--cyan)";
+          el.modeBadge.style.color = "var(--cyan)";
+          el.modeBadge.style.background = "rgba(56,189,248,.12)";
+          el.formTitle.textContent = "دخول لوحة الإدارة";
+          el.submitBtn.innerHTML = '<span>دخول الإدارة</span><i class="fa-solid fa-lock"></i>';
+          el.codeLabel.textContent = "مفتاح الإدارة";
+          el.nameLabel.textContent = "اسم المسؤول";
+          el.academicField.style.display = "none";
+        } else {
+          el.modeBadge.innerHTML = '<i class="fa-solid fa-user-graduate"></i> بوابة الطالب';
+          el.modeBadge.style.borderColor = "var(--green)";
+          el.modeBadge.style.color = "var(--green)";
+          el.modeBadge.style.background = "rgba(52,211,153,.12)";
+          el.formTitle.textContent = "تسجيل دخول الطالب";
+          el.submitBtn.innerHTML = '<span>دخول المنصة</span><i class="fa-solid fa-arrow-left"></i>';
+          el.codeLabel.textContent = "كود الطالب الخاص";
+          el.nameLabel.textContent = "الاسم الكامل";
+          el.academicField.style.display = "block";
+        }
+
+        renderLessons();
+        renderExams();
+      }
+
+      function loginUser(name, code) {
+        if (isAdmin) {
+          const admins = safeStorageGet(STORAGE_KEYS.admins, []);
+          const validAdmin = admins.find(a =>
+            String(a.name).trim() === String(name).trim() &&
+            String(a.code) === String(code)
+          );
+
+          if (validAdmin) {
+            currentUser = name;
+            setStatus("✅ تم تسجيل دخول الإدارة بنجاح", "success");
+
+            setTimeout(() => {
+              el.loginPage.classList.remove("active");
+              el.studentPage.classList.remove("active");
+              el.adminPage.classList.add("active");
+              resetForm();
+              switchAdminTab("addLessonTab");
+              el.toggleModeBtn.style.display = "inline-flex";
+            }, 700);
+
+          } else {
+            setStatus("❌ اسم المسؤول أو كود الإدارة غير صحيح", "error");
+          }
+          return;
+        }
+
+        if (code === STUDENT_SECRET) {
+          currentUser = name;
+          students.push({
+            name,
+            academicYear: el.academicYear.value,
+            date: new Date().toISOString()
+          });
+          safeStorageSet(STORAGE_KEYS.students, students);
+
+          el.studentWelcome.textContent = "مرحباً بك، " + name + "!";
+          setStatus("✅ تم تسجيل الدخول بنجاح", "success");
+
+          setTimeout(() => {
+            el.loginPage.classList.remove("active");
+            el.adminPage.classList.remove("active");
+            el.studentPage.classList.add("active");
+            resetForm();
+            switchStudentTab("lessonsTab");
+            el.toggleModeBtn.style.display = "none";
+          }, 700);
+
+        } else {
+          setStatus("❌ كود الطالب غير صحيح", "error");
+        }
+      }
+
+      function resetForm() {
+        el.fullName.value = "";
+        el.accessCode.value = "";
+        el.academicYear.value = "الصف الأول الثانوي";
+      }
+
+      function logout() {
+        if (confirm("هل أنت متأكد من الخروج؟")) {
+          location.reload();
+        }
+      }
+
+      function switchStudentTab(tabId) {
+        document.querySelectorAll(".tab-btn[data-tab]").forEach(btn => btn.classList.remove("active"));
+        document.querySelectorAll(".tab-panel").forEach(panel => panel.classList.remove("active"));
+
+        const tabBtn = document.querySelector('.tab-btn[data-tab="' + tabId + '"]');
+        if (tabBtn) tabBtn.classList.add("active");
+
+        const panel = document.getElementById(tabId);
+        if (panel) panel.classList.add("active");
+      }
+
+      function switchAdminTab(tabId) {
+        document.querySelectorAll(".tab-btn[data-admin-tab]").forEach(btn => btn.classList.remove("active"));
+        document.querySelectorAll("#adminPage .tab-panel").forEach(panel => panel.classList.remove("active"));
+
+        const btn = document.querySelector('.tab-btn[data-admin-tab="' + tabId + '"]');
+        if (btn) btn.classList.add("active");
+
+        const panel = document.getElementById(tabId);
+        if (panel) panel.classList.add("active");
+      }
+
+      function renderLessons() {
+        const list = lessonData;
+
+        if (!list.length) {
+          el.lessonsContainer.innerHTML = '<div class="card"><h3>لا توجد دروس</h3><p>لا يوجد محتوى منشور حتى الآن.</p></div>';
+          return;
+        }
+
+        el.lessonsContainer.innerHTML = list.map(lesson => {
+          const subject = escapeHtml(lesson.subject || "عام");
+          const title = escapeHtml(lesson.title);
+          const contentPreview = escapeHtml((lesson.content || "").slice(0, 120));
+          return `
+            <div class="card">
+              <div class="chip"><i class="fa-solid fa-book-open"></i> ${subject}</div>
+              <h3>${title}</h3>
+              <p>${contentPreview}${(lesson.content || "").length > 120 ? "..." : ""}</p>
+
+              <div class="actions-row">
+                <button class="link-btn" type="button" onclick="openLesson(${lesson.id})">فتح الدرس</button>
+                ${isAdmin ? `<button class="btn danger small" type="button" onclick="deleteLesson(${lesson.id})"><i class="fa-solid fa-trash"></i> حذف</button>` : ""}
+              </div>
             </div>
-            <div class="footer">
-              <span>التاريخ: ${new Date(cert.issuedAt).toLocaleDateString("ar-EG")}</span>
-              <span>المنصة: CyberClash Academy</span>
+          `;
+        }).join("");
+      }
+
+      function renderExams() {
+        const list = examData;
+
+        if (!list.length) {
+          el.examsContainer.innerHTML = '<div class="card"><h3>لا توجد اختبارات</h3><p>سيظهر هنا المحتوى التجريبي عند إضافة أول اختبار.</p></div>';
+          return;
+        }
+
+        el.examsContainer.innerHTML = list.map(exam => {
+          const title = escapeHtml(exam.title);
+          const duration = Number(exam.duration || 30);
+          const totalQuestions = Array.isArray(exam.questions) ? exam.questions.length : 0;
+
+          return `
+            <div class="card">
+              <div class="chip"><i class="fa-solid fa-pen-nib"></i> ${duration} دقيقة</div>
+              <h3>${title}</h3>
+              <p>عدد الأسئلة: ${totalQuestions} • اختبار متعدد الخيارات</p>
+
+              <div class="actions-row">
+                <button class="link-btn secondary" type="button" onclick="openExam(${exam.id})">ابدأ الاختبار</button>
+                ${isAdmin ? `<button class="btn danger small" type="button" onclick="deleteExam(${exam.id})"><i class="fa-solid fa-trash"></i> حذف</button>` : ""}
+              </div>
             </div>
-          </div>
-        </body>
-        </html>
-      `);
-    }
+          `;
+        }).join("");
+      }
 
-    function openExam(examId) {
-      const exam = appState.exams.find(item => item.id === Number(examId));
-      if (!exam) return;
+      function showStatusMessage(msg, type = "success") {
+        setStatus(msg, type);
+      }
 
-      const modal = document.createElement("div");
-      modal.style.position = "fixed";
-      modal.style.inset = "0";
-      modal.style.background = "rgba(2,6,8,.76)";
-      modal.style.display = "flex";
-      modal.style.alignItems = "center";
-      modal.style.justifyContent = "center";
-      modal.style.zIndex = "9999";
-      modal.style.padding = "20px";
+      function openLesson(id) {
+        const lesson = lessonData.find(item => Number(item.id) === Number(id));
+        if (!lesson) return;
 
-      const box = document.createElement("div");
-      box.style.width = "min(900px, 100%)";
-      box.style.maxHeight = "90vh";
-      box.style.overflow = "auto";
-      box.style.background = "#0d2028";
-      box.style.border = "1px solid #1c3946";
-      box.style.borderRadius = "18px";
-      box.style.padding = "22px";
-      box.style.color = "#edf7ff";
+        el.lessonModalTitle.textContent = lesson.title;
+        el.lessonModalContent.textContent = lesson.content || "لا يوجد شرح لهذا الدرس.";
+        el.lessonModal.classList.add("active");
+      }
 
-      const title = document.createElement("div");
-      title.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px;">
-        <h3 style="color:#2de6a5;font-size:1.3rem;">${escapeHtml(exam.title)}</h3>
-        <button id="closeExamModal" style="background:transparent;border:1px solid #1c3946;color:#fff;border-radius:10px;padding:10px 12px;cursor:pointer;">إغلاق</button>
-      </div>`;
-      box.appendChild(title);
+      function closeLessonModal() {
+        el.lessonModal.classList.remove("active");
+      }
 
-      const content = document.createElement("div");
+      function openExam(examId) {
+        const exam = examData.find(e => Number(e.id) === Number(examId));
+        if (!exam) return;
 
-      exam.questions.forEach((q, index) => {
-        const item = document.createElement("div");
-        item.style.marginBottom = "18px";
-        item.style.padding = "16px";
-        item.style.background = "rgba(255,255,255,.02)";
-        item.style.border = "1px solid #1c3946";
-        item.style.borderRadius = "12px";
-        item.innerHTML = `
-          <div style="margin-bottom:12px;font-weight:700;">${index + 1}. ${escapeHtml(q.q)}</div>
-          <div style="display:grid;gap:10px;">
-            ${q.options.map((option, i) => `
-              <label style="display:flex;align-items:center;gap:10px;background:#07141a;border:1px solid #1c3946;padding:10px 12px;border-radius:10px;">
-                <input type="radio" name="q_${index}" value="${i}" />
-                <span>${escapeHtml(option)}</span>
-              </label>
-            `).join("")}
+        currentExam = exam;
+        examRemainingSeconds = Number(exam.duration || 30) * 60;
+
+        el.examModalTitle.textContent = exam.title;
+        el.quizContent.innerHTML = `
+          <div class="exam-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;">
+              <div class="timer-badge"><i class="fa-solid fa-clock"></i> <span id="examTimerText">${formatTime(examRemainingSeconds)}</span></div>
+              <div class="small-note">عدد الأسئلة: ${exam.questions.length}</div>
+            </div>
+
+            <div class="quiz-box">
+              ${exam.questions.map((question, qIndex) => `
+                <div class="question">
+                  <div class="question-title">${qIndex + 1}. ${escapeHtml(question.q)}</div>
+                  <div class="options">
+                    ${question.options.map((option, optionIndex) => `
+                      <label class="option">
+                        <input type="radio" name="q_${qIndex}" value="${optionIndex}" />
+                        <span>${escapeHtml(option)}</span>
+                      </label>
+                    `).join("")}
+                  </div>
+                </div>
+              `).join("")}
+            </div>
+
+            <div class="exam-actions">
+              <button class="btn small" type="button" onclick="submitExam()">إرسال الإجابة</button>
+            </div>
           </div>
         `;
-        content.appendChild(item);
-      });
 
-      const submitBtn = document.createElement("button");
-      submitBtn.textContent = "إرسال الإجابات";
-      submitBtn.style.marginTop = "10px";
-      submitBtn.style.width = "100%";
-      submitBtn.style.padding = "14px";
-      submitBtn.style.background = "linear-gradient(135deg,#2de6a5,#1ecb8b)";
-      submitBtn.style.border = "none";
-      submitBtn.style.borderRadius = "12px";
-      submitBtn.style.color = "#041914";
-      submitBtn.style.fontWeight = "800";
-      submitBtn.style.cursor = "pointer";
+        el.examModal.classList.add("active");
+        startExamTimer();
+      }
 
-      submitBtn.addEventListener("click", () => {
-        const selected = Array.from(content.querySelectorAll("input[type='radio']:checked"));
+      function formatTime(totalSeconds) {
+        const minutes = Math.floor(totalSeconds / 60);
+        const seconds = totalSeconds % 60;
+        return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+      }
+
+      function startExamTimer() {
+        clearInterval(examTimerInterval);
+
+        examTimerInterval = setInterval(() => {
+          if (!currentExam) {
+            clearInterval(examTimerInterval);
+            return;
+          }
+
+          examRemainingSeconds -= 1;
+
+          const timerEl = document.getElementById("examTimerText");
+          if (timerEl) {
+            timerEl.textContent = formatTime(examRemainingSeconds);
+          }
+
+          if (examRemainingSeconds <= 0) {
+            clearInterval(examTimerInterval);
+            submitExam(true);
+          }
+        }, 1000);
+      }
+
+      function closeExamModal() {
+        clearInterval(examTimerInterval);
+        currentExam = null;
+        el.examModal.classList.remove("active");
+      }
+
+      function submitExam(forceTimeout = false) {
+        if (!currentExam) return;
+
+        clearInterval(examTimerInterval);
+
+        const selectedAnswers = currentExam.questions.map((q, qIndex) => {
+          const checked = document.querySelector(`input[name="q_${qIndex}"]:checked`);
+          return checked ? Number(checked.value) : -1;
+        });
+
         let correct = 0;
-        exam.questions.forEach((q, idx) => {
-          const checked = content.querySelectorAll(`input[name="q_${idx}"]:checked`);
-          if (checked.length) {
-            const ans = Number(checked[0].value);
-            if (ans === q.answer) correct++;
+        currentExam.questions.forEach((q, index) => {
+          if (selectedAnswers[index] === Number(q.answer)) {
+            correct += 1;
           }
         });
 
-        const result = document.createElement("div");
-        result.style.marginTop = "18px";
-        result.style.padding = "14px";
-        result.style.background = "rgba(45,230,165,.08)";
-        result.style.border = "1px solid rgba(45,230,165,.36)";
-        result.style.borderRadius = "12px";
-        result.style.color = "#9efad0";
-        result.textContent = `نتيجتك: ${correct}/${exam.questions.length} سؤال صحيح`;
-        box.appendChild(result);
-      });
+        const total = currentExam.questions.length;
+        const percent = total ? Math.round((correct / total) * 100) : 0;
 
-      box.appendChild(content);
-      box.appendChild(submitBtn);
-      modal.appendChild(box);
+        el.quizContent.innerHTML = `
+          <div class="result-box">
+            <h3 style="margin-bottom:10px; color:var(--green);">${forceTimeout ? "انتهى الوقت!" : "تم إرسال الإجابة بنجاح"}</h3>
+            <p>النتيجة: <strong>${correct}/${total}</strong></p>
+            <p>النسبة: <strong>${percent}%</strong></p>
+            <p>${percent >= 60 ? "أحسنت! استمر بالتفوق." : "يمكنك المحاولة مرة أخرى، والنجاح يأتي بالتدريب."}</p>
+            <div style="margin-top:14px;">
+              <button class="btn small" type="button" onclick="closeExamModal()">إغلاق</button>
+            </div>
+          </div>
+        `;
 
-      const closeBtn = title.querySelector("#closeExamModal");
-      closeBtn.addEventListener("click", () => modal.remove());
-
-      modal.addEventListener("click", (e) => {
-        if (e.target === modal) modal.remove();
-      });
-
-      document.body.appendChild(modal);
-    }
-
-    function geminiAssistant(promptText) {
-      const text = (promptText || "").toLowerCase();
-      const patterns = [
-        { regex: /(مرحبا|hello|hi|السلام|اهلا)/, replies: ["مرحباً! كيف يمكنني مساعدتك اليوم؟","أهلاً بك، ما الذي تريد تعلمه؟","مرحباً! أنا مساعدك الذكي في CyberClash."] },
-        { regex: /(درس|شرح|مادة|تعلم|تدريب)/, replies: ["يمكنك فتح قسم الدروس والبدء مباشرة من المنصة.","الدروس متاحة داخل لوحة الطالب في تبويب الدروس.","كل درس يفتح مباشرة في شكل واضح وسهل."] },
-        { regex: /(اختبار|امتحان|قياس|تقييم|تدريب)/, replies: ["اختباراتك متاحة داخل تبويب الاختبارات.","تستطيع بدء أي اختبار مباشرة والقياس الذاتي.","لو تريد، أقدر أساعدك بتخطيط طريقة دراسة مناسبة."] },
-        { regex: /(امن|security|cyber|حماية)/, replies: ["الأمن السيبراني يبدأ من الحماية، التحديث، التحقق الثنائي، والتوعية.","من المهم أن تتعلم أساسيات الشبكات والمصادقة وأمن التطبيقات.","نصائح: تحديث النظام، استخدام كلمات مرور قوية، وإدارة الصلاحيات."] },
-        { regex: /(مساعدة|help|شرح|وضح|اوضح|فهم)/, replies: ["بالتأكيد، ما الذي تريد شرحه؟","أنا هنا لمساعدتك في أي موضوع تعليمي أو تقني.","تفضل بسؤال ما تريد، وسأعطيك إجابة مباشرة ومختصرة."] },
-        { regex: /(javascript|python|network|linux|sql|windows)/, replies: ["هذه مواضيع ممتازة. ابدأ بالتجربة العملية ثم الممارسة اليومية.","أفضل طريقة هي فهم الأساسيات ثم حل أسئلة تطبيقية.","دعني أساعدك في تنظيم خطة دراسة مناسبة لكل موضوع."] }
-      ];
-
-      for (const item of patterns) {
-        if (item.regex.test(text)) {
-          const reply = item.replies[Math.floor(Math.random() * item.replies.length)];
-          return reply;
-        }
+        currentExam = null;
       }
 
-      return "ممتاز! هذا سؤال جيد. سأساعدك في فهمه خطوة بخطوة، ويفضل أن تبدأ بمفهوم أساسي ثم التطبيق العملي.";
-    }
+      function addQuestionBuilderRow() {
+        const row = document.createElement("div");
+        row.className = "question-builder";
 
-    function sendAiMessage() {
-      const value = elements.aiInput.value.trim();
-      if (!value) return;
+        row.innerHTML = `
+          <div class="builder-head">
+            <span>السؤال ${el.questionBuilder.children.length + 1}</span>
+            <button class="btn danger small" type="button" onclick="this.parentElement.parentElement.remove()">حذف السؤال</button>
+          </div>
 
-      const msgUser = document.createElement("div");
-      msgUser.className = "msg user";
-      msgUser.textContent = value;
-      elements.chatBody.appendChild(msgUser);
+          <div class="field">
+            <label>نص السؤال</label>
+            <input type="text" class="question-text" placeholder="اكتب نص السؤال..." />
+          </div>
 
-      elements.aiInput.value = "";
+          <div class="option-grid">
+            ${[0,1,2,3].map(index => `
+              <div class="option-line">
+                <label>الخيار ${index + 1}</label>
+                <input type="text" class="builder-option" data-index="${index}" placeholder="اكتب الخيار ${index + 1}" />
+              </div>
+            `).join("")}
+          </div>
 
-      const reply = document.createElement("div");
-      reply.className = "msg bot";
-      reply.textContent = geminiAssistant(value);
-      elements.chatBody.appendChild(reply);
+          <div class="field" style="margin-top:12px;">
+            <label>الإجابة الصحيحة</label>
+            <select class="builder-answer">
+              <option value="0">الخيار 1</option>
+              <option value="1">الخيار 2</option>
+              <option value="2">الخيار 3</option>
+              <option value="3">الخيار 4</option>
+            </select>
+          </div>
+        `;
 
-      elements.chatBody.scrollTop = elements.chatBody.scrollHeight;
-    }
+        el.questionBuilder.appendChild(row);
+      }
 
-    function bindEvents() {
-      elements.loginForm.addEventListener("submit", login);
-      elements.modeToggleBtn.addEventListener("click", () => {
-        setMode(appState.currentRole === "student" ? "admin" : "student");
-      });
+      function addExam() {
+        const title = document.getElementById("examTitle").value.trim();
+        const duration = Number(document.getElementById("examDuration").value || 30);
 
-      document.getElementById("logoutBtn").addEventListener("click", logout);
-      document.getElementById("adminLogoutBtn").addEventListener("click", logout);
-      document.getElementById("addLessonBtn").addEventListener("click", addLesson);
-      document.getElementById("addExamBtn").addEventListener("click", addExam);
-      document.getElementById("addSupervisorBtn").addEventListener("click", addSupervisor);
-      document.getElementById("generateCertificateBtn").addEventListener("click", generateCertificate);
-      elements.sendAiBtn.addEventListener("click", sendAiMessage);
-      elements.aiInput.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") sendAiMessage();
-      });
+        if (!title) {
+          showStatusMessage("❌ يرجى إدخال عنوان الاختبار", "error");
+          return;
+        }
 
-      document.querySelectorAll(".tab-btn").forEach(button => {
-        button.addEventListener("click", () => {
-          const panel = button.dataset.panel;
-          switchTab(panel);
+        const rows = [...el.questionBuilder.querySelectorAll(".question-builder")];
+        if (!rows.length) {
+          showStatusMessage("❌ يجب إضافة سؤال واحد على الأقل", "error");
+          return;
+        }
+
+        const questions = rows.map((row, rowIndex) => {
+          const text = row.querySelector(".question-text").value.trim();
+          const options = [...row.querySelectorAll(".builder-option")].map(input => input.value.trim());
+          const validOptions = options.filter(value => value.length > 0);
+
+          const answer = Number(row.querySelector(".builder-answer").value || 0);
+
+          if (!text || validOptions.length < 2) {
+            return null;
+          }
+
+          return {
+            q: text,
+            options: validOptions,
+            answer: Number(answer)
+          };
+        }).filter(Boolean);
+
+        if (!questions.length) {
+          showStatusMessage("❌ يجب كتابة نص السؤال والخيارات بشكل صحيح", "error");
+          return;
+        }
+
+        examData.push({
+          id: Date.now(),
+          title,
+          duration: Math.max(1, duration),
+          questions
         });
+
+        safeStorageSet(STORAGE_KEYS.exams, examData);
+        renderExams();
+
+        document.getElementById("examTitle").value = "";
+        document.getElementById("examDuration").value = 30;
+        el.questionBuilder.innerHTML = "";
+
+        showStatusMessage("✅ تم نشر الاختبار بنجاح", "success");
+      }
+
+      function addLesson() {
+        const title = document.getElementById("lessonTitle").value.trim();
+        const subject = document.getElementById("lessonSubject").value.trim() || "عام";
+        const content = document.getElementById("lessonContent").value.trim();
+
+        if (!title || !content) {
+          showStatusMessage("❌ يرجى إدخال عنوان الدرس ومحتواه", "error");
+          return;
+        }
+
+        lessonData.push({
+          id: Date.now(),
+          title,
+          subject,
+          content
+        });
+
+        safeStorageSet(STORAGE_KEYS.lessons, lessonData);
+        renderLessons();
+
+        document.getElementById("lessonTitle").value = "";
+        document.getElementById("lessonSubject").value = "";
+        document.getElementById("lessonContent").value = "";
+
+        showStatusMessage("✅ تم إضافة الدرس بنجاح", "success");
+      }
+
+      function deleteLesson(id) {
+        const item = lessonData.find(l => Number(l.id) === Number(id));
+        if (!item) return;
+
+        const confirmDelete = confirm("هل أنت متأكد من حذف هذا الدرس نهائياً؟");
+        if (!confirmDelete) return;
+
+        lessonData = lessonData.filter(l => Number(l.id) !== Number(id));
+        safeStorageSet(STORAGE_KEYS.lessons, lessonData);
+        renderLessons();
+        showStatusMessage("✅ تم حذف الدرس نهائياً", "success");
+      }
+
+      function deleteExam(id) {
+        const item = examData.find(e => Number(e.id) === Number(id));
+        if (!item) return;
+
+        const confirmDelete = confirm("هل أنت متأكد من حذف هذا الاختبار نهائياً؟");
+        if (!confirmDelete) return;
+
+        examData = examData.filter(e => Number(e.id) !== Number(id));
+        safeStorageSet(STORAGE_KEYS.exams, examData);
+        renderExams();
+        showStatusMessage("✅ تم حذف الاختبار نهائياً", "success");
+      }
+
+      function addAdminUser() {
+        const name = document.getElementById("newAdminName").value.trim();
+        if (!name) {
+          showStatusMessage("❌ يرجى إدخال اسم المشرف", "error");
+          return;
+        }
+
+        const admins = safeStorageGet(STORAGE_KEYS.admins, []);
+        const exists = admins.some(a => String(a.name).trim() === name);
+
+        if (exists) {
+          showStatusMessage("⚠️ هذا الاسم موجود بالفعل في قائمة المشرفين", "error");
+          return;
+        }
+
+        admins.push({ name, code: ADMIN_SECRET });
+        safeStorageSet(STORAGE_KEYS.admins, admins);
+
+        document.getElementById("newAdminName").value = "";
+        showStatusMessage("✅ تم إضافة المشرف بنجاح", "success");
+      }
+
+      function sendAiMessage() {
+        const text = el.aiInput.value.trim();
+        if (!text) return;
+
+        const newUserMsg = document.createElement("div");
+        newUserMsg.className = "msg user";
+        newUserMsg.textContent = text;
+        el.chatMessages.appendChild(newUserMsg);
+
+        const botReply = document.createElement("div");
+        botReply.className = "msg bot";
+
+        const lower = text.toLowerCase();
+        let answer = "يمكنك سؤالني عن أي درس أو اختبار أو موضوع تعليمي.";
+
+        if (lower.includes("درس") || lower.includes("محتوى")) {
+          answer = "الدروس متاحة داخل المنصة من تبويب الدروس، ويمكنك فتح أي درس ومشاهدة الشرح مباشرة من الصفحة.";
+        } else if (lower.includes("اختبار") || lower.includes("امتحان")) {
+          answer = "الاختبارات متاحة داخل المنصة من تبويب الاختبارات، وكل اختبار يفتح داخل الصفحة ويحتوي على أسئلة متعددة وتوقيت محدد.";
+        } else if (lower.includes("أمن") || lower.includes("سيبر")) {
+          answer = "الأمن السيبراني يركز على حماية الأنظمة والبيانات، وتجنب الاختراق، واستخدام كلمات مرور قوية، والتحديث المستمر.";
+        } else if (lower.includes("شبكات")) {
+          answer = "الشبكات هي وسيلة ربط الأجهزة وتبادل البيانات، وتحتاج إلى معرفة البروتوكولات والراوتر والسويتش.";
+        } else if (lower.includes("تعلم") || lower.includes("تكنولوجيا")) {
+          answer = "التعلم الإلكتروني يعتمد على التنظيم، المتابعة اليومية، استخدام المنصات، ومراجعة الدروس بانتظام.";
+        }
+
+        botReply.textContent = answer;
+        el.chatMessages.appendChild(botReply);
+        el.aiInput.value = "";
+        el.chatMessages.scrollTop = el.chatMessages.scrollHeight;
+      }
+
+      function generateCertificate() {
+        const studentName = document.getElementById("certStudentName").value.trim() || "الطالب";
+        const courseName = document.getElementById("certCourseName").value.trim() || "الدورة التدريبية";
+        const ownerName = document.getElementById("certOwnerName").value.trim() || "المشرف";
+
+        const preview = document.getElementById("certificatePreview");
+        preview.innerHTML = `
+          <div class="certificate-wrap">
+            <div class="certificate">
+              <div class="certificate-inner">
+                <div class="cert-badge"><i class="fa-solid fa-award"></i></div>
+                <div class="cert-title">شهادة إكمال</div>
+                <div class="cert-sub">أكاديمية Abdo_zeinhom</div>
+                <div class="cert-name">${escapeHtml(studentName)}</div>
+                <div class="cert-text">
+                  تم منح هذه الشهادة للطالب/ة المذكور أعلاه لإتمام الدورة / البرنامج:
+                  <strong>${escapeHtml(courseName)}</strong>
+                  بنجاح، مع التقدير والاحترام من فريق الأكاديمية.
+                </div>
+
+                <div class="cert-signs">
+                  <div class="sign">${escapeHtml(ownerName)}<br>المشرف / المؤيد</div>
+                  <div class="sign">Abdo_zeinhom Academy<br>المنصة التعليمية</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      document.getElementById("toggleModeBtn").addEventListener("click", function () {
+        toggleMode();
       });
 
-      document.addEventListener("contextmenu", e => e.preventDefault());
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "i") || (e.ctrlKey && e.key.toLowerCase() === "u")) {
-          e.preventDefault();
+      document.getElementById("authForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        const name = document.getElementById("fullName").value.trim();
+        const code = document.getElementById("accessCode").value.trim();
+
+        if (!name || !code) {
+          setStatus("❌ يرجى إدخال الاسم وكود الدخول", "error");
+          return;
+        }
+
+        loginUser(name, code);
+      });
+
+      document.getElementById("aiInput").addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+          sendAiMessage();
         }
       });
-    }
 
-    function init() {
+      el.toggleModeBtn.style.display = "inline-flex";
+
       loadData();
-      setMode("student");
-      setScreen("login");
-      bindEvents();
-      renderStudentLessons();
-      renderStudentExams();
-      renderAdminViews();
-      appState.currentUser = null;
-    }
-
-    init();
+      renderLessons();
+      renderExams();
+      addQuestionBuilderRow();
+      toggleMode(false);
+    })();
   </script>
 </body>
-  </html>
+</html>
