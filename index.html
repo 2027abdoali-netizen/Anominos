@@ -40,7 +40,6 @@
             overflow-x: hidden;
         }
 
-        /* Navbar */
         .navbar {
             background: rgba(15, 23, 42, 0.95);
             border-bottom: 1px solid var(--border);
@@ -194,7 +193,6 @@
             margin: 0;
         }
 
-        /* Main Container */
         .container {
             max-width: 1400px;
             margin: 0 auto;
@@ -215,7 +213,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Login Page */
         .login-container {
             display: flex;
             min-height: 100vh;
@@ -310,10 +307,6 @@
             box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.1);
         }
 
-        .form-group input::placeholder {
-            color: var(--text-muted);
-        }
-
         .mode-toggle {
             display: flex;
             gap: 0.5rem;
@@ -345,12 +338,6 @@
             display: flex;
             align-items: center;
             gap: 0.8rem;
-            animation: slideIn 0.3s ease-out;
-        }
-
-        @keyframes slideIn {
-            from { transform: translateX(20px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
         }
 
         .alert-success {
@@ -365,7 +352,6 @@
             color: var(--danger);
         }
 
-        /* Dashboard */
         .dashboard-header {
             margin-bottom: 2rem;
             padding-bottom: 2rem;
@@ -399,7 +385,6 @@
 
         .stat-card:hover {
             border-color: var(--primary);
-            box-shadow: 0 5px 20px rgba(52, 211, 153, 0.1);
         }
 
         .stat-card i {
@@ -413,44 +398,12 @@
             color: var(--text-muted);
             margin-bottom: 0.5rem;
             text-transform: uppercase;
-            font-weight: 700;
         }
 
         .stat-card .value {
             font-size: 2rem;
             font-weight: 800;
             color: var(--text);
-        }
-
-        .tabs {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .tab-btn {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            padding: 0.5rem 1rem;
-            border-bottom: 2px solid transparent;
-            transition: all 0.3s;
-            font-family: 'Cairo', sans-serif;
-        }
-
-        .tab-btn:hover {
-            color: var(--primary);
-        }
-
-        .tab-btn.active {
-            color: var(--primary);
-            border-bottom-color: var(--primary);
         }
 
         .tab-content {
@@ -477,7 +430,6 @@
 
         .card:hover {
             border-color: var(--primary);
-            box-shadow: 0 10px 30px rgba(52, 211, 153, 0.15);
             transform: translateY(-5px);
         }
 
@@ -490,11 +442,6 @@
         .card-header h3 {
             font-size: 1.2rem;
             margin-bottom: 0.5rem;
-        }
-
-        .card-header p {
-            font-size: 0.9rem;
-            opacity: 0.9;
         }
 
         .card-body {
@@ -539,7 +486,6 @@
             border: 1px solid var(--border);
             line-height: 1.8;
             white-space: pre-wrap;
-            word-wrap: break-word;
             color: var(--text);
         }
 
@@ -551,14 +497,10 @@
             margin-bottom: 1.5rem;
         }
 
-        .exam-question h4 {
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-
         .options {
             display: grid;
             gap: 0.8rem;
+            margin-top: 1rem;
         }
 
         .option {
@@ -575,11 +517,6 @@
         .option:hover {
             border-color: var(--primary);
             background: rgba(52, 211, 153, 0.05);
-        }
-
-        .option input[type="radio"] {
-            cursor: pointer;
-            accent-color: var(--primary);
         }
 
         .timer {
@@ -604,11 +541,6 @@
             margin-bottom: 1.5rem;
         }
 
-        .question-builder h4 {
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
         .options-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -619,10 +551,7 @@
         .modal {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(0, 0, 0, 0.7);
             z-index: 2000;
             align-items: center;
@@ -632,7 +561,6 @@
 
         .modal.active {
             display: flex;
-            animation: fadeIn 0.3s ease-in;
         }
 
         .modal-content {
@@ -644,7 +572,6 @@
             max-width: 700px;
             max-height: 90vh;
             overflow-y: auto;
-            box-shadow: var(--shadow);
         }
 
         .modal-header {
@@ -656,21 +583,12 @@
             border-bottom: 1px solid var(--border);
         }
 
-        .modal-header h3 {
-            font-size: 1.5rem;
-        }
-
         .close-modal {
             background: none;
             border: none;
             font-size: 1.5rem;
             color: var(--text-muted);
             cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .close-modal:hover {
-            color: var(--primary);
         }
 
         .result-box {
@@ -681,22 +599,11 @@
             text-align: center;
         }
 
-        .result-box h3 {
-            color: var(--success);
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
         .result-box .score {
             font-size: 2.5rem;
             color: var(--primary);
             font-weight: 800;
-            margin-bottom: 1rem;
-        }
-
-        .result-box p {
-            color: var(--text-muted);
-            margin-bottom: 0.5rem;
+            margin: 1rem 0;
         }
 
         .members-list {
@@ -727,37 +634,14 @@
             margin: 0 auto 1rem;
         }
 
-        .member-card h4 {
-            margin-bottom: 0.5rem;
-        }
-
-        .member-card p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-        }
-
         .member-meta {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 0.8rem;
-            margin-bottom: 1rem;
+            margin-top: 1rem;
             padding-top: 1rem;
             border-top: 1px solid var(--border);
-        }
-
-        .member-meta-item {
             font-size: 0.8rem;
-        }
-
-        .member-meta-item strong {
-            color: var(--primary);
-            display: block;
-        }
-
-        .member-meta-item span {
-            color: var(--text-muted);
-            display: block;
         }
 
         .table {
@@ -768,27 +652,15 @@
             overflow: hidden;
         }
 
-        .table thead {
-            background: var(--bg-alt);
-            border-bottom: 1px solid var(--border);
-        }
-
         .table th, .table td {
             padding: 1rem;
             text-align: right;
-        }
-
-        .table th {
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .table tbody tr {
             border-bottom: 1px solid var(--border);
         }
 
-        .table tbody tr:hover {
-            background: rgba(52, 211, 153, 0.05);
+        .table th {
+            background: var(--bg-alt);
+            color: var(--primary);
         }
 
         .add-form {
@@ -801,48 +673,14 @@
 
         textarea {
             width: 100%;
-            min-height: 200px;
+            min-height: 150px;
             padding: 1rem;
             border: 1px solid var(--border);
             border-radius: 8px;
             background: rgba(0,0,0,0.3);
             color: var(--text);
-            font-family: Cairo, sans-serif;
+            font-family: 'Cairo', sans-serif;
             resize: vertical;
-        }
-
-        textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.1);
-        }
-
-        @media (max-width: 768px) {
-            .navbar-content {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .nav-menu {
-                gap: 1rem;
-            }
-
-            .login-container {
-                gap: 1rem;
-                flex-direction: column;
-            }
-
-            .login-left {
-                display: none;
-            }
-
-            .cards-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
         }
     </style>
 </head>
@@ -866,20 +704,6 @@
                         <div>
                             <strong>اختبارات ذكية</strong>
                             <p style="font-size: 0.85rem; color: var(--text-muted);">اختبارات متعددة الخيارات مع توقيت محدد</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-chart-line"></i>
-                        <div>
-                            <strong>تقارير متقدمة</strong>
-                            <p style="font-size: 0.85rem; color: var(--text-muted);">تحليل شامل لأداء الطلاب</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-shield-alt"></i>
-                        <div>
-                            <strong>أمان عالي</strong>
-                            <p style="font-size: 0.85rem; color: var(--text-muted);">حماية كاملة للبيانات والخصوصية</p>
                         </div>
                     </div>
                 </div>
@@ -906,17 +730,16 @@
                         <input type="password" id="userCode" placeholder="أدخل كود الدخول" required />
                     </div>
 
-                    <div class="form-group" id="classField" style="display: block;">
+                    <div class="form-group" id="classField">
                         <label for="userClass">الصف الدراسي</label>
-                        <select id="userClass" required>
-                            <option value="">اختر الصف</option>
+                        <select id="userClass">
                             <option value="الأول الثانوي">الصف الأول الثانوي</option>
                             <option value="الثاني الثانوي">الصف الثاني الثانوي</option>
                             <option value="الثالث الثانوي">الصف الثالث الثانوي</option>
                         </select>
                     </div>
 
-                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
                         <i class="fas fa-sign-in-alt"></i> دخول المنصة
                     </button>
                 </form>
@@ -933,10 +756,10 @@
                     <span>Abdo_zeinhom Academy</span>
                 </div>
                 <div class="nav-menu">
-                    <button class="tab-toggle active" data-section="student-home"><i class="fas fa-home"></i> الرئيسية</button>
-                    <button class="tab-toggle" data-section="student-lessons"><i class="fas fa-book"></i> الدروس</button>
-                    <button class="tab-toggle" data-section="student-exams"><i class="fas fa-file-alt"></i> الاختبارات</button>
-                    <button class="tab-toggle" data-section="student-supervisors"><i class="fas fa-users"></i> المشرفون</button>
+                    <button class="tab-toggle active" data-section="student-home">الرئيسية</button>
+                    <button class="tab-toggle" data-section="student-lessons">الدروس</button>
+                    <button class="tab-toggle" data-section="student-exams">الاختبارات</button>
+                    <button class="tab-toggle" data-section="student-supervisors">المشرفون</button>
                 </div>
                 <div class="nav-actions">
                     <div class="user-info">
@@ -950,63 +773,28 @@
                 </div>
             </div>
         </nav>
-
         <div class="container">
-            <!-- Student Home -->
             <div id="student-home" class="tab-content active">
                 <div class="dashboard-header">
                     <h2>مرحباً بك في لوحة التحكم</h2>
                     <p>تابع تقدمك الأكاديمي وحسّن مستواك</p>
                 </div>
-
                 <div class="stats-grid">
-                    <div class="stat-card">
-                        <i class="fas fa-book-reader"></i>
-                        <h4>الدروس المنجزة</h4>
-                        <div class="value" id="completedLessons">0</div>
-                    </div>
-                    <div class="stat-card">
-                        <i class="fas fa-check-circle"></i>
-                        <h4>الاختبارات المكتملة</h4>
-                        <div class="value" id="completedExams">0</div>
-                    </div>
-                    <div class="stat-card">
-                        <i class="fas fa-star"></i>
-                        <h4>المعدل الكلي</h4>
-                        <div class="value" id="overallGrade">0%</div>
-                    </div>
-                    <div class="stat-card">
-                        <i class="fas fa-users"></i>
-                        <h4>عدد المشرفين</h4>
-                        <div class="value" id="supervisorCount">0</div>
-                    </div>
+                    <div class="stat-card"><i class="fas fa-book-reader"></i><h4>الدروس المنجزة</h4><div class="value" id="completedLessons">0</div></div>
+                    <div class="stat-card"><i class="fas fa-check-circle"></i><h4>الاختبارات المكتملة</h4><div class="value" id="completedExams">0</div></div>
+                    <div class="stat-card"><i class="fas fa-star"></i><h4>المعدل الكلي</h4><div class="value" id="overallGrade">0%</div></div>
                 </div>
             </div>
-
-            <!-- Student Lessons -->
             <div id="student-lessons" class="tab-content">
-                <div class="dashboard-header">
-                    <h2>الدروس المتاحة</h2>
-                    <p>اختر درساً لمشاهدة المحتوى التفاعلي</p>
-                </div>
+                <div class="dashboard-header"><h2>الدروس المتاحة</h2></div>
                 <div id="studentLessonsContainer" class="cards-grid"></div>
             </div>
-
-            <!-- Student Exams -->
             <div id="student-exams" class="tab-content">
-                <div class="dashboard-header">
-                    <h2>الاختبارات المتاحة</h2>
-                    <p>اختبر معلوماتك وقيّم مستواك</p>
-                </div>
+                <div class="dashboard-header"><h2>الاختبارات المتاحة</h2></div>
                 <div id="studentExamsContainer" class="cards-grid"></div>
             </div>
-
-            <!-- Student Supervisors -->
             <div id="student-supervisors" class="tab-content">
-                <div class="dashboard-header">
-                    <h2>المشرفون</h2>
-                    <p>اعرف من هم المشرفون عليك</p>
-                </div>
+                <div class="dashboard-header"><h2>المشرفون</h2></div>
                 <div id="studentSupervisorsContainer" class="members-list"></div>
             </div>
         </div>
@@ -1021,11 +809,10 @@
                     <span>Abdo_zeinhom Academy</span>
                 </div>
                 <div class="nav-menu">
-                    <button class="tab-toggle active" data-section="supervisor-home"><i class="fas fa-home"></i> الرئيسية</button>
-                    <button class="tab-toggle" data-section="supervisor-lessons"><i class="fas fa-book"></i> إدارة الدروس</button>
-                    <button class="tab-toggle" data-section="supervisor-exams"><i class="fas fa-file-alt"></i> إدارة الاختبارات</button>
-                    <button class="tab-toggle" data-section="supervisor-students"><i class="fas fa-user-graduate"></i> الطلاب</button>
-                    <button class="tab-toggle" data-section="supervisor-reports"><i class="fas fa-chart-bar"></i> التقارير</button>
+                    <button class="tab-toggle active" data-section="supervisor-home">الرئيسية</button>
+                    <button class="tab-toggle" data-section="supervisor-lessons">إدارة الدروس</button>
+                    <button class="tab-toggle" data-section="supervisor-exams">إدارة الاختبارات</button>
+                    <button class="tab-toggle" data-section="supervisor-students">الطلاب</button>
                 </div>
                 <div class="nav-actions">
                     <div class="user-info">
@@ -1039,136 +826,51 @@
                 </div>
             </div>
         </nav>
-
         <div class="container">
-            <!-- Supervisor Home -->
             <div id="supervisor-home" class="tab-content active">
-                <div class="dashboard-header">
-                    <h2>لوحة تحكم المشرف</h2>
-                    <p>إدارة شاملة للدروس والاختبارات والطلاب</p>
-                </div>
-
+                <div class="dashboard-header"><h2>لوحة تحكم المشرف</h2></div>
                 <div class="stats-grid">
-                    <div class="stat-card">
-                        <i class="fas fa-book"></i>
-                        <h4>إجمالي الدروس</h4>
-                        <div class="value" id="totalLessons">0</div>
-                    </div>
-                    <div class="stat-card">
-                        <i class="fas fa-file-alt"></i>
-                        <h4>إجمالي الاختبارات</h4>
-                        <div class="value" id="totalExams">0</div>
-                    </div>
-                    <div class="stat-card">
-                        <i class="fas fa-user-graduate"></i>
-                        <h4>عدد الطلاب</h4>
-                        <div class="value" id="totalStudents">0</div>
-                    </div>
-                    <div class="stat-card">
-                        <i class="fas fa-chart-pie"></i>
-                        <h4>متوسط الأداء</h4>
-                        <div class="value" id="averagePerformance">0%</div>
-                    </div>
+                    <div class="stat-card"><i class="fas fa-book"></i><h4>إجمالي الدروس</h4><div class="value" id="totalLessons">0</div></div>
+                    <div class="stat-card"><i class="fas fa-file-alt"></i><h4>إجمالي الاختبارات</h4><div class="value" id="totalExams">0</div></div>
+                    <div class="stat-card"><i class="fas fa-user-graduate"></i><h4>عدد الطلاب</h4><div class="value" id="totalStudents">0</div></div>
                 </div>
             </div>
-
-            <!-- Supervisor Lessons -->
+            
             <div id="supervisor-lessons" class="tab-content">
-                <div class="dashboard-header">
-                    <h2>إدارة الدروس</h2>
-                    <p>أضف وعدّل وحذف الدروس</p>
-                </div>
-
+                <div class="dashboard-header"><h2>إدارة الدروس</h2></div>
                 <div class="add-form">
-                    <h3 style="margin-bottom: 1.5rem;">إضافة درس جديد</h3>
-                    <form id="addLessonForm" style="display: grid; gap: 1rem;">
-                        <div class="form-group">
-                            <label>عنوان الدرس</label>
-                            <input type="text" class="lessonTitle" placeholder="مثال: مقدمة في الأمن السيبراني" required />
-                        </div>
-                        <div class="form-group">
-                            <label>الموضوع/المجال</label>
-                            <input type="text" class="lessonSubject" placeholder="مثال: أمن سيبراني، شبكات، برمجة" required />
-                        </div>
-                        <div class="form-group">
-                            <label>محتوى الدرس (داخل المنصة)</label>
-                            <textarea class="lessonContent" placeholder="اكتب الشرح والمحتوى هنا..." required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-plus"></i> إضافة الدرس
-                        </button>
+                    <h3>إضافة درس جديد</h3>
+                    <form id="addLessonForm" style="display: grid; gap: 1rem; margin-top: 1rem;">
+                        <input type="text" class="lessonTitle" placeholder="عنوان الدرس" required />
+                        <input type="text" class="lessonSubject" placeholder="الموضوع/المجال" required />
+                        <textarea class="lessonContent" placeholder="محتوى الدرس..." required></textarea>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> إضافة الدرس</button>
                     </form>
                 </div>
-
-                <h3 style="margin-bottom: 1.5rem;">الدروس المنشورة</h3>
                 <div id="supervisorLessonsContainer" class="cards-grid"></div>
             </div>
 
-            <!-- Supervisor Exams -->
             <div id="supervisor-exams" class="tab-content">
-                <div class="dashboard-header">
-                    <h2>إدارة الاختبارات</h2>
-                    <p>أنشئ واختبر الأسئلة</p>
-                </div>
-
+                <div class="dashboard-header"><h2>إدارة الاختبارات (متعددة الاختيارات)</h2></div>
                 <div class="add-form">
-                    <h3 style="margin-bottom: 1.5rem;">إضافة اختبار جديد</h3>
-                    <form id="addExamForm" style="display: grid; gap: 1rem;">
-                        <div class="form-group">
-                            <label>عنوان الاختبار</label>
-                            <input type="text" class="examTitle" placeholder="مثال: اختبار الفصل الأول" required />
-                        </div>
-                        <div class="form-group">
-                            <label>مدة الاختبار (دقائق)</label>
-                            <input type="number" class="examDuration" min="5" value="30" required />
-                        </div>
-
-                        <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border);">
+                    <h3>إضافة اختبار جديد</h3>
+                    <form id="addExamForm" style="display: grid; gap: 1rem; margin-top: 1rem;">
+                        <input type="text" class="examTitle" placeholder="عنوان الاختبار" required />
+                        <input type="number" class="examDuration" min="1" value="30" placeholder="مدة الاختبار بالدقائق" required />
+                        <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px;">
                             <h4 style="color: var(--primary); margin-bottom: 1rem;">الأسئلة</h4>
                             <div id="questionsList"></div>
-                            <button type="button" class="btn btn-secondary" id="addQuestionBtn" style="width: 100%; margin-top: 1rem;">
-                                <i class="fas fa-plus"></i> إضافة سؤال
-                            </button>
+                            <button type="button" class="btn btn-secondary" id="addQuestionBtn" style="width: 100%; margin-top: 1rem;"><i class="fas fa-plus"></i> إضافة سؤال متعدد الاختيارات</button>
                         </div>
-
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-save"></i> حفظ الاختبار
-                        </button>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> حفظ الاختبار</button>
                     </form>
                 </div>
-
-                <h3 style="margin-bottom: 1.5rem;">الاختبارات المنشورة</h3>
                 <div id="supervisorExamsContainer" class="cards-grid"></div>
             </div>
 
-            <!-- Supervisor Students -->
             <div id="supervisor-students" class="tab-content">
-                <div class="dashboard-header">
-                    <h2>الطلاب المسجلون</h2>
-                    <p>اعرف من هم الطلاب الذين يتابعون معك</p>
-                </div>
+                <div class="dashboard-header"><h2>الطلاب المسجلون</h2></div>
                 <div id="supervisorStudentsContainer" class="members-list"></div>
-            </div>
-
-            <!-- Supervisor Reports -->
-            <div id="supervisor-reports" class="tab-content">
-                <div class="dashboard-header">
-                    <h2>تقارير الأداء</h2>
-                    <p>حلل تقدم الطلاب</p>
-                </div>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>اسم الطالب</th>
-                            <th>الصف</th>
-                            <th>الدروس المنجزة</th>
-                            <th>الاختبارات المكتملة</th>
-                            <th>المعدل</th>
-                        </tr>
-                    </thead>
-                    <tbody id="reportsTableBody">
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>
@@ -1182,193 +884,64 @@
                     <span>Abdo_zeinhom Academy</span>
                 </div>
                 <div class="nav-menu">
-                    <button class="tab-toggle active" data-section="admin-home"><i class="fas fa-home"></i> الرئيسية</button>
-                    <button class="tab-toggle" data-section="admin-supervisors"><i class="fas fa-users"></i> إدارة المشرفين</button>
-                    <button class="tab-toggle" data-section="admin-system"><i class="fas fa-cogs"></i> الإعدادات</button>
-                    <button class="tab-toggle" data-section="admin-analytics"><i class="fas fa-chart-line"></i> الإحصائيات</button>
+                    <button class="tab-toggle active" data-section="admin-home">الرئيسية</button>
+                    <button class="tab-toggle" data-section="admin-supervisors">إدارة المشرفين</button>
                 </div>
                 <div class="nav-actions">
                     <div class="user-info">
-                        <div class="user-avatar" id="adminAvatar">م</div>
-                        <div class="user-details">
-                            <h4>المالك</h4>
-                            <p>مالك النظام</p>
-                        </div>
+                        <div class="user-avatar">م</div>
+                        <div class="user-details"><h4>المالك</h4><p>مالك النظام</p></div>
                     </div>
                     <button class="btn btn-secondary btn-small" onclick="logout()"><i class="fas fa-sign-out-alt"></i></button>
                 </div>
             </div>
         </nav>
-
         <div class="container">
-            <!-- Admin Home -->
             <div id="admin-home" class="tab-content active">
-                <div class="dashboard-header">
-                    <h2>لوحة تحكم النظام</h2>
-                    <p>إدارة شاملة للمنصة</p>
-                </div>
-
+                <div class="dashboard-header"><h2>لوحة تحكم النظام (المالك)</h2></div>
                 <div class="stats-grid">
-                    <div class="stat-card">
-                        <i class="fas fa-users"></i>
-                        <h4>إجمالي المشرفين</h4>
-                        <div class="value" id="adminTotalSupervisors">0</div>
-                    </div>
-                    <div class="stat-card">
-                        <i class="fas fa-user-graduate"></i>
-                        <h4>إجمالي الطلاب</h4>
-                        <div class="value" id="adminTotalStudents">0</div>
-                    </div>
-                    <div class="stat-card">
-                        <i class="fas fa-book"></i>
-                        <h4>إجمالي الدروس</h4>
-                        <div class="value" id="adminTotalLessons">0</div>
-                    </div>
-                    <div class="stat-card">
-                        <i class="fas fa-file-alt"></i>
-                        <h4>إجمالي الاختبارات</h4>
-                        <div class="value" id="adminTotalExams">0</div>
-                    </div>
+                    <div class="stat-card"><i class="fas fa-users"></i><h4>إجمالي المشرفين</h4><div class="value" id="adminTotalSupervisors">0</div></div>
+                    <div class="stat-card"><i class="fas fa-user-graduate"></i><h4>إجمالي الطلاب</h4><div class="value" id="adminTotalStudents">0</div></div>
                 </div>
             </div>
-
-            <!-- Admin Supervisors -->
             <div id="admin-supervisors" class="tab-content">
-                <div class="dashboard-header">
-                    <h2>إدارة المشرفين</h2>
-                    <p>أضف وأدر المشرفين</p>
-                </div>
-
+                <div class="dashboard-header"><h2>إدارة المشرفين</h2></div>
                 <div class="add-form">
-                    <h3 style="margin-bottom: 1.5rem;">إضافة مشرف جديد</h3>
-                    <form id="addSupervisorForm" style="display: grid; gap: 1rem;">
-                        <div class="form-group">
-                            <label>اسم المشرف</label>
-                            <input type="text" class="supervisorName" placeholder="أدخل اسم المشرف" required />
-                        </div>
-                        <div class="form-group">
-                            <label>رقم الهاتف (اختياري)</label>
-                            <input type="text" class="supervisorPhone" placeholder="01XXXXXXXXX" />
-                        </div>
-                        <div class="form-group">
-                            <label>البريد الإلكتروني (اختياري)</label>
-                            <input type="email" class="supervisorEmail" placeholder="example@gmail.com" />
-                        </div>
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-user-plus"></i> إضافة مشرف
-                        </button>
+                    <h3>إضافة مشرف جديد</h3>
+                    <form id="addSupervisorForm" style="display: grid; gap: 1rem; margin-top: 1rem;">
+                        <input type="text" class="supervisorName" placeholder="اسم المشرف" required />
+                        <input type="text" class="supervisorPhone" placeholder="رقم الهاتف" />
+                        <input type="email" class="supervisorEmail" placeholder="البريد الإلكتروني" />
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-user-plus"></i> إضافة مشرف</button>
                     </form>
                 </div>
-
-                <h3 style="margin-bottom: 1.5rem;">المشرفون المسجلون</h3>
                 <div id="adminSupervisorsContainer" class="members-list"></div>
-            </div>
-
-            <!-- Admin System -->
-            <div id="admin-system" class="tab-content">
-                <div class="dashboard-header">
-                    <h2>إعدادات النظام</h2>
-                    <p>التحكم في إعدادات المنصة الرئيسية</p>
-                </div>
-
-                <div class="add-form">
-                    <div style="display: grid; gap: 1.5rem;">
-                        <div>
-                            <h4 style="margin-bottom: 1rem; color: var(--danger);">منطقة الخطر</h4>
-                            <button class="btn btn-danger" onclick="clearAllData()" style="width: 100%;">
-                                <i class="fas fa-trash"></i> حذف جميع البيانات
-                            </button>
-                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 1rem;">تحذير: هذا الإجراء نهائي ولا يمكن التراجع عنه</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Admin Analytics -->
-            <div id="admin-analytics" class="tab-content">
-                <div class="dashboard-header">
-                    <h2>الإحصائيات المتقدمة</h2>
-                    <p>تحليل شامل لأداء النظام</p>
-                </div>
-
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <i class="fas fa-user-check"></i>
-                        <h4>الطلاب النشطون</h4>
-                        <div class="value" id="activeStudents">0</div>
-                    </div>
-                    <div class="stat-card">
-                        <i class="fas fa-chart-bar"></i>
-                        <h4>نسبة الإنجاز</h4>
-                        <div class="value" id="completionRate">0%</div>
-                    </div>
-                    <div class="stat-card">
-                        <i class="fas fa-medal"></i>
-                        <h4>أفضل أداء</h4>
-                        <div class="value" id="topPerformer">-</div>
-                    </div>
-                    <div class="stat-card">
-                        <i class="fas fa-clock"></i>
-                        <h4>وقت الدراسة</h4>
-                        <div class="value" id="studyTime">-</div>
-                    </div>
-                </div>
-
-                <div style="margin-top: 2rem;">
-                    <h3 style="margin-bottom: 1.5rem;">تقرير شامل</h3>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>النوع</th>
-                                <th>الإجمالي</th>
-                                <th>المكتملة</th>
-                                <th>النسبة</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>الدروس</td>
-                                <td id="analyticsLessonTotal">0</td>
-                                <td id="analyticsLessonCompleted">0</td>
-                                <td id="analyticsLessonPercent">0%</td>
-                            </tr>
-                            <tr>
-                                <td>الاختبارات</td>
-                                <td id="analyticsExamTotal">0</td>
-                                <td id="analyticsExamCompleted">0</td>
-                                <td id="analyticsExamPercent">0%</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
             </div>
         </div>
     </div>
 
-    <!-- Lesson Modal -->
+    <!-- Modals -->
     <div id="lessonModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
                 <h3 id="lessonModalTitle">الدرس</h3>
-                <button class="close-modal" onclick="closeLessonModal()"><i class="fas fa-times"></i></button>
+                <button class="close-modal" onclick="closeLessonModal()">&times;</button>
             </div>
             <div id="lessonModalBody" class="lesson-content"></div>
         </div>
     </div>
 
-    <!-- Exam Modal -->
     <div id="examModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
                 <h3 id="examModalTitle">الاختبار</h3>
-                <button class="close-modal" onclick="closeExamModal()"><i class="fas fa-times"></i></button>
+                <button class="close-modal" onclick="closeExamModal()">&times;</button>
             </div>
             <div id="examModalBody"></div>
         </div>
     </div>
 
     <script>
-        // ==================== DATA MANAGEMENT ====================
         const DB = {
             lessons: 'academy_lessons',
             exams: 'academy_exams',
@@ -1377,92 +950,8 @@
             examResults: 'academy_exam_results'
         };
 
-        const DEFAULT_SUPERVISORS = [
-            { id: 1, name: 'أ.د محمد علي', email: 'mohamad@academy.com', phone: '01012345678', joinDate: new Date().toISOString() },
-            { id: 2, name: 'أ.د فاطمة أحمد', email: 'fatima@academy.com', phone: '01098765432', joinDate: new Date().toISOString() },
-            { id: 3, name: 'أ.د سارة محمود', email: 'sara@academy.com', phone: '01111111111', joinDate: new Date().toISOString() }
-        ];
-
-        const DEFAULT_LESSONS = [
-            {
-                id: 1,
-                title: 'مقدمة في الأمن السيبراني',
-                subject: 'أمن سيبراني',
-                content: `أهمية الأمن السيبراني:
-
-الأمن السيبراني هو مجموعة من الممارسات والتقنيات والإجراءات المصممة لحماية الأنظمة والشبكات والبيانات من الوصول غير المصرح به والهجمات الإلكترونية.
-
-المزايا الرئيسية:
-1. حماية البيانات الحساسة والخصوصية
-2. منع الاختراق والسرقة الإلكترونية
-3. ضمان استمرارية العمل والخدمات
-4. الحفاظ على سمعة المؤسسة
-5. توفير الثقة للعملاء والمستخدمين
-
-أساسيات الأمن السيبراني:
-- السرية: التأكد من وصول المعلومات فقط للمستخدمين المصرح لهم
-- النزاهة: منع التعديل غير المسموح به للبيانات
-- التوفر: ضمان أن الخدمات متاحة في الوقت المطلوب
-
-نصائح عملية للحماية:
-✓ استخدم كلمات مرور قوية وفريدة
-✓ فعّل المصادقة بخطوتين (2FA)
-✓ حدّث الأنظمة والبرامج بانتظام
-✓ لا تفتح الملفات أو الروابط المشبوهة
-✓ احرص على النسخ الاحتياطية المنتظمة
-✓ استخدم برامج حماية موثوقة`,
-                supervisorId: 1,
-                createdDate: new Date().toISOString()
-            },
-            {
-                id: 2,
-                title: 'أساسيات الشبكات والاتصالات',
-                subject: 'شبكات',
-                content: `الشبكات الحاسوبية:
-
-الشبكة هي نظام يربط جهازي حاسوب أو أكثر ببعضهما البعض لتمكين تبادل البيانات والموارد.
-
-المكونات الأساسية:
-1. الأجهزة (Hardware)
-   - أجهزة الكمبيوتر والخوادم
-   - الهواتف الذكية والأجهزة اللوحية
-   - أجهزة توجيه البيانات (Routers)
-
-2. البرامج (Software)
-   - أنظمة التشغيل
-   - بروتوكولات الاتصال
-   - تطبيقات الشبكة
-
-3. الوسائط (Media)
-   - الكابلات النحاسية والبصرية
-   - الشبكات اللاسلكية
-   - الأقمار الصناعية
-
-أنواع الشبكات:
-- الشبكة المحلية (LAN)
-- الشبكة الواسعة (WAN)
-- شبكة الإنترنت الدولية
-- الشبكات الافتراضية الخاصة (VPN)
-
-فوائد الشبكات:
-✓ مشاركة الملفات والمعلومات
-✓ التواصل الفوري بين المستخدمين
-✓ الوصول المشترك للموارد
-✓ تحسين الإنتاجية والكفاءة`,
-                supervisorId: 2,
-                createdDate: new Date().toISOString()
-            }
-        ];
-
-        let currentUser = null;
-        let userRole = null;
-        let examTimer = null;
-        let currentExamQuestions = [];
-
-        // ==================== UTILITY FUNCTIONS ====================
         function getData(key) {
-            const data = localStorage.getItem(key);
-            return data ? JSON.parse(data) : [];
+            return JSON.parse(localStorage.getItem(key)) || [];
         }
 
         function setData(key, data) {
@@ -1471,780 +960,335 @@
 
         function initializeData() {
             if (!getData(DB.lessons).length) {
-                setData(DB.lessons, DEFAULT_LESSONS);
+                setData(DB.lessons, [{
+                    id: 1, title: 'مقدمة في الأمن السيبراني', subject: 'أمن سيبراني', content: 'محتوى الدرس التفاعلي الأول...'
+                }]);
             }
             if (!getData(DB.supervisors).length) {
-                setData(DB.supervisors, DEFAULT_SUPERVISORS);
+                setData(DB.supervisors, [{ id: 1, name: 'أ. محمد علي', email: 'mohamad@academy.com', phone: '01012345678' }]);
             }
         }
 
-        function showAlert(message, type = 'success') {
+        function showAlert(msg, type = 'success') {
             const alertDiv = document.getElementById('loginAlert');
-            alertDiv.innerHTML = `
-                <div class="alert alert-${type}">
-                    <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
-                    <span>${message}</span>
-                </div>
-            `;
-            setTimeout(() => {
-                alertDiv.innerHTML = '';
-            }, 4000);
+            alertDiv.innerHTML = `<div class="alert alert-${type}">${msg}</div>`;
+            setTimeout(() => alertDiv.innerHTML = '', 3000);
         }
 
-        function getInitials(name) {
-            return name.split(' ').map(n => n[0]).join('').substring(0, 2);
-        }
+        let currentUser = null;
+        let userRole = null;
+        let examTimer = null;
+        let currentExamQuestions = [];
 
-        // ==================== AUTHENTICATION ====================
         document.querySelectorAll('.mode-toggle button').forEach(btn => {
             btn.addEventListener('click', function() {
                 document.querySelectorAll('.mode-toggle button').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
-
-                const mode = this.dataset.mode;
-                const classField = document.getElementById('classField');
-                
-                if (mode === 'student') {
-                    classField.style.display = 'block';
-                } else {
-                    classField.style.display = 'none';
-                }
+                document.getElementById('classField').style.display = this.dataset.mode === 'student' ? 'block' : 'none';
             });
         });
 
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
-
             const name = document.getElementById('userName').value.trim();
             const code = document.getElementById('userCode').value.trim();
             const mode = document.querySelector('.mode-toggle button.active').dataset.mode;
 
-            let isValid = false;
-
             if (mode === 'student' && code === 'Abdo_1234') {
-                isValid = true;
                 userRole = 'student';
-                currentUser = { name, code, class: document.getElementById('userClass').value };
+                currentUser = { name, class: document.getElementById('userClass').value };
             } else if (mode === 'supervisor' && code === 'Abdo_super') {
-                isValid = true;
                 userRole = 'supervisor';
-                currentUser = { name, code };
+                currentUser = { name };
             } else if (mode === 'admin' && code === 'xzsawq21') {
-                isValid = true;
                 userRole = 'admin';
-                currentUser = { name, code };
-            }
-
-            if (!isValid) {
-                showAlert('كود الدخول غير صحيح!', 'error');
+                currentUser = { name };
+            } else {
+                showAlert('كود الدخول غير صحيح أو الصلاحية غير مطابقة!', 'error');
                 return;
             }
 
             document.getElementById('loginPage').classList.remove('active');
-
-            if (userRole === 'student') {
-                loadStudentDashboard();
-                document.getElementById('studentPage').classList.add('active');
-            } else if (userRole === 'supervisor') {
-                loadSupervisorDashboard();
-                document.getElementById('supervisorPage').classList.add('active');
-            } else if (userRole === 'admin') {
-                loadAdminDashboard();
-                document.getElementById('adminPage').classList.add('active');
-            }
+            if (userRole === 'student') { loadStudentDashboard(); document.getElementById('studentPage').classList.add('active'); }
+            else if (userRole === 'supervisor') { loadSupervisorDashboard(); document.getElementById('supervisorPage').classList.add('active'); }
+            else if (userRole === 'admin') { loadAdminDashboard(); document.getElementById('adminPage').classList.add('active'); }
         });
 
         function logout() {
-            currentUser = null;
-            userRole = null;
+            currentUser = null; userRole = null;
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById('loginPage').classList.add('active');
             document.getElementById('loginForm').reset();
         }
 
-        // ==================== STUDENT FUNCTIONS ====================
+        // Student functions
         function loadStudentDashboard() {
-            const students = getData(DB.students) || [];
-            let student = students.find(s => s.name === currentUser.name);
+            document.getElementById('studentAvatar').textContent = currentUser.name[0];
+            document.getElementById('studentName').textContent = currentUser.name;
             
-            if (!student) {
-                student = {
-                    id: Date.now(),
-                    name: currentUser.name,
-                    class: currentUser.class,
-                    joinDate: new Date().toISOString(),
-                    lessonsCompleted: 0,
-                    examsCompleted: 0
-                };
-                students.push(student);
+            let students = getData(DB.students);
+            if (!students.find(s => s.name === currentUser.name)) {
+                students.push({ name: currentUser.name, class: currentUser.class });
                 setData(DB.students, students);
             }
 
-            const initials = getInitials(student.name);
-            document.getElementById('studentAvatar').textContent = initials;
-            document.getElementById('studentName').textContent = student.name;
-
-            updateStudentStats();
-            renderStudentLessons();
-            renderStudentExams();
-            renderStudentSupervisors();
-            setupStudentTabs();
-        }
-
-        function updateStudentStats() {
-            const students = getData(DB.students);
-            const student = students.find(s => s.name === currentUser.name);
-            const supervisors = getData(DB.supervisors);
-
-            document.getElementById('completedLessons').textContent = student?.lessonsCompleted || 0;
-            document.getElementById('completedExams').textContent = student?.examsCompleted || 0;
-
-            const results = getData(DB.examResults) || [];
-            const studentResults = results.filter(r => r.studentName === currentUser.name);
-            const avgGrade = studentResults.length 
-                ? Math.round(studentResults.reduce((sum, r) => sum + r.percentage, 0) / studentResults.length)
-                : 0;
-            
-            document.getElementById('overallGrade').textContent = avgGrade + '%';
-            document.getElementById('supervisorCount').textContent = supervisors.length;
-        }
-
-        function renderStudentLessons() {
-            const lessons = getData(DB.lessons);
-            const container = document.getElementById('studentLessonsContainer');
-
-            container.innerHTML = lessons.map(lesson => `
+            // Render lessons
+            document.getElementById('studentLessonsContainer').innerHTML = getData(DB.lessons).map(l => `
                 <div class="card">
-                    <div class="card-header">
-                        <h3>${lesson.title}</h3>
-                        <p>${lesson.subject}</p>
-                    </div>
-                    <div class="card-body">
-                        <p>${lesson.content.substring(0, 100)}...</p>
-                        <span class="badge badge-info">متاح الآن</span>
-                    </div>
-                    <div class="card-footer">
-                        <button class="btn btn-primary btn-small" onclick="openLesson(${lesson.id})">
-                            <i class="fas fa-book-open"></i> اقرأ الدرس
-                        </button>
-                    </div>
+                    <div class="card-header"><h3>${l.title}</h3><p>${l.subject}</p></div>
+                    <div class="card-body"><p>${l.content.substring(0, 80)}...</p></div>
+                    <div class="card-footer"><button class="btn btn-primary btn-small" onclick="openLesson(${l.id})">اقرأ الدرس</button></div>
                 </div>
             `).join('');
-        }
 
-        function renderStudentExams() {
-            const exams = getData(DB.exams);
-            const container = document.getElementById('studentExamsContainer');
-
-            container.innerHTML = exams.map(exam => `
+            // Render exams
+            document.getElementById('studentExamsContainer').innerHTML = getData(DB.exams).map(e => `
                 <div class="card">
-                    <div class="card-header">
-                        <h3>${exam.title}</h3>
-                        <p><i class="fas fa-clock"></i> ${exam.duration} دقيقة</p>
-                    </div>
-                    <div class="card-body">
-                        <p>عدد الأسئلة: ${exam.questions.length}</p>
-                        <p>النوع: متعدد الخيارات</p>
-                    </div>
-                    <div class="card-footer">
-                        <button class="btn btn-primary btn-small" onclick="openExam(${exam.id})">
-                            <i class="fas fa-play"></i> ابدأ الاختبار
-                        </button>
-                    </div>
+                    <div class="card-header"><h3>${e.title}</h3><p>${e.duration} دقيقة</p></div>
+                    <div class="card-body"><p>عدد الأسئلة: ${e.questions.length}</p></div>
+                    <div class="card-footer"><button class="btn btn-primary btn-small" onclick="openExam(${e.id})">ابدأ الاختبار</button></div>
                 </div>
             `).join('');
-        }
 
-        function renderStudentSupervisors() {
-            const supervisors = getData(DB.supervisors);
-            const container = document.getElementById('studentSupervisorsContainer');
-
-            container.innerHTML = supervisors.map(supervisor => `
+            document.getElementById('studentSupervisorsContainer').innerHTML = getData(DB.supervisors).map(s => `
                 <div class="member-card">
-                    <div class="member-avatar">${getInitials(supervisor.name)}</div>
-                    <h4>${supervisor.name}</h4>
-                    <p style="font-style: italic; color: var(--primary);">مشرف تربوي</p>
-                    <div class="member-meta">
-                        <div class="member-meta-item">
-                            <strong><i class="fas fa-envelope"></i></strong>
-                            <span>${supervisor.email || 'غير متوفر'}</span>
-                        </div>
-                        <div class="member-meta-item">
-                            <strong><i class="fas fa-phone"></i></strong>
-                            <span>${supervisor.phone || 'غير متوفر'}</span>
-                        </div>
-                    </div>
+                    <div class="member-avatar">${s.name[0]}</div>
+                    <h4>${s.name}</h4>
+                    <p>${s.email || '-'}</p>
                 </div>
             `).join('');
-        }
 
-        function setupStudentTabs() {
-            document.querySelectorAll('#studentPage .tab-toggle').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const sectionId = this.dataset.section;
-                    
-                    document.querySelectorAll('#studentPage .tab-toggle').forEach(b => b.classList.remove('active'));
-                    document.querySelectorAll('#studentPage .tab-content').forEach(c => c.classList.remove('active'));
-
-                    this.classList.add('active');
-                    document.getElementById(sectionId).classList.add('active');
-                });
-            });
+            setupTabs('studentPage');
         }
 
         function openLesson(id) {
-            const lessons = getData(DB.lessons);
-            const lesson = lessons.find(l => l.id === id);
-            
-            if (!lesson) return;
-
+            const lesson = getData(DB.lessons).find(l => l.id === id);
             document.getElementById('lessonModalTitle').textContent = lesson.title;
             document.getElementById('lessonModalBody').textContent = lesson.content;
             document.getElementById('lessonModal').classList.add('active');
         }
-
-        function closeLessonModal() {
-            document.getElementById('lessonModal').classList.remove('active');
-        }
+        function closeLessonModal() { document.getElementById('lessonModal').classList.remove('active'); }
 
         function openExam(id) {
-            const exams = getData(DB.exams);
-            const exam = exams.find(e => e.id === id);
-            
-            if (!exam) return;
-
+            const exam = getData(DB.exams).find(e => e.id === id);
             currentExamQuestions = exam.questions;
-
             document.getElementById('examModalTitle').textContent = exam.title;
             document.getElementById('examModalBody').innerHTML = `
-                <div class="timer">
-                    <i class="fas fa-hourglass-end"></i>
-                    <span id="examTimer">${exam.duration}:00</span>
-                </div>
-
-                <div style="display: grid; gap: 1.5rem;">
-                    ${exam.questions.map((q, idx) => `
-                        <div class="exam-question">
-                            <h4>${idx + 1}. ${q.q}</h4>
-                            <div class="options">
-                                ${q.options.map((opt, optIdx) => `
-                                    <label class="option">
-                                        <input type="radio" name="q${idx}" value="${optIdx}" />
-                                        <span>${opt}</span>
-                                    </label>
-                                `).join('')}
-                            </div>
+                <div class="timer"><i class="fas fa-clock"></i> <span id="examTimer">${exam.duration}:00</span></div>
+                ${exam.questions.map((q, qIdx) => `
+                    <div class="exam-question">
+                        <h4>${qIdx + 1}.${q.q}</h4>
+                        <div class="options">
+                            ${q.options.map((opt, oIdx) => `
+                                <label class="option"><input type="radio" name="q${qIdx}" value="${oIdx}"> <span>${opt}</span></label>
+                            `).join('')}
                         </div>
-                    `).join('')}
-                </div>
-
-                <div style="margin-top: 2rem;">
-                    <button class="btn btn-primary" onclick="submitExam(${id})" style="width: 100%;">
-                        <i class="fas fa-check"></i> إرسال الإجابة
-                    </button>
-                </div>
+                    </div>
+                `).join('')}
+                <button class="btn btn-primary" style="width:100%; margin-top:1rem;" onclick="submitExam(${id})">إرسال الإجابات</button>
             `;
-
             document.getElementById('examModal').classList.add('active');
-            startExamTimer(exam.duration);
         }
+        function closeExamModal() { document.getElementById('examModal').classList.remove('active'); }
 
-        function startExamTimer(duration) {
-            clearInterval(examTimer);
-            let remaining = duration * 60;
-
-            examTimer = setInterval(() => {
-                remaining--;
-
-                const mins = Math.floor(remaining / 60);
-                const secs = remaining % 60;
-                const timerEl = document.getElementById('examTimer');
-                if (timerEl) {
-                    timerEl.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-                }
-
-                if (remaining <= 0) {
-                    clearInterval(examTimer);
-                    submitExam();
-                }
-            }, 1000);
-        }
-
-        function submitExam(examId) {
-            clearInterval(examTimer);
-
-            const answers = [];
-            currentExamQuestions.forEach((q, idx) => {
-                const selected = document.querySelector(`input[name="q${idx}"]:checked`);
-                answers.push(selected ? Number(selected.value) : -1);
-            });
-
+        function submitExam(id) {
             let correct = 0;
             currentExamQuestions.forEach((q, idx) => {
-                if (answers[idx] === Number(q.answer)) {
-                    correct++;
-                }
+                const selected = document.querySelector(`input[name="q${idx}"]:checked`);
+                if (selected && Number(selected.value) === q.answer) correct++;
             });
-
             const percentage = Math.round((correct / currentExamQuestions.length) * 100);
-            const results = getData(DB.examResults) || [];
-            results.push({
-                id: Date.now(),
-                studentName: currentUser.name,
-                correct: correct,
-                total: currentExamQuestions.length,
-                percentage: percentage,
-                date: new Date().toISOString()
-            });
-            setData(DB.examResults, results);
-
             document.getElementById('examModalBody').innerHTML = `
                 <div class="result-box">
-                    <h3>تم إرسال الإجابة بنجاح!</h3>
+                    <h3>نتيجة الاختبار</h3>
                     <div class="score">${percentage}%</div>
-                    <p><strong>${correct}/${currentExamQuestions.length}</strong> إجابات صحيحة</p>
-                    <p>${percentage >= 60 ? '🎉 أحسنت! استمر بالتفوق' : '💪 حاول مرة أخرى والنجاح قادم'}</p>
-                    <button class="btn btn-secondary" onclick="closeExamModal()" style="margin-top: 1.5rem; width: 100%;">
-                        إغلاق
-                    </button>
+                    <p>أجبت بشكل صحيح على ${correct} من ${currentExamQuestions.length}</p>
+                    <button class="btn btn-primary" onclick="closeExamModal()" style="margin-top:1rem;">إغلاق</button>
                 </div>
             `;
-
-            updateStudentStats();
         }
 
-        function closeExamModal() {
-            clearInterval(examTimer);
-            document.getElementById('examModal').classList.remove('active');
-        }
-
-        // ==================== SUPERVISOR FUNCTIONS ====================
+        // Supervisor functions
         function loadSupervisorDashboard() {
-            const initials = getInitials(currentUser.name);
-            document.getElementById('supervisorAvatar').textContent = initials;
+            document.getElementById('supervisorAvatar').textContent = currentUser.name[0];
             document.getElementById('supervisorName').textContent = currentUser.name;
+            
+            document.getElementById('totalLessons').textContent = getData(DB.lessons).length;
+            document.getElementById('totalExams').textContent = getData(DB.exams).length;
+            document.getElementById('totalStudents').textContent = getData(DB.students).length;
 
-            updateSupervisorStats();
             renderSupervisorLessons();
             renderSupervisorExams();
             renderSupervisorStudents();
-            updateReportsTable();
-            setupSupervisorTabs();
+            setupTabs('supervisorPage');
             setupSupervisorForms();
         }
 
-        function updateSupervisorStats() {
-            const lessons = getData(DB.lessons);
-            const exams = getData(DB.exams);
-            const students = getData(DB.students);
-            const results = getData(DB.examResults) || [];
-
-            document.getElementById('totalLessons').textContent = lessons.length;
-            document.getElementById('totalExams').textContent = exams.length;
-            document.getElementById('totalStudents').textContent = students.length;
-
-            const avgGrade = results.length
-                ? Math.round(results.reduce((sum, r) => sum + r.percentage, 0) / results.length)
-                : 0;
-            document.getElementById('averagePerformance').textContent = avgGrade + '%';
-        }
-
         function renderSupervisorLessons() {
-            const lessons = getData(DB.lessons);
-            const container = document.getElementById('supervisorLessonsContainer');
-
-            if (!lessons.length) {
-                container.innerHTML = '<p style="text-align: center; color: var(--text-muted);">لا توجد دروس بعد</p>';
-                return;
-            }
-
-            container.innerHTML = lessons.map(lesson => `
+            document.getElementById('supervisorLessonsContainer').innerHTML = getData(DB.lessons).map(l => `
                 <div class="card">
-                    <div class="card-header">
-                        <h3>${lesson.title}</h3>
-                        <p>${lesson.subject}</p>
-                    </div>
-                    <div class="card-body">
-                        <p>${lesson.content.substring(0, 100)}...</p>
-                    </div>
-                    <div class="card-footer">
-                        <button class="btn btn-danger btn-small" onclick="deleteSupervisorLesson(${lesson.id})">
-                            <i class="fas fa-trash"></i> حذف
-                        </button>
-                    </div>
+                    <div class="card-header"><h3>${l.title}</h3><p>${l.subject}</p></div>
+                    <div class="card-body"><p>${l.content.substring(0, 80)}...</p></div>
+                    <div class="card-footer"><button class="btn btn-danger btn-small" onclick="deleteLesson(${l.id})">حذف</button></div>
                 </div>
             `).join('');
         }
 
         function renderSupervisorExams() {
-            const exams = getData(DB.exams);
-            const container = document.getElementById('supervisorExamsContainer');
-
-            if (!exams.length) {
-                container.innerHTML = '<p style="text-align: center; color: var(--text-muted);">لا توجد اختبارات بعد</p>';
-                return;
-            }
-
-            container.innerHTML = exams.map(exam => `
+            document.getElementById('supervisorExamsContainer').innerHTML = getData(DB.exams).map(e => `
                 <div class="card">
-                    <div class="card-header">
-                        <h3>${exam.title}</h3>
-                        <p>${exam.questions.length} أسئلة • ${exam.duration} دقيقة</p>
-                    </div>
-                    <div class="card-body">
-                        <p>الأسئلة: ${exam.questions.length}</p>
-                    </div>
-                    <div class="card-footer">
-                        <button class="btn btn-danger btn-small" onclick="deleteSupervisorExam(${exam.id})">
-                            <i class="fas fa-trash"></i> حذف
-                        </button>
-                    </div>
+                    <div class="card-header"><h3>${e.title}</h3><p>${e.questions.length} أسئلة</p></div>
+                    <div class="card-footer"><button class="btn btn-danger btn-small" onclick="deleteExam(${e.id})">حذف</button></div>
                 </div>
             `).join('');
         }
 
         function renderSupervisorStudents() {
-            const students = getData(DB.students);
-            const container = document.getElementById('supervisorStudentsContainer');
-
-            if (!students.length) {
-                container.innerHTML = '<p style="text-align: center; color: var(--text-muted);">لا توجد طلاب بعد</p>';
-                return;
-            }
-
-            container.innerHTML = students.map(student => `
+            document.getElementById('supervisorStudentsContainer').innerHTML = getData(DB.students).map(s => `
                 <div class="member-card">
-                    <div class="member-avatar">${getInitials(student.name)}</div>
-                    <h4>${student.name}</h4>
-                    <p>${student.class}</p>
-                    <div class="member-meta">
-                        <div class="member-meta-item">
-                            <strong>دروس</strong>
-                            <span>${student.lessonsCompleted || 0}</span>
-                        </div>
-                        <div class="member-meta-item">
-                            <strong>اختبارات</strong>
-                            <span>${student.examsCompleted || 0}</span>
-                        </div>
-                    </div>
+                    <div class="member-avatar">${s.name[0]}</div>
+                    <h4>${s.name}</h4>
+                    <p>${s.class}</p>
                 </div>
             `).join('');
-        }
-
-        function updateReportsTable() {
-            const students = getData(DB.students);
-            const results = getData(DB.examResults) || [];
-            const tbody = document.getElementById('reportsTableBody');
-
-            if (!students.length) {
-                tbody.innerHTML = '<tr><td colspan="5" style="text-align: center;">لا توجد بيانات</td></tr>';
-                return;
-            }
-
-            tbody.innerHTML = students.map(student => {
-                const studentResults = results.filter(r => r.studentName === student.name);
-                const avgGrade = studentResults.length
-                    ? Math.round(studentResults.reduce((sum, r) => sum + r.percentage, 0) / studentResults.length)
-                    : 0;
-
-                return `
-                    <tr>
-                        <td>${student.name}</td>
-                        <td>${student.class}</td>
-                        <td>${student.lessonsCompleted || 0}</td>
-                        <td>${student.examsCompleted || 0}</td>
-                        <td><strong style="color: var(--primary);">${avgGrade}%</strong></td>
-                    </tr>
-                `;
-            }).join('');
-        }
-
-        function setupSupervisorTabs() {
-            document.querySelectorAll('#supervisorPage .tab-toggle').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const sectionId = this.dataset.section;
-                    
-                    document.querySelectorAll('#supervisorPage .tab-toggle').forEach(b => b.classList.remove('active'));
-                    document.querySelectorAll('#supervisorPage .tab-content').forEach(c => c.classList.remove('active'));
-
-                    this.classList.add('active');
-                    document.getElementById(sectionId).classList.add('active');
-                });
-            });
         }
 
         function setupSupervisorForms() {
-            document.getElementById('addLessonForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-
-                const title = this.querySelector('.lessonTitle').value.trim();
-                const subject = this.querySelector('.lessonSubject').value.trim();
-                const content = this.querySelector('.lessonContent').value.trim();
-
-                if (!title || !subject || !content) {
-                    alert('يرجى تعبئة جميع الحقول');
-                    return;
-                }
-
-                const lessons = getData(DB.lessons);
-                lessons.push({
-                    id: Date.now(),
-                    title,
-                    subject,
-                    content,
-                    supervisorId: 1,
-                    createdDate: new Date().toISOString()
-                });
-                setData(DB.lessons, lessons);
-
-                this.reset();
-                renderSupervisorLessons();
-                updateSupervisorStats();
-                alert('تم إضافة الدرس بنجاح!');
-            });
-
-            document.getElementById('addExamForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-
-                const title = this.querySelector('.examTitle').value.trim();
-                const duration = parseInt(this.querySelector('.examDuration').value) || 30;
-
-                const questions = [];
-                document.querySelectorAll('#questionsList .question-builder').forEach((qDiv, idx) => {
-                    const questionText = qDiv.querySelector('.q-text')?.value.trim() || '';
-                    const options = [];
-                    qDiv.querySelectorAll('.q-option').forEach(input => {
-                        const val = input.value.trim();
-                        if (val) options.push(val);
+            const addLessonForm = document.getElementById('addLessonForm');
+            if(addLessonForm && !addLessonForm.dataset.initialized) {
+                addLessonForm.dataset.initialized = true;
+                addLessonForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const lessons = getData(DB.lessons);
+                    lessons.push({
+                        id: Date.now(),
+                        title: this.querySelector('.lessonTitle').value,
+                        subject: this.querySelector('.lessonSubject').value,
+                        content: this.querySelector('.lessonContent').value
                     });
-                    const answer = qDiv.querySelector('.q-answer')?.value || '0';
-
-                    if (questionText && options.length >= 2) {
-                        questions.push({
-                            q: questionText,
-                            options: options,
-                            answer: parseInt(answer)
-                        });
-                    }
+                    setData(DB.lessons, lessons);
+                    this.reset();
+                    renderSupervisorLessons();
+                    alert('تم إضافة الدرس بنجاح');
                 });
 
-                if (!title || questions.length === 0) {
-                    alert('يرجى إضافة عنوان واختبار الأسئلة');
-                    return;
-                }
+                const addExamForm = document.getElementById('addExamForm');
+                addExamForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const questions = [];
+                    document.querySelectorAll('.question-builder').forEach(qDiv => {
+                        const qText = qDiv.querySelector('.q-text').value;
+                        const options = Array.from(qDiv.querySelectorAll('.q-option')).map(i => i.value).filter(v => v);
+                        const answer = Number(qDiv.querySelector('.q-answer').value);
+                        if(qText && options.length >= 2) {
+                            questions.push({ q: qText, options, answer });
+                        }
+                    });
 
-                const exams = getData(DB.exams);
-                exams.push({
-                    id: Date.now(),
-                    title,
-                    duration,
-                    questions,
-                    createdDate: new Date().toISOString()
+                    if(!questions.length) { alert('يرجى إضافة سؤال واحد على الأقل مع خياراته'); return; }
+
+                    const exams = getData(DB.exams);
+                    exams.push({
+                        id: Date.now(),
+                        title: this.querySelector('.examTitle').value,
+                        duration: Number(this.querySelector('.examDuration').value),
+                        questions
+                    });
+                    setData(DB.exams, exams);
+                    this.reset();
+                    document.getElementById('questionsList').innerHTML = '';
+                    renderSupervisorExams();
+                    alert('تم إضافة الاختبار بنجاح');
                 });
-                setData(DB.exams, exams);
 
-                document.getElementById('questionsList').innerHTML = '';
-                this.reset();
-                renderSupervisorExams();
-                updateSupervisorStats();
-                alert('تم إضافة الاختبار بنجاح!');
-            });
-
-            document.getElementById('addQuestionBtn').addEventListener('click', function() {
-                const questionsList = document.getElementById('questionsList');
-                const questionNum = questionsList.children.length + 1;
-
-                const qDiv = document.createElement('div');
-                qDiv.className = 'question-builder';
-                qDiv.innerHTML = `
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                        <h4 style="color: var(--primary); margin: 0;">السؤال ${questionNum}</h4>
-                        <button type="button" class="btn btn-danger btn-small" onclick="this.parentElement.parentElement.remove()">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="q-text" placeholder="نص السؤال" required />
-                    </div>
-                    <div class="options-grid">
-                        <div class="form-group">
-                            <label style="font-size: 0.85rem;">الخيار 1</label>
-                            <input type="text" class="q-option" placeholder="أدخل الخيار" required />
+                document.getElementById('addQuestionBtn').addEventListener('click', function() {
+                    const list = document.getElementById('questionsList');
+                    const qDiv = document.createElement('div');
+                    qDiv.className = 'question-builder';
+                    qDiv.innerHTML = `
+                        <input type="text" class="form-group q-text" placeholder="نص السؤال" required style="margin-bottom:0.5rem;" />
+                        <div class="options-grid">
+                            <input type="text" class="q-option" placeholder="الخيار 1" required />
+                            <input type="text" class="q-option" placeholder="الخيار 2" required />
+                            <input type="text" class="q-option" placeholder="الخيار 3" />
+                            <input type="text" class="q-option" placeholder="الخيار 4" />
                         </div>
-                        <div class="form-group">
-                            <label style="font-size: 0.85rem;">الخيار 2</label>
-                            <input type="text" class="q-option" placeholder="أدخل الخيار" required />
-                        </div>
-                        <div class="form-group">
-                            <label style="font-size: 0.85rem;">الخيار 3</label>
-                            <input type="text" class="q-option" placeholder="أدخل الخيار" />
-                        </div>
-                        <div class="form-group">
-                            <label style="font-size: 0.85rem;">الخيار 4</label>
-                            <input type="text" class="q-option" placeholder="أدخل الخيار" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>الإجابة الصحيحة</label>
-                        <select class="q-answer" required>
-                            <option value="0">الخيار 1</option>
-                            <option value="1">الخيار 2</option>
-                            <option value="2">الخيار 3</option>
-                            <option value="3">الخيار 4</option>
+                        <select class="form-group q-answer" style="margin-top:0.5rem;">
+                            <option value="0">الإجابة الصحيحة: الخيار 1</option>
+                            <option value="1">الإجابة الصحيحة: الخيار 2</option>
+                            <option value="2">الإجابة الصحيحة: الخيار 3</option>
+                            <option value="3">الإجابة الصحيحة: الخيار 4</option>
                         </select>
-                    </div>
-                `;
-                questionsList.appendChild(qDiv);
-            });
+                        <button type="button" class="btn btn-danger btn-small" style="margin-top:0.5rem;" onclick="this.parentElement.remove()">حذف السؤال</button>
+                    `;
+                    list.appendChild(qDiv);
+                });
+            }
         }
 
-        function deleteSupervisorLesson(id) {
-            if (!confirm('هل تريد حذف هذا الدرس نهائياً؟')) return;
-
-            const lessons = getData(DB.lessons);
-            setData(DB.lessons, lessons.filter(l => l.id !== id));
+        function deleteLesson(id) {
+            setData(DB.lessons, getData(DB.lessons).filter(l => l.id !== id));
             renderSupervisorLessons();
-            updateSupervisorStats();
-            alert('تم حذف الدرس بنجاح!');
         }
-
-        function deleteSupervisorExam(id) {
-            if (!confirm('هل تريد حذف هذا الاختبار نهائياً؟')) return;
-
-            const exams = getData(DB.exams);
-            setData(DB.exams, exams.filter(e => e.id !== id));
+        function deleteExam(id) {
+            setData(DB.exams, getData(DB.exams).filter(e => e.id !== id));
             renderSupervisorExams();
-            updateSupervisorStats();
-            alert('تم حذف الاختبار بنجاح!');
         }
 
-        // ==================== ADMIN FUNCTIONS ====================
+        // Admin functions
         function loadAdminDashboard() {
-            document.getElementById('adminAvatar').textContent = 'م';
-            updateAdminStats();
+            document.getElementById('adminTotalSupervisors').textContent = getData(DB.supervisors).length;
+            document.getElementById('adminTotalStudents').textContent = getData(DB.students).length;
             renderAdminSupervisors();
-            setupAdminTabs();
-            setupAdminForms();
-        }
+            setupTabs('adminPage');
 
-        function updateAdminStats() {
-            const supervisors = getData(DB.supervisors);
-            const students = getData(DB.students);
-            const lessons = getData(DB.lessons);
-            const exams = getData(DB.exams);
-            const results = getData(DB.examResults) || [];
-
-            document.getElementById('adminTotalSupervisors').textContent = supervisors.length;
-            document.getElementById('adminTotalStudents').textContent = students.length;
-            document.getElementById('adminTotalLessons').textContent = lessons.length;
-            document.getElementById('adminTotalExams').textContent = exams.length;
-
-            // Analytics
-            document.getElementById('activeStudents').textContent = students.length;
-            const completedCount = results.length;
-            const totalCount = (students.length * exams.length) || 1;
-            const completionRate = Math.round((completedCount / totalCount) * 100) || 0;
-            document.getElementById('completionRate').textContent = completionRate + '%';
-
-            document.getElementById('analyticsLessonTotal').textContent = lessons.length;
-            document.getElementById('analyticsExamTotal').textContent = exams.length;
+            const supForm = document.getElementById('addSupervisorForm');
+            if(supForm && !supForm.dataset.initialized) {
+                supForm.dataset.initialized = true;
+                supForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const sups = getData(DB.supervisors);
+                    sups.push({
+                        id: Date.now(),
+                        name: this.querySelector('.supervisorName').value,
+                        phone: this.querySelector('.supervisorPhone').value,
+                        email: this.querySelector('.supervisorEmail').value
+                    });
+                    setData(DB.supervisors, sups);
+                    this.reset();
+                    renderAdminSupervisors();
+                    alert('تم إضافة المشرف بنجاح');
+                });
+            }
         }
 
         function renderAdminSupervisors() {
-            const supervisors = getData(DB.supervisors);
-            const container = document.getElementById('adminSupervisorsContainer');
-
-            if (!supervisors.length) {
-                container.innerHTML = '<p style="text-align: center; color: var(--text-muted);">لا توجد مشرفين بعد</p>';
-                return;
-            }
-
-            container.innerHTML = supervisors.map(supervisor => `
+            document.getElementById('adminSupervisorsContainer').innerHTML = getData(DB.supervisors).map(s => `
                 <div class="member-card">
-                    <div class="member-avatar">${getInitials(supervisor.name)}</div>
-                    <h4>${supervisor.name}</h4>
-                    <p style="color: var(--primary); font-weight: 700;">مشرف تربوي</p>
-                    <div class="member-meta">
-                        <div class="member-meta-item">
-                            <strong>📧 البريد</strong>
-                            <span style="font-size: 0.8rem;">${supervisor.email || '-'}</span>
-                        </div>
-                        <div class="member-meta-item">
-                            <strong>📱 الهاتف</strong>
-                            <span style="font-size: 0.8rem;">${supervisor.phone || '-'}</span>
-                        </div>
-                    </div>
-                    <button class="btn btn-danger btn-small" style="width: 100%; margin-top: 1rem;" onclick="deleteAdminSupervisor(${supervisor.id})">
-                        <i class="fas fa-trash"></i> حذف
-                    </button>
+                    <div class="member-avatar">${s.name[0]}</div>
+                    <h4>${s.name}</h4>
+                    <p>${s.email || '-'}</p>
+                    <button class="btn btn-danger btn-small" style="margin-top:1rem; width:100%;" onclick="deleteSupervisor(${s.id})">حذف المشرف</button>
                 </div>
             `).join('');
         }
 
-        function setupAdminTabs() {
-            document.querySelectorAll('#adminPage .tab-toggle').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const sectionId = this.dataset.section;
-                    
-                    document.querySelectorAll('#adminPage .tab-toggle').forEach(b => b.classList.remove('active'));
-                    document.querySelectorAll('#adminPage .tab-content').forEach(c => c.classList.remove('active'));
-
-                    this.classList.add('active');
-                    document.getElementById(sectionId).classList.add('active');
-                });
-            });
-        }
-
-        function setupAdminForms() {
-            document.getElementById('addSupervisorForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-
-                const name = this.querySelector('.supervisorName').value.trim();
-                const phone = this.querySelector('.supervisorPhone').value.trim();
-                const email = this.querySelector('.supervisorEmail').value.trim();
-
-                if (!name) {
-                    alert('يرجى إدخال اسم المشرف');
-                    return;
-                }
-
-                const supervisors = getData(DB.supervisors);
-                supervisors.push({
-                    id: Date.now(),
-                    name,
-                    phone,
-                    email,
-                    joinDate: new Date().toISOString()
-                });
-                setData(DB.supervisors, supervisors);
-
-                this.reset();
-                renderAdminSupervisors();
-                updateAdminStats();
-                alert('تم إضافة المشرف بنجاح!');
-            });
-        }
-
-        function deleteAdminSupervisor(id) {
-            if (!confirm('هل تريد حذف هذا المشرف؟')) return;
-
-            const supervisors = getData(DB.supervisors);
-            setData(DB.supervisors, supervisors.filter(s => s.id !== id));
+        function deleteSupervisor(id) {
+            setData(DB.supervisors, getData(DB.supervisors).filter(s => s.id !== id));
             renderAdminSupervisors();
-            updateAdminStats();
-            alert('تم حذف المشرف بنجاح!');
         }
 
-        function clearAllData() {
-            if (!confirm('هل أنت متأكد من حذف جميع البيانات؟ هذا الإجراء نهائي!')) return;
-
-            Object.values(DB).forEach(key => localStorage.removeItem(key));
-            initializeData();
-            alert('تم حذف جميع البيانات! إعادة تحميل الصفحة...');
-            setTimeout(() => location.reload(), 1000);
+        function setupTabs(pageId) {
+            document.querySelectorAll(`#${pageId} .tab-toggle`).forEach(btn => {
+                btn.onclick = function() {
+                    document.querySelectorAll(`#${pageId} .tab-toggle`).forEach(b => b.classList.remove('active'));
+                    document.querySelectorAll(`#${pageId} .tab-content`).forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+                    document.getElementById(this.dataset.section).classList.add('active');
+                }
+            });
         }
 
-        // ==================== INITIALIZATION ====================
         initializeData();
     </script>
 </body>
