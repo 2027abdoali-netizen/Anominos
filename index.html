@@ -116,7 +116,7 @@ display: none;
 background: none;
 border: none;
 color: var(--text-muted);
-font-size: 0.95rem;
+font-size: 0.90rem;
 cursor: pointer;
 transition: color 0.3s;
 font-weight: 600;
@@ -363,7 +363,7 @@ border-radius: 8px;
 background: var(--bg-alt);
 color: var(--text);
 font-family: 'Cairo', sans-serif;
-font-size: 16px; /* Prevents auto-zoom on mobile */
+font-size: 16px;
 transition: border-color 0.3s;
 }
 
@@ -677,7 +677,6 @@ font-size: 1.1rem;
 margin: 0 auto 0.8rem;
 }
 
-/* Responsive Media Queries for Mobiles */
 @media (max-width: 768px) {
 .navbar-content {
 flex-direction: column;
@@ -816,6 +815,8 @@ height: 210px;
 <button class="tab-toggle" data-section="student-quizzes">الاختبارات</button>
 <button class="tab-toggle" data-section="student-notes">الملاحظات</button>
 <button class="tab-toggle" data-section="student-support">الدعم الفني</button>
+<button class="tab-toggle" data-section="student-supervisors">المشرفون</button>
+<button class="tab-toggle" data-section="student-certificates">الشهادات</button>
 </div>
 <div class="nav-actions">
 <button class="theme-toggle-btn" onclick="toggleTheme()"><i class="fas fa-moon" id="themeIcon"></i></button>
@@ -841,7 +842,7 @@ height: 210px;
 <div id="studentLessonsContainer" class="cards-grid"></div>
 </div>
 <div id="student-quizzes" class="tab-content">
-<div class="dashboard-header"><h2>الاختبارات التفاعلية</h2><p>اختبر معلوماتك وفهمك للدروس</p></div>
+<div class="dashboard-header"><h2>الاختبارات التفاعلية متعددة الأسئلة</h2><p>اختبر معلوماتك وفهمك للدروس</p></div>
 <div id="studentQuizzesContainer" class="cards-grid"></div>
 </div>
 <div id="student-notes" class="tab-content">
@@ -871,6 +872,14 @@ height: 210px;
 </div>
 <div id="studentSupportContainer"></div>
 </div>
+<div id="student-supervisors" class="tab-content">
+<div class="dashboard-header"><h2>مشرفو المنصة التعليمية</h2></div>
+<div id="studentSupervisorsContainer" class="members-list"></div>
+</div>
+<div id="student-certificates" class="tab-content">
+<div class="dashboard-header"><h2>شهادات التقدير والنجاح</h2></div>
+<div id="studentCertificatesContainer" class="cards-grid"></div>
+</div>
 </div>
 </div>
 
@@ -886,6 +895,7 @@ height: 210px;
 <button class="tab-toggle active" data-section="supervisor-home">الرئيسية</button>
 <button class="tab-toggle" data-section="supervisor-lessons">الدروس</button>
 <button class="tab-toggle" data-section="supervisor-quizzes">الاختبارات</button>
+<button class="tab-toggle" data-section="supervisor-grades">درجات الطلاب</button>
 <button class="tab-toggle" data-section="supervisor-students">الطلاب</button>
 <button class="tab-toggle" data-section="supervisor-support">الدعم والملاحظات</button>
 </div>
@@ -924,27 +934,37 @@ height: 210px;
 <div id="supervisorLessonsContainer" class="cards-grid"></div>
 </div>
 <div id="supervisor-quizzes" class="tab-content">
-<div class="dashboard-header"><h2>إدارة الاختبارات التفاعلية</h2></div>
+<div class="dashboard-header"><h2>إدارة الاختبارات التفاعلية متعددة الأسئلة</h2></div>
 <div class="add-form">
-<h3>إضافة اختبار جديد</h3>
+<h3>إضافة اختبار متعدد الأسئلة جديد</h3>
 <form id="addQuizForm" style="display: grid; gap: 1rem; margin-top: 1rem;">
 <input type="text" id="quizTitle" placeholder="عنوان الاختبار (مثال: اختبار الوحدة الأولى - الفيزياء)" required />
 <input type="text" id="quizSubject" placeholder="المادة الدراسية" required />
-<textarea id="quizQuestion" placeholder="نص السؤال..." required></textarea>
-<input type="text" id="quizOpt1" placeholder="الخيار الأول" required />
-<input type="text" id="quizOpt2" placeholder="الخيار الثاني" required />
-<input type="text" id="quizOpt3" placeholder="الخيار الثالث" required />
-<input type="text" id="quizOpt4" placeholder="الخيار الرابع" required />
-<select id="quizCorrect" required>
-<option value="0">الخيار الأول هو الصحيح</option>
-<option value="1">الخيار الثاني هو الصحيح</option>
-<option value="2">الخيار الثالث هو الصحيح</option>
-<option value="3">الخيار الرابع هو الصحيح</option>
+<div id="questionsBuilderContainer" style="display: grid; gap: 1rem; border: 1px dashed var(--border); padding: 1rem; border-radius: 8px;">
+<h4 style="color: var(--primary);">أسئلة الاختبار</h4>
+<div class="question-builder-item" style="background: var(--bg-alt); padding: 1rem; border-radius: 8px; display: grid; gap: 0.8rem;">
+<input type="text" class="q-text" placeholder="نص السؤال الأول" required />
+<input type="text" class="q-opt1" placeholder="الخيار الأول" required />
+<input type="text" class="q-opt2" placeholder="الخيار الثاني" required />
+<input type="text" class="q-opt3" placeholder="الخيار الثالث" required />
+<input type="text" class="q-opt4" placeholder="الخيار الرابع" required />
+<select class="q-correct" required>
+<option value="0">الخيار الأول صحيح</option>
+<option value="1">الخيار الثاني صحيح</option>
+<option value="2">الخيار الثالث صحيح</option>
+<option value="3">الخيار الرابع صحيح</option>
 </select>
-<button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> حفظ ونشر الاختبار</button>
+</div>
+</div>
+<button type="button" class="btn btn-secondary btn-small" onclick="addQuestionField()"><i class="fas fa-plus"></i> إضافة سؤال آخر للاختبار</button>
+<button type="submit" class="btn btn-primary" style="margin-top: 0.5rem;"><i class="fas fa-save"></i> حفظ ونشر الاختبار</button>
 </form>
 </div>
 <div id="supervisorQuizzesContainer" class="cards-grid"></div>
+</div>
+<div id="supervisor-grades" class="tab-content">
+<div class="dashboard-header"><h2>درجات الطلاب وتقييماتهم وإصدار الشهادات</h2></div>
+<div id="supervisorGradesContainer"></div>
 </div>
 <div id="supervisor-students" class="tab-content">
 <div class="dashboard-header"><h2>قائمة الطلاب المسجلين برقم الموبايل</h2></div>
@@ -1023,13 +1043,15 @@ quizzes: 'academy_quizzes',
 supervisors: 'academy_supervisors',
 students: 'academy_students',
 notes: 'academy_notes',
-support: 'academy_support'
+support: 'academy_support',
+results: 'academy_results',
+certificates: 'academy_certificates'
 };
 
 function getData(key) { return JSON.parse(localStorage.getItem(key)) || []; }
 function setData(key, data) { localStorage.setItem(key, JSON.stringify(data)); }
 
-// Initialize seed data if empty so dashboards are never blank
+// Initialize seed data if empty
 if(getData(DB.lessons).length === 0) {
 setData(DB.lessons, [
 {
@@ -1047,11 +1069,20 @@ if(getData(DB.quizzes).length === 0) {
 setData(DB.quizzes, [
 {
 id: 1,
-title: 'اختبار سريع في الفيزياء',
+title: 'اختبار شامل في الفيزياء الحديثة',
 subject: 'الفيزياء',
+questions: [
+{
 question: 'ما وحدة قياس الشحنة الكهربائية في النظام الدولي للوحدات؟',
 options: ['الولت', 'الكولوم', 'الأمبير', 'الجول'],
-correct: 1,
+correct: 1
+},
+{
+question: 'ما هي سرعة الضوء في الفراغ تقريباً؟',
+options: ['3 × 10^8 م/ث', '3 × 10^6 م/ث', '330 م/ث', '1500 م/ث'],
+correct: 0
+}
+],
 date: '2026-10-13'
 }
 ]);
@@ -1064,6 +1095,12 @@ id: 1,
 name: 'أستاذ أحمد محمد',
 phone: '01012345678',
 email: 'ahmed@academy.com'
+},
+{
+id: 2,
+name: 'أستاذ عبده زينهم',
+phone: '01098765432',
+email: 'abdo@academy.com'
 }
 ]);
 }
@@ -1195,6 +1232,8 @@ renderStudentLessons();
 renderStudentQuizzes();
 renderStudentNotes();
 renderStudentSupport();
+renderStudentSupervisors();
+renderStudentCertificates();
 setupTabs('studentPage');
 }
 
@@ -1212,50 +1251,80 @@ document.getElementById('studentLessonsContainer').innerHTML = lessons.map(l => 
 function renderStudentQuizzes() {
 const quizzes = getData(DB.quizzes);
 document.getElementById('studentQuizzesCount').textContent = quizzes.length;
-document.getElementById('studentQuizzesContainer').innerHTML = quizzes.length ? quizzes.map(q => `
+document.getElementById('studentQuizzesContainer').innerHTML = quizzes.length ? quizzes.map(q => {
+const questionsList = q.questions || [{ question: q.question, options: q.options, correct: q.correct }];
+return `
 <div class="card" id="quiz-card-${q.id}">
 <div class="card-header"><h3>${q.title}</h3><p>${q.subject}</p></div>
 <div class="card-body">
-<p style="font-weight:700; margin-bottom:1rem; color:var(--text);">${q.question}</p>
-<div style="display: grid; gap: 0.5rem;" id="quiz-options-${q.id}">
-${q.options.map((opt, idx) => `
-<button class="btn btn-secondary" style="text-align: right; justify-content: flex-start; width: 100%;" onclick="submitQuizAnswer(${q.id},${idx})">
-<span style="margin-left: 0.5rem; font-weight:bold;">${idx + 1}.</span>${opt}
-</button>
+<form id="quiz-form-${q.id}" onsubmit="submitMultiQuiz(event, ${q.id})">
+${questionsList.map((item, qIdx) => `
+<div style="margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem;">
+<p style="font-weight:700; margin-bottom:0.8rem; color:var(--text);">${qIdx + 1}.${item.question}</p>
+<div style="display: grid; gap: 0.5rem;">
+${item.options.map((opt, optIdx) => `
+<label style="display: flex; align-items: center; gap: 0.5rem; background: var(--bg-alt); padding: 0.6rem; border-radius: 6px; cursor: pointer; border: 1px solid var(--border);">
+<input type="radio" name="q_${q.id}_${qIdx}" value="${optIdx}" required />
+<span>${opt}</span>
+</label>
 `).join('')}
 </div>
-<div id="quiz-result-${q.id}" style="margin-top: 1rem; font-weight: 700;"></div>
 </div>
-</div>`).join('') : '<p>لا توجد اختبارات متاحة حالياً.</p>';
+`).join('')}
+<button type="submit" class="btn btn-primary" style="width: 100%;">تسليم الاختبار وإرسال النتيجة للمشرف</button>
+</form>
+<div id="quiz-result-${q.id}" style="margin-top: 1rem; font-weight: 700; text-align: center;"></div>
+</div>
+</div>`;
+}).join('') : '<p>لا توجد اختبارات متاحة حالياً.</p>';
 }
 
-function submitQuizAnswer(quizId, selectedIdx) {
+function submitMultiQuiz(e, quizId) {
+e.preventDefault();
 const quizzes = getData(DB.quizzes);
 const quiz = quizzes.find(q => q.id === quizId);
 if(!quiz) return;
 
-const resultEl = document.getElementById(`quiz-result-${quizId}`);
-const optionsContainer = document.getElementById(`quiz-options-${quizId}`);
-const buttons = optionsContainer.querySelectorAll('button');
+const questionsList = quiz.questions || [{ question: quiz.question, options: quiz.options, correct: quiz.correct }];
+let score = 0;
+const form = document.getElementById(`quiz-form-${quizId}`);
 
-buttons.forEach((btn, idx) => {
-btn.disabled = true;
-if(idx == quiz.correct) {
-btn.style.background = 'rgba(52, 211, 153, 0.2)';
-btn.style.borderColor = 'var(--success)';
-btn.style.color = 'var(--success)';
-} else if(idx === selectedIdx && idx != quiz.correct) {
-btn.style.background = 'rgba(248, 113, 113, 0.2)';
-btn.style.borderColor = 'var(--danger)';
-btn.style.color = 'var(--danger)';
+questionsList.forEach((item, qIdx) => {
+const selected = form.querySelector(`input[name="q_${quizId}_${qIdx}"]:checked`);
+if(selected && parseInt(selected.value) === parseInt(item.correct)) {
+score++;
 }
 });
 
-if(selectedIdx == quiz.correct) {
-resultEl.innerHTML = `<span style="color: var(--success);"><i class="fas fa-check-circle"></i> إجابة صحيحة! أحسنت.</span>`;
-} else {
-resultEl.innerHTML = `<span style="color: var(--danger);"><i class="fas fa-times-circle"></i> إجابة خاطئة. الإجابة الصحيحة هي الخيار رقم ${parseInt(quiz.correct) + 1}.</span>`;
-}
+const total = questionsList.length;
+const percentage = Math.round((score / total) * 100);
+const passed = percentage >= 50;
+
+let results = getData(DB.results);
+results = results.filter(r => !(r.studentPhone === currentUser.phone && r.quizId === quizId));
+results.push({
+id: Date.now(),
+studentName: currentUser.name,
+studentPhone: currentUser.phone,
+quizId: quiz.id,
+quizTitle: quiz.title,
+score: `${score} / ${total} (${percentage}%)`,
+status: passed ? 'ناجح' : 'راسب',
+evaluation: 'لم يتم التقييم بعد',
+date: new Date().toLocaleDateString('ar-EG')
+});
+setData(DB.results, results);
+
+const resultEl = document.getElementById(`quiz-result-${quizId}`);
+resultEl.innerHTML = `
+<div style="padding: 1rem; background: var(--bg-alt); border-radius: 8px; border: 1px solid var(--border);">
+<p style="font-size: 1.1rem; color: ${passed ? 'var(--success)' : 'var(--danger)'};">
+نتيجتك: ${score} من ${total} (${percentage}%) - ${passed ? 'ناجح 🎉' : 'تحتاج لمراجعة الدرس'}
+</p>
+<p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.4rem;">تم إرسال درجتك إلى مشرفي المنصة بنجاح.</p>
+</div>
+`;
+form.querySelectorAll('input, button').forEach(el => el.disabled = true);
 }
 
 function renderStudentNotes() {
@@ -1310,6 +1379,37 @@ renderStudentSupport();
 alert('تم إرسال رسالتك إلى الدعم الفني بنجاح');
 });
 
+function renderStudentSupervisors() {
+const sups = getData(DB.supervisors);
+document.getElementById('studentSupervisorsContainer').innerHTML = sups.length ? sups.map(s => `
+<div class="member-card">
+<div class="member-avatar">${s.name[0]}</div>
+<h4>${s.name}</h4>
+<p style="color:var(--primary); font-weight:700;">مشرف أكاديمي</p>
+<p style="font-size:0.85rem; color:var(--text-muted);">${s.phone || ''}</p>
+</div>
+`).join('') : '<p>لا يوجد مشرفون مسجلون حالياً.</p>';
+}
+
+function renderStudentCertificates() {
+const certs = getData(DB.certificates).filter(c => c.studentPhone === currentUser.phone);
+document.getElementById('studentCertificatesContainer').innerHTML = certs.length ? certs.map(c => `
+<div class="card" style="border: 2px solid var(--warning); background: linear-gradient(135deg, var(--panel), var(--bg-alt));">
+<div class="card-header" style="background: linear-gradient(135deg, #fbbf24, #d97706); color: #0f172a;">
+<h3><i class="fas fa-award"></i> شهادة تقدير ونجاح</h3>
+<p>منصة Abdo_zeinhom Academy</p>
+</div>
+<div class="card-body" style="text-align: center; padding: 2rem 1rem;">
+<p style="font-size: 1.1rem; color: var(--text-muted);">تشهد إدارة المنصة بأن الطالب:</p>
+<h2 style="color: var(--primary); margin: 0.5rem 0 1.5rem; font-size: 1.8rem;">${c.studentName}</h2>
+<p style="font-size: 1.05rem; line-height: 1.8;">قد اجتاز بنجاح الاختبار التفاعلي:</p>
+<h4 style="color: var(--secondary); margin: 0.5rem 0 1.5rem; font-size: 1.2rem;">${c.quizTitle}</h4>
+<p style="font-size: 0.9rem; color: var(--text-muted);">بواسطة المشرف: <strong>${c.issuedBy}</strong> بتاريخ ${c.date}</p>
+</div>
+</div>
+`).join('') : '<p>لا توجد شهادات معتمدة حتى الآن. اجتاز الاختبارات ليقوم المشرفون بإصدار شهادتك.</p>';
+}
+
 // Supervisor Dashboard Functions
 function loadSupervisorDashboard() {
 document.getElementById('supervisorName').textContent = currentUser.name;
@@ -1319,6 +1419,7 @@ document.getElementById('totalSupportCount').textContent = getData(DB.support).l
 
 renderSupervisorLessons();
 renderSupervisorQuizzes();
+renderSupervisorGrades();
 renderSupervisorStudents();
 renderSupervisorSupportAndNotes();
 setupTabs('supervisorPage');
@@ -1350,52 +1451,161 @@ renderSupervisorLessons();
 alert('تم حفظ الدرس بنجاح');
 });
 
-function renderSupervisorQuizzes() {
-const quizzes = getData(DB.quizzes);
-document.getElementById('totalQuizzesCount').textContent = quizzes.length;
-document.getElementById('supervisorQuizzesContainer').innerHTML = quizzes.length ? quizzes.map(q => `
-<div class="card">
-<div class="card-header"><h3>${q.title}</h3><p>${q.subject}</p></div>
-<div class="card-body">
-<p><strong>السؤال:</strong> ${q.question}</p>
-<ul style="list-style: none; padding: 0; margin-top: 0.5rem; color: var(--text-muted);">
-<li>1. ${q.options[0]}</li>
-<li>2. ${q.options[1]}</li>
-<li>3. ${q.options[2]}</li>
-<li>4. ${q.options[3]}</li>
-</ul>
-<p style="margin-top: 0.8rem; color: var(--success); font-weight: 700;">الإجابة الصحيحة: الخيار رقم ${parseInt(q.correct) + 1}</p>
+function addQuestionField() {
+const container = document.getElementById('questionsBuilderContainer');
+const div = document.createElement('div');
+div.className = 'question-builder-item';
+div.style.cssText = 'background: var(--bg-alt); padding: 1rem; border-radius: 8px; display: grid; gap: 0.8rem; margin-top: 0.5rem; border-top: 1px solid var(--border);';
+div.innerHTML = `
+<div style="display: flex; justify-content: space-between; align-items: center;">
+<span style="font-weight: 700; color: var(--primary);">سؤال جديد</span>
+<button type="button" class="btn btn-danger btn-small" onclick="this.parentElement.parentElement.remove()">حذف</button>
 </div>
-<div class="card-footer"><button class="btn btn-danger btn-small" onclick="deleteQuiz(${q.id})">حذف الاختبار</button></div>
-</div>`).join('') : '<p>لا توجد اختبارات مضافة حالياً.</p>';
+<input type="text" class="q-text" placeholder="نص السؤال" required />
+<input type="text" class="q-opt1" placeholder="الخيار الأول" required />
+<input type="text" class="q-opt2" placeholder="الخيار الثاني" required />
+<input type="text" class="q-opt3" placeholder="الخيار الثالث" required />
+<input type="text" class="q-opt4" placeholder="الخيار الرابع" required />
+<select class="q-correct" required>
+<option value="0">الخيار الأول صحيح</option>
+<option value="1">الخيار الثاني صحيح</option>
+<option value="2">الخيار الثالث صحيح</option>
+<option value="3">الخيار الرابع صحيح</option>
+</select>
+`;
+container.appendChild(div);
 }
 
 document.getElementById('addQuizForm').addEventListener('submit', function(e) {
 e.preventDefault();
+const title = document.getElementById('quizTitle').value;
+const subject = document.getElementById('quizSubject').value;
+
+const questionItems = document.querySelectorAll('.question-builder-item');
+const questions = [];
+questionItems.forEach(item => {
+questions.push({
+question: item.querySelector('.q-text').value,
+options: [
+item.querySelector('.q-opt1').value,
+item.querySelector('.q-opt2').value,
+item.querySelector('.q-opt3').value,
+item.querySelector('.q-opt4').value
+],
+correct: item.querySelector('.q-correct').value
+});
+});
+
 const quizzes = getData(DB.quizzes);
 quizzes.push({
 id: Date.now(),
-title: document.getElementById('quizTitle').value,
-subject: document.getElementById('quizSubject').value,
-question: document.getElementById('quizQuestion').value,
-options: [
-document.getElementById('quizOpt1').value,
-document.getElementById('quizOpt2').value,
-document.getElementById('quizOpt3').value,
-document.getElementById('quizOpt4').value
-],
-correct: document.getElementById('quizCorrect').value,
+title,
+subject,
+questions,
 date: new Date().toLocaleDateString('ar-EG')
 });
 setData(DB.quizzes, quizzes);
 this.reset();
+document.getElementById('questionsBuilderContainer').innerHTML = `
+<h4 style="color: var(--primary);">أسئلة الاختبار</h4>
+<div class="question-builder-item" style="background: var(--bg-alt); padding: 1rem; border-radius: 8px; display: grid; gap: 0.8rem;">
+<input type="text" class="q-text" placeholder="نص السؤال الأول" required />
+<input type="text" class="q-opt1" placeholder="الخيار الأول" required />
+<input type="text" class="q-opt2" placeholder="الخيار الثاني" required />
+<input type="text" class="q-opt3" placeholder="الخيار الثالث" required />
+<input type="text" class="q-opt4" placeholder="الخيار الرابع" required />
+<select class="q-correct" required>
+<option value="0">الخيار الأول صحيح</option>
+<option value="1">الخيار الثاني صحيح</option>
+<option value="2">الخيار الثالث صحيح</option>
+<option value="3">الخيار الرابع صحيح</option>
+</select>
+</div>
+`;
 renderSupervisorQuizzes();
-alert('تم إضافة ونشر الاختبار بنجاح');
+alert('تم إضافة ونشر الاختبار المتعدد الأسئلة بنجاح');
 });
+
+function renderSupervisorQuizzes() {
+const quizzes = getData(DB.quizzes);
+document.getElementById('totalQuizzesCount').textContent = quizzes.length;
+document.getElementById('supervisorQuizzesContainer').innerHTML = quizzes.length ? quizzes.map(q => {
+const questionsList = q.questions || [{ question: q.question, options: q.options, correct: q.correct }];
+return `
+<div class="card">
+<div class="card-header"><h3>${q.title}</h3><p>${q.subject}</p></div>
+<div class="card-body">
+<p><strong>عدد الأسئلة:</strong> ${questionsList.length}</p>
+</div>
+<div class="card-footer"><button class="btn btn-danger btn-small" onclick="deleteQuiz(${q.id})">حذف الاختبار</button></div>
+</div>`;
+}).join('') : '<p>لا توجد اختبارات مضافة حالياً.</p>';
+}
 
 function deleteQuiz(id) {
 setData(DB.quizzes, getData(DB.quizzes).filter(q => q.id !== id));
 renderSupervisorQuizzes();
+}
+
+function renderSupervisorGrades() {
+const results = getData(DB.results);
+const certificates = getData(DB.certificates);
+
+document.getElementById('supervisorGradesContainer').innerHTML = results.length ? results.map(r => {
+const hasCertificate = certificates.some(c => c.studentPhone === r.studentPhone && c.quizTitle === r.quizTitle);
+return `
+<div class="card" style="margin-bottom: 1rem;">
+<div class="card-header"><h3>طالب: ${r.studentName} (${r.studentPhone})</h3><p>الاختبار: ${r.quizTitle}</p></div>
+<div class="card-body">
+<p><strong>الدرجة:</strong> ${r.score}</p>
+<p><strong>الحالة:</strong> <span style="color: ${r.status === 'ناجح' ? 'var(--success)' : 'var(--danger)'}; font-weight: bold;">${r.status}</span></p>
+<p><strong>تقييم المشرف:</strong> <span id="eval-text-${r.id}">${r.evaluation || 'لم يتم التقييم بعد'}</span></p>
+<div style="margin-top: 1rem; display: flex; gap: 0.8rem; flex-wrap: wrap;">
+<input type="text" id="eval-input-${r.id}" placeholder="اكتب تقييم المشرف هنا..." style="flex: 1; padding: 0.5rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg-alt); color: var(--text);" />
+<button class="btn btn-primary btn-small" onclick="saveEvaluation(${r.id})">حفظ التقييم</button>
+${r.status === 'ناجح' && !hasCertificate ? `
+<button class="btn btn-primary btn-small" style="background: linear-gradient(135deg, #fbbf24, #d97706); color: #0f172a;" onclick="issueCertificate('${r.studentPhone}', '${r.studentName}', '${r.quizTitle}')">إصدار شهادة نجاح</button>
+` : hasCertificate ? `<span style="color: var(--success); font-weight: bold; align-self: center;"><i class="fas fa-certificate"></i> تم إصدار الشهادة</span>` : ''}
+</div>
+</div>
+</div>`;
+}).join('') : '<p>لا توجد درجات مسجلة للطلاب حتى الآن.</p>';
+}
+
+function saveEvaluation(resultId) {
+const input = document.getElementById(`eval-input-${resultId}`);
+const val = input.value.trim();
+if(!val) {
+alert('يرجى كتابة التقييم أولاً.');
+return;
+}
+let results = getData(DB.results);
+const res = results.find(r => r.id === resultId);
+if(res) {
+res.evaluation = val;
+setData(DB.results, results);
+renderSupervisorGrades();
+alert('تم حفظ تقييم المشرف بنجاح');
+}
+}
+
+function issueCertificate(phone, name, quizTitle) {
+let certificates = getData(DB.certificates);
+if(certificates.some(c => c.studentPhone === phone && c.quizTitle === quizTitle)) {
+alert('تم إصدار شهادة لهذا الطالب مسبقاً.');
+return;
+}
+certificates.push({
+id: Date.now(),
+studentPhone: phone,
+studentName: name,
+quizTitle: quizTitle,
+issuedBy: currentUser.name,
+date: new Date().toLocaleDateString('ar-EG')
+});
+setData(DB.certificates, certificates);
+renderSupervisorGrades();
+alert(`تم إصدار شهادة النجاح للطالب ${name} بنجاح!`);
 }
 
 function renderSupervisorStudents() {
