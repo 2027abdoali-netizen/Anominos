@@ -1,1295 +1,1269 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Abdo_zeinhom Academy - المنصة التعليمية الاحترافية</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-
-    <style>
-        :root {
-            --primary: #34d399;
-            --secondary: #38bdf8;
-            --danger: #f87171;
-            --warning: #fbbf24;
-            --success: #34d399;
-            --bg: #0f172a;
-            --bg-alt: #1e293b;
-            --panel: #1a1f2e;
-            --border: #2d3748;
-            --text: #e2e8f0;
-            --text-muted: #94a3b8;
-            --shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html, body {
-            font-family: 'Cairo', sans-serif;
-            background: linear-gradient(135deg, var(--bg) 0%, #1a2332 100%);
-            color: var(--text);
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        .navbar {
-            background: rgba(15, 23, 42, 0.95);
-            border-bottom: 1px solid var(--border);
-            padding: 1rem 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-        }
-
-        .navbar-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary);
-        }
-
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #0f172a;
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-            flex: 1;
-            justify-content: center;
-        }
-
-        .nav-menu button {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 1rem;
-            cursor: pointer;
-            transition: color 0.3s;
-            font-weight: 600;
-        }
-
-        .nav-menu button:hover {
-            color: var(--primary);
-        }
-
-        .nav-menu button.active {
-            color: var(--primary);
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 0.5rem;
-        }
-
-        .nav-actions {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        .btn {
-            padding: 0.6rem 1.2rem;
-            border: none;
-            border-radius: 8px;
-            font-weight: 700;
-            cursor: pointer;
-            font-size: 0.95rem;
-            transition: all 0.3s;
-            font-family: 'Cairo', sans-serif;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), #22c55e);
-            color: #0f172a;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(52, 211, 153, 0.3);
-        }
-
-        .btn-secondary {
-            background: var(--bg-alt);
-            border: 1px solid var(--border);
-            color: var(--text);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--secondary);
-            color: var(--secondary);
-        }
-
-        .btn-danger {
-            background: rgba(248, 113, 113, 0.1);
-            border: 1px solid rgba(248, 113, 113, 0.3);
-            color: var(--danger);
-        }
-
-        .btn-danger:hover {
-            background: rgba(248, 113, 113, 0.2);
-        }
-
-        .btn-small {
-            padding: 0.4rem 0.8rem;
-            font-size: 0.85rem;
-        }
-
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 0.5rem 1rem;
-            background: var(--panel);
-            border-radius: 8px;
-            border: 1px solid var(--border);
-        }
-
-        .user-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #0f172a;
-            font-weight: 800;
-        }
-
-        .user-details h4 {
-            font-size: 0.9rem;
-            margin: 0;
-        }
-
-        .user-details p {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin: 0;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .page {
-            display: none;
-        }
-
-        .page.active {
-            display: block;
-            animation: fadeIn 0.3s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .login-container {
-            display: flex;
-            min-height: 100vh;
-            align-items: center;
-            justify-content: center;
-            gap: 3rem;
-            padding: 2rem;
-        }
-
-        .login-left {
-            flex: 1;
-            max-width: 500px;
-        }
-
-        .login-left h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .login-left p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-
-        .login-features {
-            display: grid;
-            gap: 1rem;
-        }
-
-        .feature-item {
-            display: flex;
-            gap: 1rem;
-            padding: 1rem;
-            background: var(--panel);
-            border-radius: 8px;
-            border-left: 3px solid var(--primary);
-        }
-
-        .feature-item i {
-            color: var(--primary);
-            font-size: 1.3rem;
-            min-width: 30px;
-        }
-
-        .login-form {
-            background: var(--panel);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            box-shadow: var(--shadow);
-            flex: 1;
-            max-width: 400px;
-        }
-
-        .login-form h2 {
-            margin-bottom: 1.5rem;
-            text-align: center;
-            font-size: 1.5rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-            color: var(--text);
-        }
-
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            background: rgba(0, 0, 0, 0.3);
-            color: var(--text);
-            font-family: 'Cairo', sans-serif;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus, .form-group select:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.1);
-        }
-
-        .mode-toggle {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .mode-toggle button {
-            flex: 1;
-            padding: 0.7rem;
-            border: 1px solid var(--border);
-            background: transparent;
-            color: var(--text-muted);
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 700;
-            transition: all 0.3s;
-        }
-
-        .mode-toggle button.active {
-            background: var(--primary);
-            color: #0f172a;
-            border-color: var(--primary);
-        }
-
-        .alert {
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        .alert-success {
-            background: rgba(52, 211, 153, 0.1);
-            border: 1px solid rgba(52, 211, 153, 0.3);
-            color: var(--success);
-        }
-
-        .alert-error {
-            background: rgba(248, 113, 113, 0.1);
-            border: 1px solid rgba(248, 113, 113, 0.3);
-            color: var(--danger);
-        }
-
-        .dashboard-header {
-            margin-bottom: 2rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .dashboard-header h2 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .dashboard-header p {
-            color: var(--text-muted);
-            font-size: 1rem;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .stat-card {
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.5rem;
-            transition: all 0.3s;
-        }
-
-        .stat-card:hover {
-            border-color: var(--primary);
-        }
-
-        .stat-card i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .stat-card h4 {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-        }
-
-        .stat-card .value {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--text);
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-
-        .card {
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.3s;
-        }
-
-        .card:hover {
-            border-color: var(--primary);
-            transform: translateY(-5px);
-        }
-
-        .card-header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            padding: 1.5rem;
-            color: #0f172a;
-        }
-
-        .card-header h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .card-body {
-            padding: 1.5rem;
-        }
-
-        .card-body p {
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-
-        .card-footer {
-            padding: 1rem 1.5rem;
-            border-top: 1px solid var(--border);
-            display: flex;
-            gap: 0.8rem;
-            flex-wrap: wrap;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 0.4rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            background: rgba(52, 211, 153, 0.1);
-            color: var(--primary);
-            border: 1px solid rgba(52, 211, 153, 0.3);
-        }
-
-        .badge-info {
-            background: rgba(56, 189, 248, 0.1);
-            color: var(--secondary);
-            border-color: rgba(56, 189, 248, 0.3);
-        }
-
-        .lesson-content {
-            background: var(--bg-alt);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            line-height: 1.8;
-            white-space: pre-wrap;
-            color: var(--text);
-        }
-
-        .exam-question {
-            background: var(--bg-alt);
-            padding: 1.5rem;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            margin-bottom: 1.5rem;
-        }
-
-        .options {
-            display: grid;
-            gap: 0.8rem;
-            margin-top: 1rem;
-        }
-
-        .option {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 0.8rem;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .option:hover {
-            border-color: var(--primary);
-            background: rgba(52, 211, 153, 0.05);
-        }
-
-        .timer {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            padding: 1rem;
-            background: rgba(251, 191, 36, 0.1);
-            border: 1px solid rgba(251, 191, 36, 0.3);
-            border-radius: 8px;
-            color: var(--warning);
-            font-weight: 700;
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .question-builder {
-            background: var(--bg-alt);
-            padding: 1.5rem;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            margin-bottom: 1.5rem;
-        }
-
-        .options-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin: 1rem 0;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2rem;
-            width: 100%;
-            max-width: 700px;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .close-modal {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--text-muted);
-            cursor: pointer;
-        }
-
-        .result-box {
-            background: rgba(52, 211, 153, 0.1);
-            border: 1px solid rgba(52, 211, 153, 0.3);
-            padding: 2rem;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .result-box .score {
-            font-size: 2.5rem;
-            color: var(--primary);
-            font-weight: 800;
-            margin: 1rem 0;
-        }
-
-        .members-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .member-card {
-            background: var(--bg-alt);
-            padding: 1.5rem;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            text-align: center;
-        }
-
-        .member-avatar {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #0f172a;
-            font-weight: 800;
-            font-size: 1.5rem;
-            margin: 0 auto 1rem;
-        }
-
-        .member-meta {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.8rem;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid var(--border);
-            font-size: 0.8rem;
-        }
-
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-            background: var(--panel);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .table th, .table td {
-            padding: 1rem;
-            text-align: right;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .table th {
-            background: var(--bg-alt);
-            color: var(--primary);
-        }
-
-        .add-form {
-            background: var(--panel);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        textarea {
-            width: 100%;
-            min-height: 150px;
-            padding: 1rem;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            background: rgba(0,0,0,0.3);
-            color: var(--text);
-            font-family: 'Cairo', sans-serif;
-            resize: vertical;
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Abdo_zeinhom Academy - المنصة التعليمية الاحترافية</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+<style>
+:root {
+--primary: #34d399;
+--secondary: #38bdf8;
+--danger: #f87171;
+--warning: #fbbf24;
+--success: #34d399;
+--bg: #0f172a;
+--bg-alt: #1e293b;
+--panel: #1a1f2e;
+--border: #2d3748;
+--text: #e2e8f0;
+--text-muted: #94a3b8;
+--shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+body.light-mode {
+--primary: #059669;
+--secondary: #0284c7;
+--danger: #dc2626;
+--warning: #d97706;
+--success: #059669;
+--bg: #f8fafc;
+--bg-alt: #f1f5f9;
+--panel: #ffffff;
+--border: #cbd5e1;
+--text: #0f172a;
+--text-muted: #64748b;
+--shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+html, body {
+font-family: 'Cairo', sans-serif;
+background: linear-gradient(135deg, var(--bg) 0%, var(--bg-alt) 100%);
+color: var(--text);
+min-height: 100vh;
+overflow-x: hidden;
+transition: background 0.3s, color 0.3s;
+}
+
+.navbar {
+background: var(--panel);
+border-bottom: 1px solid var(--border);
+padding: 1rem 2rem;
+position: sticky;
+top: 0;
+z-index: 1000;
+backdrop-filter: blur(10px);
+}
+
+.navbar-content {
+max-width: 1400px;
+margin: 0 auto;
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 2rem;
+}
+
+.logo {
+display: flex;
+align-items: center;
+gap: 0.8rem;
+font-size: 1.5rem;
+font-weight: 800;
+color: var(--primary);
+}
+
+.logo-icon {
+width: 40px;
+height: 40px;
+background: linear-gradient(135deg, var(--primary), var(--secondary));
+border-radius: 10px;
+display: flex;
+align-items: center;
+justify-content: center;
+color: #ffffff;
+}
+
+.nav-menu {
+display: flex;
+gap: 1.5rem;
+align-items: center;
+flex: 1;
+justify-content: center;
+}
+
+.nav-menu button {
+background: none;
+border: none;
+color: var(--text-muted);
+font-size: 0.95rem;
+cursor: pointer;
+transition: color 0.3s;
+font-weight: 600;
+font-family: 'Cairo', sans-serif;
+}
+
+.nav-menu button:hover {
+color: var(--primary);
+}
+
+.nav-menu button.active {
+color: var(--primary);
+border-bottom: 2px solid var(--primary);
+padding-bottom: 0.5rem;
+}
+
+.nav-actions {
+display: flex;
+gap: 1rem;
+align-items: center;
+}
+
+.theme-toggle-btn {
+background: var(--bg-alt);
+border: 1px solid var(--border);
+color: var(--warning);
+width: 40px;
+height: 40px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+transition: all 0.3s;
+font-size: 1.1rem;
+}
+
+.theme-toggle-btn:hover {
+transform: scale(1.1);
+border-color: var(--warning);
+}
+
+.btn {
+padding: 0.6rem 1.2rem;
+border: none;
+border-radius: 8px;
+font-weight: 700;
+cursor: pointer;
+font-size: 0.95rem;
+transition: all 0.3s;
+font-family: 'Cairo', sans-serif;
+}
+
+.btn-primary {
+background: linear-gradient(135deg, var(--primary), #22c55e);
+color: #0f172a;
+}
+
+.btn-primary:hover {
+transform: translateY(-2px);
+box-shadow: 0 10px 25px rgba(52, 211, 153, 0.3);
+}
+
+.btn-secondary {
+background: var(--bg-alt);
+border: 1px solid var(--border);
+color: var(--text);
+}
+
+.btn-secondary:hover {
+border-color: var(--secondary);
+color: var(--secondary);
+}
+
+.btn-danger {
+background: rgba(248, 113, 113, 0.1);
+border: 1px solid rgba(248, 113, 113, 0.3);
+color: var(--danger);
+}
+
+.btn-danger:hover {
+background: rgba(248, 113, 113, 0.2);
+}
+
+.btn-small {
+padding: 0.4rem 0.8rem;
+font-size: 0.85rem;
+}
+
+.user-info {
+display: flex;
+align-items: center;
+gap: 1rem;
+padding: 0.5rem 1rem;
+background: var(--bg-alt);
+border-radius: 8px;
+border: 1px solid var(--border);
+}
+
+.user-avatar {
+width: 40px;
+height: 40px;
+border-radius: 50%;
+background: linear-gradient(135deg, var(--primary), var(--secondary));
+display: flex;
+align-items: center;
+justify-content: center;
+color: #ffffff;
+font-weight: 800;
+}
+
+.user-details h4 {
+font-size: 0.9rem;
+margin: 0;
+color: var(--text);
+}
+
+.user-details p {
+font-size: 0.8rem;
+color: var(--text-muted);
+margin: 0;
+}
+
+.container {
+max-width: 1400px;
+margin: 0 auto;
+padding: 2rem;
+}
+
+.page {
+display: none;
+}
+
+.page.active {
+display: block;
+animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+from { opacity: 0; transform: translateY(10px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+.login-container {
+display: flex;
+min-height: 100vh;
+align-items: center;
+justify-content: center;
+gap: 3rem;
+padding: 2rem;
+}
+
+.login-left {
+flex: 1;
+max-width: 500px;
+}
+
+.login-left h1 {
+font-size: 3rem;
+margin-bottom: 1rem;
+background: linear-gradient(135deg, var(--primary), var(--secondary));
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+
+.login-left p {
+color: var(--text-muted);
+font-size: 1.1rem;
+margin-bottom: 2rem;
+line-height: 1.8;
+}
+
+.login-features {
+display: grid;
+gap: 1rem;
+}
+
+.feature-item {
+display: flex;
+gap: 1rem;
+padding: 1rem;
+background: var(--panel);
+border-radius: 8px;
+border-left: 3px solid var(--primary);
+border: 1px solid var(--border);
+}
+
+.feature-item i {
+color: var(--primary);
+font-size: 1.3rem;
+min-width: 30px;
+}
+
+.login-form {
+background: var(--panel);
+padding: 2rem;
+border-radius: 12px;
+border: 1px solid var(--border);
+box-shadow: var(--shadow);
+flex: 1;
+max-width: 420px;
+}
+
+.login-form h2 {
+margin-bottom: 1.5rem;
+text-align: center;
+font-size: 1.5rem;
+color: var(--text);
+}
+
+.form-group {
+margin-bottom: 1.2rem;
+}
+
+.form-group label {
+display: block;
+margin-bottom: 0.5rem;
+font-weight: 700;
+color: var(--text);
+}
+
+.form-group input, .form-group select {
+width: 100%;
+padding: 0.75rem;
+border: 1px solid var(--border);
+border-radius: 8px;
+background: var(--bg-alt);
+color: var(--text);
+font-family: 'Cairo', sans-serif;
+font-size: 1rem;
+transition: border-color 0.3s;
+}
+
+.form-group input:focus, .form-group select:focus {
+outline: none;
+border-color: var(--primary);
+box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.1);
+}
+
+.mode-toggle {
+display: flex;
+gap: 0.5rem;
+margin-bottom: 1.5rem;
+}
+
+.mode-toggle button {
+flex: 1;
+padding: 0.7rem;
+border: 1px solid var(--border);
+background: transparent;
+color: var(--text-muted);
+border-radius: 6px;
+cursor: pointer;
+font-weight: 700;
+transition: all 0.3s;
+font-family: 'Cairo', sans-serif;
+}
+
+.mode-toggle button.active {
+background: var(--primary);
+color: #0f172a;
+border-color: var(--primary);
+}
+
+.alert {
+padding: 1rem;
+border-radius: 8px;
+margin-bottom: 1rem;
+display: flex;
+align-items: center;
+gap: 0.8rem;
+}
+
+.alert-success {
+background: rgba(52, 211, 153, 0.1);
+border: 1px solid rgba(52, 211, 153, 0.3);
+color: var(--success);
+}
+
+.alert-error {
+background: rgba(248, 113, 113, 0.1);
+border: 1px solid rgba(248, 113, 113, 0.3);
+color: var(--danger);
+}
+
+.dashboard-header {
+margin-bottom: 2rem;
+padding-bottom: 2rem;
+border-bottom: 1px solid var(--border);
+}
+
+.dashboard-header h2 {
+font-size: 2rem;
+margin-bottom: 0.5rem;
+color: var(--text);
+}
+
+.dashboard-header p {
+color: var(--text-muted);
+font-size: 1rem;
+}
+
+.stats-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+gap: 1.5rem;
+margin-bottom: 3rem;
+}
+
+.stat-card {
+background: var(--panel);
+border: 1px solid var(--border);
+border-radius: 12px;
+padding: 1.5rem;
+transition: all 0.3s;
+box-shadow: var(--shadow);
+}
+
+.stat-card:hover {
+border-color: var(--primary);
+transform: translateY(-3px);
+}
+
+.stat-card i {
+font-size: 2.5rem;
+color: var(--primary);
+margin-bottom: 1rem;
+}
+
+.stat-card h4 {
+font-size: 0.9rem;
+color: var(--text-muted);
+margin-bottom: 0.5rem;
+text-transform: uppercase;
+}
+
+.stat-card .value {
+font-size: 2rem;
+font-weight: 800;
+color: var(--text);
+}
+
+.tab-content {
+display: none;
+}
+
+.tab-content.active {
+display: block;
+}
+
+.cards-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+gap: 2rem;
+}
+
+.card {
+background: var(--panel);
+border: 1px solid var(--border);
+border-radius: 12px;
+overflow: hidden;
+transition: all 0.3s;
+box-shadow: var(--shadow);
+}
+
+.card:hover {
+border-color: var(--primary);
+transform: translateY(-5px);
+}
+
+.card-header {
+background: linear-gradient(135deg, var(--primary), var(--secondary));
+padding: 1.5rem;
+color: #0f172a;
+}
+
+.card-header h3 {
+font-size: 1.2rem;
+margin-bottom: 0.5rem;
+font-weight: 700;
+}
+
+.card-body {
+padding: 1.5rem;
+}
+
+.card-body p {
+color: var(--text-muted);
+margin-bottom: 1rem;
+line-height: 1.6;
+}
+
+.card-footer {
+padding: 1rem 1.5rem;
+border-top: 1px solid var(--border);
+display: flex;
+gap: 0.8rem;
+flex-wrap: wrap;
+}
+
+.lesson-content {
+background: var(--bg-alt);
+padding: 2rem;
+border-radius: 12px;
+border: 1px solid var(--border);
+line-height: 1.8;
+color: var(--text);
+}
+
+.media-container {
+margin: 1.5rem 0;
+border-radius: 8px;
+overflow: hidden;
+background: rgba(0,0,0,0.1);
+text-align: center;
+border: 1px solid var(--border);
+padding: 0.5rem;
+}
+
+.media-container img {
+max-width: 100%;
+max-height: 450px;
+border-radius: 8px;
+object-fit: contain;
+display: block;
+margin: 0 auto;
+}
+
+.media-container iframe, .media-container video {
+width: 100%;
+height: 380px;
+border: none;
+border-radius: 8px;
+background: #000;
+}
+
+.add-form {
+background: var(--panel);
+border: 1px solid var(--border);
+border-radius: 12px;
+padding: 2rem;
+margin-bottom: 2rem;
+box-shadow: var(--shadow);
+}
+
+textarea {
+width: 100%;
+min-height: 120px;
+padding: 1rem;
+border: 1px solid var(--border);
+border-radius: 8px;
+background: var(--bg-alt);
+color: var(--text);
+font-family: 'Cairo', sans-serif;
+resize: vertical;
+}
+
+textarea:focus {
+outline: none;
+border-color: var(--primary);
+box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.1);
+}
+
+.modal {
+display: none;
+position: fixed;
+top: 0; left: 0; right: 0; bottom: 0;
+background: rgba(0, 0, 0, 0.7);
+z-index: 2000;
+align-items: center;
+justify-content: center;
+padding: 2rem;
+backdrop-filter: blur(5px);
+}
+
+.modal.active {
+display: flex;
+}
+
+.modal-content {
+background: var(--panel);
+border: 1px solid var(--border);
+border-radius: 12px;
+padding: 2rem;
+width: 100%;
+max-width: 850px;
+max-height: 90vh;
+overflow-y: auto;
+box-shadow: var(--shadow);
+}
+
+.modal-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 1.5rem;
+padding-bottom: 1rem;
+border-bottom: 1px solid var(--border);
+}
+
+.close-modal {
+background: none;
+border: none;
+font-size: 1.8rem;
+color: var(--text-muted);
+cursor: pointer;
+}
+
+.note-item, .support-item {
+background: var(--bg-alt);
+border: 1px solid var(--border);
+padding: 1rem 1.5rem;
+border-radius: 8px;
+margin-bottom: 1rem;
+}
+
+.note-header, .support-header {
+display: flex;
+justify-content: space-between;
+margin-bottom: 0.5rem;
+color: var(--primary);
+font-weight: 700;
+}
+
+.members-list {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+gap: 1.5rem;
+}
+
+.member-card {
+background: var(--panel);
+padding: 1.5rem;
+border-radius: 12px;
+border: 1px solid var(--border);
+text-align: center;
+box-shadow: var(--shadow);
+}
+
+.member-avatar {
+width: 60px;
+height: 60px;
+border-radius: 50%;
+background: linear-gradient(135deg, var(--primary), var(--secondary));
+display: flex;
+align-items: center;
+justify-content: center;
+color: #ffffff;
+font-weight: 800;
+font-size: 1.3rem;
+margin: 0 auto 1rem;
+}
+</style>
 </head>
 <body>
-    <!-- Login Page -->
-    <div id="loginPage" class="page active">
-        <div class="login-container">
-            <div class="login-left">
-                <h1>Abdo_zeinhom</h1>
-                <p>منصة تعليمية احترافية توفر أدوات متقدمة للطلاب والمشرفين والمعلمين</p>
-                <div class="login-features">
-                    <div class="feature-item">
-                        <i class="fas fa-book-open"></i>
-                        <div>
-                            <strong>دروس تفاعلية</strong>
-                            <p style="font-size: 0.85rem; color: var(--text-muted);">محتوى تعليمي غني داخل المنصة</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-brain"></i>
-                        <div>
-                            <strong>اختبارات ذكية</strong>
-                            <p style="font-size: 0.85rem; color: var(--text-muted);">اختبارات متعددة الخيارات مع توقيت محدد</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="login-form">
-                <h2>تسجيل الدخول</h2>
-                <div id="loginAlert"></div>
+<!-- Login Page -->
+<div id="loginPage" class="page active">
+<div class="login-container">
+<div class="login-left">
+<h1>Abdo_zeinhom Academy</h1>
+<p>منصة تعليمية متكاملة تتيح الدروس، الاختبارات التفاعلية، دعم الطلاب والملاحظات المباشرة.</p>
+<div class="login-features">
+<div class="feature-item">
+<i class="fas fa-mobile-alt"></i>
+<div>
+<strong>دخول فوري برقم الموبايل</strong>
+<p style="font-size: 0.85rem; color: var(--text-muted);">تسجيل الطلاب بكل سهولة عبر كود التحقق OTP</p>
+</div>
+</div>
+<div class="feature-item">
+<i class="fas fa-headset"></i>
+<div>
+<strong>دعم فني وملاحظات</strong>
+<p style="font-size: 0.85rem; color: var(--text-muted);">تواصل مباشر بين الطلاب والمشرفين لمتابعة الأداء</p>
+</div>
+</div>
+</div>
+</div>
 
-                <div class="mode-toggle">
-                    <button class="active" data-mode="student">طالب</button>
-                    <button data-mode="supervisor">مشرف</button>
-                    <button data-mode="admin">مالك</button>
-                </div>
+<div class="login-form">
+<h2>تسجيل الدخول</h2>
+<div id="loginAlert"></div>
 
-                <form id="loginForm">
-                    <div class="form-group">
-                        <label for="userName">الاسم الكامل</label>
-                        <input type="text" id="userName" placeholder="أدخل اسمك الكامل" required />
-                    </div>
+<div class="mode-toggle">
+<button class="active" data-mode="student">طالب</button>
+<button data-mode="supervisor">مشرف</button>
+<button data-mode="admin">مالك</button>
+</div>
 
-                    <div class="form-group">
-                        <label for="userCode">كود الدخول</label>
-                        <input type="password" id="userCode" placeholder="أدخل كود الدخول" required />
-                    </div>
+<!-- Student Login Form -->
+<form id="studentLoginForm">
+<div class="form-group">
+<label for="studentNameInput">الاسم الكامل</label>
+<input type="text" id="studentNameInput" placeholder="أدخل اسمك الكامل" required />
+</div>
+<div class="form-group">
+<label for="studentPhoneInput">رقم الموبايل</label>
+<input type="tel" id="studentPhoneInput" placeholder="01xxxxxxxxx" pattern="[0-9]{11}" required />
+</div>
+<div class="form-group">
+<label for="studentClassInput">الصف الدراسي</label>
+<select id="studentClassInput">
+<option value="الصف الأول الثانوي">الصف الأول الثانوي</option>
+<option value="الصف الثاني الثانوي">الصف الثاني الثانوي</option>
+<option value="الصف الثالث الثانوي">الصف الثالث الثانوي</option>
+</select>
+</div>
+<div class="form-group" id="otpGroup" style="display: none;">
+<label for="otpCodeInput">رمز التحقق (OTP)</label>
+<input type="text" id="otpCodeInput" placeholder="أدخل رمز التحقق المكون من 4 أرقام" />
+</div>
+<button type="button" id="sendOtpBtn" class="btn btn-secondary" style="width: 100%; margin-bottom: 0.8rem;">
+<i class="fas fa-paper-plane"></i> إرسال رمز التحقق
+</button>
+<button type="submit" id="studentSubmitBtn" class="btn btn-primary" style="width: 100%; display: none;">
+<i class="fas fa-sign-in-alt"></i> دخول المنصة
+</button>
+</form>
 
-                    <div class="form-group" id="classField">
-                        <label for="userClass">الصف الدراسي</label>
-                        <select id="userClass">
-                            <option value="الأول الثانوي">الصف الأول الثانوي</option>
-                            <option value="الثاني الثانوي">الصف الثاني الثانوي</option>
-                            <option value="الثالث الثانوي">الصف الثالث الثانوي</option>
-                        </select>
-                    </div>
+<!-- Staff Login Form -->
+<form id="staffLoginForm" style="display: none;">
+<div class="form-group">
+<label for="staffName">الاسم</label>
+<input type="text" id="staffName" placeholder="أدخل اسمك" required />
+</div>
+<div class="form-group">
+<label for="staffCode">كود الدخول</label>
+<input type="password" id="staffCode" placeholder="أدخل كود الدخول" required />
+</div>
+<button type="submit" class="btn btn-primary" style="width: 100%;">
+<i class="fas fa-sign-in-alt"></i> دخول المنصة
+</button>
+</form>
 
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">
-                        <i class="fas fa-sign-in-alt"></i> دخول المنصة
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
+</div>
+</div>
+</div>
 
-    <!-- Student Dashboard -->
-    <div id="studentPage" class="page">
-        <nav class="navbar">
-            <div class="navbar-content">
-                <div class="logo">
-                    <div class="logo-icon"><i class="fas fa-graduation-cap"></i></div>
-                    <span>Abdo_zeinhom Academy</span>
-                </div>
-                <div class="nav-menu">
-                    <button class="tab-toggle active" data-section="student-home">الرئيسية</button>
-                    <button class="tab-toggle" data-section="student-lessons">الدروس</button>
-                    <button class="tab-toggle" data-section="student-exams">الاختبارات</button>
-                    <button class="tab-toggle" data-section="student-supervisors">المشرفون</button>
-                </div>
-                <div class="nav-actions">
-                    <div class="user-info">
-                        <div class="user-avatar" id="studentAvatar">ا</div>
-                        <div class="user-details">
-                            <h4 id="studentName">الطالب</h4>
-                            <p>طالب</p>
-                        </div>
-                    </div>
-                    <button class="btn btn-secondary btn-small" onclick="logout()"><i class="fas fa-sign-out-alt"></i></button>
-                </div>
-            </div>
-        </nav>
-        <div class="container">
-            <div id="student-home" class="tab-content active">
-                <div class="dashboard-header">
-                    <h2>مرحباً بك في لوحة التحكم</h2>
-                    <p>تابع تقدمك الأكاديمي وحسّن مستواك</p>
-                </div>
-                <div class="stats-grid">
-                    <div class="stat-card"><i class="fas fa-book-reader"></i><h4>الدروس المنجزة</h4><div class="value" id="completedLessons">0</div></div>
-                    <div class="stat-card"><i class="fas fa-check-circle"></i><h4>الاختبارات المكتملة</h4><div class="value" id="completedExams">0</div></div>
-                    <div class="stat-card"><i class="fas fa-star"></i><h4>المعدل الكلي</h4><div class="value" id="overallGrade">0%</div></div>
-                </div>
-            </div>
-            <div id="student-lessons" class="tab-content">
-                <div class="dashboard-header"><h2>الدروس المتاحة</h2></div>
-                <div id="studentLessonsContainer" class="cards-grid"></div>
-            </div>
-            <div id="student-exams" class="tab-content">
-                <div class="dashboard-header"><h2>الاختبارات المتاحة</h2></div>
-                <div id="studentExamsContainer" class="cards-grid"></div>
-            </div>
-            <div id="student-supervisors" class="tab-content">
-                <div class="dashboard-header"><h2>المشرفون</h2></div>
-                <div id="studentSupervisorsContainer" class="members-list"></div>
-            </div>
-        </div>
-    </div>
+<!-- Student Dashboard -->
+<div id="studentPage" class="page">
+<nav class="navbar">
+<div class="navbar-content">
+<div class="logo">
+<div class="logo-icon"><i class="fas fa-graduation-cap"></i></div>
+<span>Abdo_zeinhom Academy</span>
+</div>
+<div class="nav-menu">
+<button class="tab-toggle active" data-section="student-home">الرئيسية</button>
+<button class="tab-toggle" data-section="student-lessons">الدروس</button>
+<button class="tab-toggle" data-section="student-notes">الملاحظات</button>
+<button class="tab-toggle" data-section="student-support">الدعم الفني</button>
+</div>
+<div class="nav-actions">
+<button class="theme-toggle-btn" onclick="toggleTheme()"><i class="fas fa-moon" id="themeIcon"></i></button>
+<div class="user-info">
+<div class="user-avatar" id="studentAvatar">ا</div>
+<div class="user-details"><h4 id="studentName">الطالب</h4><p id="studentPhone">01xxxxxxxx</p></div>
+</div>
+<button class="btn btn-secondary btn-small" onclick="logout()"><i class="fas fa-sign-out-alt"></i></button>
+</div>
+</div>
+</nav>
+<div class="container">
+<div id="student-home" class="tab-content active">
+<div class="dashboard-header"><h2>مرحباً بك في المنصة التعليمية</h2><p>تصفح دروسك، واكتب ملاحظاتك، وتواصل مع الدعم الفني بكل سهولة</p></div>
+<div class="stats-grid">
+<div class="stat-card"><i class="fas fa-book-reader"></i><h4>الدروس</h4><div class="value" id="studentLessonsCount">0</div></div>
+<div class="stat-card"><i class="fas fa-sticky-note"></i><h4>الملاحظات</h4><div class="value" id="studentNotesCount">0</div></div>
+</div>
+</div>
+<div id="student-lessons" class="tab-content">
+<div class="dashboard-header"><h2>الدروس التعليمية</h2></div>
+<div id="studentLessonsContainer" class="cards-grid"></div>
+</div>
+<div id="student-notes" class="tab-content">
+<div class="dashboard-header"><h2>الملاحظات والأسئلة الأكاديمية</h2></div>
+<div class="add-form">
+<h3>إضافة ملاحظة جديدة</h3>
+<form id="addNoteForm" style="display: grid; gap: 1rem; margin-top: 1rem;">
+<textarea id="noteText" placeholder="اكتب ملاحظتك أو سؤالك الأكاديمي هنا..." required></textarea>
+<button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> نشر الملاحظة</button>
+</form>
+</div>
+<div id="studentNotesContainer"></div>
+</div>
+<div id="student-support" class="tab-content">
+<div class="dashboard-header"><h2>الدعم الفني والخدمي</h2></div>
+<div class="add-form">
+<h3>تواصل مع الدعم الفني</h3>
+<form id="addSupportForm" style="display: grid; gap: 1rem; margin-top: 1rem;">
+<select id="supportTopic" required>
+<option value="مشكلة في الحساب أو الكود">مشكلة في الحساب أو الكود</option>
+<option value="استفسار عن الدروس والاختبارات">استفسار عن الدروس والاختبارات</option>
+<option value="مشكلة تقنية في تشغيل الفيديوهات">مشكلة تقنية في تشغيل الفيديوهات</option>
+</select>
+<textarea id="supportMessage" placeholder="اكتب مشكلتك بالتفصيل لتتم مساعدتك..." required></textarea>
+<button type="submit" class="btn btn-primary"><i class="fas fa-headset"></i> إرسال إلى الدعم</button>
+</form>
+</div>
+<div id="studentSupportContainer"></div>
+</div>
+</div>
+</div>
 
-    <!-- Supervisor Dashboard -->
-    <div id="supervisorPage" class="page">
-        <nav class="navbar">
-            <div class="navbar-content">
-                <div class="logo">
-                    <div class="logo-icon"><i class="fas fa-chalkboard-teacher"></i></div>
-                    <span>Abdo_zeinhom Academy</span>
-                </div>
-                <div class="nav-menu">
-                    <button class="tab-toggle active" data-section="supervisor-home">الرئيسية</button>
-                    <button class="tab-toggle" data-section="supervisor-lessons">إدارة الدروس</button>
-                    <button class="tab-toggle" data-section="supervisor-exams">إدارة الاختبارات</button>
-                    <button class="tab-toggle" data-section="supervisor-students">الطلاب</button>
-                </div>
-                <div class="nav-actions">
-                    <div class="user-info">
-                        <div class="user-avatar" id="supervisorAvatar">م</div>
-                        <div class="user-details">
-                            <h4 id="supervisorName">المشرف</h4>
-                            <p>مشرف تربوي</p>
-                        </div>
-                    </div>
-                    <button class="btn btn-secondary btn-small" onclick="logout()"><i class="fas fa-sign-out-alt"></i></button>
-                </div>
-            </div>
-        </nav>
-        <div class="container">
-            <div id="supervisor-home" class="tab-content active">
-                <div class="dashboard-header"><h2>لوحة تحكم المشرف</h2></div>
-                <div class="stats-grid">
-                    <div class="stat-card"><i class="fas fa-book"></i><h4>إجمالي الدروس</h4><div class="value" id="totalLessons">0</div></div>
-                    <div class="stat-card"><i class="fas fa-file-alt"></i><h4>إجمالي الاختبارات</h4><div class="value" id="totalExams">0</div></div>
-                    <div class="stat-card"><i class="fas fa-user-graduate"></i><h4>عدد الطلاب</h4><div class="value" id="totalStudents">0</div></div>
-                </div>
-            </div>
-            
-            <div id="supervisor-lessons" class="tab-content">
-                <div class="dashboard-header"><h2>إدارة الدروس</h2></div>
-                <div class="add-form">
-                    <h3>إضافة درس جديد</h3>
-                    <form id="addLessonForm" style="display: grid; gap: 1rem; margin-top: 1rem;">
-                        <input type="text" class="lessonTitle" placeholder="عنوان الدرس" required />
-                        <input type="text" class="lessonSubject" placeholder="الموضوع/المجال" required />
-                        <textarea class="lessonContent" placeholder="محتوى الدرس..." required></textarea>
-                        <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> إضافة الدرس</button>
-                    </form>
-                </div>
-                <div id="supervisorLessonsContainer" class="cards-grid"></div>
-            </div>
+<!-- Supervisor Dashboard -->
+<div id="supervisorPage" class="page">
+<nav class="navbar">
+<div class="navbar-content">
+<div class="logo">
+<div class="logo-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+<span>Abdo_zeinhom Academy</span>
+</div>
+<div class="nav-menu">
+<button class="tab-toggle active" data-section="supervisor-home">الرئيسية</button>
+<button class="tab-toggle" data-section="supervisor-lessons">الدروس</button>
+<button class="tab-toggle" data-section="supervisor-students">الطلاب المسجلون</button>
+<button class="tab-toggle" data-section="supervisor-support">طلبات الدعم والملاحظات</button>
+</div>
+<div class="nav-actions">
+<button class="theme-toggle-btn" onclick="toggleTheme()"><i class="fas fa-moon" id="themeIcon2"></i></button>
+<div class="user-info">
+<div class="user-avatar" id="supervisorAvatar">م</div>
+<div class="user-details"><h4 id="supervisorName">المشرف</h4><p>مشرف المنصة</p></div>
+</div>
+<button class="btn btn-secondary btn-small" onclick="logout()"><i class="fas fa-sign-out-alt"></i></button>
+</div>
+</div>
+</nav>
+<div class="container">
+<div id="supervisor-home" class="tab-content active">
+<div class="dashboard-header"><h2>لوحة المشرف</h2></div>
+<div class="stats-grid">
+<div class="stat-card"><i class="fas fa-user-graduate"></i><h4>الطلاب المسجلون برقم الهاتف</h4><div class="value" id="totalStudents">0</div></div>
+<div class="stat-card"><i class="fas fa-headset"></i><h4>رسائل الدعم الفني</h4><div class="value" id="totalSupportCount">0</div></div>
+</div>
+</div>
+<div id="supervisor-lessons" class="tab-content">
+<div class="dashboard-header"><h2>إدارة الدروس</h2></div>
+<div class="add-form">
+<h3>إضافة درس جديد</h3>
+<form id="addLessonForm" style="display: grid; gap: 1rem; margin-top: 1rem;">
+<input type="text" class="lessonTitle" placeholder="عنوان الدرس" required />
+<input type="text" class="lessonSubject" placeholder="المادة" required />
+<textarea class="lessonContent" placeholder="المحتوى..." required></textarea>
+<input type="text" class="lessonImage" placeholder="رابط صورة (اختياري)" />
+<input type="text" class="lessonVideo" placeholder="رابط فيديو (يوتيوب أو .mp4)" />
+<button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> حفظ الدرس</button>
+</form>
+</div>
+<div id="supervisorLessonsContainer" class="cards-grid"></div>
+</div>
+<div id="supervisor-students" class="tab-content">
+<div class="dashboard-header"><h2>قائمة الطلاب المسجلين برقم الموبايل</h2></div>
+<div id="supervisorStudentsContainer" class="members-list"></div>
+</div>
+<div id="supervisor-support" class="tab-content">
+<div class="dashboard-header"><h2>طلبات الدعم والملاحظات الواردة من الطلاب</h2></div>
+<h3 style="margin-bottom:1rem;">رسائل الدعم الفني</h3>
+<div id="supervisorSupportContainer"></div>
+<h3 style="margin:2rem 0 1rem;">ملاحظات وأسئلة الطلاب</h3>
+<div id="supervisorNotesContainer"></div>
+</div>
+</div>
+</div>
 
-            <div id="supervisor-exams" class="tab-content">
-                <div class="dashboard-header"><h2>إدارة الاختبارات (متعددة الاختيارات)</h2></div>
-                <div class="add-form">
-                    <h3>إضافة اختبار جديد</h3>
-                    <form id="addExamForm" style="display: grid; gap: 1rem; margin-top: 1rem;">
-                        <input type="text" class="examTitle" placeholder="عنوان الاختبار" required />
-                        <input type="number" class="examDuration" min="1" value="30" placeholder="مدة الاختبار بالدقائق" required />
-                        <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px;">
-                            <h4 style="color: var(--primary); margin-bottom: 1rem;">الأسئلة</h4>
-                            <div id="questionsList"></div>
-                            <button type="button" class="btn btn-secondary" id="addQuestionBtn" style="width: 100%; margin-top: 1rem;"><i class="fas fa-plus"></i> إضافة سؤال متعدد الاختيارات</button>
-                        </div>
-                        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> حفظ الاختبار</button>
-                    </form>
-                </div>
-                <div id="supervisorExamsContainer" class="cards-grid"></div>
-            </div>
+<!-- Admin Dashboard -->
+<div id="adminPage" class="page">
+<nav class="navbar">
+<div class="navbar-content">
+<div class="logo">
+<div class="logo-icon"><i class="fas fa-crown"></i></div>
+<span>Abdo_zeinhom Academy</span>
+</div>
+<div class="nav-menu">
+<button class="tab-toggle active" data-section="admin-home">الرئيسية</button>
+<button class="tab-toggle" data-section="admin-supervisors">المشرفون</button>
+</div>
+<div class="nav-actions">
+<button class="theme-toggle-btn" onclick="toggleTheme()"><i class="fas fa-moon" id="themeIcon3"></i></button>
+<div class="user-info">
+<div class="user-avatar">م</div>
+<div class="user-details"><h4>المالك</h4><p>النظام</p></div>
+</div>
+<button class="btn btn-secondary btn-small" onclick="logout()"><i class="fas fa-sign-out-alt"></i></button>
+</div>
+</div>
+</nav>
+<div class="container">
+<div id="admin-home" class="tab-content active">
+<div class="dashboard-header"><h2>لوحة إشراف المالك</h2></div>
+<div class="stats-grid">
+<div class="stat-card"><i class="fas fa-users"></i><h4>المشرفون</h4><div class="value" id="adminTotalSupervisors">0</div></div>
+<div class="stat-card"><i class="fas fa-user-graduate"></i><h4>إجمالي الطلاب</h4><div class="value" id="adminTotalStudents">0</div></div>
+</div>
+</div>
+<div id="admin-supervisors" class="tab-content">
+<div class="add-form">
+<h3>إضافة مشرف جديد</h3>
+<form id="addSupervisorForm" style="display: grid; gap: 1rem; margin-top: 1rem;">
+<input type="text" class="supervisorName" placeholder="اسم المشرف" required />
+<input type="text" class="supervisorPhone" placeholder="رقم الهاتف" />
+<input type="email" class="supervisorEmail" placeholder="البريد" />
+<button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> إضافة</button>
+</form>
+</div>
+<div id="adminSupervisorsContainer" class="members-list"></div>
+</div>
+</div>
+</div>
 
-            <div id="supervisor-students" class="tab-content">
-                <div class="dashboard-header"><h2>الطلاب المسجلون</h2></div>
-                <div id="supervisorStudentsContainer" class="members-list"></div>
-            </div>
-        </div>
-    </div>
+<!-- Modal -->
+<div id="lessonModal" class="modal">
+<div class="modal-content">
+<div class="modal-header">
+<h3 id="lessonModalTitle">الدرس</h3>
+<button class="close-modal" onclick="closeLessonModal()">×</button>
+</div>
+<div id="lessonModalBody" class="lesson-content"></div>
+</div>
+</div>
 
-    <!-- Admin Dashboard -->
-    <div id="adminPage" class="page">
-        <nav class="navbar">
-            <div class="navbar-content">
-                <div class="logo">
-                    <div class="logo-icon"><i class="fas fa-crown"></i></div>
-                    <span>Abdo_zeinhom Academy</span>
-                </div>
-                <div class="nav-menu">
-                    <button class="tab-toggle active" data-section="admin-home">الرئيسية</button>
-                    <button class="tab-toggle" data-section="admin-supervisors">إدارة المشرفين</button>
-                </div>
-                <div class="nav-actions">
-                    <div class="user-info">
-                        <div class="user-avatar">م</div>
-                        <div class="user-details"><h4>المالك</h4><p>مالك النظام</p></div>
-                    </div>
-                    <button class="btn btn-secondary btn-small" onclick="logout()"><i class="fas fa-sign-out-alt"></i></button>
-                </div>
-            </div>
-        </nav>
-        <div class="container">
-            <div id="admin-home" class="tab-content active">
-                <div class="dashboard-header"><h2>لوحة تحكم النظام (المالك)</h2></div>
-                <div class="stats-grid">
-                    <div class="stat-card"><i class="fas fa-users"></i><h4>إجمالي المشرفين</h4><div class="value" id="adminTotalSupervisors">0</div></div>
-                    <div class="stat-card"><i class="fas fa-user-graduate"></i><h4>إجمالي الطلاب</h4><div class="value" id="adminTotalStudents">0</div></div>
-                </div>
-            </div>
-            <div id="admin-supervisors" class="tab-content">
-                <div class="dashboard-header"><h2>إدارة المشرفين</h2></div>
-                <div class="add-form">
-                    <h3>إضافة مشرف جديد</h3>
-                    <form id="addSupervisorForm" style="display: grid; gap: 1rem; margin-top: 1rem;">
-                        <input type="text" class="supervisorName" placeholder="اسم المشرف" required />
-                        <input type="text" class="supervisorPhone" placeholder="رقم الهاتف" />
-                        <input type="email" class="supervisorEmail" placeholder="البريد الإلكتروني" />
-                        <button type="submit" class="btn btn-primary"><i class="fas fa-user-plus"></i> إضافة مشرف</button>
-                    </form>
-                </div>
-                <div id="adminSupervisorsContainer" class="members-list"></div>
-            </div>
-        </div>
-    </div>
+<script>
+const DB = {
+lessons: 'academy_lessons',
+supervisors: 'academy_supervisors',
+students: 'academy_students',
+notes: 'academy_notes',
+support: 'academy_support'
+};
 
-    <!-- Modals -->
-    <div id="lessonModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="lessonModalTitle">الدرس</h3>
-                <button class="close-modal" onclick="closeLessonModal()">&times;</button>
-            </div>
-            <div id="lessonModalBody" class="lesson-content"></div>
-        </div>
-    </div>
+function getData(key) { return JSON.parse(localStorage.getItem(key)) || []; }
+function setData(key, data) { localStorage.setItem(key, JSON.stringify(data)); }
 
-    <div id="examModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="examModalTitle">الاختبار</h3>
-                <button class="close-modal" onclick="closeExamModal()">&times;</button>
-            </div>
-            <div id="examModalBody"></div>
-        </div>
-    </div>
+// Theme Toggle
+function toggleTheme() {
+document.body.classList.toggle('light-mode');
+const isLight = document.body.classList.contains('light-mode');
+localStorage.setItem('academy_theme', isLight ? 'light' : 'dark');
+['themeIcon', 'themeIcon2', 'themeIcon3'].forEach(id => {
+const el = document.getElementById(id);
+if(el) el.className = isLight ? 'fas fa-sun' : 'fas fa-moon';
+});
+}
+if(localStorage.getItem('academy_theme') === 'light') toggleTheme();
 
-    <script>
-        const DB = {
-            lessons: 'academy_lessons',
-            exams: 'academy_exams',
-            supervisors: 'academy_supervisors',
-            students: 'academy_students',
-            examResults: 'academy_exam_results'
-        };
+let generatedOtp = null;
+let currentUser = null;
+let userRole = null;
 
-        function getData(key) {
-            return JSON.parse(localStorage.getItem(key)) || [];
-        }
+// Toggle Login Modes
+document.querySelectorAll('.mode-toggle button').forEach(btn => {
+btn.addEventListener('click', function() {
+document.querySelectorAll('.mode-toggle button').forEach(b => b.classList.remove('active'));
+this.classList.add('active');
+const mode = this.dataset.mode;
+document.getElementById('studentLoginForm').style.display = mode === 'student' ? 'block' : 'none';
+document.getElementById('staffLoginForm').style.display = mode !== 'student' ? 'block' : 'none';
+});
+});
 
-        function setData(key, data) {
-            localStorage.setItem(key, JSON.stringify(data));
-        }
+// Student OTP Flow
+document.getElementById('sendOtpBtn').addEventListener('click', function() {
+const phone = document.getElementById('studentPhoneInput').value.trim();
+const name = document.getElementById('studentNameInput').value.trim();
 
-        function initializeData() {
-            if (!getData(DB.lessons).length) {
-                setData(DB.lessons, [{
-                    id: 1, title: 'مقدمة في الأمن السيبراني', subject: 'أمن سيبراني', content: 'محتوى الدرس التفاعلي الأول...'
-                }]);
-            }
-            if (!getData(DB.supervisors).length) {
-                setData(DB.supervisors, [{ id: 1, name: 'أ. محمد علي', email: 'mohamad@academy.com', phone: '01012345678' }]);
-            }
-        }
+if(!name || phone.length !== 11) {
+alert('يرجى كتابة الاسم الكامل ورقم هاتف مكون من 11 رقم بشكل صحيح.');
+return;
+}
 
-        function showAlert(msg, type = 'success') {
-            const alertDiv = document.getElementById('loginAlert');
-            alertDiv.innerHTML = `<div class="alert alert-${type}">${msg}</div>`;
-            setTimeout(() => alertDiv.innerHTML = '', 3000);
-        }
+generatedOtp = Math.floor(1000 + Math.random() * 9000);
+document.getElementById('otpGroup').style.display = 'block';
+document.getElementById('otpCodeInput').value = generatedOtp; // Auto fill for demo
+document.getElementById('studentSubmitBtn').style.display = 'block';
+alert(`تم إرسال رمز التحقق (OTP) إلى الهاتف: ${generatedOtp}`);
+});
 
-        let currentUser = null;
-        let userRole = null;
-        let examTimer = null;
-        let currentExamQuestions = [];
+// Student Login Submit
+document.getElementById('studentLoginForm').addEventListener('submit', function(e) {
+e.preventDefault();
+const name = document.getElementById('studentNameInput').value.trim();
+const phone = document.getElementById('studentPhoneInput').value.trim();
+const studentClass = document.getElementById('studentClassInput').value;
+const otp = document.getElementById('otpCodeInput').value.trim();
 
-        document.querySelectorAll('.mode-toggle button').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.mode-toggle button').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                document.getElementById('classField').style.display = this.dataset.mode === 'student' ? 'block' : 'none';
-            });
-        });
+if(otp != generatedOtp) {
+alert('رمز التحقق خاطئ، يرجى التأكد وإعادة المحاولة.');
+return;
+}
 
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const name = document.getElementById('userName').value.trim();
-            const code = document.getElementById('userCode').value.trim();
-            const mode = document.querySelector('.mode-toggle button.active').dataset.mode;
+userRole = 'student';
+currentUser = { name, phone, class: studentClass };
 
-            if (mode === 'student' && code === 'Abdo_1234') {
-                userRole = 'student';
-                currentUser = { name, class: document.getElementById('userClass').value };
-            } else if (mode === 'supervisor' && code === 'Abdo_super') {
-                userRole = 'supervisor';
-                currentUser = { name };
-            } else if (mode === 'admin' && code === 'xzsawq21') {
-                userRole = 'admin';
-                currentUser = { name };
-            } else {
-                showAlert('كود الدخول غير صحيح أو الصلاحية غير مطابقة!', 'error');
-                return;
-            }
+// Save student in DB so supervisors can view them
+let students = getData(DB.students);
+let existing = students.find(s => s.phone === phone);
+if(!existing) {
+students.push({ id: Date.now(), name, phone, class: studentClass, registeredAt: new Date().toLocaleDateString('ar-EG') });
+setData(DB.students, students);
+}
 
-            document.getElementById('loginPage').classList.remove('active');
-            if (userRole === 'student') { loadStudentDashboard(); document.getElementById('studentPage').classList.add('active'); }
-            else if (userRole === 'supervisor') { loadSupervisorDashboard(); document.getElementById('supervisorPage').classList.add('active'); }
-            else if (userRole === 'admin') { loadAdminDashboard(); document.getElementById('adminPage').classList.add('active'); }
-        });
+document.getElementById('loginPage').classList.remove('active');
+loadStudentDashboard();
+document.getElementById('studentPage').classList.add('active');
+});
 
-        function logout() {
-            currentUser = null; userRole = null;
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById('loginPage').classList.add('active');
-            document.getElementById('loginForm').reset();
-        }
+// Staff Login Submit
+document.getElementById('staffLoginForm').addEventListener('submit', function(e) {
+e.preventDefault();
+const name = document.getElementById('staffName').value.trim();
+const code = document.getElementById('staffCode').value.trim();
+const mode = document.querySelector('.mode-toggle button.active').dataset.mode;
 
-        // Student functions
-        function loadStudentDashboard() {
-            document.getElementById('studentAvatar').textContent = currentUser.name[0];
-            document.getElementById('studentName').textContent = currentUser.name;
-            
-            let students = getData(DB.students);
-            if (!students.find(s => s.name === currentUser.name)) {
-                students.push({ name: currentUser.name, class: currentUser.class });
-                setData(DB.students, students);
-            }
+if(mode === 'supervisor' && code === 'Abdo_super') {
+userRole = 'supervisor';
+currentUser = { name };
+document.getElementById('loginPage').classList.remove('active');
+loadSupervisorDashboard();
+document.getElementById('supervisorPage').classList.add('active');
+} else if(mode === 'admin' && code === 'xzsawq21') {
+userRole = 'admin';
+currentUser = { name };
+document.getElementById('loginPage').classList.remove('active');
+loadAdminDashboard();
+document.getElementById('adminPage').classList.add('active');
+} else {
+alert('كود الدخول غير صحيح!');
+}
+});
 
-            // Render lessons
-            document.getElementById('studentLessonsContainer').innerHTML = getData(DB.lessons).map(l => `
-                <div class="card">
-                    <div class="card-header"><h3>${l.title}</h3><p>${l.subject}</p></div>
-                    <div class="card-body"><p>${l.content.substring(0, 80)}...</p></div>
-                    <div class="card-footer"><button class="btn btn-primary btn-small" onclick="openLesson(${l.id})">اقرأ الدرس</button></div>
-                </div>
-            `).join('');
+function logout() {
+currentUser = null; userRole = null;
+document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+document.getElementById('loginPage').classList.add('active');
+}
 
-            // Render exams
-            document.getElementById('studentExamsContainer').innerHTML = getData(DB.exams).map(e => `
-                <div class="card">
-                    <div class="card-header"><h3>${e.title}</h3><p>${e.duration} دقيقة</p></div>
-                    <div class="card-body"><p>عدد الأسئلة: ${e.questions.length}</p></div>
-                    <div class="card-footer"><button class="btn btn-primary btn-small" onclick="openExam(${e.id})">ابدأ الاختبار</button></div>
-                </div>
-            `).join('');
+// Media Helper
+function renderMediaHTML(imgUrl, vidUrl) {
+let html = '';
+if (imgUrl) html += `<div class="media-container"><img src="${imgUrl.trim()}" alt="صورة" /></div>`;
+if (vidUrl) {
+let embed = vidUrl.trim();
+if (embed.includes('youtube.com/watch?v=')) embed = embed.replace('watch?v=', 'embed/');
+else if (embed.includes('youtu.be/')) embed = `https://www.youtube.com/embed/${embed.split('youtu.be/')[1].split('?')[0]}`;
 
-            document.getElementById('studentSupervisorsContainer').innerHTML = getData(DB.supervisors).map(s => `
-                <div class="member-card">
-                    <div class="member-avatar">${s.name[0]}</div>
-                    <h4>${s.name}</h4>
-                    <p>${s.email || '-'}</p>
-                </div>
-            `).join('');
 
-            setupTabs('studentPage');
-        }
+if (embed.includes('youtube.com/embed')) html += `<div class="media-container"><iframe src="${embed}" allowfullscreen></iframe></div>`;
+else html += `<div class="media-container"><video controls><source src="${embed}" type="video/mp4"></video></div>`;
+}
+return html;
+}
 
-        function openLesson(id) {
-            const lesson = getData(DB.lessons).find(l => l.id === id);
-            document.getElementById('lessonModalTitle').textContent = lesson.title;
-            document.getElementById('lessonModalBody').textContent = lesson.content;
-            document.getElementById('lessonModal').classList.add('active');
-        }
-        function closeLessonModal() { document.getElementById('lessonModal').classList.remove('active'); }
+// Student Dashboard Functions
+function loadStudentDashboard() {
+document.getElementById('studentName').textContent = currentUser.name;
+document.getElementById('studentPhone').textContent = currentUser.phone;
+document.getElementById('studentAvatar').textContent = currentUser.name[0];
 
-        function openExam(id) {
-            const exam = getData(DB.exams).find(e => e.id === id);
-            currentExamQuestions = exam.questions;
-            document.getElementById('examModalTitle').textContent = exam.title;
-            document.getElementById('examModalBody').innerHTML = `
-                <div class="timer"><i class="fas fa-clock"></i> <span id="examTimer">${exam.duration}:00</span></div>
-                ${exam.questions.map((q, qIdx) => `
-                    <div class="exam-question">
-                        <h4>${qIdx + 1}.${q.q}</h4>
-                        <div class="options">
-                            ${q.options.map((opt, oIdx) => `
-                                <label class="option"><input type="radio" name="q${qIdx}" value="${oIdx}"> <span>${opt}</span></label>
-                            `).join('')}
-                        </div>
-                    </div>
-                `).join('')}
-                <button class="btn btn-primary" style="width:100%; margin-top:1rem;" onclick="submitExam(${id})">إرسال الإجابات</button>
-            `;
-            document.getElementById('examModal').classList.add('active');
-        }
-        function closeExamModal() { document.getElementById('examModal').classList.remove('active'); }
+renderStudentLessons();
+renderStudentNotes();
+renderStudentSupport();
+setupTabs('studentPage');
+}
 
-        function submitExam(id) {
-            let correct = 0;
-            currentExamQuestions.forEach((q, idx) => {
-                const selected = document.querySelector(`input[name="q${idx}"]:checked`);
-                if (selected && Number(selected.value) === q.answer) correct++;
-            });
-            const percentage = Math.round((correct / currentExamQuestions.length) * 100);
-            document.getElementById('examModalBody').innerHTML = `
-                <div class="result-box">
-                    <h3>نتيجة الاختبار</h3>
-                    <div class="score">${percentage}%</div>
-                    <p>أجبت بشكل صحيح على ${correct} من ${currentExamQuestions.length}</p>
-                    <button class="btn btn-primary" onclick="closeExamModal()" style="margin-top:1rem;">إغلاق</button>
-                </div>
-            `;
-        }
+function renderStudentLessons() {
+const lessons = getData(DB.lessons);
+document.getElementById('studentLessonsCount').textContent = lessons.length;
+document.getElementById('studentLessonsContainer').innerHTML = lessons.map(l => `
+<div class="card">
+<div class="card-header"><h3>${l.title}</h3><p>${l.subject}</p></div>
+<div class="card-body"><p>${l.content.substring(0, 80)}...</p></div>
+<div class="card-footer"><button class="btn btn-primary btn-small" onclick="openLesson(${l.id})">فتح الدرس</button></div>
+</div>`).join('');
+}
 
-        // Supervisor functions
-        function loadSupervisorDashboard() {
-            document.getElementById('supervisorAvatar').textContent = currentUser.name[0];
-            document.getElementById('supervisorName').textContent = currentUser.name;
-            
-            document.getElementById('totalLessons').textContent = getData(DB.lessons).length;
-            document.getElementById('totalExams').textContent = getData(DB.exams).length;
-            document.getElementById('totalStudents').textContent = getData(DB.students).length;
+function renderStudentNotes() {
+const notes = getData(DB.notes).filter(n => n.studentPhone === currentUser.phone);
+document.getElementById('studentNotesCount').textContent = notes.length;
+document.getElementById('studentNotesContainer').innerHTML = notes.map(n => `
+<div class="note-item">
+<div class="note-header"><span>${n.date}</span></div>
+<p>${n.text}</p>
+</div>`).join('');
+}
 
-            renderSupervisorLessons();
-            renderSupervisorExams();
-            renderSupervisorStudents();
-            setupTabs('supervisorPage');
-            setupSupervisorForms();
-        }
+document.getElementById('addNoteForm').addEventListener('submit', function(e) {
+e.preventDefault();
+const notes = getData(DB.notes);
+notes.push({
+id: Date.now(),
+studentName: currentUser.name,
+studentPhone: currentUser.phone,
+text: document.getElementById('noteText').value,
+date: new Date().toLocaleDateString('ar-EG')
+});
+setData(DB.notes, notes);
+document.getElementById('noteText').value = '';
+renderStudentNotes();
+alert('تم إرسال الملاحظة بنجاح');
+});
 
-        function renderSupervisorLessons() {
-            document.getElementById('supervisorLessonsContainer').innerHTML = getData(DB.lessons).map(l => `
-                <div class="card">
-                    <div class="card-header"><h3>${l.title}</h3><p>${l.subject}</p></div>
-                    <div class="card-body"><p>${l.content.substring(0, 80)}...</p></div>
-                    <div class="card-footer"><button class="btn btn-danger btn-small" onclick="deleteLesson(${l.id})">حذف</button></div>
-                </div>
-            `).join('');
-        }
+function renderStudentSupport() {
+const supportList = getData(DB.support).filter(s => s.studentPhone === currentUser.phone);
+document.getElementById('studentSupportContainer').innerHTML = supportList.map(s => `
+<div class="support-item">
+<div class="support-header"><span>${s.topic}</span><span>${s.date}</span></div>
+<p>${s.message}</p>
+</div>`).join('');
+}
 
-        function renderSupervisorExams() {
-            document.getElementById('supervisorExamsContainer').innerHTML = getData(DB.exams).map(e => `
-                <div class="card">
-                    <div class="card-header"><h3>${e.title}</h3><p>${e.questions.length} أسئلة</p></div>
-                    <div class="card-footer"><button class="btn btn-danger btn-small" onclick="deleteExam(${e.id})">حذف</button></div>
-                </div>
-            `).join('');
-        }
+document.getElementById('addSupportForm').addEventListener('submit', function(e) {
+e.preventDefault();
+const support = getData(DB.support);
+support.push({
+id: Date.now(),
+studentName: currentUser.name,
+studentPhone: currentUser.phone,
+topic: document.getElementById('supportTopic').value,
+message: document.getElementById('supportMessage').value,
+date: new Date().toLocaleDateString('ar-EG')
+});
+setData(DB.support, support);
+document.getElementById('supportMessage').value = '';
+renderStudentSupport();
+alert('تم إرسال رسالتك إلى الدعم الفني بنجاح');
+});
 
-        function renderSupervisorStudents() {
-            document.getElementById('supervisorStudentsContainer').innerHTML = getData(DB.students).map(s => `
-                <div class="member-card">
-                    <div class="member-avatar">${s.name[0]}</div>
-                    <h4>${s.name}</h4>
-                    <p>${s.class}</p>
-                </div>
-            `).join('');
-        }
+// Supervisor Dashboard Functions
+function loadSupervisorDashboard() {
+document.getElementById('supervisorName').textContent = currentUser.name;
+document.getElementById('totalStudents').textContent = getData(DB.students).length;
+document.getElementById('totalSupportCount').textContent = getData(DB.support).length;
 
-        function setupSupervisorForms() {
-            const addLessonForm = document.getElementById('addLessonForm');
-            if(addLessonForm && !addLessonForm.dataset.initialized) {
-                addLessonForm.dataset.initialized = true;
-                addLessonForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    const lessons = getData(DB.lessons);
-                    lessons.push({
-                        id: Date.now(),
-                        title: this.querySelector('.lessonTitle').value,
-                        subject: this.querySelector('.lessonSubject').value,
-                        content: this.querySelector('.lessonContent').value
-                    });
-                    setData(DB.lessons, lessons);
-                    this.reset();
-                    renderSupervisorLessons();
-                    alert('تم إضافة الدرس بنجاح');
-                });
+renderSupervisorLessons();
+renderSupervisorStudents();
+renderSupervisorSupportAndNotes();
+setupTabs('supervisorPage');
+}
 
-                const addExamForm = document.getElementById('addExamForm');
-                addExamForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    const questions = [];
-                    document.querySelectorAll('.question-builder').forEach(qDiv => {
-                        const qText = qDiv.querySelector('.q-text').value;
-                        const options = Array.from(qDiv.querySelectorAll('.q-option')).map(i => i.value).filter(v => v);
-                        const answer = Number(qDiv.querySelector('.q-answer').value);
-                        if(qText && options.length >= 2) {
-                            questions.push({ q: qText, options, answer });
-                        }
-                    });
+function renderSupervisorLessons() {
+document.getElementById('supervisorLessonsContainer').innerHTML = getData(DB.lessons).map(l => `
+<div class="card">
+<div class="card-header"><h3>${l.title}</h3><p>${l.subject}</p></div>
+<div class="card-body">${renderMediaHTML(l.image, l.video)}</div>
+<div class="card-footer"><button class="btn btn-danger btn-small" onclick="deleteLesson(${l.id})">حذف</button></div>
+</div>`).join('');
+}
 
-                    if(!questions.length) { alert('يرجى إضافة سؤال واحد على الأقل مع خياراته'); return; }
+document.getElementById('addLessonForm').addEventListener('submit', function(e) {
+e.preventDefault();
+const lessons = getData(DB.lessons);
+lessons.push({
+id: Date.now(),
+title: this.querySelector('.lessonTitle').value,
+subject: this.querySelector('.lessonSubject').value,
+content: this.querySelector('.lessonContent').value,
+image: this.querySelector('.lessonImage').value,
+video: this.querySelector('.lessonVideo').value
+});
+setData(DB.lessons, lessons);
+this.reset();
+renderSupervisorLessons();
+alert('تم حفظ الدرس بنجاح');
+});
 
-                    const exams = getData(DB.exams);
-                    exams.push({
-                        id: Date.now(),
-                        title: this.querySelector('.examTitle').value,
-                        duration: Number(this.querySelector('.examDuration').value),
-                        questions
-                    });
-                    setData(DB.exams, exams);
-                    this.reset();
-                    document.getElementById('questionsList').innerHTML = '';
-                    renderSupervisorExams();
-                    alert('تم إضافة الاختبار بنجاح');
-                });
+function renderSupervisorStudents() {
+document.getElementById('supervisorStudentsContainer').innerHTML = getData(DB.students).map(s => `
+<div class="member-card">
+<div class="member-avatar">${s.name[0]}</div>
+<h4>${s.name}</h4>
+<p style="color:var(--primary); font-weight:700;">${s.phone}</p>
+<p>${s.class}</p>
+<p style="font-size:0.8rem; color:var(--text-muted); margin-top:0.5rem;">تاريخ التسجيل: ${s.registeredAt || '-'}</p>
+</div>`).join('');
+}
 
-                document.getElementById('addQuestionBtn').addEventListener('click', function() {
-                    const list = document.getElementById('questionsList');
-                    const qDiv = document.createElement('div');
-                    qDiv.className = 'question-builder';
-                    qDiv.innerHTML = `
-                        <input type="text" class="form-group q-text" placeholder="نص السؤال" required style="margin-bottom:0.5rem;" />
-                        <div class="options-grid">
-                            <input type="text" class="q-option" placeholder="الخيار 1" required />
-                            <input type="text" class="q-option" placeholder="الخيار 2" required />
-                            <input type="text" class="q-option" placeholder="الخيار 3" />
-                            <input type="text" class="q-option" placeholder="الخيار 4" />
-                        </div>
-                        <select class="form-group q-answer" style="margin-top:0.5rem;">
-                            <option value="0">الإجابة الصحيحة: الخيار 1</option>
-                            <option value="1">الإجابة الصحيحة: الخيار 2</option>
-                            <option value="2">الإجابة الصحيحة: الخيار 3</option>
-                            <option value="3">الإجابة الصحيحة: الخيار 4</option>
-                        </select>
-                        <button type="button" class="btn btn-danger btn-small" style="margin-top:0.5rem;" onclick="this.parentElement.remove()">حذف السؤال</button>
-                    `;
-                    list.appendChild(qDiv);
-                });
-            }
-        }
+function renderSupervisorSupportAndNotes() {
+const support = getData(DB.support);
+document.getElementById('supervisorSupportContainer').innerHTML = support.length ? support.map(s => `
+<div class="support-item">
+<div class="support-header"><span>${s.studentName} (${s.studentPhone})</span><span>${s.topic} - ${s.date}</span></div>
+<p>${s.message}</p>
+</div>`).join('') : '<p>لا توجد طلبات دعم حالياً.</p>';
 
-        function deleteLesson(id) {
-            setData(DB.lessons, getData(DB.lessons).filter(l => l.id !== id));
-            renderSupervisorLessons();
-        }
-        function deleteExam(id) {
-            setData(DB.exams, getData(DB.exams).filter(e => e.id !== id));
-            renderSupervisorExams();
-        }
+const notes = getData(DB.notes);
+document.getElementById('supervisorNotesContainer').innerHTML = notes.length ? notes.map(n => `
+<div class="note-item">
+<div class="note-header"><span>${n.studentName} (${n.studentPhone})</span><span>${n.date}</span></div>
+<p>${n.text}</p>
+</div>`).join('') : '<p>لا توجد ملاحظات من الطلاب.</p>';
+}
 
-        // Admin functions
-        function loadAdminDashboard() {
-            document.getElementById('adminTotalSupervisors').textContent = getData(DB.supervisors).length;
-            document.getElementById('adminTotalStudents').textContent = getData(DB.students).length;
-            renderAdminSupervisors();
-            setupTabs('adminPage');
+function deleteLesson(id) {
+setData(DB.lessons, getData(DB.lessons).filter(l => l.id !== id));
+renderSupervisorLessons();
+}
 
-            const supForm = document.getElementById('addSupervisorForm');
-            if(supForm && !supForm.dataset.initialized) {
-                supForm.dataset.initialized = true;
-                supForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    const sups = getData(DB.supervisors);
-                    sups.push({
-                        id: Date.now(),
-                        name: this.querySelector('.supervisorName').value,
-                        phone: this.querySelector('.supervisorPhone').value,
-                        email: this.querySelector('.supervisorEmail').value
-                    });
-                    setData(DB.supervisors, sups);
-                    this.reset();
-                    renderAdminSupervisors();
-                    alert('تم إضافة المشرف بنجاح');
-                });
-            }
-        }
+// Admin Dashboard
+function loadAdminDashboard() {
+document.getElementById('adminTotalSupervisors').textContent = getData(DB.supervisors).length;
+document.getElementById('adminTotalStudents').textContent = getData(DB.students).length;
+renderAdminSupervisors();
+setupTabs('adminPage');
+}
 
-        function renderAdminSupervisors() {
-            document.getElementById('adminSupervisorsContainer').innerHTML = getData(DB.supervisors).map(s => `
-                <div class="member-card">
-                    <div class="member-avatar">${s.name[0]}</div>
-                    <h4>${s.name}</h4>
-                    <p>${s.email || '-'}</p>
-                    <button class="btn btn-danger btn-small" style="margin-top:1rem; width:100%;" onclick="deleteSupervisor(${s.id})">حذف المشرف</button>
-                </div>
-            `).join('');
-        }
+function renderAdminSupervisors() {
+document.getElementById('adminSupervisorsContainer').innerHTML = getData(DB.supervisors).map(s => `
+<div class="member-card">
+<div class="member-avatar">${s.name[0]}</div>
+<h4>${s.name}</h4>
+<p>${s.phone || '-'}</p>
+<button class="btn btn-danger btn-small" style="margin-top:0.8rem; width:100%;" onclick="deleteSupervisor(${s.id})">حذف</button>
+</div>`).join('');
+}
 
-        function deleteSupervisor(id) {
-            setData(DB.supervisors, getData(DB.supervisors).filter(s => s.id !== id));
-            renderAdminSupervisors();
-        }
+document.getElementById('addSupervisorForm').addEventListener('submit', function(e) {
+e.preventDefault();
+const sups = getData(DB.supervisors);
+sups.push({
+id: Date.now(),
+name: this.querySelector('.supervisorName').value,
+phone: this.querySelector('.supervisorPhone').value,
+email: this.querySelector('.supervisorEmail').value
+});
+setData(DB.supervisors, sups);
+this.reset();
+renderAdminSupervisors();
+});
 
-        function setupTabs(pageId) {
-            document.querySelectorAll(`#${pageId} .tab-toggle`).forEach(btn => {
-                btn.onclick = function() {
-                    document.querySelectorAll(`#${pageId} .tab-toggle`).forEach(b => b.classList.remove('active'));
-                    document.querySelectorAll(`#${pageId} .tab-content`).forEach(c => c.classList.remove('active'));
-                    this.classList.add('active');
-                    document.getElementById(this.dataset.section).classList.add('active');
-                }
-            });
-        }
+function deleteSupervisor(id) {
+setData(DB.supervisors, getData(DB.supervisors).filter(s => s.id !== id));
+renderAdminSupervisors();
+}
 
-        initializeData();
-    </script>
+function openLesson(id) {
+const lesson = getData(DB.lessons).find(l => l.id === id);
+document.getElementById('lessonModalTitle').textContent = lesson.title;
+document.getElementById('lessonModalBody').innerHTML = `
+<div>${lesson.content}</div>
+${renderMediaHTML(lesson.image, lesson.video)}
+`;
+document.getElementById('lessonModal').classList.add('active');
+}
+function closeLessonModal() { document.getElementById('lessonModal').classList.remove('active'); }
+
+function setupTabs(pageId) {
+document.querySelectorAll(`#${pageId} .tab-toggle`).forEach(btn => {
+btn.onclick = function() {
+document.querySelectorAll(`#${pageId} .tab-toggle`).forEach(b => b.classList.remove('active'));
+document.querySelectorAll(`#${pageId} .tab-content`).forEach(c => c.classList.remove('active'));
+this.classList.add('active');
+document.getElementById(this.dataset.section).classList.add('active');
+}
+});
+}
+</script>
 </body>
 </html>
