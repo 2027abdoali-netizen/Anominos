@@ -59,7 +59,7 @@ transition: background 0.3s, color 0.3s;
 .navbar {
 background: var(--panel);
 border-bottom: 1px solid var(--border);
-padding: 1rem 2rem;
+padding: 0.8rem 1.5rem;
 position: sticky;
 top: 0;
 z-index: 1000;
@@ -72,35 +72,44 @@ margin: 0 auto;
 display: flex;
 justify-content: space-between;
 align-items: center;
-gap: 2rem;
+gap: 1.5rem;
+flex-wrap: wrap;
 }
 
 .logo {
 display: flex;
 align-items: center;
 gap: 0.8rem;
-font-size: 1.5rem;
+font-size: 1.3rem;
 font-weight: 800;
 color: var(--primary);
 }
 
 .logo-icon {
-width: 40px;
-height: 40px;
+width: 38px;
+height: 38px;
 background: linear-gradient(135deg, var(--primary), var(--secondary));
 border-radius: 10px;
 display: flex;
 align-items: center;
 justify-content: center;
 color: #ffffff;
+flex-shrink: 0;
 }
 
 .nav-menu {
 display: flex;
-gap: 1.5rem;
+gap: 0.5rem;
 align-items: center;
 flex: 1;
 justify-content: center;
+overflow-x: auto;
+padding: 0.3rem 0;
+scrollbar-width: none;
+}
+
+.nav-menu::-webkit-scrollbar {
+display: none;
 }
 
 .nav-menu button {
@@ -112,21 +121,25 @@ cursor: pointer;
 transition: color 0.3s;
 font-weight: 600;
 font-family: 'Cairo', sans-serif;
+white-space: nowrap;
+padding: 0.4rem 0.8rem;
+border-radius: 6px;
 }
 
 .nav-menu button:hover {
 color: var(--primary);
+background: var(--bg-alt);
 }
 
 .nav-menu button.active {
 color: var(--primary);
+background: var(--bg-alt);
 border-bottom: 2px solid var(--primary);
-padding-bottom: 0.5rem;
 }
 
 .nav-actions {
 display: flex;
-gap: 1rem;
+gap: 0.8rem;
 align-items: center;
 }
 
@@ -134,19 +147,20 @@ align-items: center;
 background: var(--bg-alt);
 border: 1px solid var(--border);
 color: var(--warning);
-width: 40px;
-height: 40px;
+width: 38px;
+height: 38px;
 border-radius: 50%;
 display: flex;
 align-items: center;
 justify-content: center;
 cursor: pointer;
 transition: all 0.3s;
-font-size: 1.1rem;
+font-size: 1rem;
+flex-shrink: 0;
 }
 
 .theme-toggle-btn:hover {
-transform: scale(1.1);
+transform: scale(1.08);
 border-color: var(--warning);
 }
 
@@ -159,6 +173,11 @@ cursor: pointer;
 font-size: 0.95rem;
 transition: all 0.3s;
 font-family: 'Cairo', sans-serif;
+touch-action: manipulation;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+gap: 0.5rem;
 }
 
 .btn-primary {
@@ -200,16 +219,16 @@ font-size: 0.85rem;
 .user-info {
 display: flex;
 align-items: center;
-gap: 1rem;
-padding: 0.5rem 1rem;
+gap: 0.8rem;
+padding: 0.4rem 0.8rem;
 background: var(--bg-alt);
 border-radius: 8px;
 border: 1px solid var(--border);
 }
 
 .user-avatar {
-width: 40px;
-height: 40px;
+width: 35px;
+height: 35px;
 border-radius: 50%;
 background: linear-gradient(135deg, var(--primary), var(--secondary));
 display: flex;
@@ -217,16 +236,17 @@ align-items: center;
 justify-content: center;
 color: #ffffff;
 font-weight: 800;
+flex-shrink: 0;
 }
 
 .user-details h4 {
-font-size: 0.9rem;
+font-size: 0.85rem;
 margin: 0;
 color: var(--text);
 }
 
 .user-details p {
-font-size: 0.8rem;
+font-size: 0.75rem;
 color: var(--text-muted);
 margin: 0;
 }
@@ -234,7 +254,7 @@ margin: 0;
 .container {
 max-width: 1400px;
 margin: 0 auto;
-padding: 2rem;
+padding: 1.5rem;
 }
 
 .page {
@@ -253,42 +273,45 @@ to { opacity: 1; transform: translateY(0); }
 
 .login-container {
 display: flex;
-min-height: 100vh;
+min-height: 90vh;
 align-items: center;
 justify-content: center;
-gap: 3rem;
-padding: 2rem;
+gap: 2.5rem;
+padding: 1.5rem;
+flex-wrap: wrap;
 }
 
 .login-left {
 flex: 1;
+min-width: 280px;
 max-width: 500px;
 }
 
 .login-left h1 {
-font-size: 3rem;
+font-size: 2.3rem;
 margin-bottom: 1rem;
 background: linear-gradient(135deg, var(--primary), var(--secondary));
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
+line-height: 1.3;
 }
 
 .login-left p {
 color: var(--text-muted);
-font-size: 1.1rem;
-margin-bottom: 2rem;
-line-height: 1.8;
+font-size: 1rem;
+margin-bottom: 1.5rem;
+line-height: 1.7;
 }
 
 .login-features {
 display: grid;
-gap: 1rem;
+gap: 0.8rem;
 }
 
 .feature-item {
 display: flex;
 gap: 1rem;
-padding: 1rem;
+padding: 0.9rem;
 background: var(--panel);
 border-radius: 8px;
 border-left: 3px solid var(--primary);
@@ -297,47 +320,50 @@ border: 1px solid var(--border);
 
 .feature-item i {
 color: var(--primary);
-font-size: 1.3rem;
-min-width: 30px;
+font-size: 1.2rem;
+min-width: 25px;
+margin-top: 0.2rem;
 }
 
 .login-form {
 background: var(--panel);
-padding: 2rem;
+padding: 1.8rem;
 border-radius: 12px;
 border: 1px solid var(--border);
 box-shadow: var(--shadow);
 flex: 1;
+min-width: 280px;
 max-width: 420px;
 }
 
 .login-form h2 {
-margin-bottom: 1.5rem;
+margin-bottom: 1.2rem;
 text-align: center;
-font-size: 1.5rem;
+font-size: 1.4rem;
 color: var(--text);
 }
 
 .form-group {
-margin-bottom: 1.2rem;
+margin-bottom: 1rem;
 }
 
 .form-group label {
 display: block;
-margin-bottom: 0.5rem;
+margin-bottom: 0.4rem;
 font-weight: 700;
 color: var(--text);
+font-size: 0.9rem;
 }
 
 .form-group input, .form-group select {
 width: 100%;
-padding: 0.75rem;
+padding: 0.7rem;
 border: 1px solid var(--border);
 border-radius: 8px;
 background: var(--bg-alt);
 color: var(--text);
 font-family: 'Cairo', sans-serif;
-font-size: 1rem;
+font-size: 16px; /* Prevents auto-zoom on mobile */
 transition: border-color 0.3s;
 }
 
@@ -350,12 +376,12 @@ box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.1);
 .mode-toggle {
 display: flex;
 gap: 0.5rem;
-margin-bottom: 1.5rem;
+margin-bottom: 1.2rem;
 }
 
 .mode-toggle button {
 flex: 1;
-padding: 0.7rem;
+padding: 0.6rem;
 border: 1px solid var(--border);
 background: transparent;
 color: var(--text-muted);
@@ -364,6 +390,7 @@ cursor: pointer;
 font-weight: 700;
 transition: all 0.3s;
 font-family: 'Cairo', sans-serif;
+font-size: 0.85rem;
 }
 
 .mode-toggle button.active {
@@ -373,34 +400,34 @@ border-color: var(--primary);
 }
 
 .dashboard-header {
-margin-bottom: 2rem;
-padding-bottom: 2rem;
+margin-bottom: 1.5rem;
+padding-bottom: 1.5rem;
 border-bottom: 1px solid var(--border);
 }
 
 .dashboard-header h2 {
-font-size: 2rem;
-margin-bottom: 0.5rem;
+font-size: 1.6rem;
+margin-bottom: 0.4rem;
 color: var(--text);
 }
 
 .dashboard-header p {
 color: var(--text-muted);
-font-size: 1rem;
+font-size: 0.95rem;
 }
 
 .stats-grid {
 display: grid;
-grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-gap: 1.5rem;
-margin-bottom: 3rem;
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+gap: 1.2rem;
+margin-bottom: 2rem;
 }
 
 .stat-card {
 background: var(--panel);
 border: 1px solid var(--border);
 border-radius: 12px;
-padding: 1.5rem;
+padding: 1.2rem;
 transition: all 0.3s;
 box-shadow: var(--shadow);
 }
@@ -411,20 +438,20 @@ transform: translateY(-3px);
 }
 
 .stat-card i {
-font-size: 2.5rem;
+font-size: 2rem;
 color: var(--primary);
-margin-bottom: 1rem;
+margin-bottom: 0.8rem;
 }
 
 .stat-card h4 {
-font-size: 0.9rem;
+font-size: 0.85rem;
 color: var(--text-muted);
-margin-bottom: 0.5rem;
+margin-bottom: 0.4rem;
 text-transform: uppercase;
 }
 
 .stat-card .value {
-font-size: 2rem;
+font-size: 1.7rem;
 font-weight: 800;
 color: var(--text);
 }
@@ -439,8 +466,8 @@ display: block;
 
 .cards-grid {
 display: grid;
-grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-gap: 2rem;
+grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+gap: 1.5rem;
 }
 
 .card {
@@ -450,37 +477,41 @@ border-radius: 12px;
 overflow: hidden;
 transition: all 0.3s;
 box-shadow: var(--shadow);
+display: flex;
+flex-direction: column;
 }
 
 .card:hover {
 border-color: var(--primary);
-transform: translateY(-5px);
+transform: translateY(-4px);
 }
 
 .card-header {
 background: linear-gradient(135deg, var(--primary), var(--secondary));
-padding: 1.5rem;
+padding: 1.2rem;
 color: #0f172a;
 }
 
 .card-header h3 {
-font-size: 1.2rem;
-margin-bottom: 0.5rem;
+font-size: 1.1rem;
+margin-bottom: 0.3rem;
 font-weight: 700;
 }
 
 .card-body {
-padding: 1.5rem;
+padding: 1.2rem;
+flex: 1;
 }
 
 .card-body p {
 color: var(--text-muted);
-margin-bottom: 1rem;
+margin-bottom: 0.8rem;
 line-height: 1.6;
+font-size: 0.95rem;
 }
 
 .card-footer {
-padding: 1rem 1.5rem;
+padding: 0.8rem 1.2rem;
 border-top: 1px solid var(--border);
 display: flex;
 gap: 0.8rem;
@@ -489,15 +520,16 @@ flex-wrap: wrap;
 
 .lesson-content {
 background: var(--bg-alt);
-padding: 2rem;
+padding: 1.5rem;
 border-radius: 12px;
 border: 1px solid var(--border);
 line-height: 1.8;
 color: var(--text);
+font-size: 0.95rem;
 }
 
 .media-container {
-margin: 1.5rem 0;
+margin: 1.2rem 0;
 border-radius: 8px;
 overflow: hidden;
 background: rgba(0,0,0,0.1);
@@ -508,7 +540,7 @@ padding: 0.5rem;
 
 .media-container img {
 max-width: 100%;
-max-height: 450px;
+max-height: 380px;
 border-radius: 8px;
 object-fit: contain;
 display: block;
@@ -517,7 +549,7 @@ margin: 0 auto;
 
 .media-container iframe, .media-container video {
 width: 100%;
-height: 380px;
+height: 280px;
 border: none;
 border-radius: 8px;
 background: #000;
@@ -527,21 +559,22 @@ background: #000;
 background: var(--panel);
 border: 1px solid var(--border);
 border-radius: 12px;
-padding: 2rem;
-margin-bottom: 2rem;
+padding: 1.5rem;
+margin-bottom: 1.8rem;
 box-shadow: var(--shadow);
 }
 
 textarea {
 width: 100%;
-min-height: 120px;
-padding: 1rem;
+min-height: 100px;
+padding: 0.8rem;
 border: 1px solid var(--border);
 border-radius: 8px;
 background: var(--bg-alt);
 color: var(--text);
 font-family: 'Cairo', sans-serif;
 resize: vertical;
+font-size: 16px;
 }
 
 textarea:focus {
@@ -558,7 +591,7 @@ background: rgba(0, 0, 0, 0.7);
 z-index: 2000;
 align-items: center;
 justify-content: center;
-padding: 2rem;
+padding: 1rem;
 backdrop-filter: blur(5px);
 }
 
@@ -570,9 +603,9 @@ display: flex;
 background: var(--panel);
 border: 1px solid var(--border);
 border-radius: 12px;
-padding: 2rem;
+padding: 1.5rem;
 width: 100%;
-max-width: 850px;
+max-width: 800px;
 max-height: 90vh;
 overflow-y: auto;
 box-shadow: var(--shadow);
@@ -582,15 +615,15 @@ box-shadow: var(--shadow);
 display: flex;
 justify-content: space-between;
 align-items: center;
-margin-bottom: 1.5rem;
-padding-bottom: 1rem;
+margin-bottom: 1.2rem;
+padding-bottom: 0.8rem;
 border-bottom: 1px solid var(--border);
 }
 
 .close-modal {
 background: none;
 border: none;
-font-size: 1.8rem;
+font-size: 1.6rem;
 color: var(--text-muted);
 cursor: pointer;
 }
@@ -598,28 +631,32 @@ cursor: pointer;
 .note-item, .support-item {
 background: var(--bg-alt);
 border: 1px solid var(--border);
-padding: 1rem 1.5rem;
+padding: 1rem 1.2rem;
 border-radius: 8px;
-margin-bottom: 1rem;
+margin-bottom: 0.8rem;
+font-size: 0.95rem;
 }
 
 .note-header, .support-header {
 display: flex;
 justify-content: space-between;
-margin-bottom: 0.5rem;
+margin-bottom: 0.4rem;
 color: var(--primary);
 font-weight: 700;
+font-size: 0.85rem;
+flex-wrap: wrap;
+gap: 0.5rem;
 }
 
 .members-list {
 display: grid;
-grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-gap: 1.5rem;
+grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+gap: 1.2rem;
 }
 
 .member-card {
 background: var(--panel);
-padding: 1.5rem;
+padding: 1.2rem;
 border-radius: 12px;
 border: 1px solid var(--border);
 text-align: center;
@@ -627,8 +664,8 @@ box-shadow: var(--shadow);
 }
 
 .member-avatar {
-width: 60px;
-height: 60px;
+width: 50px;
+height: 50px;
 border-radius: 50%;
 background: linear-gradient(135deg, var(--primary), var(--secondary));
 display: flex;
@@ -636,8 +673,47 @@ align-items: center;
 justify-content: center;
 color: #ffffff;
 font-weight: 800;
-font-size: 1.3rem;
-margin: 0 auto 1rem;
+font-size: 1.1rem;
+margin: 0 auto 0.8rem;
+}
+
+/* Responsive Media Queries for Mobiles */
+@media (max-width: 768px) {
+.navbar-content {
+flex-direction: column;
+align-items: stretch;
+gap: 0.8rem;
+}
+.logo {
+justify-content: space-between;
+}
+.nav-menu {
+width: 100%;
+min-width: 0;
+justify-content: flex-start;
+border-top: 1px solid var(--border);
+border-bottom: 1px solid var(--border);
+padding: 0.5rem 0;
+overflow-x: auto;
+-webkit-overflow-scrolling: touch;
+}
+.nav-actions {
+justify-content: space-between;
+width: 100%;
+}
+.user-info {
+flex: 1;
+justify-content: center;
+}
+.login-left h1 {
+font-size: 1.8rem;
+}
+.container {
+padding: 1rem;
+}
+.media-container iframe, .media-container video {
+height: 210px;
+}
 }
 </style>
 </head>
@@ -810,8 +886,8 @@ margin: 0 auto 1rem;
 <button class="tab-toggle active" data-section="supervisor-home">الرئيسية</button>
 <button class="tab-toggle" data-section="supervisor-lessons">الدروس</button>
 <button class="tab-toggle" data-section="supervisor-quizzes">الاختبارات</button>
-<button class="tab-toggle" data-section="supervisor-students">الطلاب المسجلون</button>
-<button class="tab-toggle" data-section="supervisor-support">طلبات الدعم والملاحظات</button>
+<button class="tab-toggle" data-section="supervisor-students">الطلاب</button>
+<button class="tab-toggle" data-section="supervisor-support">الدعم والملاحظات</button>
 </div>
 <div class="nav-actions">
 <button class="theme-toggle-btn" onclick="toggleTheme()"><i class="fas fa-moon" id="themeIcon2"></i></button>
@@ -953,6 +1029,45 @@ support: 'academy_support'
 function getData(key) { return JSON.parse(localStorage.getItem(key)) || []; }
 function setData(key, data) { localStorage.setItem(key, JSON.stringify(data)); }
 
+// Initialize seed data if empty so dashboards are never blank
+if(getData(DB.lessons).length === 0) {
+setData(DB.lessons, [
+{
+id: 1,
+title: 'مقدمة في الفيزياء الحديثة - الصف الثاني الثانوي',
+subject: 'الفيزياء',
+content: 'في هذا الدرس سنتناول أساسيات الفيزياء الحديثة، الكمات، ازدواجية الموجة والجسيم، وتطبيقاتها العملية في حياتنا اليومية.',
+image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=800&q=80',
+video: ''
+}
+]);
+}
+
+if(getData(DB.quizzes).length === 0) {
+setData(DB.quizzes, [
+{
+id: 1,
+title: 'اختبار سريع في الفيزياء',
+subject: 'الفيزياء',
+question: 'ما وحدة قياس الشحنة الكهربائية في النظام الدولي للوحدات؟',
+options: ['الولت', 'الكولوم', 'الأمبير', 'الجول'],
+correct: 1,
+date: '2026-10-13'
+}
+]);
+}
+
+if(getData(DB.supervisors).length === 0) {
+setData(DB.supervisors, [
+{
+id: 1,
+name: 'أستاذ أحمد محمد',
+phone: '01012345678',
+email: 'ahmed@academy.com'
+}
+]);
+}
+
 // Theme Toggle
 function toggleTheme() {
 document.body.classList.toggle('light-mode');
@@ -992,7 +1107,7 @@ return;
 
 generatedOtp = Math.floor(1000 + Math.random() * 9000);
 document.getElementById('otpGroup').style.display = 'block';
-document.getElementById('otpCodeInput').value = generatedOtp; // Auto fill for demo
+document.getElementById('otpCodeInput').value = generatedOtp; 
 document.getElementById('studentSubmitBtn').style.display = 'block';
 alert(`تم إرسال رمز التحقق (OTP) إلى الهاتف: ${generatedOtp}`);
 });
@@ -1058,8 +1173,8 @@ document.getElementById('loginPage').classList.add('active');
 // Media Helper
 function renderMediaHTML(imgUrl, vidUrl) {
 let html = '';
-if (imgUrl) html += `<div class="media-container"><img src="${imgUrl.trim()}" alt="صورة" /></div>`;
-if (vidUrl) {
+if (imgUrl && imgUrl.trim() !== '') html += `<div class="media-container"><img src="${imgUrl.trim()}" alt="صورة" /></div>`;
+if (vidUrl && vidUrl.trim() !== '') {
 let embed = vidUrl.trim();
 if (embed.includes('youtube.com/watch?v=')) embed = embed.replace('watch?v=', 'embed/');
 else if (embed.includes('youtu.be/')) embed = `https://www.youtube.com/embed/${embed.split('youtu.be/')[1].split('?')[0]}`;
@@ -1104,7 +1219,7 @@ document.getElementById('studentQuizzesContainer').innerHTML = quizzes.length ? 
 <p style="font-weight:700; margin-bottom:1rem; color:var(--text);">${q.question}</p>
 <div style="display: grid; gap: 0.5rem;" id="quiz-options-${q.id}">
 ${q.options.map((opt, idx) => `
-<button class="btn btn-secondary" style="text-align: right; justify-content: flex-start;" onclick="submitQuizAnswer(${q.id},${idx})">
+<button class="btn btn-secondary" style="text-align: right; justify-content: flex-start; width: 100%;" onclick="submitQuizAnswer(${q.id},${idx})">
 <span style="margin-left: 0.5rem; font-weight:bold;">${idx + 1}.</span>${opt}
 </button>
 `).join('')}
@@ -1146,11 +1261,11 @@ resultEl.innerHTML = `<span style="color: var(--danger);"><i class="fas fa-times
 function renderStudentNotes() {
 const notes = getData(DB.notes).filter(n => n.studentPhone === currentUser.phone);
 document.getElementById('studentNotesCount').textContent = notes.length;
-document.getElementById('studentNotesContainer').innerHTML = notes.map(n => `
+document.getElementById('studentNotesContainer').innerHTML = notes.length ? notes.map(n => `
 <div class="note-item">
 <div class="note-header"><span>${n.date}</span></div>
 <p>${n.text}</p>
-</div>`).join('');
+</div>`).join('') : '<p>لا توجد ملاحظات مسجلة بعد.</p>';
 }
 
 document.getElementById('addNoteForm').addEventListener('submit', function(e) {
@@ -1171,11 +1286,11 @@ alert('تم إرسال الملاحظة بنجاح');
 
 function renderStudentSupport() {
 const supportList = getData(DB.support).filter(s => s.studentPhone === currentUser.phone);
-document.getElementById('studentSupportContainer').innerHTML = supportList.map(s => `
+document.getElementById('studentSupportContainer').innerHTML = supportList.length ? supportList.map(s => `
 <div class="support-item">
 <div class="support-header"><span>${s.topic}</span><span>${s.date}</span></div>
 <p>${s.message}</p>
-</div>`).join('');
+</div>`).join('') : '<p>لا توجد طلبات دعم سابقة.</p>';
 }
 
 document.getElementById('addSupportForm').addEventListener('submit', function(e) {
@@ -1213,7 +1328,7 @@ function renderSupervisorLessons() {
 document.getElementById('supervisorLessonsContainer').innerHTML = getData(DB.lessons).map(l => `
 <div class="card">
 <div class="card-header"><h3>${l.title}</h3><p>${l.subject}</p></div>
-<div class="card-body">${renderMediaHTML(l.image, l.video)}</div>
+<div class="card-body">${renderMediaHTML(l.image, l.video)}<p>${l.content.substring(0, 60)}...</p></div>
 <div class="card-footer"><button class="btn btn-danger btn-small" onclick="deleteLesson(${l.id})">حذف</button></div>
 </div>`).join('');
 }
@@ -1284,14 +1399,15 @@ renderSupervisorQuizzes();
 }
 
 function renderSupervisorStudents() {
-document.getElementById('supervisorStudentsContainer').innerHTML = getData(DB.students).map(s => `
+const students = getData(DB.students);
+document.getElementById('supervisorStudentsContainer').innerHTML = students.length ? students.map(s => `
 <div class="member-card">
 <div class="member-avatar">${s.name[0]}</div>
 <h4>${s.name}</h4>
 <p style="color:var(--primary); font-weight:700;">${s.phone}</p>
 <p>${s.class}</p>
 <p style="font-size:0.8rem; color:var(--text-muted); margin-top:0.5rem;">تاريخ التسجيل: ${s.registeredAt || '-'}</p>
-</div>`).join('');
+</div>`).join('') : '<p>لا يوجد طلاب مسجلون حالياً.</p>';
 }
 
 function renderSupervisorSupportAndNotes() {
@@ -1324,13 +1440,14 @@ setupTabs('adminPage');
 }
 
 function renderAdminSupervisors() {
-document.getElementById('adminSupervisorsContainer').innerHTML = getData(DB.supervisors).map(s => `
+const sups = getData(DB.supervisors);
+document.getElementById('adminSupervisorsContainer').innerHTML = sups.length ? sups.map(s => `
 <div class="member-card">
 <div class="member-avatar">${s.name[0]}</div>
 <h4>${s.name}</h4>
 <p>${s.phone || '-'}</p>
 <button class="btn btn-danger btn-small" style="margin-top:0.8rem; width:100%;" onclick="deleteSupervisor(${s.id})">حذف</button>
-</div>`).join('');
+</div>`).join('') : '<p>لا توجد مشرفون مسجلون.</p>';
 }
 
 document.getElementById('addSupervisorForm').addEventListener('submit', function(e) {
@@ -1345,6 +1462,7 @@ email: this.querySelector('.supervisorEmail').value
 setData(DB.supervisors, sups);
 this.reset();
 renderAdminSupervisors();
+alert('تم إضافة المشرف بنجاح');
 });
 
 function deleteSupervisor(id) {
@@ -1354,9 +1472,10 @@ renderAdminSupervisors();
 
 function openLesson(id) {
 const lesson = getData(DB.lessons).find(l => l.id === id);
+if(!lesson) return;
 document.getElementById('lessonModalTitle').textContent = lesson.title;
 document.getElementById('lessonModalBody').innerHTML = `
-<div>${lesson.content}</div>
+<div style="margin-bottom: 1rem;">${lesson.content}</div>
 ${renderMediaHTML(lesson.image, lesson.video)}
 `;
 document.getElementById('lessonModal').classList.add('active');
