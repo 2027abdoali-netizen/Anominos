@@ -5,10 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Abdo_zeinhom Academy - المنصة التعليمية الاحترافية</title>
 
+<!-- الخطوط ومكتبات الأيقونات وتصدير PDF -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700;800&family=Reem+Kufi:wght@700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 <style>
 :root {
@@ -677,6 +679,154 @@ font-size: 1.1rem;
 margin: 0 auto 0.8rem;
 }
 
+/* تصميم الشهادة الملكية الفاخرة (متناسقة ونظيفة جداً) */
+.certificate-preview-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: auto;
+  padding: 15px 0;
+  width: 100%;
+}
+
+.certificate-container {
+  width: 850px;
+  height: 600px;
+  background: #fdfbf7;
+  color: #0f172a;
+  position: relative;
+  padding: 18px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+  box-sizing: border-box;
+  flex-shrink: 0;
+  border-radius: 4px;
+}
+
+.cert-border-outer {
+  border: 10px double #b45309;
+  height: 100%;
+  padding: 6px;
+  box-sizing: border-box;
+}
+
+.cert-border-inner {
+  border: 2px solid #d97706;
+  height: 100%;
+  padding: 15px 25px;
+  box-sizing: border-box;
+  position: relative;
+  background-image: radial-gradient(#d97706 0.4px, transparent 0.4px);
+  background-size: 16px 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cert-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #475569;
+  font-weight: 600;
+}
+
+.brand-title {
+  font-family: 'Reem Kufi', sans-serif;
+  font-size: 22px;
+  color: #0f172a;
+  margin: 2px 0 0 0;
+  letter-spacing: 1px;
+}
+
+.brand-subtitle {
+  font-size: 12px;
+  color: #b45309;
+  margin-bottom: 4px;
+  font-weight: bold;
+}
+
+.main-title {
+  font-family: 'Amiri', serif;
+  font-size: 34px;
+  color: #1e3a8a;
+  margin: 4px 0;
+  font-weight: bold;
+}
+
+.student-name-display {
+  font-family: 'Amiri', serif;
+  font-size: 30px;
+  color: #b45309;
+  font-weight: bold;
+  margin: 6px 0;
+  padding: 2px 20px;
+  border-bottom: 2px dashed #b45309;
+  display: inline-block;
+}
+
+.cert-body-text {
+  font-size: 14px;
+  color: #334155;
+  line-height: 1.5;
+  margin: 4px auto;
+  max-width: 650px;
+}
+
+.badges-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 8px 0;
+}
+
+.badge-item {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 20px;
+  padding: 4px 14px;
+  font-size: 12px;
+  color: #1e293b;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.badge-item strong {
+  color: #b45309;
+}
+
+.cert-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 10px;
+  margin-top: 5px;
+}
+
+.signature-box {
+  text-align: center;
+}
+
+.signature-line {
+  width: 120px;
+  height: 1px;
+  background: #64748b;
+  margin: 4px auto;
+}
+
+.digital-seal-box {
+  width: 70px;
+  height: 70px;
+  border: 2px dashed #b45309;
+  border-radius: 50%;
+  background: #0f172a;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 7px;
+}
+
 @media (max-width: 768px) {
 .navbar-content {
 flex-direction: column;
@@ -896,6 +1046,7 @@ height: 210px;
 <button class="tab-toggle" data-section="supervisor-lessons">الدروس</button>
 <button class="tab-toggle" data-section="supervisor-quizzes">الاختبارات</button>
 <button class="tab-toggle" data-section="supervisor-grades">درجات الطلاب</button>
+<button class="tab-toggle" data-section="supervisor-certificates">إصدار الشهادات</button>
 <button class="tab-toggle" data-section="supervisor-students">الطلاب</button>
 <button class="tab-toggle" data-section="supervisor-support">الدعم والملاحظات</button>
 </div>
@@ -966,6 +1117,99 @@ height: 210px;
 <div class="dashboard-header"><h2>درجات الطلاب وتقييماتهم وإصدار الشهادات</h2></div>
 <div id="supervisorGradesContainer"></div>
 </div>
+
+<!-- قسم تصميم وإصدار الشهادات المطور للمشرفين (الشهادة تحت نموذج التعديل) -->
+<div id="supervisor-certificates" class="tab-content">
+<div class="dashboard-header"><h2>لوحة تصميم وإصدار شهادات التقدير الملكية</h2><p>تحكم ببيانات الشهادة وشاهد المعاينة الفورية قبل تحميلها أو إرسالها للطالب</p></div>
+
+<div style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
+  <!-- نموذج إدخال البيانات -->
+  <div class="add-form" style="width: 100%; max-width: 850px; margin-bottom: 0;">
+    <h3 style="margin-bottom: 1rem; color: var(--primary);">تعديل بيانات الشهادة</h3>
+    <div class="form-group">
+      <label>اسم الطالب:</label>
+      <input type="text" id="certInputName" value="أحمد محمد عبد العال" />
+    </div>
+    <div class="form-group">
+      <label>الصف الدراسي:</label>
+      <select id="certInputClass">
+        <option value="الصف الأول الثانوي">الصف الأول الثانوي</option>
+        <option value="الصف الثاني الثانوي">الصف الثاني الثانوي</option>
+        <option value="الصف الثالث الثانوي" selected>الصف الثالث الثانوي</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>المادة الدراسية:</label>
+      <input type="text" id="certInputSubject" value="الفيزياء" />
+    </div>
+    <div class="form-group">
+      <label>التقييم العام / الدرجة:</label>
+      <input type="text" id="certInputScore" value="امتياز (98%)" />
+    </div>
+    <div class="form-group">
+      <label>تاريخ الإصدار:</label>
+      <input type="text" id="certInputDate" value="14 أكتوبر 2026" />
+    </div>
+    <button class="btn btn-primary" style="width: 100%; margin-top: 10px;" id="downloadCertPdfBtn">
+      <i class="fas fa-download"></i> تحميل الشهادة PDF
+    </button>
+  </div>
+
+  <!-- المعاينة الحية للشهادة (تحت التعديل تماماً) -->
+  <div class="certificate-preview-wrapper" style="width: 100%;">
+    <div class="certificate-container" id="certificateBox">
+      <div class="cert-border-outer">
+        <div class="cert-border-inner">
+          
+          <div class="cert-header">
+            <div>الرقم التسلسلي: <span id="certDisplaySerial" style="color:#0f172a; font-weight:bold;">AZ-2026-0891</span></div>
+            <div>التاريخ: <span id="certDisplayDate">14 أكتوبر 2026</span></div>
+          </div>
+
+          <div>
+            <h2 class="brand-title">Abdo_zeinhom Academy</h2>
+            <div class="brand-subtitle">المنصة التعليمية الاحترافية المعتمدة</div>
+          </div>
+
+          <div>
+            <h1 class="main-title">شَهَادَةُ شُكْرٍ وَتَقْدِيرٍ</h1>
+            <p style="font-size: 13px; color: #64748b; margin: 0;">تتقدم إدارة المنصة بخالص الشكر والتقدير والاعتزاز للطالب المتميز:</p>
+            <div class="student-name-display" id="certDisplayName">أحمد محمد عبد العال</div>
+          </div>
+
+          <p class="cert-body-text">
+            نظير مجهوده الاستثنائي، وتفوقه الباهر في أداء الاختبارات الأكاديمية التفاعلية المستمرة،<br>
+            سائلين المولى عز وجل له ولجميع طلابنا دوام التقدم والرفعة والصدارة دائماً.
+          </p>
+
+          <div class="badges-wrapper">
+            <div class="badge-item">الصف: <strong id="certDisplayClass">الصف الثالث الثانوي</strong></div>
+            <div class="badge-item">المادة: <strong id="certDisplaySubject">الفيزياء</strong></div>
+            <div class="badge-item">التقييم العام: <strong id="certDisplayScore">امتياز (98%)</strong></div>
+          </div>
+
+          <div class="cert-footer">
+            <div class="signature-box">
+              <p style="font-size: 12px; margin: 0; font-weight: bold; color: #0f172a;">مؤسس المنصة</p>
+              <div class="signature-line"></div>
+              <p style="font-size: 11px; margin: 0; color: #64748b; font-style: italic;">أ. عبد الرحمن زينهم</p>
+            </div>
+
+            <div class="digital-seal-box">
+              <span style="color: #fbbf24; font-weight: bold; font-size: 8px;">AZ ACADEMY</span>
+              <span style="margin: 1px 0;">✓ موثقة</span>
+              <span style="font-size: 6px; color: #cbd5e1;">SECURITY SEAL</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
 <div id="supervisor-students" class="tab-content">
 <div class="dashboard-header"><h2>قائمة الطلاب المسجلين برقم الموبايل</h2></div>
 <div id="supervisorStudentsContainer" class="members-list"></div>
@@ -1422,6 +1666,7 @@ renderSupervisorQuizzes();
 renderSupervisorGrades();
 renderSupervisorStudents();
 renderSupervisorSupportAndNotes();
+setupSupervisorCertificateSync();
 setupTabs('supervisorPage');
 }
 
@@ -1606,6 +1851,54 @@ date: new Date().toLocaleDateString('ar-EG')
 setData(DB.certificates, certificates);
 renderSupervisorGrades();
 alert(`تم إصدار شهادة النجاح للطالب ${name} بنجاح!`);
+}
+
+// Supervisor Certificate Live Sync & PDF Download
+function setupSupervisorCertificateSync() {
+  const inName = document.getElementById('certInputName');
+  const inClass = document.getElementById('certInputClass');
+  const inSubject = document.getElementById('certInputSubject');
+  const inScore = document.getElementById('certInputScore');
+  const inDate = document.getElementById('certInputDate');
+
+  const outName = document.getElementById('certDisplayName');
+  const outClass = document.getElementById('certDisplayClass');
+  const outSubject = document.getElementById('certDisplaySubject');
+  const outScore = document.getElementById('certDisplayScore');
+  const outDate = document.getElementById('certDisplayDate');
+
+  if(inName) {
+    inName.addEventListener('input', () => outName.textContent = inName.value || 'اسم الطالب');
+    inClass.addEventListener('change', () => outClass.textContent = inClass.value);
+    inSubject.addEventListener('input', () => outSubject.textContent = inSubject.value || 'المادة');
+    inScore.addEventListener('input', () => outScore.textContent = inScore.value || 'التقييم');
+    inDate.addEventListener('input', () => outDate.textContent = inDate.value);
+  }
+
+  const downloadBtn = document.getElementById('downloadCertPdfBtn');
+  if(downloadBtn) {
+    downloadBtn.onclick = function() {
+      const element = document.getElementById('certificateBox');
+      const studentName = inName.value.trim() || 'الطالب';
+      const options = {
+        margin: 0,
+        filename: `Certificate_${studentName.replace(/\s+/g, '_')}.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
+      };
+      downloadBtn.textContent = "جاري التصدير...";
+      downloadBtn.disabled = true;
+      html2pdf().from(element).set(options).save().then(() => {
+        downloadBtn.innerHTML = '<i class="fas fa-download"></i> تحميل الشهادة PDF';
+        downloadBtn.disabled = false;
+      }).catch(err => {
+        console.error(err);
+        downloadBtn.innerHTML = '<i class="fas fa-download"></i> تحميل الشهادة PDF';
+        downloadBtn.disabled = false;
+      });
+    };
+  }
 }
 
 function renderSupervisorStudents() {
