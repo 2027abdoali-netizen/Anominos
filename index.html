@@ -372,27 +372,6 @@ color: #0f172a;
 border-color: var(--primary);
 }
 
-.alert {
-padding: 1rem;
-border-radius: 8px;
-margin-bottom: 1rem;
-display: flex;
-align-items: center;
-gap: 0.8rem;
-}
-
-.alert-success {
-background: rgba(52, 211, 153, 0.1);
-border: 1px solid rgba(52, 211, 153, 0.3);
-color: var(--success);
-}
-
-.alert-error {
-background: rgba(248, 113, 113, 0.1);
-border: 1px solid rgba(248, 113, 113, 0.3);
-color: var(--danger);
-}
-
 .dashboard-header {
 margin-bottom: 2rem;
 padding-bottom: 2rem;
@@ -758,6 +737,7 @@ margin: 0 auto 1rem;
 <div class="nav-menu">
 <button class="tab-toggle active" data-section="student-home">الرئيسية</button>
 <button class="tab-toggle" data-section="student-lessons">الدروس</button>
+<button class="tab-toggle" data-section="student-quizzes">الاختبارات</button>
 <button class="tab-toggle" data-section="student-notes">الملاحظات</button>
 <button class="tab-toggle" data-section="student-support">الدعم الفني</button>
 </div>
@@ -773,15 +753,20 @@ margin: 0 auto 1rem;
 </nav>
 <div class="container">
 <div id="student-home" class="tab-content active">
-<div class="dashboard-header"><h2>مرحباً بك في المنصة التعليمية</h2><p>تصفح دروسك، واكتب ملاحظاتك، وتواصل مع الدعم الفني بكل سهولة</p></div>
+<div class="dashboard-header"><h2>مرحباً بك في المنصة التعليمية</h2><p>تصفح دروسك، اختبر معلوماتك، واكتب ملاحظاتك بكل سهولة</p></div>
 <div class="stats-grid">
 <div class="stat-card"><i class="fas fa-book-reader"></i><h4>الدروس</h4><div class="value" id="studentLessonsCount">0</div></div>
+<div class="stat-card"><i class="fas fa-question-circle"></i><h4>الاختبارات</h4><div class="value" id="studentQuizzesCount">0</div></div>
 <div class="stat-card"><i class="fas fa-sticky-note"></i><h4>الملاحظات</h4><div class="value" id="studentNotesCount">0</div></div>
 </div>
 </div>
 <div id="student-lessons" class="tab-content">
 <div class="dashboard-header"><h2>الدروس التعليمية</h2></div>
 <div id="studentLessonsContainer" class="cards-grid"></div>
+</div>
+<div id="student-quizzes" class="tab-content">
+<div class="dashboard-header"><h2>الاختبارات التفاعلية</h2><p>اختبر معلوماتك وفهمك للدروس</p></div>
+<div id="studentQuizzesContainer" class="cards-grid"></div>
 </div>
 <div id="student-notes" class="tab-content">
 <div class="dashboard-header"><h2>الملاحظات والأسئلة الأكاديمية</h2></div>
@@ -824,6 +809,7 @@ margin: 0 auto 1rem;
 <div class="nav-menu">
 <button class="tab-toggle active" data-section="supervisor-home">الرئيسية</button>
 <button class="tab-toggle" data-section="supervisor-lessons">الدروس</button>
+<button class="tab-toggle" data-section="supervisor-quizzes">الاختبارات</button>
 <button class="tab-toggle" data-section="supervisor-students">الطلاب المسجلون</button>
 <button class="tab-toggle" data-section="supervisor-support">طلبات الدعم والملاحظات</button>
 </div>
@@ -841,7 +827,8 @@ margin: 0 auto 1rem;
 <div id="supervisor-home" class="tab-content active">
 <div class="dashboard-header"><h2>لوحة المشرف</h2></div>
 <div class="stats-grid">
-<div class="stat-card"><i class="fas fa-user-graduate"></i><h4>الطلاب المسجلون برقم الهاتف</h4><div class="value" id="totalStudents">0</div></div>
+<div class="stat-card"><i class="fas fa-user-graduate"></i><h4>الطلاب المسجلون</h4><div class="value" id="totalStudents">0</div></div>
+<div class="stat-card"><i class="fas fa-question-circle"></i><h4>الاختبارات المضافة</h4><div class="value" id="totalQuizzesCount">0</div></div>
 <div class="stat-card"><i class="fas fa-headset"></i><h4>رسائل الدعم الفني</h4><div class="value" id="totalSupportCount">0</div></div>
 </div>
 </div>
@@ -859,6 +846,29 @@ margin: 0 auto 1rem;
 </form>
 </div>
 <div id="supervisorLessonsContainer" class="cards-grid"></div>
+</div>
+<div id="supervisor-quizzes" class="tab-content">
+<div class="dashboard-header"><h2>إدارة الاختبارات التفاعلية</h2></div>
+<div class="add-form">
+<h3>إضافة اختبار جديد</h3>
+<form id="addQuizForm" style="display: grid; gap: 1rem; margin-top: 1rem;">
+<input type="text" id="quizTitle" placeholder="عنوان الاختبار (مثال: اختبار الوحدة الأولى - الفيزياء)" required />
+<input type="text" id="quizSubject" placeholder="المادة الدراسية" required />
+<textarea id="quizQuestion" placeholder="نص السؤال..." required></textarea>
+<input type="text" id="quizOpt1" placeholder="الخيار الأول" required />
+<input type="text" id="quizOpt2" placeholder="الخيار الثاني" required />
+<input type="text" id="quizOpt3" placeholder="الخيار الثالث" required />
+<input type="text" id="quizOpt4" placeholder="الخيار الرابع" required />
+<select id="quizCorrect" required>
+<option value="0">الخيار الأول هو الصحيح</option>
+<option value="1">الخيار الثاني هو الصحيح</option>
+<option value="2">الخيار الثالث هو الصحيح</option>
+<option value="3">الخيار الرابع هو الصحيح</option>
+</select>
+<button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> حفظ ونشر الاختبار</button>
+</form>
+</div>
+<div id="supervisorQuizzesContainer" class="cards-grid"></div>
 </div>
 <div id="supervisor-students" class="tab-content">
 <div class="dashboard-header"><h2>قائمة الطلاب المسجلين برقم الموبايل</h2></div>
@@ -933,6 +943,7 @@ margin: 0 auto 1rem;
 <script>
 const DB = {
 lessons: 'academy_lessons',
+quizzes: 'academy_quizzes',
 supervisors: 'academy_supervisors',
 students: 'academy_students',
 notes: 'academy_notes',
@@ -1002,7 +1013,6 @@ return;
 userRole = 'student';
 currentUser = { name, phone, class: studentClass };
 
-// Save student in DB so supervisors can view them
 let students = getData(DB.students);
 let existing = students.find(s => s.phone === phone);
 if(!existing) {
@@ -1054,7 +1064,6 @@ let embed = vidUrl.trim();
 if (embed.includes('youtube.com/watch?v=')) embed = embed.replace('watch?v=', 'embed/');
 else if (embed.includes('youtu.be/')) embed = `https://www.youtube.com/embed/${embed.split('youtu.be/')[1].split('?')[0]}`;
 
-
 if (embed.includes('youtube.com/embed')) html += `<div class="media-container"><iframe src="${embed}" allowfullscreen></iframe></div>`;
 else html += `<div class="media-container"><video controls><source src="${embed}" type="video/mp4"></video></div>`;
 }
@@ -1068,6 +1077,7 @@ document.getElementById('studentPhone').textContent = currentUser.phone;
 document.getElementById('studentAvatar').textContent = currentUser.name[0];
 
 renderStudentLessons();
+renderStudentQuizzes();
 renderStudentNotes();
 renderStudentSupport();
 setupTabs('studentPage');
@@ -1082,6 +1092,55 @@ document.getElementById('studentLessonsContainer').innerHTML = lessons.map(l => 
 <div class="card-body"><p>${l.content.substring(0, 80)}...</p></div>
 <div class="card-footer"><button class="btn btn-primary btn-small" onclick="openLesson(${l.id})">فتح الدرس</button></div>
 </div>`).join('');
+}
+
+function renderStudentQuizzes() {
+const quizzes = getData(DB.quizzes);
+document.getElementById('studentQuizzesCount').textContent = quizzes.length;
+document.getElementById('studentQuizzesContainer').innerHTML = quizzes.length ? quizzes.map(q => `
+<div class="card" id="quiz-card-${q.id}">
+<div class="card-header"><h3>${q.title}</h3><p>${q.subject}</p></div>
+<div class="card-body">
+<p style="font-weight:700; margin-bottom:1rem; color:var(--text);">${q.question}</p>
+<div style="display: grid; gap: 0.5rem;" id="quiz-options-${q.id}">
+${q.options.map((opt, idx) => `
+<button class="btn btn-secondary" style="text-align: right; justify-content: flex-start;" onclick="submitQuizAnswer(${q.id},${idx})">
+<span style="margin-left: 0.5rem; font-weight:bold;">${idx + 1}.</span>${opt}
+</button>
+`).join('')}
+</div>
+<div id="quiz-result-${q.id}" style="margin-top: 1rem; font-weight: 700;"></div>
+</div>
+</div>`).join('') : '<p>لا توجد اختبارات متاحة حالياً.</p>';
+}
+
+function submitQuizAnswer(quizId, selectedIdx) {
+const quizzes = getData(DB.quizzes);
+const quiz = quizzes.find(q => q.id === quizId);
+if(!quiz) return;
+
+const resultEl = document.getElementById(`quiz-result-${quizId}`);
+const optionsContainer = document.getElementById(`quiz-options-${quizId}`);
+const buttons = optionsContainer.querySelectorAll('button');
+
+buttons.forEach((btn, idx) => {
+btn.disabled = true;
+if(idx == quiz.correct) {
+btn.style.background = 'rgba(52, 211, 153, 0.2)';
+btn.style.borderColor = 'var(--success)';
+btn.style.color = 'var(--success)';
+} else if(idx === selectedIdx && idx != quiz.correct) {
+btn.style.background = 'rgba(248, 113, 113, 0.2)';
+btn.style.borderColor = 'var(--danger)';
+btn.style.color = 'var(--danger)';
+}
+});
+
+if(selectedIdx == quiz.correct) {
+resultEl.innerHTML = `<span style="color: var(--success);"><i class="fas fa-check-circle"></i> إجابة صحيحة! أحسنت.</span>`;
+} else {
+resultEl.innerHTML = `<span style="color: var(--danger);"><i class="fas fa-times-circle"></i> إجابة خاطئة. الإجابة الصحيحة هي الخيار رقم ${parseInt(quiz.correct) + 1}.</span>`;
+}
 }
 
 function renderStudentNotes() {
@@ -1140,9 +1199,11 @@ alert('تم إرسال رسالتك إلى الدعم الفني بنجاح');
 function loadSupervisorDashboard() {
 document.getElementById('supervisorName').textContent = currentUser.name;
 document.getElementById('totalStudents').textContent = getData(DB.students).length;
+document.getElementById('totalQuizzesCount').textContent = getData(DB.quizzes).length;
 document.getElementById('totalSupportCount').textContent = getData(DB.support).length;
 
 renderSupervisorLessons();
+renderSupervisorQuizzes();
 renderSupervisorStudents();
 renderSupervisorSupportAndNotes();
 setupTabs('supervisorPage');
@@ -1173,6 +1234,54 @@ this.reset();
 renderSupervisorLessons();
 alert('تم حفظ الدرس بنجاح');
 });
+
+function renderSupervisorQuizzes() {
+const quizzes = getData(DB.quizzes);
+document.getElementById('totalQuizzesCount').textContent = quizzes.length;
+document.getElementById('supervisorQuizzesContainer').innerHTML = quizzes.length ? quizzes.map(q => `
+<div class="card">
+<div class="card-header"><h3>${q.title}</h3><p>${q.subject}</p></div>
+<div class="card-body">
+<p><strong>السؤال:</strong> ${q.question}</p>
+<ul style="list-style: none; padding: 0; margin-top: 0.5rem; color: var(--text-muted);">
+<li>1. ${q.options[0]}</li>
+<li>2. ${q.options[1]}</li>
+<li>3. ${q.options[2]}</li>
+<li>4. ${q.options[3]}</li>
+</ul>
+<p style="margin-top: 0.8rem; color: var(--success); font-weight: 700;">الإجابة الصحيحة: الخيار رقم ${parseInt(q.correct) + 1}</p>
+</div>
+<div class="card-footer"><button class="btn btn-danger btn-small" onclick="deleteQuiz(${q.id})">حذف الاختبار</button></div>
+</div>`).join('') : '<p>لا توجد اختبارات مضافة حالياً.</p>';
+}
+
+document.getElementById('addQuizForm').addEventListener('submit', function(e) {
+e.preventDefault();
+const quizzes = getData(DB.quizzes);
+quizzes.push({
+id: Date.now(),
+title: document.getElementById('quizTitle').value,
+subject: document.getElementById('quizSubject').value,
+question: document.getElementById('quizQuestion').value,
+options: [
+document.getElementById('quizOpt1').value,
+document.getElementById('quizOpt2').value,
+document.getElementById('quizOpt3').value,
+document.getElementById('quizOpt4').value
+],
+correct: document.getElementById('quizCorrect').value,
+date: new Date().toLocaleDateString('ar-EG')
+});
+setData(DB.quizzes, quizzes);
+this.reset();
+renderSupervisorQuizzes();
+alert('تم إضافة ونشر الاختبار بنجاح');
+});
+
+function deleteQuiz(id) {
+setData(DB.quizzes, getData(DB.quizzes).filter(q => q.id !== id));
+renderSupervisorQuizzes();
+}
 
 function renderSupervisorStudents() {
 document.getElementById('supervisorStudentsContainer').innerHTML = getData(DB.students).map(s => `
