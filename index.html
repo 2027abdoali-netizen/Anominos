@@ -61,11 +61,12 @@ transition: background 0.3s, color 0.3s;
 .navbar {
 background: var(--panel);
 border-bottom: 1px solid var(--border);
-padding: 0.8rem 1.5rem;
+padding: 1rem 1.5rem;
 position: sticky;
 top: 0;
 z-index: 1000;
 backdrop-filter: blur(10px);
+box-shadow: 0 4px 20px rgba(0,0,0,0.1);
 }
 
 .navbar-content {
@@ -103,12 +104,12 @@ flex-shrink: 0;
 
 .nav-menu {
 display: flex;
-gap: 0.5rem;
+gap: 0.6rem;
 align-items: center;
 flex: 1;
 justify-content: center;
 overflow-x: auto;
-padding: 0.3rem 0;
+padding: 0.5rem 0;
 scrollbar-width: none;
 }
 
@@ -117,28 +118,31 @@ display: none;
 }
 
 .nav-menu button {
-background: none;
-border: none;
+background: var(--bg-alt);
+border: 1px solid var(--border);
 color: var(--text-muted);
 font-size: 0.90rem;
 cursor: pointer;
-transition: color 0.3s;
+transition: all 0.3s;
 font-weight: 600;
 font-family: 'Cairo', sans-serif;
 white-space: nowrap;
-padding: 0.4rem 0.8rem;
-border-radius: 6px;
+padding: 0.5rem 1rem;
+border-radius: 8px;
+margin: 0 0.2rem;
 }
 
 .nav-menu button:hover {
 color: var(--primary);
-background: var(--bg-alt);
+border-color: var(--primary);
+background: var(--panel);
 }
 
 .nav-menu button.active {
-color: var(--primary);
-background: var(--bg-alt);
-border-bottom: 2px solid var(--primary);
+color: #0f172a;
+background: var(--primary);
+border-color: var(--primary);
+box-shadow: 0 4px 12px rgba(52, 211, 153, 0.3);
 }
 
 .nav-actions {
@@ -151,8 +155,8 @@ align-items: center;
 background: var(--bg-alt);
 border: 1px solid var(--border);
 color: var(--warning);
-width: 38px;
-height: 38px;
+width: 40px;
+height: 40px;
 border-radius: 50%;
 display: flex;
 align-items: center;
@@ -169,9 +173,9 @@ border-color: var(--warning);
 }
 
 .btn {
-padding: 0.6rem 1.2rem;
+padding: 0.7rem 1.4rem;
 border: none;
-border-radius: 8px;
+border-radius: 10px;
 font-weight: 700;
 cursor: pointer;
 font-size: 0.95rem;
@@ -187,11 +191,12 @@ gap: 0.5rem;
 .btn-primary {
 background: linear-gradient(135deg, var(--primary), #22c55e);
 color: #0f172a;
+box-shadow: 0 4px 15px rgba(52, 211, 153, 0.2);
 }
 
 .btn-primary:hover {
 transform: translateY(-2px);
-box-shadow: 0 10px 25px rgba(52, 211, 153, 0.3);
+box-shadow: 0 8px 25px rgba(52, 211, 153, 0.4);
 }
 
 .btn-secondary {
@@ -206,33 +211,34 @@ color: var(--secondary);
 }
 
 .btn-danger {
-background: rgba(248, 113, 113, 0.1);
+background: rgba(248, 113, 113, 0.15);
 border: 1px solid rgba(248, 113, 113, 0.3);
 color: var(--danger);
 }
 
 .btn-danger:hover {
-background: rgba(248, 113, 113, 0.2);
+background: rgba(248, 113, 113, 0.25);
 }
 
 .btn-small {
-padding: 0.4rem 0.8rem;
+padding: 0.45rem 0.9rem;
 font-size: 0.85rem;
+border-radius: 8px;
 }
 
 .user-info {
 display: flex;
 align-items: center;
 gap: 0.8rem;
-padding: 0.4rem 0.8rem;
+padding: 0.5rem 1rem;
 background: var(--bg-alt);
-border-radius: 8px;
+border-radius: 10px;
 border: 1px solid var(--border);
 }
 
 .user-avatar {
-width: 35px;
-height: 35px;
+width: 38px;
+height: 38px;
 border-radius: 50%;
 background: linear-gradient(135deg, var(--primary), var(--secondary));
 display: flex;
@@ -244,13 +250,13 @@ flex-shrink: 0;
 }
 
 .user-details h4 {
-font-size: 0.85rem;
+font-size: 0.9rem;
 margin: 0;
 color: var(--text);
 }
 
 .user-details p {
-font-size: 0.75rem;
+font-size: 0.78rem;
 color: var(--text-muted);
 margin: 0;
 }
@@ -258,7 +264,7 @@ margin: 0;
 .container {
 max-width: 1400px;
 margin: 0 auto;
-padding: 1.5rem;
+padding: 2.5rem 1.5rem;
 }
 
 .page {
@@ -277,11 +283,11 @@ to { opacity: 1; transform: translateY(0); }
 
 .login-container {
 display: flex;
-min-height: 90vh;
+min-height: 85vh;
 align-items: center;
 justify-content: center;
-gap: 2.5rem;
-padding: 1.5rem;
+gap: 3rem;
+padding: 2rem 1rem;
 flex-wrap: wrap;
 }
 
@@ -292,8 +298,8 @@ max-width: 500px;
 }
 
 .login-left h1 {
-font-size: 2.3rem;
-margin-bottom: 1rem;
+font-size: 2.5rem;
+margin-bottom: 1.2rem;
 background: linear-gradient(135deg, var(--primary), var(--secondary));
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
@@ -302,166 +308,171 @@ line-height: 1.3;
 
 .login-left p {
 color: var(--text-muted);
-font-size: 1rem;
-margin-bottom: 1.5rem;
-line-height: 1.7;
+font-size: 1.05rem;
+margin-bottom: 2rem;
+line-height: 1.8;
 }
 
 .login-features {
 display: grid;
-gap: 0.8rem;
+gap: 1.2rem;
 }
 
 .feature-item {
 display: flex;
-gap: 1rem;
-padding: 0.9rem;
+gap: 1.2rem;
+padding: 1.2rem;
 background: var(--panel);
-border-radius: 8px;
-border-left: 3px solid var(--primary);
+border-radius: 12px;
+border-left: 4px solid var(--primary);
 border: 1px solid var(--border);
+box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
 .feature-item i {
 color: var(--primary);
-font-size: 1.2rem;
-min-width: 25px;
+font-size: 1.4rem;
+min-width: 30px;
 margin-top: 0.2rem;
 }
 
 .login-form {
 background: var(--panel);
-padding: 1.8rem;
-border-radius: 12px;
+padding: 2.5rem;
+border-radius: 16px;
 border: 1px solid var(--border);
 box-shadow: var(--shadow);
 flex: 1;
-min-width: 280px;
-max-width: 420px;
+min-width: 300px;
+max-width: 450px;
 }
 
 .login-form h2 {
-margin-bottom: 1.2rem;
+margin-bottom: 1.5rem;
 text-align: center;
-font-size: 1.4rem;
+font-size: 1.6rem;
 color: var(--text);
 }
 
 .form-group {
-margin-bottom: 1rem;
+margin-bottom: 1.2rem;
 }
 
 .form-group label {
 display: block;
-margin-bottom: 0.4rem;
+margin-bottom: 0.6rem;
 font-weight: 700;
 color: var(--text);
-font-size: 0.9rem;
+font-size: 0.95rem;
 }
 
 .form-group input, .form-group select {
 width: 100%;
-padding: 0.7rem;
+padding: 0.85rem 1rem;
 border: 1px solid var(--border);
-border-radius: 8px;
+border-radius: 10px;
 background: var(--bg-alt);
 color: var(--text);
 font-family: 'Cairo', sans-serif;
 font-size: 16px;
-transition: border-color 0.3s;
+transition: all 0.3s;
 }
 
 .form-group input:focus, .form-group select:focus {
 outline: none;
 border-color: var(--primary);
-box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.1);
+box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.15);
 }
 
 .mode-toggle {
 display: flex;
-gap: 0.5rem;
-margin-bottom: 1.2rem;
+gap: 0.8rem;
+margin-bottom: 1.5rem;
 }
 
 .mode-toggle button {
 flex: 1;
-padding: 0.6rem;
+padding: 0.75rem;
 border: 1px solid var(--border);
 background: transparent;
 color: var(--text-muted);
-border-radius: 6px;
+border-radius: 8px;
 cursor: pointer;
 font-weight: 700;
 transition: all 0.3s;
 font-family: 'Cairo', sans-serif;
-font-size: 0.85rem;
+font-size: 0.9rem;
 }
 
 .mode-toggle button.active {
 background: var(--primary);
 color: #0f172a;
 border-color: var(--primary);
+box-shadow: 0 4px 15px rgba(52, 211, 153, 0.3);
 }
 
 .dashboard-header {
-margin-bottom: 1.5rem;
+margin-bottom: 2rem;
 padding-bottom: 1.5rem;
 border-bottom: 1px solid var(--border);
 }
 
 .dashboard-header h2 {
-font-size: 1.6rem;
-margin-bottom: 0.4rem;
+font-size: 1.8rem;
+margin-bottom: 0.5rem;
 color: var(--text);
+font-weight: 800;
 }
 
 .dashboard-header p {
 color: var(--text-muted);
-font-size: 0.95rem;
+font-size: 1.05rem;
 }
 
 .stats-grid {
 display: grid;
-grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-gap: 1.2rem;
-margin-bottom: 2rem;
+grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+gap: 1.8rem;
+margin-bottom: 2.5rem;
 }
 
 .stat-card {
 background: var(--panel);
 border: 1px solid var(--border);
-border-radius: 12px;
-padding: 1.2rem;
+border-radius: 16px;
+padding: 1.8rem;
 transition: all 0.3s;
 box-shadow: var(--shadow);
 }
 
 .stat-card:hover {
 border-color: var(--primary);
-transform: translateY(-3px);
+transform: translateY(-4px);
 }
 
 .stat-card i {
-font-size: 2rem;
+font-size: 2.2rem;
 color: var(--primary);
-margin-bottom: 0.8rem;
+margin-bottom: 1rem;
 }
 
 .stat-card h4 {
-font-size: 0.85rem;
+font-size: 0.9rem;
 color: var(--text-muted);
-margin-bottom: 0.4rem;
+margin-bottom: 0.5rem;
 text-transform: uppercase;
+letter-spacing: 0.5px;
 }
 
 .stat-card .value {
-font-size: 1.7rem;
+font-size: 2rem;
 font-weight: 800;
 color: var(--text);
 }
 
 .tab-content {
 display: none;
+margin-top: 1rem;
 }
 
 .tab-content.active {
@@ -470,82 +481,85 @@ display: block;
 
 .cards-grid {
 display: grid;
-grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-gap: 1.5rem;
+grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+gap: 2rem;
+margin-top: 1.5rem;
 }
 
 .card {
 background: var(--panel);
 border: 1px solid var(--border);
-border-radius: 12px;
+border-radius: 16px;
 overflow: hidden;
 transition: all 0.3s;
 box-shadow: var(--shadow);
 display: flex;
 flex-direction: column;
+margin-bottom: 1.5rem;
 }
 
 .card:hover {
 border-color: var(--primary);
-transform: translateY(-4px);
+transform: translateY(-5px);
 }
 
 .card-header {
 background: linear-gradient(135deg, var(--primary), var(--secondary));
-padding: 1.2rem;
+padding: 1.5rem;
 color: #0f172a;
 }
 
 .card-header h3 {
-font-size: 1.1rem;
-margin-bottom: 0.3rem;
-font-weight: 700;
+font-size: 1.2rem;
+margin-bottom: 0.4rem;
+font-weight: 800;
 }
 
 .card-body {
-padding: 1.2rem;
+padding: 1.5rem;
 flex: 1;
 }
 
 .card-body p {
 color: var(--text-muted);
-margin-bottom: 0.8rem;
-line-height: 1.6;
-font-size: 0.95rem;
+margin-bottom: 1rem;
+line-height: 1.7;
+font-size: 1rem;
 }
 
 .card-footer {
-padding: 0.8rem 1.2rem;
+padding: 1rem 1.5rem;
 border-top: 1px solid var(--border);
 display: flex;
-gap: 0.8rem;
+gap: 1rem;
 flex-wrap: wrap;
+background: var(--bg-alt);
 }
 
 .lesson-content {
 background: var(--bg-alt);
-padding: 1.5rem;
-border-radius: 12px;
+padding: 2rem;
+border-radius: 16px;
 border: 1px solid var(--border);
-line-height: 1.8;
+line-height: 1.9;
 color: var(--text);
-font-size: 0.95rem;
+font-size: 1.05rem;
 }
 
 .media-container {
-margin: 1.2rem 0;
-border-radius: 8px;
+margin: 1.5rem 0;
+border-radius: 12px;
 overflow: hidden;
 background: rgba(0,0,0,0.1);
 text-align: center;
 border: 1px solid var(--border);
-padding: 0.5rem;
+padding: 0.8rem;
 }
 
 .media-container img {
 max-width: 100%;
-max-height: 380px;
-border-radius: 8px;
+max-height: 400px;
+border-radius: 10px;
 object-fit: contain;
 display: block;
 margin: 0 auto;
@@ -553,50 +567,51 @@ margin: 0 auto;
 
 .media-container iframe, .media-container video {
 width: 100%;
-height: 280px;
+height: 320px;
 border: none;
-border-radius: 8px;
+border-radius: 10px;
 background: #000;
 }
 
 .add-form {
 background: var(--panel);
 border: 1px solid var(--border);
-border-radius: 12px;
-padding: 1.5rem;
-margin-bottom: 1.8rem;
+border-radius: 16px;
+padding: 2rem;
+margin-bottom: 2.5rem;
 box-shadow: var(--shadow);
 }
 
 textarea {
 width: 100%;
-min-height: 100px;
-padding: 0.8rem;
+min-height: 120px;
+padding: 1rem;
 border: 1px solid var(--border);
-border-radius: 8px;
+border-radius: 10px;
 background: var(--bg-alt);
 color: var(--text);
 font-family: 'Cairo', sans-serif;
 resize: vertical;
 font-size: 16px;
+line-height: 1.6;
 }
 
 textarea:focus {
 outline: none;
 border-color: var(--primary);
-box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.1);
+box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.15);
 }
 
 .modal {
 display: none;
 position: fixed;
 top: 0; left: 0; right: 0; bottom: 0;
-background: rgba(0, 0, 0, 0.7);
+background: rgba(0, 0, 0, 0.75);
 z-index: 2000;
 align-items: center;
 justify-content: center;
-padding: 1rem;
-backdrop-filter: blur(5px);
+padding: 1.5rem;
+backdrop-filter: blur(6px);
 }
 
 .modal.active {
@@ -606,10 +621,10 @@ display: flex;
 .modal-content {
 background: var(--panel);
 border: 1px solid var(--border);
-border-radius: 12px;
-padding: 1.5rem;
+border-radius: 16px;
+padding: 2rem;
 width: 100%;
-max-width: 800px;
+max-width: 850px;
 max-height: 90vh;
 overflow-y: auto;
 box-shadow: var(--shadow);
@@ -619,15 +634,15 @@ box-shadow: var(--shadow);
 display: flex;
 justify-content: space-between;
 align-items: center;
-margin-bottom: 1.2rem;
-padding-bottom: 0.8rem;
+margin-bottom: 1.5rem;
+padding-bottom: 1rem;
 border-bottom: 1px solid var(--border);
 }
 
 .close-modal {
 background: none;
 border: none;
-font-size: 1.6rem;
+font-size: 1.8rem;
 color: var(--text-muted);
 cursor: pointer;
 }
@@ -635,41 +650,44 @@ cursor: pointer;
 .note-item, .support-item {
 background: var(--bg-alt);
 border: 1px solid var(--border);
-padding: 1rem 1.2rem;
-border-radius: 8px;
-margin-bottom: 0.8rem;
-font-size: 0.95rem;
+padding: 1.5rem;
+border-radius: 12px;
+margin-bottom: 1.2rem;
+font-size: 1rem;
+box-shadow: 0 4px 15px rgba(0,0,0,0.03);
 }
 
 .note-header, .support-header {
 display: flex;
 justify-content: space-between;
-margin-bottom: 0.4rem;
+margin-bottom: 0.6rem;
 color: var(--primary);
 font-weight: 700;
-font-size: 0.85rem;
+font-size: 0.9rem;
 flex-wrap: wrap;
-gap: 0.5rem;
+gap: 0.8rem;
 }
 
 .members-list {
 display: grid;
-grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-gap: 1.2rem;
+grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+gap: 1.8rem;
+margin-top: 1.5rem;
 }
 
 .member-card {
 background: var(--panel);
-padding: 1.2rem;
-border-radius: 12px;
+padding: 1.8rem;
+border-radius: 16px;
 border: 1px solid var(--border);
 text-align: center;
 box-shadow: var(--shadow);
+margin-bottom: 1rem;
 }
 
 .member-avatar {
-width: 50px;
-height: 50px;
+width: 60px;
+height: 60px;
 border-radius: 50%;
 background: linear-gradient(135deg, var(--primary), var(--secondary));
 display: flex;
@@ -677,8 +695,9 @@ align-items: center;
 justify-content: center;
 color: #ffffff;
 font-weight: 800;
-font-size: 1.1rem;
-margin: 0 auto 0.8rem;
+font-size: 1.3rem;
+margin: 0 auto 1rem;
+box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
 /* تنسيق الشهادة الملكية الفاخرة */
@@ -687,7 +706,7 @@ margin: 0 auto 0.8rem;
   justify-content: center;
   align-items: center;
   overflow-x: auto;
-  padding: 15px 0;
+  padding: 25px 0;
   width: 100%;
 }
 
@@ -835,28 +854,29 @@ margin: 0 auto 0.8rem;
 /* تنسيق الدردشة */
 .chat-container {
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: 300px 1fr;
   background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: 12px;
-  height: 500px;
+  border-radius: 16px;
+  height: 550px;
   overflow: hidden;
   box-shadow: var(--shadow);
+  margin-top: 1.5rem;
 }
 .chat-sidebar {
   border-left: 1px solid var(--border);
   background: var(--bg-alt);
   overflow-y: auto;
-  padding: 10px;
+  padding: 15px;
 }
 .chat-contact-item {
-  padding: 10px 12px;
-  border-radius: 8px;
+  padding: 12px 15px;
+  border-radius: 10px;
   cursor: pointer;
-  margin-bottom: 5px;
-  transition: background 0.2s;
+  margin-bottom: 8px;
+  transition: all 0.2s;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 .chat-contact-item:hover, .chat-contact-item.active {
   background: var(--primary);
@@ -870,18 +890,18 @@ margin: 0 auto 0.8rem;
 }
 .chat-messages {
   flex: 1;
-  padding: 15px;
+  padding: 20px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 .chat-msg {
-  max-width: 70%;
-  padding: 10px 14px;
-  border-radius: 10px;
-  font-size: 0.95rem;
-  line-height: 1.5;
+  max-width: 75%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 0.98rem;
+  line-height: 1.6;
 }
 .chat-msg.incoming {
   background: var(--bg-alt);
@@ -894,27 +914,28 @@ margin: 0 auto 0.8rem;
   align-self: flex-end;
 }
 .chat-input-area {
-  padding: 10px 15px;
+  padding: 15px 20px;
   border-top: 1px solid var(--border);
   display: flex;
-  gap: 10px;
+  gap: 12px;
   background: var(--bg-alt);
 }
 .chat-input-area input {
   flex: 1;
-  padding: 8px 12px;
+  padding: 10px 15px;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 10px;
   background: var(--panel);
   color: var(--text);
   font-family: 'Cairo', sans-serif;
+  font-size: 15px;
 }
 
 @media (max-width: 768px) {
 .navbar-content {
 flex-direction: column;
 align-items: stretch;
-gap: 0.8rem;
+gap: 1rem;
 }
 .logo {
 justify-content: space-between;
@@ -925,7 +946,7 @@ min-width: 0;
 justify-content: flex-start;
 border-top: 1px solid var(--border);
 border-bottom: 1px solid var(--border);
-padding: 0.5rem 0;
+padding: 0.8rem 0;
 overflow-x: auto;
 -webkit-overflow-scrolling: touch;
 }
@@ -938,17 +959,21 @@ flex: 1;
 justify-content: center;
 }
 .login-left h1 {
-font-size: 1.8rem;
+font-size: 2rem;
 }
 .container {
-padding: 1rem;
+padding: 1.5rem 1rem;
 }
 .media-container iframe, .media-container video {
-height: 210px;
+height: 230px;
 }
 .chat-container {
 grid-template-columns: 1fr;
-height: 450px;
+height: 480px;
+}
+.cards-grid, .stats-grid, .members-list {
+grid-template-columns: 1fr;
+gap: 1.2rem;
 }
 }
 </style>
@@ -966,14 +991,14 @@ height: 450px;
 <i class="fas fa-shield-alt"></i>
 <div>
 <strong>تسجيل آمن للطلاب والمشرفين</strong>
-<p style="font-size: 0.85rem; color: var(--text-muted);">انشاء حساب بكلمة سر خاصة بك وإدارتها بكل سهولة</p>
+<p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.3rem;">انشاء حساب بكلمة سر خاصة بك وإدارتها بكل سهولة</p>
 </div>
 </div>
 <div class="feature-item">
 <i class="fas fa-headset"></i>
 <div>
 <strong>دعم فني وملاحظات</strong>
-<p style="font-size: 0.85rem; color: var(--text-muted);">تواصل مباشر بين الطلاب والمشرفين لمتابعة الأداء</p>
+<p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.3rem;">تواصل مباشر بين الطلاب والمشرفين لمتابعة الأداء</p>
 </div>
 </div>
 </div>
@@ -985,7 +1010,7 @@ height: 450px;
 
 <!-- Student Login / Register Form -->
 <form id="studentLoginForm">
-<div class="mode-toggle" style="margin-bottom: 1rem;">
+<div class="mode-toggle">
 <button type="button" class="active" id="studentTabLogin" onclick="switchStudentTab('login')">تسجيل دخول</button>
 <button type="button" id="studentTabRegister" onclick="switchStudentTab('register')">إنشاء حساب جديد</button>
 </div>
@@ -1005,7 +1030,7 @@ height: 450px;
 <option value="الصف الثالث الثانوي">الصف الثالث الثانوي</option>
 </select>
 </div>
-<button type="submit" id="studentAuthBtn" class="btn btn-primary" style="width: 100%;">
+<button type="submit" id="studentAuthBtn" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;">
 <i class="fas fa-sign-in-alt"></i> دخول المنصة
 </button>
 </form>
@@ -1020,10 +1045,10 @@ height: 450px;
 <label for="staffCode">كود الدخول أو الرمز السري</label>
 <input type="password" id="staffCode" placeholder="أدخل الكود الخاص بك" required />
 </div>
-<button type="submit" class="btn btn-primary" style="width: 100%;">
+<button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;">
 <i class="fas fa-sign-in-alt"></i> دخول لوحة التحكم
 </button>
-<button type="button" class="btn btn-secondary btn-small" style="width: 100%; margin-top: 0.5rem;" onclick="backToStudentLogin()">العودة لدخول الطلاب</button>
+<button type="button" class="btn btn-secondary btn-small" style="width: 100%; margin-top: 1rem;" onclick="backToStudentLogin()">العودة لدخول الطلاب</button>
 </form>
 
 </div>
@@ -1072,25 +1097,25 @@ height: 450px;
 <div id="studentLessonsContainer" class="cards-grid"></div>
 </div>
 <div id="student-quizzes" class="tab-content">
-<div class="dashboard-header"><h2>الاختبارات التفاعلية متعددة الأسئلة</h2><p>اختبر معلوماتك وفهمك للدروس</p></div>
+<div class="dashboard-header"><h2>الاختبارات التفاعلية متعددة الأسئلة</h2><p>اختبر معلوماتك وفهمك للدروس (سؤال سؤال)</p></div>
 <div id="studentQuizzesContainer" class="cards-grid"></div>
 </div>
 <div id="student-notes" class="tab-content">
 <div class="dashboard-header"><h2>الملاحظات والأسئلة الأكاديمية</h2></div>
 <div class="add-form">
 <h3>إضافة ملاحظة جديدة</h3>
-<form id="addNoteForm" style="display: grid; gap: 1rem; margin-top: 1rem;">
+<form id="addNoteForm" style="display: grid; gap: 1.2rem; margin-top: 1rem;">
 <textarea id="noteText" placeholder="اكتب ملاحظتك أو سؤالك الأكاديمي هنا..." required></textarea>
 <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> نشر الملاحظة</button>
 </form>
 </div>
-<div id="studentNotesContainer"></div>
+<div id="studentNotesContainer" style="display: grid; gap: 1rem;"></div>
 </div>
 <div id="student-support" class="tab-content">
 <div class="dashboard-header"><h2>الدعم الفني والخدمي</h2></div>
 <div class="add-form">
 <h3>تواصل مع الدعم الفني</h3>
-<form id="addSupportForm" style="display: grid; gap: 1rem; margin-top: 1rem;">
+<form id="addSupportForm" style="display: grid; gap: 1.2rem; margin-top: 1rem;">
 <select id="supportTopic" required>
 <option value="مشكلة في الحساب أو الكود">مشكلة في الحساب أو الكود</option>
 <option value="استفسار عن الدروس والاختبارات">استفسار عن الدروس والاختبارات</option>
@@ -1100,7 +1125,7 @@ height: 450px;
 <button type="submit" class="btn btn-primary"><i class="fas fa-headset"></i> إرسال إلى الدعم</button>
 </form>
 </div>
-<div id="studentSupportContainer"></div>
+<div id="studentSupportContainer" style="display: grid; gap: 1rem;"></div>
 </div>
 <div id="student-supervisors" class="tab-content">
 <div class="dashboard-header"><h2>مشرفو المنصة التعليمية</h2></div>
@@ -1118,7 +1143,7 @@ height: 450px;
 <div id="studentContactsList"></div>
 </div>
 <div class="chat-main">
-<div id="studentChatHeader" style="padding: 12px 15px; border-bottom: 1px solid var(--border); font-weight: 700; background: var(--bg-alt);">المجموعة العامة</div>
+<div id="studentChatHeader" style="padding: 15px; border-bottom: 1px solid var(--border); font-weight: 700; background: var(--bg-alt);">المجموعة العامة</div>
 <div class="chat-messages" id="studentChatMessages"></div>
 <form class="chat-input-area" onsubmit="sendStudentChatMsg(event)">
 <input type="text" id="studentChatInput" placeholder="اكتب رسالتك هنا..." required />
@@ -1146,6 +1171,7 @@ height: 450px;
 <button class="tab-toggle" data-section="supervisor-certificates">إصدار الشهادات</button>
 <button class="tab-toggle" data-section="supervisor-students">الطلاب</button>
 <button class="tab-toggle" data-section="supervisor-support">الدعم والملاحظات</button>
+<button class="tab-toggle" data-section="supervisor-chat">الدردشة</button>
 </div>
 <div class="nav-actions">
 <button class="theme-toggle-btn" onclick="toggleTheme()"><i class="fas fa-moon" id="themeIcon2"></i></button>
@@ -1170,7 +1196,7 @@ height: 450px;
 <div class="dashboard-header"><h2>إدارة الدروس</h2></div>
 <div class="add-form">
 <h3>إضافة درس جديد</h3>
-<form id="addLessonForm" style="display: grid; gap: 1rem; margin-top: 1rem;">
+<form id="addLessonForm" style="display: grid; gap: 1.2rem; margin-top: 1rem;">
 <input type="text" class="lessonTitle" placeholder="عنوان الدرس" required />
 <input type="text" class="lessonSubject" placeholder="المادة" required />
 <textarea class="lessonContent" placeholder="المحتوى..." required></textarea>
@@ -1185,12 +1211,14 @@ height: 450px;
 <div class="dashboard-header"><h2>إدارة الاختبارات التفاعلية متعددة الأسئلة</h2></div>
 <div class="add-form">
 <h3>إضافة اختبار متعدد الأسئلة جديد</h3>
-<form id="addQuizForm" style="display: grid; gap: 1rem; margin-top: 1rem;">
+<form id="addQuizForm" style="display: grid; gap: 1.2rem; margin-top: 1rem;">
 <input type="text" id="quizTitle" placeholder="عنوان الاختبار (مثال: اختبار الوحدة الأولى - الفيزياء)" required />
 <input type="text" id="quizSubject" placeholder="المادة الدراسية" required />
-<div id="questionsBuilderContainer" style="display: grid; gap: 1rem; border: 1px dashed var(--border); padding: 1rem; border-radius: 8px;">
+<input type="text" id="quizImage" placeholder="رابط صورة للاختبار (اختياري)" />
+<input type="text" id="quizVideo" placeholder="رابط فيديو للاختبار (يوتيوب أو .mp4 - اختياري)" />
+<div id="questionsBuilderContainer" style="display: grid; gap: 1.2rem; border: 1px dashed var(--border); padding: 1.5rem; border-radius: 12px;">
 <h4 style="color: var(--primary);">أسئلة الاختبار</h4>
-<div class="question-builder-item" style="background: var(--bg-alt); padding: 1rem; border-radius: 8px; display: grid; gap: 0.8rem;">
+<div class="question-builder-item" style="background: var(--bg-alt); padding: 1.2rem; border-radius: 10px; display: grid; gap: 1rem;">
 <input type="text" class="q-text" placeholder="نص السؤال الأول" required />
 <input type="text" class="q-opt1" placeholder="الخيار الأول" required />
 <input type="text" class="q-opt2" placeholder="الخيار الثاني" required />
@@ -1202,26 +1230,27 @@ height: 450px;
 <option value="2">الخيار الثالث صحيح</option>
 <option value="3">الخيار الرابع صحيح</option>
 </select>
+<textarea class="q-explanation" placeholder="شرح الإجابة (يظهر بعد ظهور النتيجة)..." style="min-height: 80px;"></textarea>
 </div>
 </div>
-<button type="button" class="btn btn-secondary btn-small" onclick="addQuestionField()"><i class="fas fa-plus"></i> إضافة سؤال آخر للاختبار</button>
-<button type="submit" class="btn btn-primary" style="margin-top: 0.5rem;"><i class="fas fa-save"></i> حفظ ونشر الاختبار</button>
+<button type="button" class="btn btn-secondary btn-small" onclick="addQuestionField()" style="margin-top: 0.5rem;"><i class="fas fa-plus"></i> إضافة سؤال آخر للاختبار</button>
+<button type="submit" class="btn btn-primary" style="margin-top: 1rem;"><i class="fas fa-save"></i> حفظ ونشر الاختبار</button>
 </form>
 </div>
 <div id="supervisorQuizzesContainer" class="cards-grid"></div>
 </div>
 <div id="supervisor-grades" class="tab-content">
 <div class="dashboard-header"><h2>درجات الطلاب وتقييماتهم وإصدار الشهادات</h2></div>
-<div id="supervisorGradesContainer"></div>
+<div id="supervisorGradesContainer" style="display: grid; gap: 1.2rem;"></div>
 </div>
 
 <!-- قسم تصميم وإصدار الشهادات الملكية المطورة -->
 <div id="supervisor-certificates" class="tab-content">
 <div class="dashboard-header"><h2>لوحة تصميم وإصدار شهادات التقدير الملكية</h2><p>تحكم ببيانات الشهادة وشاهد المعاينة الفورية قبل تحميلها أو إرسالها للطالب</p></div>
 
-<div style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
+<div style="display: flex; flex-direction: column; gap: 2rem; align-items: center;">
   <div class="add-form" style="width: 100%; max-width: 850px; margin-bottom: 0;">
-    <h3 style="margin-bottom: 1rem; color: var(--primary);">تعديل بيانات الشهادة</h3>
+    <h3 style="margin-bottom: 1.2rem; color: var(--primary);">تعديل بيانات الشهادة</h3>
     <div class="form-group">
       <label>اسم الطالب:</label>
       <input type="text" id="certInputName" value="أحمد محمد عبد العال" />
@@ -1246,7 +1275,7 @@ height: 450px;
       <label>تاريخ الإصدار:</label>
       <input type="text" id="certInputDate" value="14 أكتوبر 2026" />
     </div>
-    <button class="btn btn-primary" style="width: 100%; margin-top: 10px;" id="downloadCertPdfBtn">
+    <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;" id="downloadCertPdfBtn">
       <i class="fas fa-download"></i> تحميل الشهادة PDF
     </button>
   </div>
@@ -1303,9 +1332,26 @@ height: 450px;
 <div id="supervisor-support" class="tab-content">
 <div class="dashboard-header"><h2>طلبات الدعم والملاحظات الواردة من الطلاب</h2></div>
 <h3 style="margin-bottom:1rem;">رسائل الدعم الفني</h3>
-<div id="supervisorSupportContainer"></div>
+<div id="supervisorSupportContainer" style="display: grid; gap: 1rem; margin-bottom: 2rem;"></div>
 <h3 style="margin:2rem 0 1rem;">ملاحظات وأسئلة الطلاب</h3>
-<div id="supervisorNotesContainer"></div>
+<div id="supervisorNotesContainer" style="display: grid; gap: 1rem;"></div>
+</div>
+<div id="supervisor-chat" class="tab-content">
+<div class="dashboard-header"><h2>دردشة المشرفين</h2></div>
+<div class="chat-container">
+<div class="chat-sidebar" id="supervisorChatSidebar">
+<div class="chat-contact-item active" onclick="selectSupervisorChat('group')"><i class="fas fa-users"></i> مجموعة المشرفين</div>
+<div id="supervisorContactsList"></div>
+</div>
+<div class="chat-main">
+<div id="supervisorChatHeader" style="padding: 15px; border-bottom: 1px solid var(--border); font-weight: 700; background: var(--bg-alt);">مجموعة المشرفين</div>
+<div class="chat-messages" id="supervisorChatMessages"></div>
+<form class="chat-input-area" onsubmit="sendSupervisorChatMsg(event)">
+<input type="text" id="supervisorChatInput" placeholder="اكتب رسالتك هنا..." required />
+<button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i></button>
+</form>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1322,6 +1368,7 @@ height: 450px;
 <button class="tab-toggle active" data-section="admin-home">الرئيسية</button>
 <button class="tab-toggle" data-section="admin-supervisors">إدارة المشرفين</button>
 <button class="tab-toggle" data-section="admin-students">مراقبة الطلاب وكلمات السر</button>
+<button class="tab-toggle" data-section="admin-student-chat">تحكم دردشة الطلاب</button>
 <button class="tab-toggle" data-section="admin-chat">دردشة المالك (المشرفين)</button>
 </div>
 <div class="nav-actions">
@@ -1346,7 +1393,7 @@ height: 450px;
 <div id="admin-supervisors" class="tab-content">
 <div class="dashboard-header"><h2>إضافة مشرف جديد وتعيين كود الدخول الخاص به</h2></div>
 <div class="add-form">
-<form id="addSupervisorForm" style="display: grid; gap: 1rem;">
+<form id="addSupervisorForm" style="display: grid; gap: 1.2rem;">
 <input type="text" class="supervisorName" placeholder="اسم المشرف" required />
 <input type="text" class="supervisorCode" placeholder="الرمز السري الخاص بالدخول" required />
 <input type="text" class="supervisorPhone" placeholder="رقم الهاتف" />
@@ -1359,6 +1406,13 @@ height: 450px;
 <div class="dashboard-header"><h2>مراقبة الطلاب وأرقامهم وكلمات السر (في حال نسيانها)</h2></div>
 <div id="adminStudentsContainer" class="cards-grid"></div>
 </div>
+<div id="admin-student-chat" class="tab-content">
+<div class="dashboard-header"><h2>التحكم في دردشة الطلاب</h2><p>مراقبة وحذف رسائل دردشة الطلاب العامة والخاصة</p></div>
+<div style="margin-bottom: 1.5rem;">
+<button class="btn btn-danger btn-small" onclick="clearAllStudentChats()"><i class="fas fa-trash"></i> مسح جميع رسائل الطلاب</button>
+</div>
+<div id="adminStudentChatsContainer" style="display: grid; gap: 1rem;"></div>
+</div>
 <div id="admin-chat" class="tab-content">
 <div class="dashboard-header"><h2>دردشة المالك مع المشرفين (فردي أو مع الجميع)</h2></div>
 <div class="chat-container">
@@ -1367,7 +1421,7 @@ height: 450px;
 <div id="adminSupervisorsChatList"></div>
 </div>
 <div class="chat-main">
-<div id="adminChatHeader" style="padding: 12px 15px; border-bottom: 1px solid var(--border); font-weight: 700; background: var(--bg-alt);">جميع المشرفين</div>
+<div id="adminChatHeader" style="padding: 15px; border-bottom: 1px solid var(--border); font-weight: 700; background: var(--bg-alt);">جميع المشرفين</div>
 <div class="chat-messages" id="adminChatMessages"></div>
 <form class="chat-input-area" onsubmit="sendAdminChatMsg(event)">
 <input type="text" id="adminChatInput" placeholder="اكتب رسالتك للمشرفين..." required />
@@ -1426,16 +1480,20 @@ setData(DB.quizzes, [
 id: 1,
 title: 'اختبار شامل في الفيزياء الحديثة',
 subject: 'الفيزياء',
+image: '',
+video: '',
 questions: [
 {
 question: 'ما وحدة قياس الشحنة الكهربائية في النظام الدولي للوحدات؟',
 options: ['الولت', 'الكولوم', 'الأمبير', 'الجول'],
-correct: 1
+correct: 1,
+explanation: 'الكولوم هي وحدة قياس الشحنة الكهربائية.'
 },
 {
 question: 'ما هي سرعة الضوء في الفراغ تقريباً؟',
 options: ['3 × 10^8 م/ث', '3 × 10^6 م/ث', '330 م/ث', '1500 م/ث'],
-correct: 0
+correct: 0,
+explanation: 'سرعة الضوء في الفراغ تساوي تقريباً 3 × 10^8 متر لكل ثانية.'
 }
 ],
 date: '2026-10-13'
@@ -1499,7 +1557,7 @@ document.getElementById('studentLoginForm').style.display = 'none';
 document.getElementById('staffLoginForm').style.display = 'block';
 document.getElementById('loginFormTitle').textContent = title;
 document.getElementById('staffLoginForm').dataset.targetRole = role;
-alert(`تم تفعيل وضع ${role === 'admin' ? 'المالك' : 'المشرف'}. أدخل بياناتك للخول.`);
+alert(`تم تفعيل وضع ${role === 'admin' ? 'المالك' : 'المشرف'}. أدخل بياناتك للدخول.`);
 }
 
 function backToStudentLogin() {
@@ -1561,7 +1619,7 @@ loadStudentDashboard();
 document.getElementById('studentPage').classList.add('active');
 });
 
-// Staff Login Submit (Supervisor or Admin) - Updated with robust trimming and case-insensitivity
+// Staff Login Submit (Supervisor or Admin)
 document.getElementById('staffLoginForm').addEventListener('submit', function(e) {
 e.preventDefault();
 const nameInput = document.getElementById('staffName').value.trim();
@@ -1576,11 +1634,10 @@ document.getElementById('loginPage').classList.remove('active');
 loadAdminDashboard();
 document.getElementById('adminPage').classList.add('active');
 } else {
-alert('كود المالك غير صحيح! (الكود هو: Abdo_1234_Abdo)');
+alert('كود المالك غير صحيح!');
 }
 } else {
 let supervisors = getData(DB.supervisors);
-// مطابقة مرنة (بدون الحساسية لحالة الحروف أو الفراغات الزائدة)
 let sup = supervisors.find(s => 
 s.name.trim().toLowerCase() === nameInput.toLowerCase() && 
 s.code.trim() === codeInput
@@ -1593,7 +1650,7 @@ document.getElementById('loginPage').classList.remove('active');
 loadSupervisorDashboard();
 document.getElementById('supervisorPage').classList.add('active');
 } else {
-alert('اسم المشرف أو الكود السري غير صحيح!\nتأكد من كتابة الاسم والكود بنفس الطريقة التي أضافها لك المالك تماماً.');
+alert('اسم المشرف أو الكود السري غير صحيح!\nتأكد من كتابة الاسم والكود بنفس الطريقة تماماً.');
 }
 }
 });
@@ -1647,56 +1704,127 @@ document.getElementById('studentLessonsContainer').innerHTML = lessons.map(l => 
 </div>`).join('');
 }
 
+// Quiz state for student (Question by Question interactive runner)
+let studentQuizStates = {};
+
 function renderStudentQuizzes() {
 const quizzes = getData(DB.quizzes);
 document.getElementById('studentQuizzesCount').textContent = quizzes.length;
 document.getElementById('studentQuizzesContainer').innerHTML = quizzes.length ? quizzes.map(q => {
-const questionsList = q.questions || [{ question: q.question, options: q.options, correct: q.correct }];
-return `
-<div class="card" id="quiz-card-${q.id}">
-<div class="card-header"><h3>${q.title}</h3><p>${q.subject}</p></div>
-<div class="card-body">
-<form id="quiz-form-${q.id}" onsubmit="submitMultiQuiz(event, ${q.id})">
-${questionsList.map((item, qIdx) => `
-<div style="margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem;">
-<p style="font-weight:700; margin-bottom:0.8rem; color:var(--text);">${qIdx + 1}.${item.question}</p>
-<div style="display: grid; gap: 0.5rem;">
-${item.options.map((opt, optIdx) => `
-<label style="display: flex; align-items: center; gap: 0.5rem; background: var(--bg-alt); padding: 0.6rem; border-radius: 6px; cursor: pointer; border: 1px solid var(--border);">
-<input type="radio" name="q_${q.id}_${qIdx}" value="${optIdx}" required />
+const questionsList = q.questions || [{ question: q.question, options: q.options, correct: q.correct, explanation: q.explanation || '' }];
+if(!studentQuizStates[q.id]) {
+studentQuizStates[q.id] = { currentIdx: 0, answers: [], submitted: false, score: 0, total: questionsList.length };
+}
+const state = studentQuizStates[q.id];
+
+let bodyHTML = '';
+bodyHTML += renderMediaHTML(q.image, q.video);
+
+if(!state.submitted) {
+const currentQ = questionsList[state.currentIdx];
+bodyHTML += `
+<div style="margin-top: 1rem;" id="quiz-question-box-${q.id}">
+<p style="font-size: 0.85rem; color: var(--primary); margin-bottom: 0.6rem; font-weight:700;">السؤال ${state.currentIdx + 1} من ${state.total}</p>
+<p style="font-weight:700; margin-bottom:1.2rem; color:var(--text); font-size:1.05rem; line-height: 1.6;">${currentQ.question}</p>
+<div style="display: grid; gap: 0.8rem; margin-bottom: 1.5rem;">
+${currentQ.options.map((opt, optIdx) => `
+<label style="display: flex; align-items: center; gap: 0.8rem; background: var(--bg-alt); padding: 0.9rem; border-radius: 10px; cursor: pointer; border: 1px solid var(--border);">
+<input type="radio" name="active_q_${q.id}" value="${optIdx}" ${state.answers[state.currentIdx] === optIdx ? 'checked' : ''} onchange="saveStudentAnswer(${q.id},${optIdx})" />
 <span>${opt}</span>
 </label>
 `).join('')}
 </div>
+<div style="display: flex; justify-content: space-between; gap: 1rem;">
+${state.currentIdx > 0 ? `<button type="button" class="btn btn-secondary btn-small" onclick="prevQuizQuestion(${q.id})">السؤال السابق</button>` : '<div></div>'}
+${state.currentIdx < state.total - 1 ? `<button type="button" class="btn btn-primary btn-small" onclick="nextQuizQuestion(${q.id})">السؤال التالي</button>` : `<button type="button" class="btn btn-primary" onclick="submitStudentQuiz(${q.id})">تسليم الاختبار ورؤية النتيجة</button>`}
 </div>
-`).join('')}
-<button type="submit" class="btn btn-primary" style="width: 100%;">تسليم الاختبار وإرسال النتيجة للمشرف</button>
-</form>
-<div id="quiz-result-${q.id}" style="margin-top: 1rem; font-weight: 700; text-align: center;"></div>
+</div>
+`;
+} else {
+// Submitted: show result and answers + explanations
+const percentage = Math.round((state.score / state.total) * 100);
+const passed = percentage >= 50;
+bodyHTML += `
+<div style="padding: 1.5rem; background: var(--bg-alt); border-radius: 12px; border: 1px solid var(--border); text-align: center; margin-bottom: 1.5rem;">
+<p style="font-size: 1.2rem; font-weight: 800; color: ${passed ? 'var(--success)' : 'var(--danger)'};">
+نتيجتك: ${state.score} من ${state.total} (${percentage}%) - ${passed ? 'ناجح 🎉' : 'تحتاج لمراجعة الدرس'}
+</p>
+<p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">تم إرسال درجتك إلى مشرفي المنصة بنجاح.</p>
+</div>
+<div style="display: grid; gap: 1.2rem; margin-top: 1rem;">
+<h4 style="color: var(--primary); border-bottom: 1px solid var(--border); padding-bottom: 0.6rem;">مراجعة الإجابات والشرح</h4>
+${questionsList.map((item, idx) => {
+const studentAns = state.answers[idx];
+const isCorrect = studentAns === parseInt(item.correct);
+return `
+<div style="background: var(--bg-alt); padding: 1.2rem; border-radius: 10px; border: 1px solid ${isCorrect ? 'var(--success)' : 'var(--danger)'}; display: grid; gap: 0.5rem;">
+<p style="font-weight: 700;">${idx + 1}.${item.question}</p>
+<p style="font-size: 0.9rem;">إجابتك: <span style="font-weight: bold; color: ${isCorrect ? 'var(--success)' : 'var(--danger)'};">${item.options[studentAns] !== undefined ? item.options[studentAns] : 'لم تقم بالإجابة'}</span></p>
+<p style="font-size: 0.9rem;">الإجابة الصحيحة: <strong style="color: var(--success);">${item.options[item.correct]}</strong></p>${item.explanation ? `<div style="background: var(--panel); padding: 0.9rem; border-radius: 8px; font-size: 0.88rem; margin-top: 0.4rem; border-right: 3px solid var(--warning); line-height: 1.6;"><strong>الشرح:</strong> ${item.explanation}</div>` : ''}
+</div>
+`;
+}).join('')}
+</div>
+<button type="button" class="btn btn-secondary btn-small" style="margin-top: 1.5rem; width: 100%;" onclick="resetStudentQuiz(${q.id})">إعادة الاختبار</button>
+`;
+}
+
+return `
+<div class="card" id="quiz-card-${q.id}">
+<div class="card-header"><h3>${q.title}</h3><p>${q.subject}</p></div>
+<div class="card-body">
+${bodyHTML}
 </div>
 </div>`;
 }).join('') : '<p>لا توجد اختبارات متاحة حالياً.</p>';
 }
 
-function submitMultiQuiz(e, quizId) {
-e.preventDefault();
+function saveStudentAnswer(quizId, optIdx) {
+if(!studentQuizStates[quizId]) return;
+const state = studentQuizStates[quizId];
+state.answers[state.currentIdx] = optIdx;
+}
+
+function nextQuizQuestion(quizId) {
+const state = studentQuizStates[quizId];
+if(state.answers[state.currentIdx] === undefined) {
+alert('يرجى اختيار إجابة قبل الانتقال للسؤال التالي.');
+return;
+}
+state.currentIdx++;
+renderStudentQuizzes();
+}
+
+function prevQuizQuestion(quizId) {
+const state = studentQuizStates[quizId];
+if(state.currentIdx > 0) {
+state.currentIdx--;
+renderStudentQuizzes();
+}
+}
+
+function submitStudentQuiz(quizId) {
+const state = studentQuizStates[quizId];
+if(state.answers[state.currentIdx] === undefined) {
+alert('يرجى اختيار إجابة السؤال الأخير قبل التسليم.');
+return;
+}
+
 const quizzes = getData(DB.quizzes);
 const quiz = quizzes.find(q => q.id === quizId);
 if(!quiz) return;
+const questionsList = quiz.questions || [{ question: quiz.question, options: quiz.options, correct: quiz.correct, explanation: quiz.explanation || '' }];
 
-const questionsList = quiz.questions || [{ question: quiz.question, options: quiz.options, correct: quiz.correct }];
 let score = 0;
-const form = document.getElementById(`quiz-form-${quizId}`);
-
-questionsList.forEach((item, qIdx) => {
-const selected = form.querySelector(`input[name="q_${quizId}_${qIdx}"]:checked`);
-if(selected && parseInt(selected.value) === parseInt(item.correct)) {
+questionsList.forEach((item, idx) => {
+if(state.answers[idx] === parseInt(item.correct)) {
 score++;
 }
 });
 
-const total = questionsList.length;
-const percentage = Math.round((score / total) * 100);
+state.score = score;
+state.submitted = true;
+const percentage = Math.round((score / state.total) * 100);
 const passed = percentage >= 50;
 
 let results = getData(DB.results);
@@ -1707,23 +1835,19 @@ studentName: currentUser.name,
 studentPhone: currentUser.phone,
 quizId: quiz.id,
 quizTitle: quiz.title,
-score: `${score} / ${total} (${percentage}%)`,
+score: `${score} / ${state.total} (${percentage}%)`,
 status: passed ? 'ناجح' : 'راسب',
 evaluation: 'لم يتم التقييم بعد',
 date: new Date().toLocaleDateString('ar-EG')
 });
 setData(DB.results, results);
 
-const resultEl = document.getElementById(`quiz-result-${quizId}`);
-resultEl.innerHTML = `
-<div style="padding: 1rem; background: var(--bg-alt); border-radius: 8px; border: 1px solid var(--border);">
-<p style="font-size: 1.1rem; color: ${passed ? 'var(--success)' : 'var(--danger)'};">
-نتيجتك: ${score} من ${total} (${percentage}%) - ${passed ? 'ناجح 🎉' : 'تحتاج لمراجعة الدرس'}
-</p>
-<p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.4rem;">تم إرسال درجتك إلى مشرفي المنصة بنجاح.</p>
-</div>
-`;
-form.querySelectorAll('input, button').forEach(el => el.disabled = true);
+renderStudentQuizzes();
+}
+
+function resetStudentQuiz(quizId) {
+delete studentQuizStates[quizId];
+renderStudentQuizzes();
 }
 
 function renderStudentNotes() {
@@ -1784,8 +1908,8 @@ document.getElementById('studentSupervisorsContainer').innerHTML = sups.length ?
 <div class="member-card">
 <div class="member-avatar">${s.name[0]}</div>
 <h4>${s.name}</h4>
-<p style="color:var(--primary); font-weight:700;">مشرف أكاديمي</p>
-<p style="font-size:0.85rem; color:var(--text-muted);">${s.phone || ''}</p>
+<p style="color:var(--primary); font-weight:700; margin-top:0.4rem;">مشرف أكاديمي</p>
+<p style="font-size:0.85rem; color:var(--text-muted); margin-top:0.3rem;">${s.phone || ''}</p>
 </div>
 `).join('') : '<p>لا يوجد مشرفون مسجلون حالياً.</p>';
 }
@@ -1800,9 +1924,9 @@ document.getElementById('studentCertificatesContainer').innerHTML = certs.length
 </div>
 <div class="card-body" style="text-align: center; padding: 2rem 1rem;">
 <p style="font-size: 1.1rem; color: var(--text-muted);">تشهد إدارة المنصة بأن الطالب المتميز:</p>
-<h2 style="color: var(--primary); margin: 0.5rem 0 1.5rem; font-size: 1.8rem;">${c.studentName}</h2>
+<h2 style="color: var(--primary); margin: 0.8rem 0 1.5rem; font-size: 1.8rem;">${c.studentName}</h2>
 <p style="font-size: 1.05rem; line-height: 1.8;">قد اجتاز بنجاح الاختبار التفاعلي:</p>
-<h4 style="color: var(--secondary); margin: 0.5rem 0 1.5rem; font-size: 1.2rem;">${c.quizTitle}</h4>
+<h4 style="color: var(--secondary); margin: 0.8rem 0 1.5rem; font-size: 1.2rem;">${c.quizTitle}</h4>
 <p style="font-size: 0.9rem; color: var(--text-muted);">بواسطة المشرف: <strong>${c.issuedBy}</strong> بتاريخ ${c.date}</p>
 </div>
 </div>
@@ -1837,10 +1961,10 @@ return c.type === 'student_private' && ((c.from === currentUser.name && c.to ===
 
 container.innerHTML = filtered.length ? filtered.map(m => `
 <div class="chat-msg ${m.from === currentUser.name ? 'outgoing' : 'incoming'}">
-<div style="font-size: 0.75rem; opacity: 0.8; margin-bottom: 2px;">${m.from} (${m.time})</div>
+<div style="font-size: 0.78rem; opacity: 0.8; margin-bottom: 4px;">${m.from} (${m.time})</div>
 <div>${m.text}</div>
 </div>
-`).join('') : '<p style="text-align:center; color:var(--text-muted); margin-top:20px;">لا توجد رسائل بعد. ابدأ المحادثة الآن!</p>';
+`).join('') : '<p style="text-align:center; color:var(--text-muted); margin-top:30px;">لا توجد رسائل بعد. ابدأ المحادثة الآن!</p>';
 container.scrollTop = container.scrollHeight;
 }
 
@@ -1877,6 +2001,7 @@ renderSupervisorGrades();
 renderSupervisorStudents();
 renderSupervisorSupportAndNotes();
 setupSupervisorCertificateSync();
+setupSupervisorChat();
 setupTabs('supervisorPage');
 }
 
@@ -1910,7 +2035,7 @@ function addQuestionField() {
 const container = document.getElementById('questionsBuilderContainer');
 const div = document.createElement('div');
 div.className = 'question-builder-item';
-div.style.cssText = 'background: var(--bg-alt); padding: 1rem; border-radius: 8px; display: grid; gap: 0.8rem; margin-top: 0.5rem; border-top: 1px solid var(--border);';
+div.style.cssText = 'background: var(--bg-alt); padding: 1.2rem; border-radius: 10px; display: grid; gap: 1rem; margin-top: 1rem; border-top: 1px solid var(--border);';
 div.innerHTML = `
 <div style="display: flex; justify-content: space-between; align-items: center;">
 <span style="font-weight: 700; color: var(--primary);">سؤال جديد</span>
@@ -1927,6 +2052,7 @@ div.innerHTML = `
 <option value="2">الخيار الثالث صحيح</option>
 <option value="3">الخيار الرابع صحيح</option>
 </select>
+<textarea class="q-explanation" placeholder="شرح الإجابة (يظهر بعد ظهور النتيجة)..." style="min-height: 80px;"></textarea>
 `;
 container.appendChild(div);
 }
@@ -1935,6 +2061,8 @@ document.getElementById('addQuizForm').addEventListener('submit', function(e) {
 e.preventDefault();
 const title = document.getElementById('quizTitle').value;
 const subject = document.getElementById('quizSubject').value;
+const image = document.getElementById('quizImage').value.trim();
+const video = document.getElementById('quizVideo').value.trim();
 
 const questionItems = document.querySelectorAll('.question-builder-item');
 const questions = [];
@@ -1947,7 +2075,8 @@ item.querySelector('.q-opt2').value,
 item.querySelector('.q-opt3').value,
 item.querySelector('.q-opt4').value
 ],
-correct: item.querySelector('.q-correct').value
+correct: item.querySelector('.q-correct').value,
+explanation: item.querySelector('.q-explanation').value.trim()
 });
 });
 
@@ -1956,6 +2085,8 @@ quizzes.push({
 id: Date.now(),
 title,
 subject,
+image,
+video,
 questions,
 date: new Date().toLocaleDateString('ar-EG')
 });
@@ -1974,6 +2105,7 @@ return `
 <div class="card">
 <div class="card-header"><h3>${q.title}</h3><p>${q.subject}</p></div>
 <div class="card-body">
+${renderMediaHTML(q.image, q.video)}
 <p><strong>عدد الأسئلة:</strong> ${questionsList.length}</p>
 </div>
 <div class="card-footer"><button class="btn btn-danger btn-small" onclick="deleteQuiz(${q.id})">حذف الاختبار</button></div>
@@ -1993,14 +2125,14 @@ const certificates = getData(DB.certificates);
 document.getElementById('supervisorGradesContainer').innerHTML = results.length ? results.map(r => {
 const hasCertificate = certificates.some(c => c.studentName === r.studentName && c.quizTitle === r.quizTitle);
 return `
-<div class="card" style="margin-bottom: 1rem;">
+<div class="card" style="margin-bottom: 1.2rem;">
 <div class="card-header"><h3>طالب: ${r.studentName}</h3><p>الاختبار: ${r.quizTitle}</p></div>
 <div class="card-body">
 <p><strong>الدرجة:</strong> ${r.score}</p>
 <p><strong>الحالة:</strong> <span style="color: ${r.status === 'ناجح' ? 'var(--success)' : 'var(--danger)'}; font-weight: bold;">${r.status}</span></p>
 <p><strong>تقييم المشرف:</strong> <span id="eval-text-${r.id}">${r.evaluation || 'لم يتم التقييم بعد'}</span></p>
-<div style="margin-top: 1rem; display: flex; gap: 0.8rem; flex-wrap: wrap;">
-<input type="text" id="eval-input-${r.id}" placeholder="اكتب تقييم المشرف هنا..." style="flex: 1; padding: 0.5rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg-alt); color: var(--text);" />
+<div style="margin-top: 1.2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+<input type="text" id="eval-input-${r.id}" placeholder="اكتب تقييم المشرف هنا..." style="flex: 1; padding: 0.7rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-alt); color: var(--text);" />
 <button class="btn btn-primary btn-small" onclick="saveEvaluation(${r.id})">حفظ التقييم</button>
 ${r.status === 'ناجح' && !hasCertificate ? `
 <button class="btn btn-primary btn-small" style="background: linear-gradient(135deg, #fbbf24, #d97706); color: #0f172a;" onclick="issueCertificate('${r.studentName}', '${r.quizTitle}')">إصدار شهادة نجاح</button>
@@ -2044,6 +2176,61 @@ date: new Date().toLocaleDateString('ar-EG')
 setData(DB.certificates, certificates);
 renderSupervisorGrades();
 alert(`تم إصدار شهادة النجاح للطالب ${name} بنجاح!`);
+}
+
+// Supervisor Chat System
+let currentSupervisorChatTarget = 'group';
+function setupSupervisorChat() {
+const sups = getData(DB.supervisors).filter(s => s.name !== currentUser.name);
+document.getElementById('supervisorContactsList').innerHTML = sups.map(s => `
+<div class="chat-contact-item" onclick="selectSupervisorChat('${s.name}')"><i class="fas fa-user-tie"></i> ${s.name}</div>
+`).join('');
+renderSupervisorChatMessages();
+}
+
+function selectSupervisorChat(target) {
+currentSupervisorChatTarget = target;
+document.querySelectorAll('#supervisorChatSidebar .chat-contact-item').forEach(el => el.classList.remove('active'));
+event.currentTarget.classList.add('active');
+document.getElementById('supervisorChatHeader').textContent = target === 'group' ? 'مجموعة المشرفين' : `محادثة خاصة مع: ${target}`;
+renderSupervisorChatMessages();
+}
+
+function renderSupervisorChatMessages() {
+const chats = getData(DB.chats);
+const container = document.getElementById('supervisorChatMessages');
+let filtered = chats.filter(c => {
+if(currentSupervisorChatTarget === 'group') return c.type === 'supervisor_group';
+return c.type === 'supervisor_private' && ((c.from === currentUser.name && c.to === currentSupervisorChatTarget) || (c.from === currentSupervisorChatTarget && c.to === currentUser.name));
+});
+
+container.innerHTML = filtered.length ? filtered.map(m => `
+<div class="chat-msg ${m.from === currentUser.name ? 'outgoing' : 'incoming'}">
+<div style="font-size: 0.78rem; opacity: 0.8; margin-bottom: 4px;">${m.from} (${m.time})</div>
+<div>${m.text}</div>
+</div>
+`).join('') : '<p style="text-align:center; color:var(--text-muted); margin-top:30px;">لا توجد رسائل بعد.</p>';
+container.scrollTop = container.scrollHeight;
+}
+
+function sendSupervisorChatMsg(e) {
+e.preventDefault();
+const input = document.getElementById('supervisorChatInput');
+const text = input.value.trim();
+if(!text) return;
+
+let chats = getData(DB.chats);
+chats.push({
+id: Date.now(),
+type: currentSupervisorChatTarget === 'group' ? 'supervisor_group' : 'supervisor_private',
+from: currentUser.name,
+to: currentSupervisorChatTarget,
+text: text,
+time: new Date().toLocaleTimeString('ar-EG', {hour: '2-digit', minute:'2-digit'})
+});
+setData(DB.chats, chats);
+input.value = '';
+renderSupervisorChatMessages();
 }
 
 // Supervisor Certificate Live Sync & PDF Download
@@ -2100,8 +2287,8 @@ document.getElementById('supervisorStudentsContainer').innerHTML = students.leng
 <div class="member-card">
 <div class="member-avatar">${s.name[0]}</div>
 <h4>${s.name}</h4>
-<p style="color:var(--primary); font-weight:700;">كلمة السر: ${s.password}</p>
-<p>${s.class}</p>
+<p style="color:var(--primary); font-weight:700; margin-top:0.4rem;">كلمة السر: ${s.password}</p>
+<p style="margin-top:0.3rem;">${s.class}</p>
 <p style="font-size:0.8rem; color:var(--text-muted); margin-top:0.5rem;">التسجيل: ${s.registeredAt || '-'}</p>
 </div>`).join('') : '<p>لا يوجد طلاب مسجلون حالياً.</p>';
 }
@@ -2134,6 +2321,7 @@ document.getElementById('adminTotalStudents').textContent = getData(DB.students)
 document.getElementById('adminTotalLessons').textContent = getData(DB.lessons).length + getData(DB.quizzes).length;
 renderAdminSupervisors();
 renderAdminStudents();
+renderAdminStudentChatsControl();
 setupAdminChat();
 setupTabs('adminPage');
 }
@@ -2144,9 +2332,9 @@ document.getElementById('adminSupervisorsContainer').innerHTML = sups.length ? s
 <div class="member-card">
 <div class="member-avatar">${s.name[0]}</div>
 <h4>${s.name}</h4>
-<p style="color: var(--primary);">كود الدخول: <strong>${s.code}</strong></p>
-<p>${s.phone || '-'}</p>
-<button class="btn btn-danger btn-small" style="margin-top:0.8rem; width:100%;" onclick="deleteSupervisor(${s.id})">حذف المشرف نهائياً</button>
+<p style="color: var(--primary); margin-top:0.4rem;">كود الدخول: <strong>${s.code}</strong></p>
+<p style="margin-top:0.3rem;">${s.phone || '-'}</p>
+<button class="btn btn-danger btn-small" style="margin-top:1rem; width:100%;" onclick="deleteSupervisor(${s.id})">حذف المشرف نهائياً</button>
 </div>`).join('') : '<p>لا توجد مشرفون مسجلون.</p>';
 }
 
@@ -2180,11 +2368,42 @@ document.getElementById('adminStudentsContainer').innerHTML = students.length ? 
 <div class="card-header"><h3>الطالب: ${s.name}</h3><p>${s.class}</p></div>
 <div class="card-body">
 <p><strong>اسم المستخدم / الرقم:</strong> ${s.phone || s.name}</p>
-<p><strong>كلمة السر الخاصة به:</strong> <span style="color: var(--warning); font-weight: bold;">${s.password}</span></p>
-<p><strong>تاريخ التسجيل:</strong> ${s.registeredAt || '-'}</p>
+<p style="margin-top:0.4rem;"><strong>كلمة السر الخاصة به:</strong> <span style="color: var(--warning); font-weight: bold;">${s.password}</span></p>
+<p style="margin-top:0.4rem;"><strong>تاريخ التسجيل:</strong> ${s.registeredAt || '-'}</p>
 </div>
 </div>
 `).join('') : '<p>لا توجد طلاب مسجلون حتى الآن.</p>';
+}
+
+// Admin Control over Student Chats
+function renderAdminStudentChatsControl() {
+const chats = getData(DB.chats).filter(c => c.type === 'student_group' || c.type === 'student_private');
+const container = document.getElementById('adminStudentChatsContainer');
+container.innerHTML = chats.length ? chats.map(m => `
+<div style="background: var(--bg-alt); padding: 15px; border-radius: 12px; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
+<div>
+<p style="font-size: 0.85rem; color: var(--primary); margin-bottom: 4px;"><strong>${m.from}</strong> ${m.to && m.to !== 'group' ? `إلى ${m.to}` : '(المجموعة العامة)'} - ${m.time}</p>
+<p style="font-size: 1rem;">${m.text}</p>
+</div>
+<button class="btn btn-danger btn-small" onclick="deleteStudentChatMsg(${m.id})"><i class="fas fa-trash"></i> حذف</button>
+</div>
+`).join('') : '<p style="color: var(--text-muted);">لا توجد رسائل طلاب مسجلة.</p>';
+}
+
+function deleteStudentChatMsg(msgId) {
+let chats = getData(DB.chats);
+chats = chats.filter(c => c.id !== msgId);
+setData(DB.chats, chats);
+renderAdminStudentChatsControl();
+}
+
+function clearAllStudentChats() {
+if(!confirm('هل أنت متأكد من مسح جميع رسائل دردشة الطلاب بالكامل؟')) return;
+let chats = getData(DB.chats);
+chats = chats.filter(c => c.type !== 'student_group' && c.type !== 'student_private');
+setData(DB.chats, chats);
+renderAdminStudentChatsControl();
+alert('تم مسح جميع رسائل الطلاب بنجاح.');
 }
 
 // Admin Chat System
@@ -2215,10 +2434,10 @@ return c.type === 'admin_private_supervisor' && (c.with === currentAdminChatTarg
 
 container.innerHTML = filtered.length ? filtered.map(m => `
 <div class="chat-msg ${m.from === 'المالك' ? 'outgoing' : 'incoming'}">
-<div style="font-size: 0.75rem; opacity: 0.8; margin-bottom: 2px;">${m.from} (${m.time})</div>
+<div style="font-size: 0.78rem; opacity: 0.8; margin-bottom: 4px;">${m.from} (${m.time})</div>
 <div>${m.text}</div>
 </div>
-`).join('') : '<p style="text-align:center; color:var(--text-muted); margin-top:20px;">لا توجد رسائل بعد.</p>';
+`).join('') : '<p style="text-align:center; color:var(--text-muted); margin-top:30px;">لا توجد رسائل بعد.</p>';
 container.scrollTop = container.scrollHeight;
 }
 
@@ -2247,7 +2466,7 @@ const lesson = getData(DB.lessons).find(l => l.id === id);
 if(!lesson) return;
 document.getElementById('lessonModalTitle').textContent = lesson.title;
 document.getElementById('lessonModalBody').innerHTML = `
-<div style="margin-bottom: 1rem;">${lesson.content}</div>
+<div style="margin-bottom: 1.2rem; line-height: 1.8;">${lesson.content}</div>
 ${renderMediaHTML(lesson.image, lesson.video)}
 `;
 document.getElementById('lessonModal').classList.add('active');
