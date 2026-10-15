@@ -681,7 +681,7 @@ font-size: 1.1rem;
 margin: 0 auto 0.8rem;
 }
 
-/* تنسيق الشهادة الملكية الفاخرة والمطورة */
+/* تنسيق الشهادة الملكية الفاخرة */
 .certificate-preview-wrapper {
   display: flex;
   justify-content: center;
@@ -692,33 +692,34 @@ margin: 0 auto 0.8rem;
 }
 
 .certificate-container {
-  width: 850px;
-  height: 600px;
-  background: #fdfbf7;
+  width: 900px;
+  height: 640px;
+  background: linear-gradient(135deg, #fffdfa 0%, #fef3c7 100%);
   color: #0f172a;
   position: relative;
-  padding: 18px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+  padding: 22px;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.35);
   box-sizing: border-box;
   flex-shrink: 0;
-  border-radius: 4px;
+  border-radius: 8px;
+  border: 4px solid #b45309;
 }
 
 .cert-border-outer {
-  border: 10px double #b45309;
+  border: 4px double #b45309;
   height: 100%;
-  padding: 6px;
+  padding: 8px;
   box-sizing: border-box;
 }
 
 .cert-border-inner {
   border: 2px solid #d97706;
   height: 100%;
-  padding: 15px 25px;
+  padding: 20px 30px;
   box-sizing: border-box;
   position: relative;
-  background-image: radial-gradient(#d97706 0.4px, transparent 0.4px);
-  background-size: 16px 16px;
+  background-image: radial-gradient(#d97706 0.5px, transparent 0.5px);
+  background-size: 18px 18px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -728,68 +729,69 @@ margin: 0 auto 0.8rem;
 .cert-header {
   display: flex;
   justify-content: space-between;
-  font-size: 11px;
+  font-size: 12px;
   color: #475569;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .brand-title {
   font-family: 'Reem Kufi', sans-serif;
-  font-size: 22px;
-  color: #0f172a;
-  margin: 2px 0 0 0;
-  letter-spacing: 1px;
+  font-size: 26px;
+  color: #b45309;
+  margin: 4px 0 0 0;
+  letter-spacing: 1.5px;
 }
 
 .brand-subtitle {
-  font-size: 12px;
-  color: #b45309;
-  margin-bottom: 4px;
+  font-size: 13px;
+  color: #1e3a8a;
+  margin-bottom: 6px;
   font-weight: bold;
 }
 
 .main-title {
   font-family: 'Amiri', serif;
-  font-size: 34px;
-  color: #1e3a8a;
-  margin: 4px 0;
+  font-size: 38px;
+  color: #b45309;
+  margin: 6px 0;
   font-weight: bold;
 }
 
 .student-name-display {
   font-family: 'Amiri', serif;
-  font-size: 30px;
-  color: #b45309;
+  font-size: 34px;
+  color: #1e3a8a;
   font-weight: bold;
-  margin: 6px 0;
-  padding: 2px 20px;
-  border-bottom: 2px dashed #b45309;
+  margin: 8px 0;
+  padding: 4px 25px;
+  border-bottom: 3px solid #b45309;
   display: inline-block;
 }
 
 .cert-body-text {
-  font-size: 14px;
-  color: #334155;
-  line-height: 1.5;
-  margin: 4px auto;
-  max-width: 650px;
+  font-size: 15px;
+  color: #1e293b;
+  line-height: 1.6;
+  margin: 6px auto;
+  max-width: 700px;
+  font-weight: 600;
 }
 
 .badges-wrapper {
   display: flex;
   justify-content: center;
-  gap: 15px;
-  margin: 8px 0;
+  gap: 20px;
+  margin: 12px 0;
 }
 
 .badge-item {
   background: #ffffff;
-  border: 1px solid #cbd5e1;
-  border-radius: 20px;
-  padding: 4px 14px;
-  font-size: 12px;
+  border: 2px solid #d97706;
+  border-radius: 25px;
+  padding: 6px 16px;
+  font-size: 13px;
   color: #1e293b;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
 
 .badge-item strong {
@@ -800,8 +802,8 @@ margin: 0 auto 0.8rem;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  padding: 0 10px;
-  margin-top: 5px;
+  padding: 0 15px;
+  margin-top: 10px;
 }
 
 .signature-box {
@@ -809,16 +811,16 @@ margin: 0 auto 0.8rem;
 }
 
 .signature-line {
-  width: 120px;
-  height: 1px;
-  background: #64748b;
-  margin: 4px auto;
+  width: 140px;
+  height: 2px;
+  background: #b45309;
+  margin: 6px auto;
 }
 
 .digital-seal-box {
-  width: 70px;
-  height: 70px;
-  border: 2px dashed #b45309;
+  width: 80px;
+  height: 80px;
+  border: 3px dashed #b45309;
   border-radius: 50%;
   background: #0f172a;
   color: #fff;
@@ -826,7 +828,8 @@ margin: 0 auto 0.8rem;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 7px;
+  font-size: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
 /* تنسيق الدردشة */
@@ -956,7 +959,7 @@ height: 450px;
 <div id="loginPage" class="page active">
 <div class="login-container">
 <div class="login-left">
-<h1 id="mainAcademyLogo" style="cursor: pointer;">Abdo_zeinhom Academy</h1>
+<h1 id="mainAcademyLogo" style="cursor: pointer;" title="اضغط 5 مرات للمشرف و7 مرات للمالك">Abdo_zeinhom Academy</h1>
 <p>منصة تعليمية متكاملة تتيح الدروس، الاختبارات التفاعلية، دعم الطلاب والملاحظات المباشرة.</p>
 <div class="login-features">
 <div class="feature-item">
@@ -979,11 +982,6 @@ height: 450px;
 <div class="login-form">
 <h2 id="loginFormTitle">تسجيل دخول الطالب</h2>
 <div id="loginAlert"></div>
-
-<div class="mode-toggle">
-<button class="active" id="modeStudentBtn" data-mode="student">طالب</button>
-<!-- خيارات المشرف والمالك مخفية وتظهر بالضغط 5 أو 7 مرات على شعار المنصة -->
-</div>
 
 <!-- Student Login / Register Form -->
 <form id="studentLoginForm">
@@ -1012,19 +1010,20 @@ height: 450px;
 </button>
 </form>
 
-<!-- Staff Login Form (Hidden by default) -->
+<!-- Staff Login Form (Hidden by default, activated by logo clicks) -->
 <form id="staffLoginForm" style="display: none;">
 <div class="form-group">
-<label for="staffName">اسم المستخدم (للمشرف أو المالك)</label>
-<input type="text" id="staffName" placeholder="أدخل اسمك أو اسم المالك" required />
+<label for="staffName">اسم المستخدم (للمشرف)</label>
+<input type="text" id="staffName" placeholder="أدخل اسم المشرف تماماً" required />
 </div>
 <div class="form-group">
 <label for="staffCode">كود الدخول أو الرمز السري</label>
-<input type="password" id="staffCode" placeholder="أدخل كود الدخول" required />
+<input type="password" id="staffCode" placeholder="أدخل الكود الخاص بك" required />
 </div>
 <button type="submit" class="btn btn-primary" style="width: 100%;">
 <i class="fas fa-sign-in-alt"></i> دخول لوحة التحكم
 </button>
+<button type="button" class="btn btn-secondary btn-small" style="width: 100%; margin-top: 0.5rem;" onclick="backToStudentLogin()">العودة لدخول الطلاب</button>
 </form>
 
 </div>
@@ -1298,7 +1297,7 @@ height: 450px;
 </div>
 
 <div id="supervisor-students" class="tab-content">
-<div class="dashboard-header"><h2>قائمة الطلاب المسجلين وكلمات السر (للمتابعة والاسترجاع)</h2></div>
+<div class="dashboard-header"><h2>قائمة الطلاب المسجلين</h2></div>
 <div id="supervisorStudentsContainer" class="members-list"></div>
 </div>
 <div id="supervisor-support" class="tab-content">
@@ -1349,9 +1348,9 @@ height: 450px;
 <div class="add-form">
 <form id="addSupervisorForm" style="display: grid; gap: 1rem;">
 <input type="text" class="supervisorName" placeholder="اسم المشرف" required />
-<input type="text" class="supervisorCode" placeholder="الرمز السري الخاص بالدخول (الذي يتحكم به المالك)" required />
+<input type="text" class="supervisorCode" placeholder="الرمز السري الخاص بالدخول" required />
 <input type="text" class="supervisorPhone" placeholder="رقم الهاتف" />
-<button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> إضافة المشرف وتحديد كوده</button>
+<button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> إضافة المشرف وتعيين كوده</button>
 </form>
 </div>
 <div id="adminSupervisorsContainer" class="members-list"></div>
@@ -1476,20 +1475,23 @@ if(localStorage.getItem('academy_theme') === 'light') toggleTheme();
 let currentUser = null;
 let userRole = null;
 
-// Hidden Access via Logo clicks: 5 times = supervisor login, 7 times = admin login
+// Hidden Access via Logo clicks: exactly 5 times = supervisor login, 7 times = admin login
 let logoClicks = 0;
 let logoTimer = null;
 document.getElementById('mainAcademyLogo').addEventListener('click', function() {
 logoClicks++;
 clearTimeout(logoTimer);
-logoTimer = setTimeout(() => {
+
 if(logoClicks === 5) {
 showStaffLogin('supervisor', 'تسجيل دخول المشرف');
-} else if(logoClicks >= 7) {
+} else if(logoClicks === 7) {
 showStaffLogin('admin', 'تسجيل دخول المالك');
-}
 logoClicks = 0;
-}, 1000);
+}
+
+logoTimer = setTimeout(() => {
+logoClicks = 0;
+}, 1200);
 });
 
 function showStaffLogin(role, title) {
@@ -1497,7 +1499,13 @@ document.getElementById('studentLoginForm').style.display = 'none';
 document.getElementById('staffLoginForm').style.display = 'block';
 document.getElementById('loginFormTitle').textContent = title;
 document.getElementById('staffLoginForm').dataset.targetRole = role;
-alert(`تم تفعيل وضع ${role === 'admin' ? 'المالك' : 'المشرف'}. أدخل بياناتك للدخول.`);
+alert(`تم تفعيل وضع ${role === 'admin' ? 'المالك' : 'المشرف'}. أدخل بياناتك للخول.`);
+}
+
+function backToStudentLogin() {
+document.getElementById('staffLoginForm').style.display = 'none';
+document.getElementById('studentLoginForm').style.display = 'block';
+document.getElementById('loginFormTitle').textContent = 'تسجيل دخول الطالب';
 }
 
 // Student Form Mode Switch (Login vs Register)
@@ -1553,17 +1561,17 @@ loadStudentDashboard();
 document.getElementById('studentPage').classList.add('active');
 });
 
-// Staff Login Submit (Supervisor or Admin)
+// Staff Login Submit (Supervisor or Admin) - Updated with robust trimming and case-insensitivity
 document.getElementById('staffLoginForm').addEventListener('submit', function(e) {
 e.preventDefault();
-const name = document.getElementById('staffName').value.trim();
-const code = document.getElementById('staffCode').value.trim();
+const nameInput = document.getElementById('staffName').value.trim();
+const codeInput = document.getElementById('staffCode').value.trim();
 const targetRole = this.dataset.targetRole || 'supervisor';
 
 if(targetRole === 'admin') {
-if(code === 'Abdo_1234_Abdo') {
+if(codeInput === 'Abdo_1234_Abdo') {
 userRole = 'admin';
-currentUser = { name: name || 'المالك' };
+currentUser = { name: nameInput || 'المالك' };
 document.getElementById('loginPage').classList.remove('active');
 loadAdminDashboard();
 document.getElementById('adminPage').classList.add('active');
@@ -1571,9 +1579,13 @@ document.getElementById('adminPage').classList.add('active');
 alert('كود المالك غير صحيح! (الكود هو: Abdo_1234_Abdo)');
 }
 } else {
-// Supervisor check against database
 let supervisors = getData(DB.supervisors);
-let sup = supervisors.find(s => s.name === name && s.code === code);
+// مطابقة مرنة (بدون الحساسية لحالة الحروف أو الفراغات الزائدة)
+let sup = supervisors.find(s => 
+s.name.trim().toLowerCase() === nameInput.toLowerCase() && 
+s.code.trim() === codeInput
+);
+
 if(sup) {
 userRole = 'supervisor';
 currentUser = sup;
@@ -1581,7 +1593,7 @@ document.getElementById('loginPage').classList.remove('active');
 loadSupervisorDashboard();
 document.getElementById('supervisorPage').classList.add('active');
 } else {
-alert('اسم المشرف أو الكود السري غير صحيح، تأكد من البيانات التي حددها لك المالك.');
+alert('اسم المشرف أو الكود السري غير صحيح!\nتأكد من كتابة الاسم والكود بنفس الطريقة التي أضافها لك المالك تماماً.');
 }
 }
 });
@@ -1590,9 +1602,7 @@ function logout() {
 currentUser = null; userRole = null;
 document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
 document.getElementById('loginPage').classList.add('active');
-document.getElementById('staffLoginForm').style.display = 'none';
-document.getElementById('studentLoginForm').style.display = 'block';
-document.getElementById('loginFormTitle').textContent = 'تسجيل دخول الطالب';
+backToStudentLogin();
 }
 
 // Media Helper
@@ -2145,9 +2155,9 @@ e.preventDefault();
 const sups = getData(DB.supervisors);
 sups.push({
 id: Date.now(),
-name: this.querySelector('.supervisorName').value,
-code: this.querySelector('.supervisorCode').value,
-phone: this.querySelector('.supervisorPhone').value
+name: this.querySelector('.supervisorName').value.trim(),
+code: this.querySelector('.supervisorCode').value.trim(),
+phone: this.querySelector('.supervisorPhone').value.trim()
 });
 setData(DB.supervisors, sups);
 this.reset();
