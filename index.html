@@ -547,7 +547,6 @@ color: var(--text);
 font-size: 1.05rem;
 }
 
-/* تنسيق الوسائط المحسّن (صور وفيديوهات واضحة وملء الشاشة مع أزرار التنزيل) */
 .media-container {
 margin: 1.5rem 0;
 border-radius: 12px;
@@ -712,7 +711,7 @@ margin: 0 auto 1rem;
 box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-/* تنسيق الشهادة الملكية الفاخرة */
+/* تنسيق الشهادة الملكية الفاخرة الثابتة للطباعة */
 .certificate-preview-wrapper {
   display: flex;
   justify-content: center;
@@ -724,12 +723,11 @@ box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 
 .certificate-container {
   width: 900px;
-  height: 640px;
-  background-color: #fef3c7;
-  background: linear-gradient(135deg, #fffdfa 0%, #fef3c7 100%);
+  height: 600px;
+  background-color: #fffdfa !important;
   color: #0f172a;
   position: relative;
-  padding: 22px;
+  padding: 20px;
   box-shadow: 0 25px 50px rgba(0,0,0,0.35);
   box-sizing: border-box;
   flex-shrink: 0;
@@ -747,12 +745,10 @@ box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 .cert-border-inner {
   border: 2px solid #d97706;
   height: 100%;
-  padding: 20px 30px;
+  padding: 15px 25px;
   box-sizing: border-box;
   position: relative;
-  background-color: #fffdfa;
-  background-image: radial-gradient(#d97706 0.5px, transparent 0.5px);
-  background-size: 18px 18px;
+  background-color: #fffdfa !important;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -771,41 +767,41 @@ box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   font-family: 'Reem Kufi', sans-serif;
   font-size: 26px;
   color: #b45309;
-  margin: 4px 0 0 0;
+  margin: 2px 0 0 0;
   letter-spacing: 1.5px;
 }
 
 .brand-subtitle {
-  font-size: 13px;
+  font-size: 12px;
   color: #1e3a8a;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
   font-weight: bold;
 }
 
 .main-title {
   font-family: 'Amiri', serif;
-  font-size: 38px;
+  font-size: 34px;
   color: #b45309;
-  margin: 6px 0;
+  margin: 4px 0;
   font-weight: bold;
 }
 
 .student-name-display {
   font-family: 'Amiri', serif;
-  font-size: 34px;
+  font-size: 30px;
   color: #1e3a8a;
   font-weight: bold;
-  margin: 8px 0;
-  padding: 4px 25px;
+  margin: 6px 0;
+  padding: 2px 20px;
   border-bottom: 3px solid #b45309;
   display: inline-block;
 }
 
 .cert-body-text {
-  font-size: 15px;
+  font-size: 14px;
   color: #1e293b;
   line-height: 1.6;
-  margin: 6px auto;
+  margin: 4px auto;
   max-width: 700px;
   font-weight: 600;
 }
@@ -813,16 +809,16 @@ box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 .badges-wrapper {
   display: flex;
   justify-content: center;
-  gap: 20px;
-  margin: 12px 0;
+  gap: 15px;
+  margin: 8px 0;
 }
 
 .badge-item {
-  background: #ffffff;
+  background: #fef3c7;
   border: 2px solid #d97706;
-  border-radius: 25px;
-  padding: 6px 16px;
-  font-size: 13px;
+  border-radius: 20px;
+  padding: 4px 14px;
+  font-size: 12px;
   color: #1e293b;
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
@@ -835,8 +831,8 @@ box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  padding: 0 15px;
-  margin-top: 10px;
+  padding: 0 10px;
+  margin-top: 5px;
 }
 
 .signature-box {
@@ -844,15 +840,15 @@ box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
 .signature-line {
-  width: 140px;
+  width: 130px;
   height: 2px;
   background: #b45309;
-  margin: 6px auto;
+  margin: 4px auto;
 }
 
 .digital-seal-box {
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   border: 3px dashed #b45309;
   border-radius: 50%;
   background: #0f172a;
@@ -861,7 +857,7 @@ box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 8px;
+  font-size: 7px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
@@ -1049,7 +1045,7 @@ gap: 1.2rem;
 </button>
 </form>
 
-<!-- Staff Login Form (Hidden by default, activated by logo clicks) -->
+<!-- Staff Login Form -->
 <form id="staffLoginForm" style="display: none;">
 <div class="form-group">
 <label for="staffName">اسم المستخدم (للمشرف)</label>
@@ -1558,7 +1554,6 @@ if(localStorage.getItem('academy_theme') === 'light') toggleTheme();
 let currentUser = null;
 let userRole = null;
 
-// Hidden Access via Logo clicks: exactly 5 times = supervisor login, 7 times = admin login
 let logoClicks = 0;
 let logoTimer = null;
 document.getElementById('mainAcademyLogo').addEventListener('click', function() {
@@ -1591,7 +1586,6 @@ document.getElementById('studentLoginForm').style.display = 'block';
 document.getElementById('loginFormTitle').textContent = 'تسجيل دخول الطالب';
 }
 
-// Student Form Mode Switch (Login vs Register)
 let isStudentRegister = false;
 function switchStudentTab(mode) {
 isStudentRegister = (mode === 'register');
@@ -1601,7 +1595,6 @@ document.getElementById('studentClassGroup').style.display = isStudentRegister ?
 document.getElementById('studentAuthBtn').innerHTML = isStudentRegister ? '<i class="fas fa-user-plus"></i> إنشاء حساب جديد' : '<i class="fas fa-sign-in-alt"></i> دخول المنصة';
 }
 
-// Student Auth Submit
 document.getElementById('studentLoginForm').addEventListener('submit', function(e) {
 e.preventDefault();
 const identifier = document.getElementById('studentNameInput').value.trim();
@@ -1644,7 +1637,6 @@ loadStudentDashboard();
 document.getElementById('studentPage').classList.add('active');
 });
 
-// Staff Login Submit (Supervisor or Admin)
 document.getElementById('staffLoginForm').addEventListener('submit', function(e) {
 e.preventDefault();
 const nameInput = document.getElementById('staffName').value.trim();
@@ -1687,7 +1679,6 @@ document.getElementById('loginPage').classList.add('active');
 backToStudentLogin();
 }
 
-// Media Helper Function (Updated with Fullscreen, Clear Display & Download buttons)
 function renderMediaHTML(imgUrl, vidUrl) {
 let html = '';
 if (imgUrl && imgUrl.trim() !== '') {
@@ -1738,7 +1729,6 @@ if (vidUrl && vidUrl.trim() !== '') {
 return html;
 }
 
-// Lightbox Functions for Images
 function openImageModal(url) {
 document.getElementById('lightboxImg').src = url;
 document.getElementById('lightboxDownloadBtn').href = url;
@@ -1749,7 +1739,6 @@ function closeImageLightbox() {
 document.getElementById('imageLightboxModal').classList.remove('active');
 }
 
-// Student Dashboard Functions
 function loadStudentDashboard() {
 document.getElementById('studentName').textContent = currentUser.name;
 document.getElementById('studentPhone').textContent = currentUser.phone || 'حساب خاص';
@@ -1776,7 +1765,6 @@ document.getElementById('studentLessonsContainer').innerHTML = lessons.map(l => 
 </div>`).join('');
 }
 
-// Quiz state for student (Question by Question interactive runner)
 let studentQuizStates = {};
 
 function renderStudentQuizzes() {
@@ -1989,37 +1977,37 @@ function renderStudentCertificates() {
 const certs = getData(DB.certificates).filter(c => c.studentName === currentUser.name);
 document.getElementById('studentCertificatesContainer').innerHTML = certs.length ? certs.map((c, index) => `
 <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem; width: 100%; margin-bottom: 2rem;">
-  <div class="certificate-container" id="studentCertBox-${index}" style="width: 900px; height: 640px; background-color: #fef3c7; background: linear-gradient(135deg, #fffdfa 0%, #fef3c7 100%); color: #0f172a; position: relative; padding: 22px; box-shadow: 0 25px 50px rgba(0,0,0,0.35); box-sizing: border-box; flex-shrink: 0; border-radius: 8px; border: 4px solid #b45309;">
-    <div class="cert-border-outer" style="border: 4px double #b45309; height: 100%; padding: 8px; box-sizing: border-box;">
-      <div class="cert-border-inner" style="border: 2px solid #d97706; height: 100%; padding: 20px 30px; box-sizing: border-box; position: relative; background-color: #fffdfa; text-align: center; display: flex; flex-direction: column; justify-content: space-between;">
-        <div class="cert-header" style="display: flex; justify-content: space-between; font-size: 12px; color: #475569; font-weight: 700;">
+  <div class="certificate-container" id="studentCertBox-${index}">
+    <div class="cert-border-outer">
+      <div class="cert-border-inner">
+        <div class="cert-header">
           <div>الرقم التسلسلي: <span style="color:#0f172a; font-weight:bold;">AZ-2026-${1000 + index}</span></div>
           <div>التاريخ: <span style="color:#0f172a; font-weight:bold;">${c.date}</span></div>
         </div>
         <div>
-          <h2 class="brand-title" style="font-family: 'Reem Kufi', sans-serif; font-size: 26px; color: #b45309; margin: 4px 0 0 0; letter-spacing: 1.5px;">Abdo_zeinhom Academy</h2>
-          <div class="brand-subtitle" style="font-size: 13px; color: #1e3a8a; margin-bottom: 6px; font-weight: bold;">المنصة التعليمية الاحترافية المعتمدة</div>
+          <h2 class="brand-title">Abdo_zeinhom Academy</h2>
+          <div class="brand-subtitle">المنصة التعليمية الاحترافية المعتمدة</div>
         </div>
         <div>
-          <h1 class="main-title" style="font-family: 'Amiri', serif; font-size: 38px; color: #b45309; margin: 6px 0; font-weight: bold;">شَهَادَةُ شُكْرٍ وَتَقْدِيرٍ</h1>
+          <h1 class="main-title">شَهَادَةُ شُكْرٍ وَتَقْدِيرٍ</h1>
           <p style="font-size: 13px; color: #64748b; margin: 0;">تتقدم إدارة المنصة بخالص الشكر والتقدير والاعتزاز للطالب المتميز:</p>
-          <div class="student-name-display" style="font-family: 'Amiri', serif; font-size: 34px; color: #1e3a8a; font-weight: bold; margin: 8px 0; padding: 4px 25px; border-bottom: 3px solid #b45309; display: inline-block;">${c.studentName}</div>
+          <div class="student-name-display">${c.studentName}</div>
         </div>
-        <p class="cert-body-text" style="font-size: 15px; color: #1e293b; line-height: 1.6; margin: 6px auto; max-width: 700px; font-weight: 600;">
+        <p class="cert-body-text">
           نظير مجهوده الاستثنائي، وتفوقه الباهر في اجتياز الاختبار التفاعلي (${c.quizTitle}),<br>
           سائلين المولى عز وجل له دوام التقدم والرفعة والصدارة دائماً.
         </p>
-        <div class="badges-wrapper" style="display: flex; justify-content: center; gap: 20px; margin: 12px 0;">
-          <div class="badge-item" style="background: #ffffff; border: 2px solid #d97706; border-radius: 25px; padding: 6px 16px; font-size: 13px; color: #1e293b; box-shadow: 0 4px 10px rgba(0,0,0,0.08);">الاختبار: <strong style="color: #b45309;">${c.quizTitle}</strong></div>
-          <div class="badge-item" style="background: #ffffff; border: 2px solid #d97706; border-radius: 25px; padding: 6px 16px; font-size: 13px; color: #1e3a8a; box-shadow: 0 4px 10px rgba(0,0,0,0.08);">الحالة: <strong style="color: #059669;">اجتياز بنجاح</strong></div>
+        <div class="badges-wrapper">
+          <div class="badge-item">الاختبار: <strong style="color: #b45309;">${c.quizTitle}</strong></div>
+          <div class="badge-item">الحالة: <strong style="color: #059669;">اجتياز بنجاح</strong></div>
         </div>
-        <div class="cert-footer" style="display: flex; justify-content: space-between; align-items: flex-end; padding: 0 15px; margin-top: 10px;">
-          <div class="signature-box" style="text-align: center;">
+        <div class="cert-footer">
+          <div class="signature-box">
             <p style="font-size: 12px; margin: 0; font-weight: bold; color: #0f172a;">المشرف المعتمد</p>
-            <div class="signature-line" style="width: 140px; height: 2px; background: #b45309; margin: 6px auto;"></div>
+            <div class="signature-line"></div>
             <p style="font-size: 11px; margin: 0; color: #64748b; font-style: italic;">${c.issuedBy}</p>
           </div>
-          <div class="digital-seal-box" style="width: 80px; height: 80px; border: 3px dashed #b45309; border-radius: 50%; background: #0f172a; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+          <div class="digital-seal-box">
             <span style="color: #fbbf24; font-weight: bold; font-size: 8px;">AZ ACADEMY</span>
             <span style="margin: 1px 0;">✓ موثقة</span>
             <span style="font-size: 6px; color: #cbd5e1;">SECURITY SEAL</span>
@@ -2042,7 +2030,7 @@ const options = {
   margin: 0,
   filename: `Certificate_${studentName.replace(/\s+/g, '_')}.pdf`,
   image: { type: 'jpeg', quality: 0.98 },
-  html2canvas: { scale: 2, useCORS: true, backgroundColor: '#fef3c7' },
+  html2canvas: { scale: 2, useCORS: true, backgroundColor: '#fffdfa' },
   jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
 };
 downloadBtn.textContent = "جاري التصدير...";
@@ -2057,7 +2045,6 @@ html2pdf().from(element).set(options).save().then(() => {
 });
 }
 
-// Student Chat System
 let currentStudentChatTarget = 'group';
 function setupStudentChat() {
 const students = getData(DB.students).filter(s => s.name !== currentUser.name);
@@ -2112,7 +2099,6 @@ input.value = '';
 renderStudentChatMessages();
 }
 
-// Supervisor Dashboard Functions
 function loadSupervisorDashboard() {
 document.getElementById('supervisorName').textContent = currentUser.name;
 document.getElementById('totalStudents').textContent = getData(DB.students).length;
@@ -2302,7 +2288,6 @@ renderSupervisorGrades();
 alert(`تم إصدار شهادة النجاح للطالب ${name} بنجاح!`);
 }
 
-// Supervisor Chat System
 let currentSupervisorChatTarget = 'group';
 function setupSupervisorChat() {
 const sups = getData(DB.supervisors).filter(s => s.name !== currentUser.name);
@@ -2357,7 +2342,6 @@ input.value = '';
 renderSupervisorChatMessages();
 }
 
-// Supervisor Certificate Live Sync & PDF Download
 function setupSupervisorCertificateSync() {
   const inName = document.getElementById('certInputName');
   const inClass = document.getElementById('certInputClass');
@@ -2388,7 +2372,7 @@ function setupSupervisorCertificateSync() {
         margin: 0,
         filename: `Certificate_${studentName.replace(/\s+/g, '_')}.pdf`,
         image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, useCORS: true, backgroundColor: '#fef3c7' },
+        html2canvas: { scale: 2, useCORS: true, backgroundColor: '#fffdfa' },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
       };
       downloadBtn.textContent = "جاري التصدير...";
@@ -2438,7 +2422,6 @@ setData(DB.lessons, getData(DB.lessons).filter(l => l.id !== id));
 renderSupervisorLessons();
 }
 
-// Admin (Owner) Dashboard Functions
 function loadAdminDashboard() {
 document.getElementById('adminTotalSupervisors').textContent = getData(DB.supervisors).length;
 document.getElementById('adminTotalStudents').textContent = getData(DB.students).length;
@@ -2499,7 +2482,6 @@ document.getElementById('adminStudentsContainer').innerHTML = students.length ? 
 `).join('') : '<p>لا توجد طلاب مسجلون حتى الآن.</p>';
 }
 
-// Admin Control over Student Chats
 function renderAdminStudentChatsControl() {
 const chats = getData(DB.chats).filter(c => c.type === 'student_group' || c.type === 'student_private');
 const container = document.getElementById('adminStudentChatsContainer');
@@ -2530,7 +2512,6 @@ renderAdminStudentChatsControl();
 alert('تم مسح جميع رسائل الطلاب بنجاح.');
 }
 
-// Admin Chat System
 let currentAdminChatTarget = 'all_supervisors';
 function setupAdminChat() {
 const sups = getData(DB.supervisors);
