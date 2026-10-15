@@ -85,6 +85,8 @@ gap: 0.8rem;
 font-size: 1.3rem;
 font-weight: 800;
 color: var(--primary);
+cursor: pointer;
+user-select: none;
 }
 
 .logo-icon {
@@ -679,7 +681,7 @@ font-size: 1.1rem;
 margin: 0 auto 0.8rem;
 }
 
-/* تصميم الشهادة الملكية الفاخرة (متناسقة ونظيفة جداً) */
+/* تنسيق الشهادة الملكية الفاخرة والمطورة */
 .certificate-preview-wrapper {
   display: flex;
   justify-content: center;
@@ -827,6 +829,84 @@ margin: 0 auto 0.8rem;
   font-size: 7px;
 }
 
+/* تنسيق الدردشة */
+.chat-container {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  height: 500px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.chat-sidebar {
+  border-left: 1px solid var(--border);
+  background: var(--bg-alt);
+  overflow-y: auto;
+  padding: 10px;
+}
+.chat-contact-item {
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  transition: background 0.2s;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.chat-contact-item:hover, .chat-contact-item.active {
+  background: var(--primary);
+  color: #0f172a;
+}
+.chat-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--panel);
+}
+.chat-messages {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.chat-msg {
+  max-width: 70%;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.chat-msg.incoming {
+  background: var(--bg-alt);
+  align-self: flex-start;
+  border: 1px solid var(--border);
+}
+.chat-msg.outgoing {
+  background: var(--primary);
+  color: #0f172a;
+  align-self: flex-end;
+}
+.chat-input-area {
+  padding: 10px 15px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 10px;
+  background: var(--bg-alt);
+}
+.chat-input-area input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--text);
+  font-family: 'Cairo', sans-serif;
+}
+
 @media (max-width: 768px) {
 .navbar-content {
 flex-direction: column;
@@ -863,6 +943,10 @@ padding: 1rem;
 .media-container iframe, .media-container video {
 height: 210px;
 }
+.chat-container {
+grid-template-columns: 1fr;
+height: 450px;
+}
 }
 </style>
 </head>
@@ -872,14 +956,14 @@ height: 210px;
 <div id="loginPage" class="page active">
 <div class="login-container">
 <div class="login-left">
-<h1>Abdo_zeinhom Academy</h1>
+<h1 id="mainAcademyLogo" style="cursor: pointer;">Abdo_zeinhom Academy</h1>
 <p>منصة تعليمية متكاملة تتيح الدروس، الاختبارات التفاعلية، دعم الطلاب والملاحظات المباشرة.</p>
 <div class="login-features">
 <div class="feature-item">
-<i class="fas fa-mobile-alt"></i>
+<i class="fas fa-shield-alt"></i>
 <div>
-<strong>دخول فوري برقم الموبايل</strong>
-<p style="font-size: 0.85rem; color: var(--text-muted);">تسجيل الطلاب بكل سهولة عبر كود التحقق OTP</p>
+<strong>تسجيل آمن للطلاب والمشرفين</strong>
+<p style="font-size: 0.85rem; color: var(--text-muted);">انشاء حساب بكلمة سر خاصة بك وإدارتها بكل سهولة</p>
 </div>
 </div>
 <div class="feature-item">
@@ -893,26 +977,29 @@ height: 210px;
 </div>
 
 <div class="login-form">
-<h2>تسجيل الدخول</h2>
+<h2 id="loginFormTitle">تسجيل دخول الطالب</h2>
 <div id="loginAlert"></div>
 
 <div class="mode-toggle">
-<button class="active" data-mode="student">طالب</button>
-<button data-mode="supervisor">مشرف</button>
-<button data-mode="admin">مالك</button>
+<button class="active" id="modeStudentBtn" data-mode="student">طالب</button>
+<!-- خيارات المشرف والمالك مخفية وتظهر بالضغط 5 أو 7 مرات على شعار المنصة -->
 </div>
 
-<!-- Student Login Form -->
+<!-- Student Login / Register Form -->
 <form id="studentLoginForm">
-<div class="form-group">
-<label for="studentNameInput">الاسم الكامل</label>
-<input type="text" id="studentNameInput" placeholder="أدخل اسمك الكامل" required />
+<div class="mode-toggle" style="margin-bottom: 1rem;">
+<button type="button" class="active" id="studentTabLogin" onclick="switchStudentTab('login')">تسجيل دخول</button>
+<button type="button" id="studentTabRegister" onclick="switchStudentTab('register')">إنشاء حساب جديد</button>
 </div>
 <div class="form-group">
-<label for="studentPhoneInput">رقم الموبايل</label>
-<input type="tel" id="studentPhoneInput" placeholder="01xxxxxxxxx" pattern="[0-9]{11}" required />
+<label for="studentNameInput">اسم المستخدم أو رقم الموبايل</label>
+<input type="text" id="studentNameInput" placeholder="أدخل اسمك أو رقم الموبايل" required />
 </div>
 <div class="form-group">
+<label for="studentPasswordInput">كلمة السر</label>
+<input type="password" id="studentPasswordInput" placeholder="أدخل كلمة السر الخاصة بك" required />
+</div>
+<div class="form-group" id="studentClassGroup" style="display: none;">
 <label for="studentClassInput">الصف الدراسي</label>
 <select id="studentClassInput">
 <option value="الصف الأول الثانوي">الصف الأول الثانوي</option>
@@ -920,30 +1007,23 @@ height: 210px;
 <option value="الصف الثالث الثانوي">الصف الثالث الثانوي</option>
 </select>
 </div>
-<div class="form-group" id="otpGroup" style="display: none;">
-<label for="otpCodeInput">رمز التحقق (OTP)</label>
-<input type="text" id="otpCodeInput" placeholder="أدخل رمز التحقق المكون من 4 أرقام" />
-</div>
-<button type="button" id="sendOtpBtn" class="btn btn-secondary" style="width: 100%; margin-bottom: 0.8rem;">
-<i class="fas fa-paper-plane"></i> إرسال رمز التحقق
-</button>
-<button type="submit" id="studentSubmitBtn" class="btn btn-primary" style="width: 100%; display: none;">
+<button type="submit" id="studentAuthBtn" class="btn btn-primary" style="width: 100%;">
 <i class="fas fa-sign-in-alt"></i> دخول المنصة
 </button>
 </form>
 
-<!-- Staff Login Form -->
+<!-- Staff Login Form (Hidden by default) -->
 <form id="staffLoginForm" style="display: none;">
 <div class="form-group">
-<label for="staffName">الاسم</label>
-<input type="text" id="staffName" placeholder="أدخل اسمك" required />
+<label for="staffName">اسم المستخدم (للمشرف أو المالك)</label>
+<input type="text" id="staffName" placeholder="أدخل اسمك أو اسم المالك" required />
 </div>
 <div class="form-group">
-<label for="staffCode">كود الدخول</label>
+<label for="staffCode">كود الدخول أو الرمز السري</label>
 <input type="password" id="staffCode" placeholder="أدخل كود الدخول" required />
 </div>
 <button type="submit" class="btn btn-primary" style="width: 100%;">
-<i class="fas fa-sign-in-alt"></i> دخول المنصة
+<i class="fas fa-sign-in-alt"></i> دخول لوحة التحكم
 </button>
 </form>
 
@@ -955,7 +1035,7 @@ height: 210px;
 <div id="studentPage" class="page">
 <nav class="navbar">
 <div class="navbar-content">
-<div class="logo">
+<div class="logo student-logo">
 <div class="logo-icon"><i class="fas fa-graduation-cap"></i></div>
 <span>Abdo_zeinhom Academy</span>
 </div>
@@ -967,6 +1047,7 @@ height: 210px;
 <button class="tab-toggle" data-section="student-support">الدعم الفني</button>
 <button class="tab-toggle" data-section="student-supervisors">المشرفون</button>
 <button class="tab-toggle" data-section="student-certificates">الشهادات</button>
+<button class="tab-toggle" data-section="student-chat">الدردشة</button>
 </div>
 <div class="nav-actions">
 <button class="theme-toggle-btn" onclick="toggleTheme()"><i class="fas fa-moon" id="themeIcon"></i></button>
@@ -1030,6 +1111,23 @@ height: 210px;
 <div class="dashboard-header"><h2>شهادات التقدير والنجاح</h2></div>
 <div id="studentCertificatesContainer" class="cards-grid"></div>
 </div>
+<div id="student-chat" class="tab-content">
+<div class="dashboard-header"><h2>دردشة الطلاب (فردي وجماعي)</h2></div>
+<div class="chat-container">
+<div class="chat-sidebar" id="studentChatSidebar">
+<div class="chat-contact-item active" onclick="selectStudentChat('group')"><i class="fas fa-users"></i> المجموعة العامـة</div>
+<div id="studentContactsList"></div>
+</div>
+<div class="chat-main">
+<div id="studentChatHeader" style="padding: 12px 15px; border-bottom: 1px solid var(--border); font-weight: 700; background: var(--bg-alt);">المجموعة العامة</div>
+<div class="chat-messages" id="studentChatMessages"></div>
+<form class="chat-input-area" onsubmit="sendStudentChatMsg(event)">
+<input type="text" id="studentChatInput" placeholder="اكتب رسالتك هنا..." required />
+<button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i></button>
+</form>
+</div>
+</div>
+</div>
 </div>
 </div>
 
@@ -1037,7 +1135,7 @@ height: 210px;
 <div id="supervisorPage" class="page">
 <nav class="navbar">
 <div class="navbar-content">
-<div class="logo">
+<div class="logo supervisor-logo">
 <div class="logo-icon"><i class="fas fa-chalkboard-teacher"></i></div>
 <span>Abdo_zeinhom Academy</span>
 </div>
@@ -1118,12 +1216,11 @@ height: 210px;
 <div id="supervisorGradesContainer"></div>
 </div>
 
-<!-- قسم تصميم وإصدار الشهادات المطور للمشرفين (الشهادة تحت نموذج التعديل) -->
+<!-- قسم تصميم وإصدار الشهادات الملكية المطورة -->
 <div id="supervisor-certificates" class="tab-content">
 <div class="dashboard-header"><h2>لوحة تصميم وإصدار شهادات التقدير الملكية</h2><p>تحكم ببيانات الشهادة وشاهد المعاينة الفورية قبل تحميلها أو إرسالها للطالب</p></div>
 
 <div style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
-  <!-- نموذج إدخال البيانات -->
   <div class="add-form" style="width: 100%; max-width: 850px; margin-bottom: 0;">
     <h3 style="margin-bottom: 1rem; color: var(--primary);">تعديل بيانات الشهادة</h3>
     <div class="form-group">
@@ -1155,63 +1252,53 @@ height: 210px;
     </button>
   </div>
 
-  <!-- المعاينة الحية للشهادة (تحت التعديل تماماً) -->
   <div class="certificate-preview-wrapper" style="width: 100%;">
     <div class="certificate-container" id="certificateBox">
       <div class="cert-border-outer">
         <div class="cert-border-inner">
-          
           <div class="cert-header">
             <div>الرقم التسلسلي: <span id="certDisplaySerial" style="color:#0f172a; font-weight:bold;">AZ-2026-0891</span></div>
             <div>التاريخ: <span id="certDisplayDate">14 أكتوبر 2026</span></div>
           </div>
-
           <div>
             <h2 class="brand-title">Abdo_zeinhom Academy</h2>
             <div class="brand-subtitle">المنصة التعليمية الاحترافية المعتمدة</div>
           </div>
-
           <div>
             <h1 class="main-title">شَهَادَةُ شُكْرٍ وَتَقْدِيرٍ</h1>
             <p style="font-size: 13px; color: #64748b; margin: 0;">تتقدم إدارة المنصة بخالص الشكر والتقدير والاعتزاز للطالب المتميز:</p>
             <div class="student-name-display" id="certDisplayName">أحمد محمد عبد العال</div>
           </div>
-
           <p class="cert-body-text">
             نظير مجهوده الاستثنائي، وتفوقه الباهر في أداء الاختبارات الأكاديمية التفاعلية المستمرة،<br>
             سائلين المولى عز وجل له ولجميع طلابنا دوام التقدم والرفعة والصدارة دائماً.
           </p>
-
           <div class="badges-wrapper">
             <div class="badge-item">الصف: <strong id="certDisplayClass">الصف الثالث الثانوي</strong></div>
             <div class="badge-item">المادة: <strong id="certDisplaySubject">الفيزياء</strong></div>
             <div class="badge-item">التقييم العام: <strong id="certDisplayScore">امتياز (98%)</strong></div>
           </div>
-
           <div class="cert-footer">
             <div class="signature-box">
               <p style="font-size: 12px; margin: 0; font-weight: bold; color: #0f172a;">مؤسس المنصة</p>
               <div class="signature-line"></div>
               <p style="font-size: 11px; margin: 0; color: #64748b; font-style: italic;">أ. عبد الرحمن زينهم</p>
             </div>
-
             <div class="digital-seal-box">
               <span style="color: #fbbf24; font-weight: bold; font-size: 8px;">AZ ACADEMY</span>
               <span style="margin: 1px 0;">✓ موثقة</span>
               <span style="font-size: 6px; color: #cbd5e1;">SECURITY SEAL</span>
             </div>
           </div>
-
         </div>
       </div>
     </div>
   </div>
 </div>
-
 </div>
 
 <div id="supervisor-students" class="tab-content">
-<div class="dashboard-header"><h2>قائمة الطلاب المسجلين برقم الموبايل</h2></div>
+<div class="dashboard-header"><h2>قائمة الطلاب المسجلين وكلمات السر (للمتابعة والاسترجاع)</h2></div>
 <div id="supervisorStudentsContainer" class="members-list"></div>
 </div>
 <div id="supervisor-support" class="tab-content">
@@ -1224,23 +1311,25 @@ height: 210px;
 </div>
 </div>
 
-<!-- Admin Dashboard -->
+<!-- Admin (Owner) Dashboard -->
 <div id="adminPage" class="page">
 <nav class="navbar">
 <div class="navbar-content">
-<div class="logo">
+<div class="logo admin-logo">
 <div class="logo-icon"><i class="fas fa-crown"></i></div>
 <span>Abdo_zeinhom Academy</span>
 </div>
 <div class="nav-menu">
 <button class="tab-toggle active" data-section="admin-home">الرئيسية</button>
-<button class="tab-toggle" data-section="admin-supervisors">المشرفون</button>
+<button class="tab-toggle" data-section="admin-supervisors">إدارة المشرفين</button>
+<button class="tab-toggle" data-section="admin-students">مراقبة الطلاب وكلمات السر</button>
+<button class="tab-toggle" data-section="admin-chat">دردشة المالك (المشرفين)</button>
 </div>
 <div class="nav-actions">
 <button class="theme-toggle-btn" onclick="toggleTheme()"><i class="fas fa-moon" id="themeIcon3"></i></button>
 <div class="user-info">
 <div class="user-avatar">م</div>
-<div class="user-details"><h4>المالك</h4><p>النظام</p></div>
+<div class="user-details"><h4>المالك</h4><p>النظام بالكامل</p></div>
 </div>
 <button class="btn btn-secondary btn-small" onclick="logout()"><i class="fas fa-sign-out-alt"></i></button>
 </div>
@@ -1248,23 +1337,45 @@ height: 210px;
 </nav>
 <div class="container">
 <div id="admin-home" class="tab-content active">
-<div class="dashboard-header"><h2>لوحة إشراف المالك</h2></div>
+<div class="dashboard-header"><h2>لوحة إشراف المالك - التحكم الكامل في المنصة</h2></div>
 <div class="stats-grid">
-<div class="stat-card"><i class="fas fa-users"></i><h4>المشرفون</h4><div class="value" id="adminTotalSupervisors">0</div></div>
-<div class="stat-card"><i class="fas fa-user-graduate"></i><h4>إجمالي الطلاب</h4><div class="value" id="adminTotalStudents">0</div></div>
+<div class="stat-card"><i class="fas fa-users"></i><h4>المشرفون النشطون</h4><div class="value" id="adminTotalSupervisors">0</div></div>
+<div class="stat-card"><i class="fas fa-user-graduate"></i><h4>إجمالي الطلاب المسجلين</h4><div class="value" id="adminTotalStudents">0</div></div>
+<div class="stat-card"><i class="fas fa-book"></i><h4>إجمالي الدروس والاختبارات</h4><div class="value" id="adminTotalLessons">0</div></div>
 </div>
 </div>
 <div id="admin-supervisors" class="tab-content">
+<div class="dashboard-header"><h2>إضافة مشرف جديد وتعيين كود الدخول الخاص به</h2></div>
 <div class="add-form">
-<h3>إضافة مشرف جديد</h3>
-<form id="addSupervisorForm" style="display: grid; gap: 1rem; margin-top: 1rem;">
+<form id="addSupervisorForm" style="display: grid; gap: 1rem;">
 <input type="text" class="supervisorName" placeholder="اسم المشرف" required />
+<input type="text" class="supervisorCode" placeholder="الرمز السري الخاص بالدخول (الذي يتحكم به المالك)" required />
 <input type="text" class="supervisorPhone" placeholder="رقم الهاتف" />
-<input type="email" class="supervisorEmail" placeholder="البريد" />
-<button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> إضافة</button>
+<button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> إضافة المشرف وتحديد كوده</button>
 </form>
 </div>
 <div id="adminSupervisorsContainer" class="members-list"></div>
+</div>
+<div id="admin-students" class="tab-content">
+<div class="dashboard-header"><h2>مراقبة الطلاب وأرقامهم وكلمات السر (في حال نسيانها)</h2></div>
+<div id="adminStudentsContainer" class="cards-grid"></div>
+</div>
+<div id="admin-chat" class="tab-content">
+<div class="dashboard-header"><h2>دردشة المالك مع المشرفين (فردي أو مع الجميع)</h2></div>
+<div class="chat-container">
+<div class="chat-sidebar" id="adminChatSidebar">
+<div class="chat-contact-item active" onclick="selectAdminChat('all_supervisors')"><i class="fas fa-bullhorn"></i> جميع المشرفين (مجموعة)</div>
+<div id="adminSupervisorsChatList"></div>
+</div>
+<div class="chat-main">
+<div id="adminChatHeader" style="padding: 12px 15px; border-bottom: 1px solid var(--border); font-weight: 700; background: var(--bg-alt);">جميع المشرفين</div>
+<div class="chat-messages" id="adminChatMessages"></div>
+<form class="chat-input-area" onsubmit="sendAdminChatMsg(event)">
+<input type="text" id="adminChatInput" placeholder="اكتب رسالتك للمشرفين..." required />
+<button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i></button>
+</form>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1289,7 +1400,8 @@ students: 'academy_students',
 notes: 'academy_notes',
 support: 'academy_support',
 results: 'academy_results',
-certificates: 'academy_certificates'
+certificates: 'academy_certificates',
+chats: 'academy_chats'
 };
 
 function getData(key) { return JSON.parse(localStorage.getItem(key)) || []; }
@@ -1337,14 +1449,14 @@ setData(DB.supervisors, [
 {
 id: 1,
 name: 'أستاذ أحمد محمد',
-phone: '01012345678',
-email: 'ahmed@academy.com'
+code: 'sup123',
+phone: '01012345678'
 },
 {
 id: 2,
 name: 'أستاذ عبده زينهم',
-phone: '01098765432',
-email: 'abdo@academy.com'
+code: 'sup456',
+phone: '01098765432'
 }
 ]);
 }
@@ -1361,59 +1473,79 @@ if(el) el.className = isLight ? 'fas fa-sun' : 'fas fa-moon';
 }
 if(localStorage.getItem('academy_theme') === 'light') toggleTheme();
 
-let generatedOtp = null;
 let currentUser = null;
 let userRole = null;
 
-// Toggle Login Modes
-document.querySelectorAll('.mode-toggle button').forEach(btn => {
-btn.addEventListener('click', function() {
-document.querySelectorAll('.mode-toggle button').forEach(b => b.classList.remove('active'));
-this.classList.add('active');
-const mode = this.dataset.mode;
-document.getElementById('studentLoginForm').style.display = mode === 'student' ? 'block' : 'none';
-document.getElementById('staffLoginForm').style.display = mode !== 'student' ? 'block' : 'none';
-});
+// Hidden Access via Logo clicks: 5 times = supervisor login, 7 times = admin login
+let logoClicks = 0;
+let logoTimer = null;
+document.getElementById('mainAcademyLogo').addEventListener('click', function() {
+logoClicks++;
+clearTimeout(logoTimer);
+logoTimer = setTimeout(() => {
+if(logoClicks === 5) {
+showStaffLogin('supervisor', 'تسجيل دخول المشرف');
+} else if(logoClicks >= 7) {
+showStaffLogin('admin', 'تسجيل دخول المالك');
+}
+logoClicks = 0;
+}, 1000);
 });
 
-// Student OTP Flow
-document.getElementById('sendOtpBtn').addEventListener('click', function() {
-const phone = document.getElementById('studentPhoneInput').value.trim();
-const name = document.getElementById('studentNameInput').value.trim();
-
-if(!name || phone.length !== 11) {
-alert('يرجى كتابة الاسم الكامل ورقم هاتف مكون من 11 رقم بشكل صحيح.');
-return;
+function showStaffLogin(role, title) {
+document.getElementById('studentLoginForm').style.display = 'none';
+document.getElementById('staffLoginForm').style.display = 'block';
+document.getElementById('loginFormTitle').textContent = title;
+document.getElementById('staffLoginForm').dataset.targetRole = role;
+alert(`تم تفعيل وضع ${role === 'admin' ? 'المالك' : 'المشرف'}. أدخل بياناتك للدخول.`);
 }
 
-generatedOtp = Math.floor(1000 + Math.random() * 9000);
-document.getElementById('otpGroup').style.display = 'block';
-document.getElementById('otpCodeInput').value = generatedOtp; 
-document.getElementById('studentSubmitBtn').style.display = 'block';
-alert(`تم إرسال رمز التحقق (OTP) إلى الهاتف: ${generatedOtp}`);
-});
+// Student Form Mode Switch (Login vs Register)
+let isStudentRegister = false;
+function switchStudentTab(mode) {
+isStudentRegister = (mode === 'register');
+document.getElementById('studentTabLogin').classList.toggle('active', !isStudentRegister);
+document.getElementById('studentTabRegister').classList.toggle('active', isStudentRegister);
+document.getElementById('studentClassGroup').style.display = isStudentRegister ? 'block' : 'none';
+document.getElementById('studentAuthBtn').innerHTML = isStudentRegister ? '<i class="fas fa-user-plus"></i> إنشاء حساب جديد' : '<i class="fas fa-sign-in-alt"></i> دخول المنصة';
+}
 
-// Student Login Submit
+// Student Auth Submit
 document.getElementById('studentLoginForm').addEventListener('submit', function(e) {
 e.preventDefault();
-const name = document.getElementById('studentNameInput').value.trim();
-const phone = document.getElementById('studentPhoneInput').value.trim();
+const identifier = document.getElementById('studentNameInput').value.trim();
+const password = document.getElementById('studentPasswordInput').value.trim();
 const studentClass = document.getElementById('studentClassInput').value;
-const otp = document.getElementById('otpCodeInput').value.trim();
-
-if(otp != generatedOtp) {
-alert('رمز التحقق خاطئ، يرجى التأكد وإعادة المحاولة.');
-return;
-}
-
-userRole = 'student';
-currentUser = { name, phone, class: studentClass };
 
 let students = getData(DB.students);
-let existing = students.find(s => s.phone === phone);
-if(!existing) {
-students.push({ id: Date.now(), name, phone, class: studentClass, registeredAt: new Date().toLocaleDateString('ar-EG') });
+
+if(isStudentRegister) {
+let existing = students.find(s => s.name === identifier || s.phone === identifier);
+if(existing) {
+alert('هذا المستخدم أو رقم الموبايل مسجل مسبقاً. سجل دخولك مباشرة.');
+return;
+}
+const newStudent = {
+id: Date.now(),
+name: identifier,
+phone: identifier,
+password: password,
+class: studentClass,
+registeredAt: new Date().toLocaleDateString('ar-EG')
+};
+students.push(newStudent);
 setData(DB.students, students);
+currentUser = newStudent;
+userRole = 'student';
+alert('تم إنشاء الحساب بنجاح! مرحباً بك في المنصة.');
+} else {
+let found = students.find(s => (s.name === identifier || s.phone === identifier) && s.password === password);
+if(!found) {
+alert('اسم المستخدم أو كلمة السر غير صحيحة، أو لم تقم بإنشاء حساب بعد.');
+return;
+}
+currentUser = found;
+userRole = 'student';
 }
 
 document.getElementById('loginPage').classList.remove('active');
@@ -1421,27 +1553,36 @@ loadStudentDashboard();
 document.getElementById('studentPage').classList.add('active');
 });
 
-// Staff Login Submit
+// Staff Login Submit (Supervisor or Admin)
 document.getElementById('staffLoginForm').addEventListener('submit', function(e) {
 e.preventDefault();
 const name = document.getElementById('staffName').value.trim();
 const code = document.getElementById('staffCode').value.trim();
-const mode = document.querySelector('.mode-toggle button.active').dataset.mode;
+const targetRole = this.dataset.targetRole || 'supervisor';
 
-if(mode === 'supervisor' && code === 'Abdo_super') {
-userRole = 'supervisor';
-currentUser = { name };
-document.getElementById('loginPage').classList.remove('active');
-loadSupervisorDashboard();
-document.getElementById('supervisorPage').classList.add('active');
-} else if(mode === 'admin' && code === 'xzsawq21') {
+if(targetRole === 'admin') {
+if(code === 'Abdo_1234_Abdo') {
 userRole = 'admin';
-currentUser = { name };
+currentUser = { name: name || 'المالك' };
 document.getElementById('loginPage').classList.remove('active');
 loadAdminDashboard();
 document.getElementById('adminPage').classList.add('active');
 } else {
-alert('كود الدخول غير صحيح!');
+alert('كود المالك غير صحيح! (الكود هو: Abdo_1234_Abdo)');
+}
+} else {
+// Supervisor check against database
+let supervisors = getData(DB.supervisors);
+let sup = supervisors.find(s => s.name === name && s.code === code);
+if(sup) {
+userRole = 'supervisor';
+currentUser = sup;
+document.getElementById('loginPage').classList.remove('active');
+loadSupervisorDashboard();
+document.getElementById('supervisorPage').classList.add('active');
+} else {
+alert('اسم المشرف أو الكود السري غير صحيح، تأكد من البيانات التي حددها لك المالك.');
+}
 }
 });
 
@@ -1449,6 +1590,9 @@ function logout() {
 currentUser = null; userRole = null;
 document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
 document.getElementById('loginPage').classList.add('active');
+document.getElementById('staffLoginForm').style.display = 'none';
+document.getElementById('studentLoginForm').style.display = 'block';
+document.getElementById('loginFormTitle').textContent = 'تسجيل دخول الطالب';
 }
 
 // Media Helper
@@ -1469,7 +1613,7 @@ return html;
 // Student Dashboard Functions
 function loadStudentDashboard() {
 document.getElementById('studentName').textContent = currentUser.name;
-document.getElementById('studentPhone').textContent = currentUser.phone;
+document.getElementById('studentPhone').textContent = currentUser.phone || 'حساب خاص';
 document.getElementById('studentAvatar').textContent = currentUser.name[0];
 
 renderStudentLessons();
@@ -1478,6 +1622,7 @@ renderStudentNotes();
 renderStudentSupport();
 renderStudentSupervisors();
 renderStudentCertificates();
+setupStudentChat();
 setupTabs('studentPage');
 }
 
@@ -1545,7 +1690,7 @@ const percentage = Math.round((score / total) * 100);
 const passed = percentage >= 50;
 
 let results = getData(DB.results);
-results = results.filter(r => !(r.studentPhone === currentUser.phone && r.quizId === quizId));
+results = results.filter(r => !(r.studentName === currentUser.name && r.quizId === quizId));
 results.push({
 id: Date.now(),
 studentName: currentUser.name,
@@ -1572,7 +1717,7 @@ form.querySelectorAll('input, button').forEach(el => el.disabled = true);
 }
 
 function renderStudentNotes() {
-const notes = getData(DB.notes).filter(n => n.studentPhone === currentUser.phone);
+const notes = getData(DB.notes).filter(n => n.studentName === currentUser.name);
 document.getElementById('studentNotesCount').textContent = notes.length;
 document.getElementById('studentNotesContainer').innerHTML = notes.length ? notes.map(n => `
 <div class="note-item">
@@ -1598,7 +1743,7 @@ alert('تم إرسال الملاحظة بنجاح');
 });
 
 function renderStudentSupport() {
-const supportList = getData(DB.support).filter(s => s.studentPhone === currentUser.phone);
+const supportList = getData(DB.support).filter(s => s.studentName === currentUser.name);
 document.getElementById('studentSupportContainer').innerHTML = supportList.length ? supportList.map(s => `
 <div class="support-item">
 <div class="support-header"><span>${s.topic}</span><span>${s.date}</span></div>
@@ -1636,15 +1781,15 @@ document.getElementById('studentSupervisorsContainer').innerHTML = sups.length ?
 }
 
 function renderStudentCertificates() {
-const certs = getData(DB.certificates).filter(c => c.studentPhone === currentUser.phone);
+const certs = getData(DB.certificates).filter(c => c.studentName === currentUser.name);
 document.getElementById('studentCertificatesContainer').innerHTML = certs.length ? certs.map(c => `
 <div class="card" style="border: 2px solid var(--warning); background: linear-gradient(135deg, var(--panel), var(--bg-alt));">
 <div class="card-header" style="background: linear-gradient(135deg, #fbbf24, #d97706); color: #0f172a;">
-<h3><i class="fas fa-award"></i> شهادة تقدير ونجاح</h3>
+<h3><i class="fas fa-award"></i> شهادة تقدير ونجاح ملكية</h3>
 <p>منصة Abdo_zeinhom Academy</p>
 </div>
 <div class="card-body" style="text-align: center; padding: 2rem 1rem;">
-<p style="font-size: 1.1rem; color: var(--text-muted);">تشهد إدارة المنصة بأن الطالب:</p>
+<p style="font-size: 1.1rem; color: var(--text-muted);">تشهد إدارة المنصة بأن الطالب المتميز:</p>
 <h2 style="color: var(--primary); margin: 0.5rem 0 1.5rem; font-size: 1.8rem;">${c.studentName}</h2>
 <p style="font-size: 1.05rem; line-height: 1.8;">قد اجتاز بنجاح الاختبار التفاعلي:</p>
 <h4 style="color: var(--secondary); margin: 0.5rem 0 1.5rem; font-size: 1.2rem;">${c.quizTitle}</h4>
@@ -1652,6 +1797,61 @@ document.getElementById('studentCertificatesContainer').innerHTML = certs.length
 </div>
 </div>
 `).join('') : '<p>لا توجد شهادات معتمدة حتى الآن. اجتاز الاختبارات ليقوم المشرفون بإصدار شهادتك.</p>';
+}
+
+// Student Chat System
+let currentStudentChatTarget = 'group';
+function setupStudentChat() {
+const students = getData(DB.students).filter(s => s.name !== currentUser.name);
+document.getElementById('studentContactsList').innerHTML = students.map(s => `
+<div class="chat-contact-item" onclick="selectStudentChat('${s.name}')"><i class="fas fa-user"></i> ${s.name}</div>
+`).join('');
+renderStudentChatMessages();
+}
+
+function selectStudentChat(target) {
+currentStudentChatTarget = target;
+document.querySelectorAll('#studentChatSidebar .chat-contact-item').forEach(el => el.classList.remove('active'));
+event.currentTarget.classList.add('active');
+document.getElementById('studentChatHeader').textContent = target === 'group' ? 'المجموعة العامة للطلاب' : `محادثة خاصة مع: ${target}`;
+renderStudentChatMessages();
+}
+
+function renderStudentChatMessages() {
+const chats = getData(DB.chats);
+const container = document.getElementById('studentChatMessages');
+let filtered = chats.filter(c => {
+if(currentStudentChatTarget === 'group') return c.type === 'student_group';
+return c.type === 'student_private' && ((c.from === currentUser.name && c.to === currentStudentChatTarget) || (c.from === currentStudentChatTarget && c.to === currentUser.name));
+});
+
+container.innerHTML = filtered.length ? filtered.map(m => `
+<div class="chat-msg ${m.from === currentUser.name ? 'outgoing' : 'incoming'}">
+<div style="font-size: 0.75rem; opacity: 0.8; margin-bottom: 2px;">${m.from} (${m.time})</div>
+<div>${m.text}</div>
+</div>
+`).join('') : '<p style="text-align:center; color:var(--text-muted); margin-top:20px;">لا توجد رسائل بعد. ابدأ المحادثة الآن!</p>';
+container.scrollTop = container.scrollHeight;
+}
+
+function sendStudentChatMsg(e) {
+e.preventDefault();
+const input = document.getElementById('studentChatInput');
+const text = input.value.trim();
+if(!text) return;
+
+let chats = getData(DB.chats);
+chats.push({
+id: Date.now(),
+type: currentStudentChatTarget === 'group' ? 'student_group' : 'student_private',
+from: currentUser.name,
+to: currentStudentChatTarget,
+text: text,
+time: new Date().toLocaleTimeString('ar-EG', {hour: '2-digit', minute:'2-digit'})
+});
+setData(DB.chats, chats);
+input.value = '';
+renderStudentChatMessages();
 }
 
 // Supervisor Dashboard Functions
@@ -1751,22 +1951,6 @@ date: new Date().toLocaleDateString('ar-EG')
 });
 setData(DB.quizzes, quizzes);
 this.reset();
-document.getElementById('questionsBuilderContainer').innerHTML = `
-<h4 style="color: var(--primary);">أسئلة الاختبار</h4>
-<div class="question-builder-item" style="background: var(--bg-alt); padding: 1rem; border-radius: 8px; display: grid; gap: 0.8rem;">
-<input type="text" class="q-text" placeholder="نص السؤال الأول" required />
-<input type="text" class="q-opt1" placeholder="الخيار الأول" required />
-<input type="text" class="q-opt2" placeholder="الخيار الثاني" required />
-<input type="text" class="q-opt3" placeholder="الخيار الثالث" required />
-<input type="text" class="q-opt4" placeholder="الخيار الرابع" required />
-<select class="q-correct" required>
-<option value="0">الخيار الأول صحيح</option>
-<option value="1">الخيار الثاني صحيح</option>
-<option value="2">الخيار الثالث صحيح</option>
-<option value="3">الخيار الرابع صحيح</option>
-</select>
-</div>
-`;
 renderSupervisorQuizzes();
 alert('تم إضافة ونشر الاختبار المتعدد الأسئلة بنجاح');
 });
@@ -1797,10 +1981,10 @@ const results = getData(DB.results);
 const certificates = getData(DB.certificates);
 
 document.getElementById('supervisorGradesContainer').innerHTML = results.length ? results.map(r => {
-const hasCertificate = certificates.some(c => c.studentPhone === r.studentPhone && c.quizTitle === r.quizTitle);
+const hasCertificate = certificates.some(c => c.studentName === r.studentName && c.quizTitle === r.quizTitle);
 return `
 <div class="card" style="margin-bottom: 1rem;">
-<div class="card-header"><h3>طالب: ${r.studentName} (${r.studentPhone})</h3><p>الاختبار: ${r.quizTitle}</p></div>
+<div class="card-header"><h3>طالب: ${r.studentName}</h3><p>الاختبار: ${r.quizTitle}</p></div>
 <div class="card-body">
 <p><strong>الدرجة:</strong> ${r.score}</p>
 <p><strong>الحالة:</strong> <span style="color: ${r.status === 'ناجح' ? 'var(--success)' : 'var(--danger)'}; font-weight: bold;">${r.status}</span></p>
@@ -1809,7 +1993,7 @@ return `
 <input type="text" id="eval-input-${r.id}" placeholder="اكتب تقييم المشرف هنا..." style="flex: 1; padding: 0.5rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg-alt); color: var(--text);" />
 <button class="btn btn-primary btn-small" onclick="saveEvaluation(${r.id})">حفظ التقييم</button>
 ${r.status === 'ناجح' && !hasCertificate ? `
-<button class="btn btn-primary btn-small" style="background: linear-gradient(135deg, #fbbf24, #d97706); color: #0f172a;" onclick="issueCertificate('${r.studentPhone}', '${r.studentName}', '${r.quizTitle}')">إصدار شهادة نجاح</button>
+<button class="btn btn-primary btn-small" style="background: linear-gradient(135deg, #fbbf24, #d97706); color: #0f172a;" onclick="issueCertificate('${r.studentName}', '${r.quizTitle}')">إصدار شهادة نجاح</button>
 ` : hasCertificate ? `<span style="color: var(--success); font-weight: bold; align-self: center;"><i class="fas fa-certificate"></i> تم إصدار الشهادة</span>` : ''}
 </div>
 </div>
@@ -1834,15 +2018,14 @@ alert('تم حفظ تقييم المشرف بنجاح');
 }
 }
 
-function issueCertificate(phone, name, quizTitle) {
+function issueCertificate(name, quizTitle) {
 let certificates = getData(DB.certificates);
-if(certificates.some(c => c.studentPhone === phone && c.quizTitle === quizTitle)) {
+if(certificates.some(c => c.studentName === name && c.quizTitle === quizTitle)) {
 alert('تم إصدار شهادة لهذا الطالب مسبقاً.');
 return;
 }
 certificates.push({
 id: Date.now(),
-studentPhone: phone,
 studentName: name,
 quizTitle: quizTitle,
 issuedBy: currentUser.name,
@@ -1907,9 +2090,9 @@ document.getElementById('supervisorStudentsContainer').innerHTML = students.leng
 <div class="member-card">
 <div class="member-avatar">${s.name[0]}</div>
 <h4>${s.name}</h4>
-<p style="color:var(--primary); font-weight:700;">${s.phone}</p>
+<p style="color:var(--primary); font-weight:700;">كلمة السر: ${s.password}</p>
 <p>${s.class}</p>
-<p style="font-size:0.8rem; color:var(--text-muted); margin-top:0.5rem;">تاريخ التسجيل: ${s.registeredAt || '-'}</p>
+<p style="font-size:0.8rem; color:var(--text-muted); margin-top:0.5rem;">التسجيل: ${s.registeredAt || '-'}</p>
 </div>`).join('') : '<p>لا يوجد طلاب مسجلون حالياً.</p>';
 }
 
@@ -1917,14 +2100,14 @@ function renderSupervisorSupportAndNotes() {
 const support = getData(DB.support);
 document.getElementById('supervisorSupportContainer').innerHTML = support.length ? support.map(s => `
 <div class="support-item">
-<div class="support-header"><span>${s.studentName} (${s.studentPhone})</span><span>${s.topic} - ${s.date}</span></div>
+<div class="support-header"><span>${s.studentName}</span><span>${s.topic} - ${s.date}</span></div>
 <p>${s.message}</p>
 </div>`).join('') : '<p>لا توجد طلبات دعم حالياً.</p>';
 
 const notes = getData(DB.notes);
 document.getElementById('supervisorNotesContainer').innerHTML = notes.length ? notes.map(n => `
 <div class="note-item">
-<div class="note-header"><span>${n.studentName} (${n.studentPhone})</span><span>${n.date}</span></div>
+<div class="note-header"><span>${n.studentName}</span><span>${n.date}</span></div>
 <p>${n.text}</p>
 </div>`).join('') : '<p>لا توجد ملاحظات من الطلاب.</p>';
 }
@@ -1934,11 +2117,14 @@ setData(DB.lessons, getData(DB.lessons).filter(l => l.id !== id));
 renderSupervisorLessons();
 }
 
-// Admin Dashboard
+// Admin (Owner) Dashboard Functions
 function loadAdminDashboard() {
 document.getElementById('adminTotalSupervisors').textContent = getData(DB.supervisors).length;
 document.getElementById('adminTotalStudents').textContent = getData(DB.students).length;
+document.getElementById('adminTotalLessons').textContent = getData(DB.lessons).length + getData(DB.quizzes).length;
 renderAdminSupervisors();
+renderAdminStudents();
+setupAdminChat();
 setupTabs('adminPage');
 }
 
@@ -1948,8 +2134,9 @@ document.getElementById('adminSupervisorsContainer').innerHTML = sups.length ? s
 <div class="member-card">
 <div class="member-avatar">${s.name[0]}</div>
 <h4>${s.name}</h4>
+<p style="color: var(--primary);">كود الدخول: <strong>${s.code}</strong></p>
 <p>${s.phone || '-'}</p>
-<button class="btn btn-danger btn-small" style="margin-top:0.8rem; width:100%;" onclick="deleteSupervisor(${s.id})">حذف</button>
+<button class="btn btn-danger btn-small" style="margin-top:0.8rem; width:100%;" onclick="deleteSupervisor(${s.id})">حذف المشرف نهائياً</button>
 </div>`).join('') : '<p>لا توجد مشرفون مسجلون.</p>';
 }
 
@@ -1959,18 +2146,90 @@ const sups = getData(DB.supervisors);
 sups.push({
 id: Date.now(),
 name: this.querySelector('.supervisorName').value,
-phone: this.querySelector('.supervisorPhone').value,
-email: this.querySelector('.supervisorEmail').value
+code: this.querySelector('.supervisorCode').value,
+phone: this.querySelector('.supervisorPhone').value
 });
 setData(DB.supervisors, sups);
 this.reset();
 renderAdminSupervisors();
-alert('تم إضافة المشرف بنجاح');
+alert('تم إضافة المشرف وتعيين كوده السري بنجاح');
 });
 
 function deleteSupervisor(id) {
-setData(DB.supervisors, getData(DB.supervisors).filter(s => s.id !== id));
+let sups = getData(DB.supervisors);
+sups = sups.filter(s => s.id !== id);
+setData(DB.supervisors, sups);
 renderAdminSupervisors();
+alert('تم حذف المشرف نهائياً من المنصة.');
+}
+
+function renderAdminStudents() {
+const students = getData(DB.students);
+document.getElementById('adminStudentsContainer').innerHTML = students.length ? students.map(s => `
+<div class="card">
+<div class="card-header"><h3>الطالب: ${s.name}</h3><p>${s.class}</p></div>
+<div class="card-body">
+<p><strong>اسم المستخدم / الرقم:</strong> ${s.phone || s.name}</p>
+<p><strong>كلمة السر الخاصة به:</strong> <span style="color: var(--warning); font-weight: bold;">${s.password}</span></p>
+<p><strong>تاريخ التسجيل:</strong> ${s.registeredAt || '-'}</p>
+</div>
+</div>
+`).join('') : '<p>لا توجد طلاب مسجلون حتى الآن.</p>';
+}
+
+// Admin Chat System
+let currentAdminChatTarget = 'all_supervisors';
+function setupAdminChat() {
+const sups = getData(DB.supervisors);
+document.getElementById('adminSupervisorsChatList').innerHTML = sups.map(s => `
+<div class="chat-contact-item" onclick="selectAdminChat('${s.name}')"><i class="fas fa-user-tie"></i> ${s.name}</div>
+`).join('');
+renderAdminChatMessages();
+}
+
+function selectAdminChat(target) {
+currentAdminChatTarget = target;
+document.querySelectorAll('#adminChatSidebar .chat-contact-item').forEach(el => el.classList.remove('active'));
+event.currentTarget.classList.add('active');
+document.getElementById('adminChatHeader').textContent = target === 'all_supervisors' ? 'جميع المشرفين' : `محادثة خاصة مع المشرف: ${target}`;
+renderAdminChatMessages();
+}
+
+function renderAdminChatMessages() {
+const chats = getData(DB.chats);
+const container = document.getElementById('adminChatMessages');
+let filtered = chats.filter(c => {
+if(currentAdminChatTarget === 'all_supervisors') return c.type === 'admin_all_supervisors';
+return c.type === 'admin_private_supervisor' && (c.with === currentAdminChatTarget);
+});
+
+container.innerHTML = filtered.length ? filtered.map(m => `
+<div class="chat-msg ${m.from === 'المالك' ? 'outgoing' : 'incoming'}">
+<div style="font-size: 0.75rem; opacity: 0.8; margin-bottom: 2px;">${m.from} (${m.time})</div>
+<div>${m.text}</div>
+</div>
+`).join('') : '<p style="text-align:center; color:var(--text-muted); margin-top:20px;">لا توجد رسائل بعد.</p>';
+container.scrollTop = container.scrollHeight;
+}
+
+function sendAdminChatMsg(e) {
+e.preventDefault();
+const input = document.getElementById('adminChatInput');
+const text = input.value.trim();
+if(!text) return;
+
+let chats = getData(DB.chats);
+chats.push({
+id: Date.now(),
+type: currentAdminChatTarget === 'all_supervisors' ? 'admin_all_supervisors' : 'admin_private_supervisor',
+from: 'المالك',
+with: currentAdminChatTarget,
+text: text,
+time: new Date().toLocaleTimeString('ar-EG', {hour: '2-digit', minute:'2-digit'})
+});
+setData(DB.chats, chats);
+input.value = '';
+renderAdminChatMessages();
 }
 
 function openLesson(id) {
