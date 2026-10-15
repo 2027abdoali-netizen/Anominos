@@ -186,6 +186,7 @@ display: inline-flex;
 align-items: center;
 justify-content: center;
 gap: 0.5rem;
+text-decoration: none;
 }
 
 .btn-primary {
@@ -546,31 +547,41 @@ color: var(--text);
 font-size: 1.05rem;
 }
 
+/* تنسيق الوسائط المحسّن (صور وفيديوهات واضحة وملء الشاشة مع أزرار التنزيل) */
 .media-container {
 margin: 1.5rem 0;
 border-radius: 12px;
 overflow: hidden;
-background: rgba(0,0,0,0.1);
+background: rgba(0,0,0,0.15);
 text-align: center;
 border: 1px solid var(--border);
-padding: 0.8rem;
+padding: 1rem;
 }
 
 .media-container img {
-max-width: 100%;
-max-height: 400px;
+width: 100%;
+max-height: 520px;
 border-radius: 10px;
 object-fit: contain;
 display: block;
 margin: 0 auto;
+cursor: pointer;
+transition: transform 0.3s;
+background: #000;
+}
+
+.media-container img:hover {
+transform: scale(1.01);
 }
 
 .media-container iframe, .media-container video {
 width: 100%;
-height: 320px;
+height: 420px;
 border: none;
 border-radius: 10px;
 background: #000;
+display: block;
+margin: 0 auto;
 }
 
 .add-form {
@@ -606,7 +617,7 @@ box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.15);
 display: none;
 position: fixed;
 top: 0; left: 0; right: 0; bottom: 0;
-background: rgba(0, 0, 0, 0.75);
+background: rgba(0, 0, 0, 0.85);
 z-index: 2000;
 align-items: center;
 justify-content: center;
@@ -624,10 +635,11 @@ border: 1px solid var(--border);
 border-radius: 16px;
 padding: 2rem;
 width: 100%;
-max-width: 850px;
+max-width: 950px;
 max-height: 90vh;
 overflow-y: auto;
 box-shadow: var(--shadow);
+position: relative;
 }
 
 .modal-header {
@@ -642,7 +654,7 @@ border-bottom: 1px solid var(--border);
 .close-modal {
 background: none;
 border: none;
-font-size: 1.8rem;
+font-size: 2rem;
 color: var(--text-muted);
 cursor: pointer;
 }
@@ -965,7 +977,7 @@ font-size: 2rem;
 padding: 1.5rem 1rem;
 }
 .media-container iframe, .media-container video {
-height: 230px;
+height: 280px;
 }
 .chat-container {
 grid-template-columns: 1fr;
@@ -1444,6 +1456,17 @@ gap: 1.2rem;
 </div>
 </div>
 
+<!-- Lightbox Modal for Image Fullscreen Preview & Download -->
+<div id="imageLightboxModal" class="modal" onclick="closeImageLightbox()">
+<div class="modal-content" style="background: transparent; border: none; box-shadow: none; max-width: 95vw; max-height: 95vh; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;" onclick="event.stopPropagation()">
+<button class="close-modal" style="position: absolute; top: 15px; left: 25px; color: #fff; font-size: 2.5rem; background: rgba(0,0,0,0.6); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 10;" onclick="closeImageLightbox()">×</button>
+<img id="lightboxImg" src="" alt="صورة مكبرة" style="max-width: 100%; max-height: 80vh; border-radius: 12px; object-fit: contain; box-shadow: 0 25px 50px rgba(0,0,0,0.9);" />
+<div style="margin-top: 1.2rem;">
+<a id="lightboxDownloadBtn" href="" download target="_blank" class="btn btn-primary"><i class="fas fa-download"></i> تنزيل الصورة بجودة عالية</a>
+</div>
+</div>
+</div>
+
 <script>
 const DB = {
 lessons: 'academy_lessons',
@@ -1468,7 +1491,7 @@ id: 1,
 title: 'مقدمة في الفيزياء الحديثة - الصف الثاني الثانوي',
 subject: 'الفيزياء',
 content: 'في هذا الدرس سنتناول أساسيات الفيزياء الحديثة، الكمات، ازدواجية الموجة والجسيم، وتطبيقاتها العملية في حياتنا اليومية.',
-image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=800&q=80',
+image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1200&q=80',
 video: ''
 }
 ]);
@@ -1662,19 +1685,66 @@ document.getElementById('loginPage').classList.add('active');
 backToStudentLogin();
 }
 
-// Media Helper
+// Media Helper Function (Updated with Fullscreen, Clear Display & Download buttons)
 function renderMediaHTML(imgUrl, vidUrl) {
 let html = '';
-if (imgUrl && imgUrl.trim() !== '') html += `<div class="media-container"><img src="${imgUrl.trim()}" alt="صورة" /></div>`;
-if (vidUrl && vidUrl.trim() !== '') {
-let embed = vidUrl.trim();
-if (embed.includes('youtube.com/watch?v=')) embed = embed.replace('watch?v=', 'embed/');
-else if (embed.includes('youtu.be/')) embed = `https://www.youtube.com/embed/${embed.split('youtu.be/')[1].split('?')[0]}`;
+if (imgUrl && imgUrl.trim() !== '') {
+  html += `
+    <div class="media-container">
+      <img src="${imgUrl.trim()}" alt="صورة توضيحية" title="اضغط لتكبير الصورة" onclick="openImageModal('${imgUrl.trim()}')" />
+      <div style="margin-top: 1rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+        <button type="button" class="btn btn-primary btn-small" onclick="openImageModal('${imgUrl.trim()}')"><i class="fas fa-expand"></i> تكبير الصورة بملء الشاشة</button>
+        <a href="${imgUrl.trim()}" download target="_blank" class="btn btn-secondary btn-small"><i class="fas fa-download"></i> تنزيل الصورة</a>
+      </div>
+    </div>`;
+}
 
-if (embed.includes('youtube.com/embed')) html += `<div class="media-container"><iframe src="${embed}" allowfullscreen></iframe></div>`;
-else html += `<div class="media-container"><video controls><source src="${embed}" type="video/mp4"></video></div>`;
+if (vidUrl && vidUrl.trim() !== '') {
+  let embed = vidUrl.trim();
+  let isYoutube = false;
+  if (embed.includes('youtube.com/watch?v=')) {
+    embed = embed.replace('watch?v=', 'embed/');
+    isYoutube = true;
+  } else if (embed.includes('youtu.be/')) {
+    embed = `https://www.youtube.com/embed/${embed.split('youtu.be/')[1].split('?')[0]}`;
+    isYoutube = true;
+  } else if (embed.includes('youtube.com/embed')) {
+    isYoutube = true;
+  }
+
+  if (isYoutube) {
+    html += `
+      <div class="media-container">
+        <iframe src="${embed}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <div style="margin-top: 1rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+          <a href="${vidUrl.trim()}" target="_blank" class="btn btn-primary btn-small"><i class="fas fa-external-link-alt"></i> فتح الفيديو في يوتيوب</a>
+        </div>
+      </div>`;
+  } else {
+    html += `
+      <div class="media-container">
+        <video controls playsinline preload="metadata">
+          <source src="${embed}" type="video/mp4">
+          متصفحك لا يدعم تشغيل الفيديو.
+        </video>
+        <div style="margin-top: 1rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+          <a href="${embed}" download target="_blank" class="btn btn-primary btn-small"><i class="fas fa-download"></i> تنزيل الفيديو</a>
+        </div>
+      </div>`;
+  }
 }
 return html;
+}
+
+// Lightbox Functions for Images
+function openImageModal(url) {
+document.getElementById('lightboxImg').src = url;
+document.getElementById('lightboxDownloadBtn').href = url;
+document.getElementById('imageLightboxModal').classList.add('active');
+}
+
+function closeImageLightbox() {
+document.getElementById('imageLightboxModal').classList.remove('active');
 }
 
 // Student Dashboard Functions
@@ -1741,7 +1811,6 @@ ${state.currentIdx < state.total - 1 ? `<button type="button" class="btn btn-pri
 </div>
 `;
 } else {
-// Submitted: show result and answers + explanations
 const percentage = Math.round((state.score / state.total) * 100);
 const passed = percentage >= 50;
 bodyHTML += `
@@ -2466,7 +2535,7 @@ const lesson = getData(DB.lessons).find(l => l.id === id);
 if(!lesson) return;
 document.getElementById('lessonModalTitle').textContent = lesson.title;
 document.getElementById('lessonModalBody').innerHTML = `
-<div style="margin-bottom: 1.2rem; line-height: 1.8;">${lesson.content}</div>
+<div style="margin-bottom: 1.5rem; line-height: 1.9; font-size: 1.1rem;">${lesson.content}</div>
 ${renderMediaHTML(lesson.image, lesson.video)}
 `;
 document.getElementById('lessonModal').classList.add('active');
