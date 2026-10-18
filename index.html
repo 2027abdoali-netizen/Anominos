@@ -14,25 +14,25 @@
 
 <style>
 :root {
---primary: #8b5cf6;
---primary-hover: #7c3aed;
+--primary: #6366f1;
+--primary-hover: #4f46e5;
 --secondary: #06b6d4;
 --danger: #f43f5e;
 --warning: #f59e0b;
 --success: #10b981;
---bg: #090d16;
---bg-alt: #111827;
---panel: #1f2937;
---border: #374151;
---text: #f3f4f6;
---text-muted: #9ca3af;
---shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
---glow: 0 0 25px rgba(139, 92, 246, 0.25);
+--bg: #070b14;
+--bg-alt: #0d1322;
+--panel: #131c31;
+--border: #212d4a;
+--text: #f8fafc;
+--text-muted: #94a3b8;
+--shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+--glow: 0 0 30px rgba(99, 102, 241, 0.2);
 }
 
 body.light-mode {
---primary: #7c3aed;
---primary-hover: #6d28d9;
+--primary: #4f46e5;
+--primary-hover: #4338ca;
 --secondary: #0891b2;
 --danger: #e11d48;
 --warning: #d97706;
@@ -40,11 +40,11 @@ body.light-mode {
 --bg: #f8fafc;
 --bg-alt: #f1f5f9;
 --panel: #ffffff;
---border: #e2e8f0;
+--border: #cbd5e1;
 --text: #0f172a;
 --text-muted: #64748b;
---shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.08);
---glow: 0 0 25px rgba(124, 58, 237, 0.15);
+--shadow: 0 15px 35px -10px rgba(15, 23, 42, 0.06);
+--glow: 0 0 25px rgba(79, 70, 229, 0.1);
 }
 
 * {
@@ -59,18 +59,18 @@ background: var(--bg);
 color: var(--text);
 min-height: 100vh;
 overflow-x: hidden;
-transition: background 0.4s ease, color 0.4s ease;
+transition: background 0.3s ease, color 0.3s ease;
 }
 
 .navbar {
-background: rgba(31, 41, 55, 0.85);
+background: rgba(19, 28, 49, 0.85);
 border-bottom: 1px solid var(--border);
-padding: 0.9rem 1.5rem;
+padding: 0.85rem 1.8rem;
 position: sticky;
 top: 0;
 z-index: 1000;
 backdrop-filter: blur(16px);
-box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 body.light-mode .navbar {
@@ -90,8 +90,8 @@ flex-wrap: wrap;
 .logo {
 display: flex;
 align-items: center;
-gap: 0.9rem;
-font-size: 1.35rem;
+gap: 0.8rem;
+font-size: 1.3rem;
 font-weight: 900;
 color: var(--primary);
 cursor: pointer;
@@ -100,8 +100,8 @@ letter-spacing: -0.5px;
 }
 
 .logo-icon {
-width: 42px;
-height: 42px;
+width: 40px;
+height: 40px;
 background: linear-gradient(135deg, var(--primary), var(--secondary));
 border-radius: 12px;
 display: flex;
@@ -109,13 +109,13 @@ align-items: center;
 justify-content: center;
 color: #ffffff;
 flex-shrink: 0;
-box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4);
+box-shadow: 0 6px 16px rgba(99, 102, 241, 0.35);
 font-size: 1.1rem;
 }
 
 .nav-menu {
 display: flex;
-gap: 0.5rem;
+gap: 0.4rem;
 align-items: center;
 flex: 1;
 justify-content: center;
@@ -132,15 +132,15 @@ display: none;
 background: transparent;
 border: 1px solid transparent;
 color: var(--text-muted);
-font-size: 0.92rem;
+font-size: 0.9rem;
 cursor: pointer;
-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+transition: all 0.25s ease;
 font-weight: 700;
 font-family: 'Cairo', sans-serif;
 white-space: nowrap;
-padding: 0.55rem 1.1rem;
+padding: 0.5rem 1rem;
 border-radius: 10px;
-margin: 0 0.15rem;
+margin: 0 0.1rem;
 }
 
 .nav-menu button:hover {
@@ -153,12 +153,12 @@ border-color: var(--border);
 color: #ffffff;
 background: linear-gradient(135deg, var(--primary), var(--primary-hover));
 border-color: transparent;
-box-shadow: 0 6px 20px rgba(139, 92, 246, 0.35);
+box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
 }
 
 .nav-actions {
 display: flex;
-gap: 0.9rem;
+gap: 0.8rem;
 align-items: center;
 }
 
@@ -166,51 +166,51 @@ align-items: center;
 background: var(--bg-alt);
 border: 1px solid var(--border);
 color: var(--warning);
-width: 42px;
-height: 42px;
+width: 40px;
+height: 40px;
 border-radius: 12px;
 display: flex;
 align-items: center;
 justify-content: center;
 cursor: pointer;
-transition: all 0.3s;
-font-size: 1.1rem;
+transition: all 0.25s;
+font-size: 1.05rem;
 flex-shrink: 0;
-box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+box-shadow: 0 2px 10px rgba(0,0,0,0.04);
 }
 
 .theme-toggle-btn:hover {
-transform: scale(1.1);
+transform: scale(1.08);
 border-color: var(--warning);
 background: var(--panel);
 }
 
 .btn {
-padding: 0.75rem 1.6rem;
+padding: 0.7rem 1.5rem;
 border: none;
 border-radius: 12px;
 font-weight: 800;
 cursor: pointer;
-font-size: 0.95rem;
-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+font-size: 0.92rem;
+transition: all 0.25s ease;
 font-family: 'Cairo', sans-serif;
 touch-action: manipulation;
 display: inline-flex;
 align-items: center;
 justify-content: center;
-gap: 0.6rem;
+gap: 0.5rem;
 text-decoration: none;
 }
 
 .btn-primary {
-background: linear-gradient(135deg, var(--primary), #6366f1);
+background: linear-gradient(135deg, var(--primary), #818cf8);
 color: #ffffff;
-box-shadow: 0 8px 25px rgba(139, 92, 246, 0.35);
+box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
 }
 
 .btn-primary:hover {
 transform: translateY(-2px);
-box-shadow: 0 12px 30px rgba(139, 92, 246, 0.5);
+box-shadow: 0 10px 25px rgba(99, 102, 241, 0.45);
 filter: brightness(1.05);
 }
 
@@ -218,7 +218,7 @@ filter: brightness(1.05);
 background: var(--bg-alt);
 border: 1px solid var(--border);
 color: var(--text);
-box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+box-shadow: 0 2px 10px rgba(0,0,0,0.02);
 }
 
 .btn-secondary:hover {
@@ -228,35 +228,35 @@ background: var(--panel);
 }
 
 .btn-danger {
-background: rgba(244, 63, 94, 0.12);
-border: 1px solid rgba(244, 63, 94, 0.3);
+background: rgba(244, 63, 94, 0.1);
+border: 1px solid rgba(244, 63, 94, 0.25);
 color: var(--danger);
 }
 
 .btn-danger:hover {
-background: rgba(244, 63, 94, 0.22);
+background: rgba(244, 63, 94, 0.2);
 }
 
 .btn-small {
-padding: 0.45rem 1rem;
-font-size: 0.85rem;
-border-radius: 9px;
+padding: 0.4rem 0.9rem;
+font-size: 0.82rem;
+border-radius: 8px;
 }
 
 .user-info {
 display: flex;
 align-items: center;
-gap: 0.8rem;
-padding: 0.45rem 1rem 0.45rem 0.5rem;
+gap: 0.7rem;
+padding: 0.4rem 0.9rem 0.4rem 0.4rem;
 background: var(--bg-alt);
 border-radius: 12px;
 border: 1px solid var(--border);
-box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+box-shadow: 0 2px 10px rgba(0,0,0,0.02);
 }
 
 .user-avatar {
-width: 38px;
-height: 38px;
+width: 36px;
+height: 36px;
 border-radius: 10px;
 background: linear-gradient(135deg, var(--primary), var(--secondary));
 display: flex;
@@ -265,18 +265,18 @@ justify-content: center;
 color: #ffffff;
 font-weight: 900;
 flex-shrink: 0;
-box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
 }
 
 .user-details h4 {
-font-size: 0.9rem;
+font-size: 0.88rem;
 margin: 0;
 color: var(--text);
 font-weight: 800;
 }
 
 .user-details p {
-font-size: 0.76rem;
+font-size: 0.74rem;
 color: var(--text-muted);
 margin: 0;
 }
@@ -284,7 +284,7 @@ margin: 0;
 .container {
 max-width: 1400px;
 margin: 0 auto;
-padding: 3rem 1.5rem;
+padding: 2.5rem 1.5rem;
 }
 
 .page {
@@ -293,20 +293,20 @@ display: none;
 
 .page.active {
 display: block;
-animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+animation: fadeIn 0.35s ease;
 }
 
 @keyframes fadeIn {
-from { opacity: 0; transform: translateY(12px); }
+from { opacity: 0; transform: translateY(10px); }
 to { opacity: 1; transform: translateY(0); }
 }
 
 .login-container {
 display: flex;
-min-height: 82vh;
+min-height: 80vh;
 align-items: center;
 justify-content: center;
-gap: 3.5rem;
+gap: 3rem;
 padding: 2rem 1rem;
 flex-wrap: wrap;
 }
@@ -314,64 +314,64 @@ flex-wrap: wrap;
 .login-left {
 flex: 1;
 min-width: 300px;
-max-width: 520px;
+max-width: 500px;
 }
 
 .login-left h1 {
-font-size: 2.8rem;
-margin-bottom: 1.2rem;
+font-size: 2.6rem;
+margin-bottom: 1rem;
 background: linear-gradient(135deg, var(--primary), var(--secondary));
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
-line-height: 1.25;
+line-height: 1.2;
 font-weight: 900;
-letter-spacing: -1px;
+letter-spacing: -0.5px;
 }
 
 .login-left p {
 color: var(--text-muted);
-font-size: 1.1rem;
-margin-bottom: 2.2rem;
-line-height: 1.8;
+font-size: 1.05rem;
+margin-bottom: 2rem;
+line-height: 1.7;
 }
 
 .login-features {
 display: grid;
-gap: 1.2rem;
+gap: 1rem;
 }
 
 .feature-item {
 display: flex;
-gap: 1.2rem;
-padding: 1.3rem;
+gap: 1.1rem;
+padding: 1.2rem;
 background: var(--panel);
 border-radius: 16px;
 border: 1px solid var(--border);
-box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-transition: transform 0.3s ease;
+box-shadow: 0 8px 25px rgba(0,0,0,0.03);
+transition: transform 0.25s ease;
 }
 
 .feature-item:hover {
-transform: translateY(-3px);
+transform: translateY(-2px);
 border-color: var(--primary);
 }
 
 .feature-item i {
 color: var(--primary);
-font-size: 1.5rem;
-min-width: 32px;
+font-size: 1.4rem;
+min-width: 30px;
 margin-top: 0.1rem;
 }
 
 .login-form {
 background: var(--panel);
-padding: 2.8rem;
+padding: 2.5rem;
 border-radius: 20px;
 border: 1px solid var(--border);
 box-shadow: var(--shadow);
 flex: 1;
 min-width: 320px;
-max-width: 460px;
+max-width: 440px;
 position: relative;
 overflow: hidden;
 }
@@ -387,83 +387,83 @@ background: linear-gradient(90deg, var(--primary), var(--secondary));
 }
 
 .login-form h2 {
-margin-bottom: 1.8rem;
+margin-bottom: 1.6rem;
 text-align: center;
-font-size: 1.7rem;
+font-size: 1.6rem;
 color: var(--text);
 font-weight: 800;
 }
 
 .form-group {
-margin-bottom: 1.3rem;
+margin-bottom: 1.2rem;
 }
 
 .form-group label {
 display: block;
-margin-bottom: 0.6rem;
+margin-bottom: 0.5rem;
 font-weight: 700;
 color: var(--text);
-font-size: 0.92rem;
+font-size: 0.9rem;
 }
 
 .form-group input, .form-group select {
 width: 100%;
-padding: 0.9rem 1.1rem;
+padding: 0.85rem 1rem;
 border: 1px solid var(--border);
 border-radius: 12px;
 background: var(--bg-alt);
 color: var(--text);
 font-family: 'Cairo', sans-serif;
-font-size: 16px;
-transition: all 0.3s ease;
+font-size: 15px;
+transition: all 0.25s ease;
 }
 
 .form-group input:focus, .form-group select:focus {
 outline: none;
 border-color: var(--primary);
-box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15);
+box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
 background: var(--panel);
 }
 
 .mode-toggle {
 display: flex;
-gap: 0.8rem;
-margin-bottom: 1.6rem;
+gap: 0.6rem;
+margin-bottom: 1.5rem;
 background: var(--bg-alt);
-padding: 5px;
+padding: 4px;
 border-radius: 12px;
 border: 1px solid var(--border);
 }
 
 .mode-toggle button {
 flex: 1;
-padding: 0.8rem;
+padding: 0.7rem;
 border: none;
 background: transparent;
 color: var(--text-muted);
 border-radius: 9px;
 cursor: pointer;
 font-weight: 700;
-transition: all 0.3s ease;
+transition: all 0.25s ease;
 font-family: 'Cairo', sans-serif;
-font-size: 0.9rem;
+font-size: 0.88rem;
 }
 
 .mode-toggle button.active {
 background: var(--panel);
 color: var(--primary);
-box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+box-shadow: 0 4px 12px rgba(0,0,0,0.06);
 }
 
 .dashboard-header {
-margin-bottom: 2.2rem;
-padding-bottom: 1.2rem;
+margin-bottom: 2rem;
+padding-bottom: 1rem;
 border-bottom: 1px solid var(--border);
 }
 
 .dashboard-header h2 {
-font-size: 2rem;
-margin-bottom: 0.5rem;
+font-size: 1.85rem;
+margin-bottom: 0.4rem;
 color: var(--text);
 font-weight: 900;
 letter-spacing: -0.5px;
@@ -471,22 +471,22 @@ letter-spacing: -0.5px;
 
 .dashboard-header p {
 color: var(--text-muted);
-font-size: 1.05rem;
+font-size: 1rem;
 }
 
 .stats-grid {
 display: grid;
-grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-gap: 1.8rem;
-margin-bottom: 2.8rem;
+grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+gap: 1.5rem;
+margin-bottom: 2.5rem;
 }
 
 .stat-card {
 background: var(--panel);
 border: 1px solid var(--border);
-border-radius: 20px;
-padding: 2rem;
-transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+border-radius: 18px;
+padding: 1.8rem;
+transition: all 0.3s ease;
 box-shadow: var(--shadow);
 position: relative;
 overflow: hidden;
@@ -506,8 +506,8 @@ transition: opacity 0.3s;
 
 .stat-card:hover {
 border-color: var(--primary);
-transform: translateY(-6px);
-box-shadow: 0 25px 50px -12px rgba(139, 92, 246, 0.2);
+transform: translateY(-4px);
+box-shadow: 0 20px 40px -10px rgba(99, 102, 241, 0.15);
 }
 
 .stat-card:hover::after {
@@ -515,12 +515,12 @@ opacity: 1;
 }
 
 .stat-card i {
-font-size: 2.3rem;
+font-size: 2.1rem;
 color: var(--primary);
-margin-bottom: 1.2rem;
-background: rgba(139, 92, 246, 0.1);
-width: 60px;
-height: 60px;
+margin-bottom: 1rem;
+background: rgba(99, 102, 241, 0.1);
+width: 54px;
+height: 54px;
 border-radius: 14px;
 display: flex;
 align-items: center;
@@ -528,19 +528,19 @@ justify-content: center;
 }
 
 .stat-card h4 {
-font-size: 0.85rem;
+font-size: 0.82rem;
 color: var(--text-muted);
-margin-bottom: 0.6rem;
+margin-bottom: 0.5rem;
 text-transform: uppercase;
-letter-spacing: 1px;
+letter-spacing: 0.8px;
 font-weight: 800;
 }
 
 .stat-card .value {
-font-size: 2.4rem;
+font-size: 2.2rem;
 font-weight: 900;
 color: var(--text);
-letter-spacing: -1px;
+letter-spacing: -0.5px;
 }
 
 .tab-content {
@@ -554,105 +554,105 @@ display: block;
 
 .cards-grid {
 display: grid;
-grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-gap: 2rem;
-margin-top: 1.8rem;
+grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+gap: 1.8rem;
+margin-top: 1.5rem;
 }
 
 .card {
 background: var(--panel);
 border: 1px solid var(--border);
-border-radius: 20px;
+border-radius: 18px;
 overflow: hidden;
-transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+transition: all 0.3s ease;
 box-shadow: var(--shadow);
 display: flex;
 flex-direction: column;
-margin-bottom: 1.5rem;
+margin-bottom: 1.2rem;
 }
 
 .card:hover {
 border-color: var(--primary);
-transform: translateY(-6px);
-box-shadow: 0 25px 50px -12px rgba(139, 92, 246, 0.25);
+transform: translateY(-4px);
+box-shadow: 0 20px 40px -10px rgba(99, 102, 241, 0.2);
 }
 
 .card-header {
-background: linear-gradient(135deg, var(--primary), #6366f1);
-padding: 1.6rem;
+background: linear-gradient(135deg, var(--primary), #818cf8);
+padding: 1.4rem;
 color: #ffffff;
 }
 
 .card-header h3 {
-font-size: 1.25rem;
-margin-bottom: 0.4rem;
+font-size: 1.18rem;
+margin-bottom: 0.3rem;
 font-weight: 900;
-letter-spacing: -0.3px;
+letter-spacing: -0.2px;
 }
 
 .card-body {
-padding: 1.8rem;
+padding: 1.6rem;
 flex: 1;
 }
 
 .card-body p {
 color: var(--text-muted);
-margin-bottom: 1.2rem;
-line-height: 1.8;
-font-size: 1rem;
+margin-bottom: 1rem;
+line-height: 1.7;
+font-size: 0.96rem;
 }
 
 .card-footer {
-padding: 1.2rem 1.8rem;
+padding: 1.1rem 1.6rem;
 border-top: 1px solid var(--border);
 display: flex;
-gap: 1rem;
+gap: 0.8rem;
 flex-wrap: wrap;
 background: var(--bg-alt);
 }
 
 .lesson-content {
 background: var(--bg-alt);
-padding: 2.2rem;
-border-radius: 20px;
+padding: 2rem;
+border-radius: 18px;
 border: 1px solid var(--border);
-line-height: 2;
+line-height: 1.9;
 color: var(--text);
-font-size: 1.1rem;
+font-size: 1.05rem;
 box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
 }
 
 .media-container {
-margin: 1.8rem 0;
-border-radius: 16px;
+margin: 1.5rem 0;
+border-radius: 14px;
 overflow: hidden;
-background: rgba(0,0,0,0.2);
+background: rgba(0,0,0,0.15);
 text-align: center;
 border: 1px solid var(--border);
-padding: 1.2rem;
+padding: 1rem;
 }
 
 .media-container img {
 width: 100%;
-max-height: 520px;
-border-radius: 12px;
+max-height: 480px;
+border-radius: 10px;
 object-fit: contain;
 display: block;
 margin: 0 auto;
 cursor: pointer;
-transition: transform 0.3s ease;
+transition: transform 0.25s ease;
 background: #000;
 }
 
 .media-container img:hover {
-transform: scale(1.015);
+transform: scale(1.01);
 }
 
 .media-container iframe, .media-container video {
 width: 100%;
-height: 420px;
+height: 400px;
 border: none;
-border-radius: 12px;
+border-radius: 10px;
 background: #000;
 display: block;
 margin: 0 auto;
@@ -661,31 +661,31 @@ margin: 0 auto;
 .add-form {
 background: var(--panel);
 border: 1px solid var(--border);
-border-radius: 20px;
-padding: 2.5rem;
-margin-bottom: 2.8rem;
+border-radius: 18px;
+padding: 2.2rem;
+margin-bottom: 2.5rem;
 box-shadow: var(--shadow);
 }
 
 textarea {
 width: 100%;
-min-height: 130px;
-padding: 1.1rem;
+min-height: 120px;
+padding: 1rem;
 border: 1px solid var(--border);
 border-radius: 12px;
 background: var(--bg-alt);
 color: var(--text);
 font-family: 'Cairo', sans-serif;
 resize: vertical;
-font-size: 16px;
-line-height: 1.7;
-transition: all 0.3s ease;
+font-size: 15px;
+line-height: 1.6;
+transition: all 0.25s ease;
 }
 
 textarea:focus {
 outline: none;
 border-color: var(--primary);
-box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15);
+box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
 background: var(--panel);
 }
 
@@ -693,12 +693,12 @@ background: var(--panel);
 display: none;
 position: fixed;
 top: 0; left: 0; right: 0; bottom: 0;
-background: rgba(9, 13, 22, 0.82);
+background: rgba(7, 11, 20, 0.8);
 z-index: 2000;
 align-items: center;
 justify-content: center;
 padding: 1.5rem;
-backdrop-filter: blur(8px);
+backdrop-filter: blur(6px);
 }
 
 .modal.active {
@@ -708,19 +708,19 @@ display: flex;
 .modal-content {
 background: var(--panel);
 border: 1px solid var(--border);
-border-radius: 24px;
-padding: 2.5rem;
+border-radius: 20px;
+padding: 2.2rem;
 width: 100%;
-max-width: 950px;
+max-width: 900px;
 max-height: 90vh;
 overflow-y: auto;
-box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+box-shadow: 0 25px 50px rgba(0,0,0,0.5);
 position: relative;
-animation: modalPop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+animation: modalPop 0.25s ease;
 }
 
 @keyframes modalPop {
-from { opacity: 0; transform: scale(0.95); }
+from { opacity: 0; transform: scale(0.96); }
 to { opacity: 1; transform: scale(1); }
 }
 
@@ -728,24 +728,24 @@ to { opacity: 1; transform: scale(1); }
 display: flex;
 justify-content: space-between;
 align-items: center;
-margin-bottom: 1.8rem;
-padding-bottom: 1.2rem;
+margin-bottom: 1.6rem;
+padding-bottom: 1rem;
 border-bottom: 1px solid var(--border);
 }
 
 .close-modal {
 background: var(--bg-alt);
 border: 1px solid var(--border);
-width: 40px;
-height: 40px;
+width: 38px;
+height: 38px;
 border-radius: 50%;
-font-size: 1.5rem;
+font-size: 1.3rem;
 color: var(--text-muted);
 cursor: pointer;
 display: flex;
 align-items: center;
 justify-content: center;
-transition: all 0.3s;
+transition: all 0.25s;
 }
 
 .close-modal:hover {
@@ -757,11 +757,11 @@ border-color: var(--danger);
 .note-item, .support-item {
 background: var(--bg-alt);
 border: 1px solid var(--border);
-padding: 1.6rem;
-border-radius: 16px;
-margin-bottom: 1.2rem;
-font-size: 1.02rem;
-box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+padding: 1.4rem;
+border-radius: 14px;
+margin-bottom: 1rem;
+font-size: 0.98rem;
+box-shadow: 0 2px 10px rgba(0,0,0,0.02);
 transition: transform 0.2s;
 }
 
@@ -772,50 +772,50 @@ border-color: var(--primary);
 .note-header, .support-header {
 display: flex;
 justify-content: space-between;
-margin-bottom: 0.8rem;
+margin-bottom: 0.7rem;
 color: var(--primary);
 font-weight: 800;
-font-size: 0.92rem;
+font-size: 0.88rem;
 flex-wrap: wrap;
-gap: 0.8rem;
+gap: 0.6rem;
 }
 
 .members-list {
 display: grid;
-grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-gap: 1.8rem;
-margin-top: 1.8rem;
+grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+gap: 1.6rem;
+margin-top: 1.5rem;
 }
 
 .member-card {
 background: var(--panel);
-padding: 2rem;
-border-radius: 20px;
+padding: 1.8rem;
+border-radius: 18px;
 border: 1px solid var(--border);
 text-align: center;
 box-shadow: var(--shadow);
 margin-bottom: 1rem;
-transition: all 0.3s ease;
+transition: all 0.25s ease;
 }
 
 .member-card:hover {
-transform: translateY(-5px);
+transform: translateY(-4px);
 border-color: var(--primary);
 }
 
 .member-avatar {
-width: 70px;
-height: 70px;
-border-radius: 20px;
+width: 64px;
+height: 64px;
+border-radius: 16px;
 background: linear-gradient(135deg, var(--primary), var(--secondary));
 display: flex;
 align-items: center;
 justify-content: center;
 color: #ffffff;
 font-weight: 900;
-font-size: 1.5rem;
-margin: 0 auto 1.2rem;
-box-shadow: 0 8px 25px rgba(139, 92, 246, 0.35);
+font-size: 1.4rem;
+margin: 0 auto 1rem;
+box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
 }
 
 /* تنسيق الشهادة الملكية الفاخرة الثابتة للطباعة */
@@ -824,7 +824,7 @@ box-shadow: 0 8px 25px rgba(139, 92, 246, 0.35);
   justify-content: center;
   align-items: center;
   overflow-x: auto;
-  padding: 25px 0;
+  padding: 20px 0;
   width: 100%;
 }
 
@@ -835,7 +835,7 @@ box-shadow: 0 8px 25px rgba(139, 92, 246, 0.35);
   color: #0f172a;
   position: relative;
   padding: 20px;
-  box-shadow: 0 25px 50px rgba(0,0,0,0.35);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
   box-sizing: border-box;
   flex-shrink: 0;
   border-radius: 12px;
@@ -971,58 +971,58 @@ box-shadow: 0 8px 25px rgba(139, 92, 246, 0.35);
 /* تنسيق الدردشة وواتساب العصري */
 .chat-container {
   display: grid;
-  grid-template-columns: 320px 1fr;
+  grid-template-columns: 300px 1fr;
   background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: 20px;
-  height: 620px;
+  border-radius: 18px;
+  height: 600px;
   overflow: hidden;
   box-shadow: var(--shadow);
-  margin-top: 1.8rem;
+  margin-top: 1.5rem;
 }
 .chat-sidebar {
   border-left: 1px solid var(--border);
   background: var(--bg-alt);
   overflow-y: auto;
-  padding: 18px;
+  padding: 16px;
 }
 .chat-contact-item {
-  padding: 14px 16px;
+  padding: 12px 14px;
   border-radius: 12px;
   cursor: pointer;
-  margin-bottom: 10px;
-  transition: all 0.25s ease;
+  margin-bottom: 8px;
+  transition: all 0.2s ease;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
   background: var(--panel);
   border: 1px solid var(--border);
 }
 .chat-contact-item:hover, .chat-contact-item.active {
   border-color: var(--primary);
-  background: rgba(139, 92, 246, 0.08);
+  background: rgba(99, 102, 241, 0.06);
 }
 .chat-contact-item.active {
   background: var(--primary);
   color: #ffffff;
-  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3);
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.25);
 }
 .chat-contact-item.active .online-status-text {
   color: rgba(255,255,255,0.85) !important;
 }
 .online-dot {
-  width: 10px;
-  height: 10px;
+  width: 9px;
+  height: 9px;
   background-color: var(--success);
   border-radius: 50%;
   display: inline-block;
-  box-shadow: 0 0 10px var(--success);
+  box-shadow: 0 0 8px var(--success);
 }
 .offline-dot {
-  width: 10px;
-  height: 10px;
+  width: 9px;
+  height: 9px;
   background-color: var(--text-muted);
   border-radius: 50%;
   display: inline-block;
@@ -1035,20 +1035,20 @@ box-shadow: 0 8px 25px rgba(139, 92, 246, 0.35);
 }
 .chat-messages {
   flex: 1;
-  padding: 24px;
+  padding: 22px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
 .chat-msg {
   max-width: 75%;
-  padding: 14px 18px;
-  border-radius: 16px;
-  font-size: 1rem;
-  line-height: 1.7;
+  padding: 12px 16px;
+  border-radius: 14px;
+  font-size: 0.96rem;
+  line-height: 1.6;
   position: relative;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.02);
 }
 .chat-msg.incoming {
   background: var(--bg-alt);
@@ -1057,34 +1057,34 @@ box-shadow: 0 8px 25px rgba(139, 92, 246, 0.35);
   border-top-right-radius: 4px;
 }
 .chat-msg.outgoing {
-  background: linear-gradient(135deg, var(--primary), #6366f1);
+  background: linear-gradient(135deg, var(--primary), #818cf8);
   color: #ffffff;
   align-self: flex-end;
   border-top-left-radius: 4px;
-  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3);
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.25);
 }
 .chat-input-area {
-  padding: 18px 24px;
+  padding: 16px 20px;
   border-top: 1px solid var(--border);
   display: flex;
-  gap: 12px;
+  gap: 10px;
   background: var(--bg-alt);
 }
 .chat-input-area input {
   flex: 1;
-  padding: 12px 18px;
+  padding: 11px 16px;
   border: 1px solid var(--border);
   border-radius: 12px;
   background: var(--panel);
   color: var(--text);
   font-family: 'Cairo', sans-serif;
-  font-size: 16px;
-  transition: all 0.3s;
+  font-size: 15px;
+  transition: all 0.25s;
 }
 .chat-input-area input:focus {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
 }
 
 /* تنسيقات الميزات الجديدة الفاخرة */
@@ -1092,7 +1092,7 @@ box-shadow: 0 8px 25px rgba(139, 92, 246, 0.35);
   width: 100%;
   background: var(--bg-alt);
   border-radius: 10px;
-  height: 12px;
+  height: 10px;
   overflow: hidden;
   border: 1px solid var(--border);
   margin-top: 6px;
@@ -1101,7 +1101,7 @@ box-shadow: 0 8px 25px rgba(139, 92, 246, 0.35);
   height: 100%;
   background: linear-gradient(90deg, var(--primary), var(--secondary));
   width: 0%;
-  transition: width 0.6s ease;
+  transition: width 0.5s ease;
 }
 .badge-tag {
   display: inline-flex;
@@ -1109,11 +1109,11 @@ box-shadow: 0 8px 25px rgba(139, 92, 246, 0.35);
   gap: 5px;
   padding: 4px 10px;
   border-radius: 20px;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  background: rgba(139, 92, 246, 0.15);
+  background: rgba(99, 102, 241, 0.12);
   color: var(--primary);
-  border: 1px solid rgba(139, 92, 246, 0.3);
+  border: 1px solid rgba(99, 102, 241, 0.25);
 }
 
 @media (max-width: 768px) {
@@ -1131,7 +1131,7 @@ min-width: 0;
 justify-content: flex-start;
 border-top: 1px solid var(--border);
 border-bottom: 1px solid var(--border);
-padding: 0.8rem 0;
+padding: 0.7rem 0;
 overflow-x: auto;
 -webkit-overflow-scrolling: touch;
 }
@@ -1144,21 +1144,21 @@ flex: 1;
 justify-content: center;
 }
 .login-left h1 {
-font-size: 2.2rem;
+font-size: 2.1rem;
 }
 .container {
 padding: 1.5rem 1rem;
 }
 .media-container iframe, .media-container video {
-height: 280px;
+height: 260px;
 }
 .chat-container {
 grid-template-columns: 1fr;
-height: 480px;
+height: 450px;
 }
 .cards-grid, .stats-grid, .members-list {
 grid-template-columns: 1fr;
-gap: 1.2rem;
+gap: 1rem;
 }
 }
 </style>
@@ -1167,10 +1167,10 @@ gap: 1.2rem;
 
 <!-- صفحة الصيانة (Maintenance Mode Screen) -->
 <div id="maintenanceScreen" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--bg); z-index: 9999; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem;">
-  <i class="fas fa-tools" style="font-size: 4rem; color: var(--warning); margin-bottom: 1.5rem;"></i>
-  <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">المنصة في وضع الصيانة المباشرة</h1>
-  <p style="color: var(--text-muted); font-size: 1.2rem; max-width: 600px; line-height: 1.8;">يقوم الفريق التقني والمشرفون بتحديث المنصة وتجهيز دروس واختبارات جديدة حالياً. يرجى العودة لاحقاً!</p>
-  <button class="btn btn-secondary" style="margin-top: 2rem;" onclick="location.reload()"><i class="fas fa-sync"></i> إعادة المحاولة</button>
+  <i class="fas fa-tools" style="font-size: 3.8rem; color: var(--warning); margin-bottom: 1.4rem;"></i>
+  <h1 style="font-size: 2.3rem; margin-bottom: 1rem;">المنصة في وضع الصيانة المباشرة</h1>
+  <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 580px; line-height: 1.7;">يقوم الفريق التقني والمشرفون بتحديث المنصة وتجهيز دروس واختبارات جديدة حالياً. يرجى العودة لاحقاً!</p>
+  <button class="btn btn-secondary" style="margin-top: 1.8rem;" onclick="location.reload()"><i class="fas fa-sync"></i> إعادة المحاولة</button>
 </div>
 
 <!-- Login Page -->
@@ -1184,14 +1184,14 @@ gap: 1.2rem;
 <i class="fas fa-shield-alt"></i>
 <div>
 <strong>تسجيل آمن للطلاب والمشرفين</strong>
-<p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 0.3rem;">انشاء حساب بكلمة سر خاصة بك وإدارتها بكل سهولة وأمان تام</p>
+<p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem;">انشاء حساب بكلمة سر خاصة بك وإدارتها بكل سهولة وأمان تام</p>
 </div>
 </div>
 <div class="feature-item">
 <i class="fas fa-headset"></i>
 <div>
 <strong>دعم فني وملاحظات</strong>
-<p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 0.3rem;">تواصل مباشر بين الطلاب والمشرفين لمتابعة الأداء الأكاديمي لحظة بلحظة</p>
+<p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem;">تواصل مباشر بين الطلاب والمشرفين لمتابعة الأداء الأكاديمي لحظة بلحظة</p>
 </div>
 </div>
 </div>
@@ -1274,6 +1274,7 @@ gap: 1.2rem;
 <button class="tab-toggle" data-section="student-chat">الدردشة</button>
 </div>
 <div class="nav-actions">
+<button class="theme-toggle-btn" onclick="toggleCustomizerModal()" title="تخصيص الواجهة والألوان والخطوط"><i class="fas fa-palette"></i></button>
 <button class="theme-toggle-btn" onclick="toggleTheme()"><i class="fas fa-moon" id="themeIcon"></i></button>
 <div class="user-info">
 <div class="user-avatar" id="studentAvatar">ا</div>
@@ -1306,7 +1307,7 @@ gap: 1.2rem;
 </div>
 
 <!-- صندوق التنبيهات والإشعارات الخاصة بالصف -->
-<div style="background: var(--panel); padding: 1.5rem; border-radius: 20px; border: 1px solid var(--border); margin-bottom: 2rem;">
+<div style="background: var(--panel); padding: 1.5rem; border-radius: 18px; border: 1px solid var(--border); margin-bottom: 2rem;">
   <h3 style="color: var(--primary); margin-bottom: 1rem;"><i class="fas fa-bell"></i> التنبيهات والإشعارات الرسمية</h3>
   <div id="studentNotificationsBox" style="display: grid; gap: 0.8rem;"></div>
 </div>
@@ -1388,7 +1389,7 @@ gap: 1.2rem;
 <div id="studentContactsList"></div>
 </div>
 <div class="chat-main">
-<div id="studentChatHeader" style="padding: 16px 20px; border-bottom: 1px solid var(--border); font-weight: 800; background: var(--bg-alt); display: flex; justify-content: space-between; align-items: center;">
+<div id="studentChatHeader" style="padding: 15px 20px; border-bottom: 1px solid var(--border); font-weight: 800; background: var(--bg-alt); display: flex; justify-content: space-between; align-items: center;">
   <span>المجموعة العامة</span>
   <span id="studentChatStatusBadge" style="font-size:0.85rem; font-weight:normal;">🟢 متصل الآن</span>
 </div>
@@ -1648,7 +1649,7 @@ gap: 1.2rem;
 <div id="supervisorContactsList"></div>
 </div>
 <div class="chat-main">
-<div id="supervisorChatHeader" style="padding: 16px 20px; border-bottom: 1px solid var(--border); font-weight: 800; background: var(--bg-alt);">مجموعة المشرفين</div>
+<div id="supervisorChatHeader" style="padding: 15px 20px; border-bottom: 1px solid var(--border); font-weight: 800; background: var(--bg-alt);">مجموعة المشرفين</div>
 <div class="chat-messages" id="supervisorChatMessages"></div>
 <form class="chat-input-area" onsubmit="sendSupervisorChatMsg(event)">
 <input type="text" id="supervisorChatInput" placeholder="اكتب رسالتك هنا..." required />
@@ -1656,7 +1657,7 @@ gap: 1.2rem;
 </form>
 </div>
 </div>
-<div id="supervisorStudentControlArea" style="display: none; background: var(--panel); border: 1px solid var(--border); border-radius: 20px; padding: 25px;">
+<div id="supervisorStudentControlArea" style="display: none; background: var(--panel); border: 1px solid var(--border); border-radius: 18px; padding: 22px;">
   <h3 style="margin-bottom: 1rem; color: var(--primary);">حذف أو إدارة رسائل الطلاب</h3>
   <div id="supervisorStudentChatList" style="display: grid; gap: 1rem; max-height: 450px; overflow-y: auto;"></div>
 </div>
@@ -1676,6 +1677,7 @@ gap: 1.2rem;
 <button class="tab-toggle active" data-section="admin-home">الرئيسية والإحصائيات</button>
 <button class="tab-toggle" data-section="admin-keys">توليد الأكواد (Access Keys)</button>
 <button class="tab-toggle" data-section="admin-logs">سجل الأنشطة الحية</button>
+<button class="tab-toggle" data-section="admin-security">🛡️ الأمان والحظر الفوري</button>
 <button class="tab-toggle" data-section="admin-supervisors">إدارة المشرفين</button>
 <button class="tab-toggle" data-section="admin-students">مراقبة الطلاب وكلمات السر</button>
 <button class="tab-toggle" data-section="admin-student-chat">تحكم دردشة الطلاب</button>
@@ -1712,7 +1714,7 @@ gap: 1.2rem;
 <div class="stat-card"><i class="fas fa-key"></i><h4>أكواد التفعيل النشطة</h4><div class="value" id="adminActiveKeysCount">0</div></div>
 </div>
 
-<div style="background: var(--panel); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; margin-top: 1.5rem;">
+<div style="background: var(--panel); border: 1px solid var(--border); border-radius: 18px; padding: 2rem; margin-top: 1.5rem;">
   <h3 style="color: var(--primary); margin-bottom: 1rem;"><i class="fas fa-chart-pie"></i> ملخص تفاعلات المنصة وأوقات الذروة</h3>
   <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.8;">
     • أكثر الأيام تفاعلاً: <strong style="color:var(--text);">الأحد والأربعاء (مساءً)</strong><br>
@@ -1747,8 +1749,25 @@ gap: 1.2rem;
 <div id="adminLogsContainer" style="display: grid; gap: 0.8rem;"></div>
 </div>
 
+<!-- قسم نظام الأمان والحظر الفوري الجديد -->
+<div id="admin-security" class="tab-content">
+  <div class="dashboard-header">
+    <h2>🛡️ مركز الأمان والرقابة الفورية والحظر</h2>
+    <p>إدارة الحسابات المحظورة، تتبع المخالفات، وفرض الإيقاف المؤقت أو النهائي للدردشة والمنصة</p>
+  </div>
+  <div class="stats-grid">
+    <div class="stat-card"><i class="fas fa-ban" style="color:var(--danger);"></i><h4>الطلاب المحظورون</h4><div class="value" id="adminBannedStudentsCount">0</div></div>
+    <div class="stat-card"><i class="fas fa-user-slash" style="color:var(--danger);"></i><h4>المشرفون المحظورون</h4><div class="value" id="adminBannedSupervisorsCount">0</div></div>
+    <div class="stat-card"><i class="fas fa-shield-alt" style="color:var(--success);"></i><h4>حالة جدار الحماية</h4><div class="value" style="font-size:1.4rem; color:var(--success);">نشط وآمن 🟢</div></div>
+  </div>
+  <div style="background:var(--panel); border:1px solid var(--border); border-radius:18px; padding:2rem;">
+    <h3 style="color:var(--primary); margin-bottom:1.2rem;"><i class="fas fa-list-ul"></i> قائمة الحسابات المحظورة حالياً</h3>
+    <div id="adminBannedUsersList" style="display:grid; gap:1rem;"></div>
+  </div>
+</div>
+
 <div id="admin-supervisors" class="tab-content">
-<div class="dashboard-header"><h2>إضافة مشرف جديد وتعيين كود الدخول الخاص به</h2></div>
+<div class="dashboard-header"><h2>إدارة المشرفين وتعيين كود الدخول الخاص به</h2></div>
 <div class="add-form">
 <form id="addSupervisorForm" style="display: grid; gap: 1.2rem;">
 <input type="text" class="supervisorName" placeholder="اسم المشرف" required />
@@ -1761,7 +1780,7 @@ gap: 1.2rem;
 </div>
 
 <div id="admin-students" class="tab-content">
-<div class="dashboard-header"><h2>مراقبة الطلاب وأرقامهم وكلمات السر (في حال نسيانها)</h2></div>
+<div class="dashboard-header"><h2>مراقبة الطلاب وأرقامهم وكلمات السر وحظر المخالفين</h2></div>
 <div id="adminStudentsContainer" class="cards-grid"></div>
 </div>
 
@@ -1785,7 +1804,7 @@ gap: 1.2rem;
 <div id="adminSupervisorsChatList"></div>
 </div>
 <div class="chat-main">
-<div id="adminChatHeader" style="padding: 16px 20px; border-bottom: 1px solid var(--border); font-weight: 800; background: var(--bg-alt); display:flex; justify-content:space-between; align-items:center;">
+<div id="adminChatHeader" style="padding: 15px 20px; border-bottom: 1px solid var(--border); font-weight: 800; background: var(--bg-alt); display:flex; justify-content:space-between; align-items:center;">
   <span>جميع المشرفين</span>
   <span id="adminChatStatusBadge" style="font-size:0.85rem;">🟢 نظام نشط</span>
 </div>
@@ -1798,6 +1817,43 @@ gap: 1.2rem;
 </div>
 </div>
 </div>
+</div>
+
+<!-- UI Customizer Modal -->
+<div id="uiCustomizerModal" class="modal">
+  <div class="modal-content" style="max-width: 460px;">
+    <div class="modal-header">
+      <h3 style="color: var(--primary);"><i class="fas fa-palette"></i> تخصيص الواجهة والألوان</h3>
+      <button class="close-modal" onclick="closeUiCustomizer()">×</button>
+    </div>
+    <div style="display: grid; gap: 1.6rem;">
+      <div>
+        <label style="display: block; font-weight: 700; margin-bottom: 0.8rem;">اختر اللون الأساسي للمنصة:</label>
+        <div style="display: flex; gap: 1rem; justify-content: center;">
+          <button type="button" onclick="setPrimaryColor('#6366f1')" style="width: 40px; height: 40px; border-radius: 50%; background: #6366f1; border: 2px solid #fff; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2);" title="بنفسجي نيلي"></button>
+          <button type="button" onclick="setPrimaryColor('#2563eb')" style="width: 40px; height: 40px; border-radius: 50%; background: #2563eb; border: 2px solid #fff; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2);" title="أزرق ملكي"></button>
+          <button type="button" onclick="setPrimaryColor('#059669')" style="width: 40px; height: 40px; border-radius: 50%; background: #059669; border: 2px solid #fff; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2);" title="زمردي"></button>
+          <button type="button" onclick="setPrimaryColor('#d97706')" style="width: 40px; height: 40px; border-radius: 50%; background: #d97706; border: 2px solid #fff; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2);" title="ذهبي"></button>
+          <button type="button" onclick="setPrimaryColor('#db2777')" style="width: 40px; height: 40px; border-radius: 50%; background: #db2777; border: 2px solid #fff; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2);" title="وردي"></button>
+        </div>
+      </div>
+      <div>
+        <label style="display: block; font-weight: 700; margin-bottom: 0.8rem;">اختر نوع الخط العربي:</label>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem;">
+          <button class="btn btn-secondary btn-small" onclick="setFontFamily('Cairo')" style="font-family: 'Cairo', sans-serif;">Cairo</button>
+          <button class="btn btn-secondary btn-small" onclick="setFontFamily('Amiri')" style="font-family: 'Amiri', serif;">Amiri</button>
+          <button class="btn btn-secondary btn-small" onclick="setFontFamily('Reem Kufi')" style="font-family: 'Reem Kufi', sans-serif;">Reem Kufi</button>
+        </div>
+      </div>
+      <div>
+        <label style="display: block; font-weight: 700; margin-bottom: 0.8rem;">التحكم بحجم الخط:</label>
+        <div style="display: flex; gap: 1rem; justify-content: center;">
+          <button class="btn btn-secondary btn-small" onclick="adjustFontSize(-1)"><i class="fas fa-minus"></i> تصغير الخط</button>
+          <button class="btn btn-primary btn-small" onclick="adjustFontSize(1)"><i class="fas fa-plus"></i> تكبير الخط</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- Modal -->
@@ -1815,7 +1871,7 @@ gap: 1.2rem;
 <div id="imageLightboxModal" class="modal" onclick="closeImageLightbox()">
 <div class="modal-content" style="background: transparent; border: none; box-shadow: none; max-width: 95vw; max-height: 95vh; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;" onclick="event.stopPropagation()">
 <button class="close-modal" style="position: absolute; top: 15px; left: 25px; color: #fff; font-size: 2rem; background: rgba(0,0,0,0.7); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 10;" onclick="closeImageLightbox()">×</button>
-<img id="lightboxImg" src="" alt="صورة مكبرة" style="max-width: 100%; max-height: 80vh; border-radius: 16px; object-fit: contain; box-shadow: 0 25px 60px rgba(0,0,0,0.9);" />
+<img id="lightboxImg" src="" alt="صورة مكبرة" style="max-width: 100%; max-height: 80vh; border-radius: 12px; object-fit: contain; box-shadow: 0 25px 60px rgba(0,0,0,0.9);" />
 <div style="margin-top: 1.5rem;">
 <a id="lightboxDownloadBtn" href="" download target="_blank" class="btn btn-primary"><i class="fas fa-download"></i> تنزيل الصورة بجودة عالية</a>
 </div>
@@ -1834,7 +1890,6 @@ results: 'academy_results',
 certificates: 'academy_certificates',
 chats: 'academy_chats',
 activeUsers: 'academy_active_users',
-// قواعد بيانات الميزات الجديدة
 keys: 'academy_keys',
 logs: 'academy_logs',
 notifications: 'academy_notifications',
@@ -1856,7 +1911,7 @@ function logAction(actor, action) {
     time: new Date().toLocaleTimeString('ar-EG', {hour: '2-digit', minute:'2-digit'}),
     date: new Date().toLocaleDateString('ar-EG')
   });
-  if(logs.length > 50) logs.pop(); // الاحتفاظ بأحدث 50 حدث
+  if(logs.length > 50) logs.pop();
   setData(DB.logs, logs);
 }
 
@@ -1941,13 +1996,15 @@ setData(DB.supervisors, [
 id: 1,
 name: 'أستاذ أحمد محمد',
 code: 'sup123',
-phone: '01012345678'
+phone: '01012345678',
+banned: false
 },
 {
 id: 2,
 name: 'أستاذ عبده زينهم',
 code: 'sup456',
-phone: '01098765432'
+phone: '01098765432',
+banned: false
 }
 ]);
 }
@@ -1963,6 +2020,43 @@ if(el) el.className = isLight ? 'fas fa-sun' : 'fas fa-moon';
 });
 }
 if(localStorage.getItem('academy_theme') === 'light') toggleTheme();
+
+function toggleCustomizerModal() {
+  document.getElementById('uiCustomizerModal').classList.toggle('active');
+}
+function closeUiCustomizer() {
+  document.getElementById('uiCustomizerModal').classList.remove('active');
+}
+function setPrimaryColor(colorHex) {
+  document.documentElement.style.setProperty('--primary', colorHex);
+  localStorage.setItem('academy_primary_color', colorHex);
+  alert('تم تغيير اللون الأساسي للمنصة بنجاح!');
+}
+function setFontFamily(fontName) {
+  document.body.style.fontFamily = `'${fontName}', sans-serif`;
+  localStorage.setItem('academy_font_family', fontName);
+  alert(`تم تغيير خط النصوص إلى (${fontName}) بنجاح!`);
+}
+let currentFontSizeScale = 16;
+function adjustFontSize(direction) {
+  currentFontSizeScale += direction * 2;
+  if(currentFontSizeScale < 12) currentFontSizeScale = 12;
+  if(currentFontSizeScale > 22) currentFontSizeScale = 22;
+  document.body.style.fontSize = currentFontSizeScale + 'px';
+  localStorage.setItem('academy_font_size', currentFontSizeScale);
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  let savedColor = localStorage.getItem('academy_primary_color');
+  if(savedColor) document.documentElement.style.setProperty('--primary', savedColor);
+  let savedFont = localStorage.getItem('academy_font_family');
+  if(savedFont) document.body.style.fontFamily = `'${savedFont}', sans-serif`;
+  let savedSize = localStorage.getItem('academy_font_size');
+  if(savedSize) {
+    currentFontSizeScale = parseInt(savedSize);
+    document.body.style.fontSize = currentFontSizeScale + 'px';
+  }
+});
 
 let currentUser = null;
 let userRole = null;
@@ -2009,6 +2103,7 @@ document.getElementById('studentAccessKeyGroup').style.display = isStudentRegist
 document.getElementById('studentAuthBtn').innerHTML = isStudentRegister ? '<i class="fas fa-user-plus"></i> إنشاء حساب جديد' : '<i class="fas fa-sign-in-alt"></i> دخول المنصة';
 }
 
+// 🛡️ نظام الحظر والتحقق عند تسجيل الدخول
 document.getElementById('studentLoginForm').addEventListener('submit', function(e) {
 e.preventDefault();
 const identifier = document.getElementById('studentNameInput').value.trim();
@@ -2029,7 +2124,10 @@ name: identifier,
 phone: identifier,
 password: password,
 class: studentClass,
-xp: 50, // نقاط ترحيبية عند التسجيل
+xp: 50,
+banned: false,
+banType: '',
+banReason: '',
 registeredAt: new Date().toLocaleDateString('ar-EG')
 };
 students.push(newStudent);
@@ -2042,6 +2140,11 @@ alert('تم إنشاء الحساب بنجاح! كسبت 50 XP هدية التس
 let found = students.find(s => (s.name === identifier || s.phone === identifier) && s.password === password);
 if(!found) {
 alert('اسم المستخدم أو كلمة السر غير صحيحة، أو لم تقم بإنشاء حساب بعد.');
+return;
+}
+// فحص الحظر للطالب
+if(found.banned) {
+alert(`تم تعليق حسابك، يرجى التواصل مع الإدارة. السبب: ${found.banReason || 'مخالفة شروط وسياسات المنصة'}`);
 return;
 }
 currentUser = found;
@@ -2080,6 +2183,10 @@ s.code.trim() === codeInput
 );
 
 if(sup) {
+if(sup.banned) {
+alert(`تم تعليق حسابك كـمشرف، يرجى التواصل مع إدارة المنصة. السبب: ${sup.banReason || 'إيقاف إداري'}`);
+return;
+}
 userRole = 'supervisor';
 currentUser = sup;
 logAction(sup.name, 'تسجيل دخول مشرف');
@@ -2650,8 +2757,13 @@ container.innerHTML = filtered.length ? filtered.map(m => `
 container.scrollTop = container.scrollHeight;
 }
 
+// 🛡️ فحص حظر الطالب عند إرسال رسالة دردشة
 function sendStudentChatMsg(e) {
 e.preventDefault();
+if(currentUser && currentUser.banned) {
+  alert('تم تعليق حسابك، يرجى التواصل مع الإدارة.');
+  return;
+}
 const input = document.getElementById('studentChatInput');
 const text = input.value.trim();
 if(!text) return;
@@ -3119,7 +3231,7 @@ const st = getUserOnlineStatus(s.name);
 return `
 <div class="member-card">
 <div class="member-avatar">${s.name[0]}</div>
-<h4>${s.name}</h4>
+<h4>${s.name} ${s.banned ? '<span style="color:var(--danger); font-size:0.75rem;">(محظور)</span>' : ''}</h4>
 <p style="font-size:0.85rem; margin-top:0.3rem;"><span class="${st.online ? 'online-dot' : 'offline-dot'}"></span> ${st.text}</p>
 <p style="color:var(--primary); font-weight:700; margin-top:0.4rem;">كلمة السر: ${s.password}</p>
 <p style="margin-top:0.3rem;">${s.class}</p>
@@ -3160,9 +3272,98 @@ renderAdminKeys();
 renderAdminLogs();
 renderAdminSupervisors();
 renderAdminStudents();
+renderAdminSecurityCenter();
 renderAdminStudentChatsControl();
 setupAdminChat();
 setupTabs('adminPage');
+}
+
+// 🛡️ دوال التحكم بالحظر والرقابة الفورية للمالك
+function banUser(userId, userType, banType) {
+  let reason = prompt(`أدخل سبب ${banType === 'نهائي' ? 'الحظر النهائي' : 'الحظر المؤقت'} للطالب/المشرف:`, 'مخالفة آداب الدردشة والسياسات الأمنية للمنصة');
+  if(reason === null) return;
+  
+  if(userType === 'student') {
+    let students = getData(DB.students);
+    let s = students.find(item => item.id === userId);
+    if(s) {
+      s.banned = true;
+      s.banType = banType;
+      s.banReason = reason;
+      setData(DB.students, students);
+      logAction('المالك', `حظر (${banType}) للطالب: ${s.name} - السبب: ${reason}`);
+      alert(`تم تطبيق الحظر (${banType}) على الطالب ${s.name} بنجاح.`);
+      renderAdminStudents();
+      renderAdminSecurityCenter();
+    }
+  } else if(userType === 'supervisor') {
+    let sups = getData(DB.supervisors);
+    let s = sups.find(item => item.id === userId);
+    if(s) {
+      s.banned = true;
+      s.banType = banType;
+      s.banReason = reason;
+      setData(DB.supervisors, sups);
+      logAction('المالك', `حظر (${banType}) للمشرف: ${s.name} - السبب: ${reason}`);
+      alert(`تم تطبيق الحظر (${banType}) على المشرف ${s.name} بنجاح.`);
+      renderAdminSupervisors();
+      renderAdminSecurityCenter();
+    }
+  }
+}
+
+function unbanUser(userId, userType) {
+  if(!confirm('هل أنت متأكد من رفع الحظر وإعادة تفعيل الحساب؟')) return;
+  if(userType === 'student') {
+    let students = getData(DB.students);
+    let s = students.find(item => item.id === userId);
+    if(s) {
+      s.banned = false;
+      s.banType = '';
+      s.banReason = '';
+      setData(DB.students, students);
+      logAction('المالك', `رفع الحظر عن الطالب: ${s.name}`);
+      alert(`تم رفع الحظر عن الطالب ${s.name} بنجاح.`);
+      renderAdminStudents();
+      renderAdminSecurityCenter();
+    }
+  } else if(userType === 'supervisor') {
+    let sups = getData(DB.supervisors);
+    let s = sups.find(item => item.id === userId);
+    if(s) {
+      s.banned = false;
+      s.banType = '';
+      s.banReason = '';
+      setData(DB.supervisors, sups);
+      logAction('المالك', `رفع الحظر عن المشرف: ${s.name}`);
+      alert(`تم رفع الحظر عن المشرف ${s.name} بنجاح.`);
+      renderAdminSupervisors();
+      renderAdminSecurityCenter();
+    }
+  }
+}
+
+function renderAdminSecurityCenter() {
+  const students = getData(DB.students).filter(s => s.banned);
+  const sups = getData(DB.supervisors).filter(s => s.banned);
+  
+  document.getElementById('adminBannedStudentsCount').textContent = students.length;
+  document.getElementById('adminBannedSupervisorsCount').textContent = sups.length;
+  
+  let allBanned = [
+    ...students.map(s => ({ ...s, userType: 'student' })),
+    ...sups.map(s => ({ ...s, userType: 'supervisor' }))
+  ];
+  
+  document.getElementById('adminBannedUsersList').innerHTML = allBanned.length ? allBanned.map(u => `
+    <div style="background:var(--bg-alt); padding:1.2rem; border-radius:14px; border:1px solid var(--danger); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+      <div>
+        <p style="font-weight:900; color:var(--danger); font-size:1.05rem;">${u.name} (${u.userType === 'student' ? 'طالب' : 'مشرف'}) - حظر (${u.banType || 'مؤقت'})</p>
+        <p style="font-size:0.9rem; color:var(--text); margin-top:4px;"><strong>السبب:</strong> ${u.banReason || 'بدون سبب مذكور'}</p>
+      </div>
+      <button class="btn btn-primary btn-small" onclick="unbanUser(${u.id}, '${u.userType}')"><i class="fas fa-unlock"></i> إلغاء الحظر</button>
+    </div>
+  `).join('') : '<p style="color:var(--text-muted); text-align:center; padding:1.5rem;">لا توجد حسابات محظورة حالياً. المنصة آمنة تماماً.</p>';
 }
 
 function toggleMaintenanceMode() {
@@ -3225,11 +3426,17 @@ const st = getUserOnlineStatus(s.name);
 return `
 <div class="member-card">
 <div class="member-avatar">${s.name[0]}</div>
-<h4>${s.name}</h4>
+<h4>${s.name} ${s.banned ? '<span style="color:var(--danger); font-size:0.75rem;">(محظور)</span>' : ''}</h4>
 <p style="font-size:0.85rem; margin-top:0.3rem;"><span class="${st.online ? 'online-dot' : 'offline-dot'}"></span> ${st.text}</p>
 <p style="color: var(--primary); margin-top:0.4rem;">كود الدخول: <strong>${s.code}</strong></p>
 <p style="margin-top:0.3rem;">${s.phone || '-'}</p>
-<button class="btn btn-danger btn-small" style="margin-top:1rem; width:100%;" onclick="deleteSupervisor(${s.id})">حذف المشرف نهائياً</button>
+<div style="display:flex; gap:0.5rem; margin-top:1rem; flex-wrap:wrap;">
+  ${s.banned ? 
+    `<button class="btn btn-secondary btn-small" style="flex:1;" onclick="unbanUser(${s.id}, 'supervisor')"><i class="fas fa-unlock"></i> رفع الحظر</button>` :
+    `<button class="btn btn-danger btn-small" style="flex:1;" onclick="banUser(${s.id}, 'supervisor', 'مؤقت')"><i class="fas fa-ban"></i> حظر</button>`
+  }
+  <button class="btn btn-danger btn-small" style="background:#7f1d1d;" onclick="deleteSupervisor(${s.id})"><i class="fas fa-trash"></i> حذف</button>
+</div>
 </div>`;
 }).join('') : '<p>لا توجد مشرفون مسجلون.</p>';
 }
@@ -3241,7 +3448,8 @@ sups.push({
 id: Date.now(),
 name: this.querySelector('.supervisorName').value.trim(),
 code: this.querySelector('.supervisorCode').value.trim(),
-phone: this.querySelector('.supervisorPhone').value.trim()
+phone: this.querySelector('.supervisorPhone').value.trim(),
+banned: false
 });
 setData(DB.supervisors, sups);
 logAction('المالك', 'إضافة مشرف جديد لدردشة المالك والمشرفين');
@@ -3264,11 +3472,11 @@ const students = getData(DB.students);
 document.getElementById('adminStudentsContainer').innerHTML = students.length ? students.map(s => {
 const st = getUserOnlineStatus(s.name);
 return `
-<div class="card">
-<div class="card-header">
+<div class="card" style="${s.banned ? 'border-color: var(--danger);' : ''}">
+<div class="card-header" style="${s.banned ? 'background: linear-gradient(135deg, #7f1d1d, #991b1b);' : ''}">
   <div style="display:flex; justify-content:space-between; align-items:center;">
     <h3>الطالب: ${s.name}</h3>
-    <span style="font-size:0.8rem;"><span class="${st.online ? 'online-dot' : 'offline-dot'}"></span> ${st.text}</span>
+    <span>${s.banned ? '<span style="background:var(--danger); color:#fff; padding:3px 8px; border-radius:6px; font-size:0.75rem;">محظور</span>' : '<span style="background:var(--success); color:#fff; padding:3px 8px; border-radius:6px; font-size:0.75rem;">نشط</span>'}</span>
   </div>
   <p>${s.class}</p>
 </div>
@@ -3276,7 +3484,16 @@ return `
 <p><strong>اسم المستخدم / الرقم:</strong> ${s.phone || s.name}</p>
 <p style="margin-top:0.4rem;"><strong>كلمة السر الخاصة به:</strong> <span style="color: var(--warning); font-weight: bold;">${s.password}</span></p>
 <p style="margin-top:0.4rem;"><strong>النقاط المحرزة:</strong> <strong style="color:var(--primary);">${s.xp || 0} XP</strong></p>
-<p style="margin-top:0.4rem;"><strong>تاريخ التسجيل:</strong> ${s.registeredAt || '-'}</p>
+${s.banned ? `<p style="margin-top:0.4rem; color:var(--danger);"><strong>سبب الحظر:</strong> ${s.banReason || 'مخالفة سياسات المنصة'}</p>` : ''}
+<div style="display: flex; gap: 0.6rem; margin-top: 1.2rem;">
+  ${s.banned ? 
+    `<button class="btn btn-secondary btn-small" style="width:100%;" onclick="unbanUser(${s.id}, 'student')"><i class="fas fa-unlock"></i> رفع الحظر وإعادة التفعيل</button>` :
+    `
+    <button class="btn btn-danger btn-small" style="flex:1;" onclick="banUser(${s.id}, 'student', 'مؤقت')"><i class="fas fa-ban"></i> حظر مؤقت</button>
+    <button class="btn btn-danger btn-small" style="flex:1; background:#7f1d1d;" onclick="banUser(${s.id}, 'student', 'نهائي')"><i class="fas fa-lock"></i> حظر نهائي</button>
+    `
+  }
+</div>
 </div>
 </div>`;
 }).join('') : '<p>لا توجد طلاب مسجلون حتى الآن.</p>';
@@ -3404,9 +3621,9 @@ const lesson = getData(DB.lessons).find(l => l.id === id);
 if(!lesson) return;
 document.getElementById('lessonModalTitle').textContent = lesson.title;
 document.getElementById('lessonModalBody').innerHTML = `
-<div style="margin-bottom: 1.5rem; line-height: 2; font-size: 1.1rem;">${lesson.content}</div>
+<div style="margin-bottom: 1.5rem; line-height: 2; font-size: 1.05rem;">${lesson.content}</div>
 ${renderMediaHTML(lesson.image, lesson.video)}
-<div style="margin-top:2rem; background:var(--panel); padding:1rem; border-radius:12px; border:1px solid var(--border);">
+<div style="margin-top:2rem; background:var(--panel); padding:1.2rem; border-radius:14px; border:1px solid var(--border);">
   <h4 style="color:var(--primary); margin-bottom:0.5rem;"><i class="fas fa-pen-fancy"></i> المفكرة والمساعد الأكاديمي السريع للدرس</h4>
   <textarea id="quickLessonNoteText" placeholder="اكتب تلخيصك أو ملاحظتك السريعة على هذا الدرس لحفظها في مفكرتك..." style="min-height:80px;"></textarea>
   <button class="btn btn-primary btn-small" style="margin-top:0.5rem;" onclick="saveQuickLessonNote('${lesson.title}')">حفظ بالملاحظات الشخصية</button>
