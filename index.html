@@ -8,39 +8,43 @@
 <!-- الخطوط ومكتبات الأيقونات وتصدير PDF -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700;800&family=Reem+Kufi:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700;800;900&family=Reem+Kufi:wght@700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 <style>
 :root {
---primary: #34d399;
---secondary: #38bdf8;
---danger: #f87171;
---warning: #fbbf24;
---success: #34d399;
---bg: #0f172a;
---bg-alt: #1e293b;
---panel: #1a1f2e;
---border: #2d3748;
---text: #e2e8f0;
---text-muted: #94a3b8;
---shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+--primary: #8b5cf6;
+--primary-hover: #7c3aed;
+--secondary: #06b6d4;
+--danger: #f43f5e;
+--warning: #f59e0b;
+--success: #10b981;
+--bg: #090d16;
+--bg-alt: #111827;
+--panel: #1f2937;
+--border: #374151;
+--text: #f3f4f6;
+--text-muted: #9ca3af;
+--shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
+--glow: 0 0 25px rgba(139, 92, 246, 0.25);
 }
 
 body.light-mode {
---primary: #059669;
---secondary: #0284c7;
---danger: #dc2626;
+--primary: #7c3aed;
+--primary-hover: #6d28d9;
+--secondary: #0891b2;
+--danger: #e11d48;
 --warning: #d97706;
 --success: #059669;
 --bg: #f8fafc;
 --bg-alt: #f1f5f9;
 --panel: #ffffff;
---border: #cbd5e1;
+--border: #e2e8f0;
 --text: #0f172a;
 --text-muted: #64748b;
---shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+--shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.08);
+--glow: 0 0 25px rgba(124, 58, 237, 0.15);
 }
 
 * {
@@ -51,22 +55,26 @@ box-sizing: border-box;
 
 html, body {
 font-family: 'Cairo', sans-serif;
-background: linear-gradient(135deg, var(--bg) 0%, var(--bg-alt) 100%);
+background: var(--bg);
 color: var(--text);
 min-height: 100vh;
 overflow-x: hidden;
-transition: background 0.3s, color 0.3s;
+transition: background 0.4s ease, color 0.4s ease;
 }
 
 .navbar {
-background: var(--panel);
+background: rgba(31, 41, 55, 0.85);
 border-bottom: 1px solid var(--border);
-padding: 1rem 1.5rem;
+padding: 0.9rem 1.5rem;
 position: sticky;
 top: 0;
 z-index: 1000;
-backdrop-filter: blur(10px);
-box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+backdrop-filter: blur(16px);
+box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+body.light-mode .navbar {
+background: rgba(255, 255, 255, 0.85);
 }
 
 .navbar-content {
@@ -82,34 +90,37 @@ flex-wrap: wrap;
 .logo {
 display: flex;
 align-items: center;
-gap: 0.8rem;
-font-size: 1.3rem;
-font-weight: 800;
+gap: 0.9rem;
+font-size: 1.35rem;
+font-weight: 900;
 color: var(--primary);
 cursor: pointer;
 user-select: none;
+letter-spacing: -0.5px;
 }
 
 .logo-icon {
-width: 38px;
-height: 38px;
+width: 42px;
+height: 42px;
 background: linear-gradient(135deg, var(--primary), var(--secondary));
-border-radius: 10px;
+border-radius: 12px;
 display: flex;
 align-items: center;
 justify-content: center;
 color: #ffffff;
 flex-shrink: 0;
+box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4);
+font-size: 1.1rem;
 }
 
 .nav-menu {
 display: flex;
-gap: 0.6rem;
+gap: 0.5rem;
 align-items: center;
 flex: 1;
 justify-content: center;
 overflow-x: auto;
-padding: 0.5rem 0;
+padding: 0.4rem 0;
 scrollbar-width: none;
 }
 
@@ -118,36 +129,36 @@ display: none;
 }
 
 .nav-menu button {
-background: var(--bg-alt);
-border: 1px solid var(--border);
+background: transparent;
+border: 1px solid transparent;
 color: var(--text-muted);
-font-size: 0.90rem;
+font-size: 0.92rem;
 cursor: pointer;
-transition: all 0.3s;
-font-weight: 600;
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+font-weight: 700;
 font-family: 'Cairo', sans-serif;
 white-space: nowrap;
-padding: 0.5rem 1rem;
-border-radius: 8px;
-margin: 0 0.2rem;
+padding: 0.55rem 1.1rem;
+border-radius: 10px;
+margin: 0 0.15rem;
 }
 
 .nav-menu button:hover {
 color: var(--primary);
-border-color: var(--primary);
-background: var(--panel);
+background: var(--bg-alt);
+border-color: var(--border);
 }
 
 .nav-menu button.active {
-color: #0f172a;
-background: var(--primary);
-border-color: var(--primary);
-box-shadow: 0 4px 12px rgba(52, 211, 153, 0.3);
+color: #ffffff;
+background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+border-color: transparent;
+box-shadow: 0 6px 20px rgba(139, 92, 246, 0.35);
 }
 
 .nav-actions {
 display: flex;
-gap: 0.8rem;
+gap: 0.9rem;
 align-items: center;
 }
 
@@ -155,109 +166,117 @@ align-items: center;
 background: var(--bg-alt);
 border: 1px solid var(--border);
 color: var(--warning);
-width: 40px;
-height: 40px;
-border-radius: 50%;
+width: 42px;
+height: 42px;
+border-radius: 12px;
 display: flex;
 align-items: center;
 justify-content: center;
 cursor: pointer;
 transition: all 0.3s;
-font-size: 1rem;
+font-size: 1.1rem;
 flex-shrink: 0;
+box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
 .theme-toggle-btn:hover {
-transform: scale(1.08);
+transform: scale(1.1);
 border-color: var(--warning);
+background: var(--panel);
 }
 
 .btn {
-padding: 0.7rem 1.4rem;
+padding: 0.75rem 1.6rem;
 border: none;
-border-radius: 10px;
-font-weight: 700;
+border-radius: 12px;
+font-weight: 800;
 cursor: pointer;
 font-size: 0.95rem;
-transition: all 0.3s;
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 font-family: 'Cairo', sans-serif;
 touch-action: manipulation;
 display: inline-flex;
 align-items: center;
 justify-content: center;
-gap: 0.5rem;
+gap: 0.6rem;
 text-decoration: none;
 }
 
 .btn-primary {
-background: linear-gradient(135deg, var(--primary), #22c55e);
-color: #0f172a;
-box-shadow: 0 4px 15px rgba(52, 211, 153, 0.2);
+background: linear-gradient(135deg, var(--primary), #6366f1);
+color: #ffffff;
+box-shadow: 0 8px 25px rgba(139, 92, 246, 0.35);
 }
 
 .btn-primary:hover {
 transform: translateY(-2px);
-box-shadow: 0 8px 25px rgba(52, 211, 153, 0.4);
+box-shadow: 0 12px 30px rgba(139, 92, 246, 0.5);
+filter: brightness(1.05);
 }
 
 .btn-secondary {
 background: var(--bg-alt);
 border: 1px solid var(--border);
 color: var(--text);
+box-shadow: 0 4px 15px rgba(0,0,0,0.02);
 }
 
 .btn-secondary:hover {
-border-color: var(--secondary);
-color: var(--secondary);
+border-color: var(--primary);
+color: var(--primary);
+background: var(--panel);
 }
 
 .btn-danger {
-background: rgba(248, 113, 113, 0.15);
-border: 1px solid rgba(248, 113, 113, 0.3);
+background: rgba(244, 63, 94, 0.12);
+border: 1px solid rgba(244, 63, 94, 0.3);
 color: var(--danger);
 }
 
 .btn-danger:hover {
-background: rgba(248, 113, 113, 0.25);
+background: rgba(244, 63, 94, 0.22);
 }
 
 .btn-small {
-padding: 0.45rem 0.9rem;
+padding: 0.45rem 1rem;
 font-size: 0.85rem;
-border-radius: 8px;
+border-radius: 9px;
 }
 
 .user-info {
 display: flex;
 align-items: center;
 gap: 0.8rem;
-padding: 0.5rem 1rem;
+padding: 0.45rem 1rem 0.45rem 0.5rem;
 background: var(--bg-alt);
-border-radius: 10px;
+border-radius: 12px;
 border: 1px solid var(--border);
+box-shadow: 0 4px 15px rgba(0,0,0,0.03);
 }
 
 .user-avatar {
 width: 38px;
 height: 38px;
-border-radius: 50%;
+border-radius: 10px;
 background: linear-gradient(135deg, var(--primary), var(--secondary));
 display: flex;
 align-items: center;
 justify-content: center;
 color: #ffffff;
-font-weight: 800;
+font-weight: 900;
 flex-shrink: 0;
+box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
 }
 
 .user-details h4 {
 font-size: 0.9rem;
 margin: 0;
 color: var(--text);
+font-weight: 800;
 }
 
 .user-details p {
-font-size: 0.78rem;
+font-size: 0.76rem;
 color: var(--text-muted);
 margin: 0;
 }
@@ -265,7 +284,7 @@ margin: 0;
 .container {
 max-width: 1400px;
 margin: 0 auto;
-padding: 2.5rem 1.5rem;
+padding: 3rem 1.5rem;
 }
 
 .page {
@@ -274,43 +293,45 @@ display: none;
 
 .page.active {
 display: block;
-animation: fadeIn 0.3s ease-in;
+animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes fadeIn {
-from { opacity: 0; transform: translateY(10px); }
+from { opacity: 0; transform: translateY(12px); }
 to { opacity: 1; transform: translateY(0); }
 }
 
 .login-container {
 display: flex;
-min-height: 85vh;
+min-height: 82vh;
 align-items: center;
 justify-content: center;
-gap: 3rem;
+gap: 3.5rem;
 padding: 2rem 1rem;
 flex-wrap: wrap;
 }
 
 .login-left {
 flex: 1;
-min-width: 280px;
-max-width: 500px;
+min-width: 300px;
+max-width: 520px;
 }
 
 .login-left h1 {
-font-size: 2.5rem;
+font-size: 2.8rem;
 margin-bottom: 1.2rem;
 background: linear-gradient(135deg, var(--primary), var(--secondary));
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
-line-height: 1.3;
+line-height: 1.25;
+font-weight: 900;
+letter-spacing: -1px;
 }
 
 .login-left p {
 color: var(--text-muted);
-font-size: 1.05rem;
-margin-bottom: 2rem;
+font-size: 1.1rem;
+margin-bottom: 2.2rem;
 line-height: 1.8;
 }
 
@@ -322,41 +343,59 @@ gap: 1.2rem;
 .feature-item {
 display: flex;
 gap: 1.2rem;
-padding: 1.2rem;
+padding: 1.3rem;
 background: var(--panel);
-border-radius: 12px;
-border-left: 4px solid var(--primary);
+border-radius: 16px;
 border: 1px solid var(--border);
-box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+transition: transform 0.3s ease;
+}
+
+.feature-item:hover {
+transform: translateY(-3px);
+border-color: var(--primary);
 }
 
 .feature-item i {
 color: var(--primary);
-font-size: 1.4rem;
-min-width: 30px;
-margin-top: 0.2rem;
+font-size: 1.5rem;
+min-width: 32px;
+margin-top: 0.1rem;
 }
 
 .login-form {
 background: var(--panel);
-padding: 2.5rem;
-border-radius: 16px;
+padding: 2.8rem;
+border-radius: 20px;
 border: 1px solid var(--border);
 box-shadow: var(--shadow);
 flex: 1;
-min-width: 300px;
-max-width: 450px;
+min-width: 320px;
+max-width: 460px;
+position: relative;
+overflow: hidden;
+}
+
+.login-form::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+height: 4px;
+background: linear-gradient(90deg, var(--primary), var(--secondary));
 }
 
 .login-form h2 {
-margin-bottom: 1.5rem;
+margin-bottom: 1.8rem;
 text-align: center;
-font-size: 1.6rem;
+font-size: 1.7rem;
 color: var(--text);
+font-weight: 800;
 }
 
 .form-group {
-margin-bottom: 1.2rem;
+margin-bottom: 1.3rem;
 }
 
 .form-group label {
@@ -364,65 +403,70 @@ display: block;
 margin-bottom: 0.6rem;
 font-weight: 700;
 color: var(--text);
-font-size: 0.95rem;
+font-size: 0.92rem;
 }
 
 .form-group input, .form-group select {
 width: 100%;
-padding: 0.85rem 1rem;
+padding: 0.9rem 1.1rem;
 border: 1px solid var(--border);
-border-radius: 10px;
+border-radius: 12px;
 background: var(--bg-alt);
 color: var(--text);
 font-family: 'Cairo', sans-serif;
 font-size: 16px;
-transition: all 0.3s;
+transition: all 0.3s ease;
 }
 
 .form-group input:focus, .form-group select:focus {
 outline: none;
 border-color: var(--primary);
-box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.15);
+box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15);
+background: var(--panel);
 }
 
 .mode-toggle {
 display: flex;
 gap: 0.8rem;
-margin-bottom: 1.5rem;
+margin-bottom: 1.6rem;
+background: var(--bg-alt);
+padding: 5px;
+border-radius: 12px;
+border: 1px solid var(--border);
 }
 
 .mode-toggle button {
 flex: 1;
-padding: 0.75rem;
-border: 1px solid var(--border);
+padding: 0.8rem;
+border: none;
 background: transparent;
 color: var(--text-muted);
-border-radius: 8px;
+border-radius: 9px;
 cursor: pointer;
 font-weight: 700;
-transition: all 0.3s;
+transition: all 0.3s ease;
 font-family: 'Cairo', sans-serif;
 font-size: 0.9rem;
 }
 
 .mode-toggle button.active {
-background: var(--primary);
-color: #0f172a;
-border-color: var(--primary);
-box-shadow: 0 4px 15px rgba(52, 211, 153, 0.3);
+background: var(--panel);
+color: var(--primary);
+box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
 
 .dashboard-header {
-margin-bottom: 2rem;
-padding-bottom: 1.5rem;
+margin-bottom: 2.2rem;
+padding-bottom: 1.2rem;
 border-bottom: 1px solid var(--border);
 }
 
 .dashboard-header h2 {
-font-size: 1.8rem;
+font-size: 2rem;
 margin-bottom: 0.5rem;
 color: var(--text);
-font-weight: 800;
+font-weight: 900;
+letter-spacing: -0.5px;
 }
 
 .dashboard-header p {
@@ -432,43 +476,71 @@ font-size: 1.05rem;
 
 .stats-grid {
 display: grid;
-grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 gap: 1.8rem;
-margin-bottom: 2.5rem;
+margin-bottom: 2.8rem;
 }
 
 .stat-card {
 background: var(--panel);
 border: 1px solid var(--border);
-border-radius: 16px;
-padding: 1.8rem;
-transition: all 0.3s;
+border-radius: 20px;
+padding: 2rem;
+transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 box-shadow: var(--shadow);
+position: relative;
+overflow: hidden;
+}
+
+.stat-card::after {
+content: '';
+position: absolute;
+bottom: 0;
+right: 0;
+left: 0;
+height: 3px;
+background: linear-gradient(90deg, var(--primary), var(--secondary));
+opacity: 0;
+transition: opacity 0.3s;
 }
 
 .stat-card:hover {
 border-color: var(--primary);
-transform: translateY(-4px);
+transform: translateY(-6px);
+box-shadow: 0 25px 50px -12px rgba(139, 92, 246, 0.2);
+}
+
+.stat-card:hover::after {
+opacity: 1;
 }
 
 .stat-card i {
-font-size: 2.2rem;
+font-size: 2.3rem;
 color: var(--primary);
-margin-bottom: 1rem;
+margin-bottom: 1.2rem;
+background: rgba(139, 92, 246, 0.1);
+width: 60px;
+height: 60px;
+border-radius: 14px;
+display: flex;
+align-items: center;
+justify-content: center;
 }
 
 .stat-card h4 {
-font-size: 0.9rem;
+font-size: 0.85rem;
 color: var(--text-muted);
-margin-bottom: 0.5rem;
+margin-bottom: 0.6rem;
 text-transform: uppercase;
-letter-spacing: 0.5px;
+letter-spacing: 1px;
+font-weight: 800;
 }
 
 .stat-card .value {
-font-size: 2rem;
-font-weight: 800;
+font-size: 2.4rem;
+font-weight: 900;
 color: var(--text);
+letter-spacing: -1px;
 }
 
 .tab-content {
@@ -482,17 +554,17 @@ display: block;
 
 .cards-grid {
 display: grid;
-grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
 gap: 2rem;
-margin-top: 1.5rem;
+margin-top: 1.8rem;
 }
 
 .card {
 background: var(--panel);
 border: 1px solid var(--border);
-border-radius: 16px;
+border-radius: 20px;
 overflow: hidden;
-transition: all 0.3s;
+transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 box-shadow: var(--shadow);
 display: flex;
 flex-direction: column;
@@ -501,35 +573,37 @@ margin-bottom: 1.5rem;
 
 .card:hover {
 border-color: var(--primary);
-transform: translateY(-5px);
+transform: translateY(-6px);
+box-shadow: 0 25px 50px -12px rgba(139, 92, 246, 0.25);
 }
 
 .card-header {
-background: linear-gradient(135deg, var(--primary), var(--secondary));
-padding: 1.5rem;
-color: #0f172a;
+background: linear-gradient(135deg, var(--primary), #6366f1);
+padding: 1.6rem;
+color: #ffffff;
 }
 
 .card-header h3 {
-font-size: 1.2rem;
+font-size: 1.25rem;
 margin-bottom: 0.4rem;
-font-weight: 800;
+font-weight: 900;
+letter-spacing: -0.3px;
 }
 
 .card-body {
-padding: 1.5rem;
+padding: 1.8rem;
 flex: 1;
 }
 
 .card-body p {
 color: var(--text-muted);
-margin-bottom: 1rem;
-line-height: 1.7;
+margin-bottom: 1.2rem;
+line-height: 1.8;
 font-size: 1rem;
 }
 
 .card-footer {
-padding: 1rem 1.5rem;
+padding: 1.2rem 1.8rem;
 border-top: 1px solid var(--border);
 display: flex;
 gap: 1rem;
@@ -539,45 +613,46 @@ background: var(--bg-alt);
 
 .lesson-content {
 background: var(--bg-alt);
-padding: 2rem;
-border-radius: 16px;
+padding: 2.2rem;
+border-radius: 20px;
 border: 1px solid var(--border);
-line-height: 1.9;
+line-height: 2;
 color: var(--text);
-font-size: 1.05rem;
+font-size: 1.1rem;
+box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
 }
 
 .media-container {
-margin: 1.5rem 0;
-border-radius: 12px;
+margin: 1.8rem 0;
+border-radius: 16px;
 overflow: hidden;
-background: rgba(0,0,0,0.15);
+background: rgba(0,0,0,0.2);
 text-align: center;
 border: 1px solid var(--border);
-padding: 1rem;
+padding: 1.2rem;
 }
 
 .media-container img {
 width: 100%;
 max-height: 520px;
-border-radius: 10px;
+border-radius: 12px;
 object-fit: contain;
 display: block;
 margin: 0 auto;
 cursor: pointer;
-transition: transform 0.3s;
+transition: transform 0.3s ease;
 background: #000;
 }
 
 .media-container img:hover {
-transform: scale(1.01);
+transform: scale(1.015);
 }
 
 .media-container iframe, .media-container video {
 width: 100%;
 height: 420px;
 border: none;
-border-radius: 10px;
+border-radius: 12px;
 background: #000;
 display: block;
 margin: 0 auto;
@@ -586,42 +661,44 @@ margin: 0 auto;
 .add-form {
 background: var(--panel);
 border: 1px solid var(--border);
-border-radius: 16px;
-padding: 2rem;
-margin-bottom: 2.5rem;
+border-radius: 20px;
+padding: 2.5rem;
+margin-bottom: 2.8rem;
 box-shadow: var(--shadow);
 }
 
 textarea {
 width: 100%;
-min-height: 120px;
-padding: 1rem;
+min-height: 130px;
+padding: 1.1rem;
 border: 1px solid var(--border);
-border-radius: 10px;
+border-radius: 12px;
 background: var(--bg-alt);
 color: var(--text);
 font-family: 'Cairo', sans-serif;
 resize: vertical;
 font-size: 16px;
-line-height: 1.6;
+line-height: 1.7;
+transition: all 0.3s ease;
 }
 
 textarea:focus {
 outline: none;
 border-color: var(--primary);
-box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.15);
+box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15);
+background: var(--panel);
 }
 
 .modal {
 display: none;
 position: fixed;
 top: 0; left: 0; right: 0; bottom: 0;
-background: rgba(0, 0, 0, 0.85);
+background: rgba(9, 13, 22, 0.82);
 z-index: 2000;
 align-items: center;
 justify-content: center;
 padding: 1.5rem;
-backdrop-filter: blur(6px);
+backdrop-filter: blur(8px);
 }
 
 .modal.active {
@@ -631,84 +708,114 @@ display: flex;
 .modal-content {
 background: var(--panel);
 border: 1px solid var(--border);
-border-radius: 16px;
-padding: 2rem;
+border-radius: 24px;
+padding: 2.5rem;
 width: 100%;
 max-width: 950px;
 max-height: 90vh;
 overflow-y: auto;
-box-shadow: var(--shadow);
+box-shadow: 0 25px 60px rgba(0,0,0,0.6);
 position: relative;
+animation: modalPop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalPop {
+from { opacity: 0; transform: scale(0.95); }
+to { opacity: 1; transform: scale(1); }
 }
 
 .modal-header {
 display: flex;
 justify-content: space-between;
 align-items: center;
-margin-bottom: 1.5rem;
-padding-bottom: 1rem;
+margin-bottom: 1.8rem;
+padding-bottom: 1.2rem;
 border-bottom: 1px solid var(--border);
 }
 
 .close-modal {
-background: none;
-border: none;
-font-size: 2rem;
+background: var(--bg-alt);
+border: 1px solid var(--border);
+width: 40px;
+height: 40px;
+border-radius: 50%;
+font-size: 1.5rem;
 color: var(--text-muted);
 cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+transition: all 0.3s;
+}
+
+.close-modal:hover {
+background: var(--danger);
+color: #fff;
+border-color: var(--danger);
 }
 
 .note-item, .support-item {
 background: var(--bg-alt);
 border: 1px solid var(--border);
-padding: 1.5rem;
-border-radius: 12px;
+padding: 1.6rem;
+border-radius: 16px;
 margin-bottom: 1.2rem;
-font-size: 1rem;
-box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+font-size: 1.02rem;
+box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+transition: transform 0.2s;
+}
+
+.note-item:hover, .support-item:hover {
+border-color: var(--primary);
 }
 
 .note-header, .support-header {
 display: flex;
 justify-content: space-between;
-margin-bottom: 0.6rem;
+margin-bottom: 0.8rem;
 color: var(--primary);
-font-weight: 700;
-font-size: 0.9rem;
+font-weight: 800;
+font-size: 0.92rem;
 flex-wrap: wrap;
 gap: 0.8rem;
 }
 
 .members-list {
 display: grid;
-grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
 gap: 1.8rem;
-margin-top: 1.5rem;
+margin-top: 1.8rem;
 }
 
 .member-card {
 background: var(--panel);
-padding: 1.8rem;
-border-radius: 16px;
+padding: 2rem;
+border-radius: 20px;
 border: 1px solid var(--border);
 text-align: center;
 box-shadow: var(--shadow);
 margin-bottom: 1rem;
+transition: all 0.3s ease;
+}
+
+.member-card:hover {
+transform: translateY(-5px);
+border-color: var(--primary);
 }
 
 .member-avatar {
-width: 60px;
-height: 60px;
-border-radius: 50%;
+width: 70px;
+height: 70px;
+border-radius: 20px;
 background: linear-gradient(135deg, var(--primary), var(--secondary));
 display: flex;
 align-items: center;
 justify-content: center;
 color: #ffffff;
-font-weight: 800;
-font-size: 1.3rem;
-margin: 0 auto 1rem;
-box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+font-weight: 900;
+font-size: 1.5rem;
+margin: 0 auto 1.2rem;
+box-shadow: 0 8px 25px rgba(139, 92, 246, 0.35);
 }
 
 /* تنسيق الشهادة الملكية الفاخرة الثابتة للطباعة */
@@ -731,7 +838,7 @@ box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   box-shadow: 0 25px 50px rgba(0,0,0,0.35);
   box-sizing: border-box;
   flex-shrink: 0;
-  border-radius: 8px;
+  border-radius: 12px;
   border: 4px solid #b45309;
 }
 
@@ -861,36 +968,64 @@ box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
-/* تنسيق الدردشة */
+/* تنسيق الدردشة وواتساب العصري */
 .chat-container {
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 320px 1fr;
   background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: 16px;
-  height: 550px;
+  border-radius: 20px;
+  height: 620px;
   overflow: hidden;
   box-shadow: var(--shadow);
-  margin-top: 1.5rem;
+  margin-top: 1.8rem;
 }
 .chat-sidebar {
   border-left: 1px solid var(--border);
   background: var(--bg-alt);
   overflow-y: auto;
-  padding: 15px;
+  padding: 18px;
 }
 .chat-contact-item {
-  padding: 12px 15px;
-  border-radius: 10px;
+  padding: 14px 16px;
+  border-radius: 12px;
   cursor: pointer;
-  margin-bottom: 8px;
-  transition: all 0.2s;
-  font-weight: 600;
+  margin-bottom: 10px;
+  transition: all 0.25s ease;
+  font-weight: 700;
   font-size: 0.95rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: var(--panel);
+  border: 1px solid var(--border);
 }
 .chat-contact-item:hover, .chat-contact-item.active {
+  border-color: var(--primary);
+  background: rgba(139, 92, 246, 0.08);
+}
+.chat-contact-item.active {
   background: var(--primary);
-  color: #0f172a;
+  color: #ffffff;
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3);
+}
+.chat-contact-item.active .online-status-text {
+  color: rgba(255,255,255,0.85) !important;
+}
+.online-dot {
+  width: 10px;
+  height: 10px;
+  background-color: var(--success);
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 10px var(--success);
+}
+.offline-dot {
+  width: 10px;
+  height: 10px;
+  background-color: var(--text-muted);
+  border-radius: 50%;
+  display: inline-block;
 }
 .chat-main {
   display: flex;
@@ -900,31 +1035,36 @@ box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 .chat-messages {
   flex: 1;
-  padding: 20px;
+  padding: 24px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 .chat-msg {
   max-width: 75%;
-  padding: 12px 16px;
-  border-radius: 12px;
-  font-size: 0.98rem;
-  line-height: 1.6;
+  padding: 14px 18px;
+  border-radius: 16px;
+  font-size: 1rem;
+  line-height: 1.7;
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
 }
 .chat-msg.incoming {
   background: var(--bg-alt);
   align-self: flex-start;
   border: 1px solid var(--border);
+  border-top-right-radius: 4px;
 }
 .chat-msg.outgoing {
-  background: var(--primary);
-  color: #0f172a;
+  background: linear-gradient(135deg, var(--primary), #6366f1);
+  color: #ffffff;
   align-self: flex-end;
+  border-top-left-radius: 4px;
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3);
 }
 .chat-input-area {
-  padding: 15px 20px;
+  padding: 18px 24px;
   border-top: 1px solid var(--border);
   display: flex;
   gap: 12px;
@@ -932,13 +1072,48 @@ box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 .chat-input-area input {
   flex: 1;
-  padding: 10px 15px;
+  padding: 12px 18px;
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 12px;
   background: var(--panel);
   color: var(--text);
   font-family: 'Cairo', sans-serif;
-  font-size: 15px;
+  font-size: 16px;
+  transition: all 0.3s;
+}
+.chat-input-area input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15);
+}
+
+/* تنسيقات الميزات الجديدة الفاخرة */
+.progress-bar-container {
+  width: 100%;
+  background: var(--bg-alt);
+  border-radius: 10px;
+  height: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  margin-top: 6px;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  width: 0%;
+  transition: width 0.6s ease;
+}
+.badge-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: rgba(139, 92, 246, 0.15);
+  color: var(--primary);
+  border: 1px solid rgba(139, 92, 246, 0.3);
 }
 
 @media (max-width: 768px) {
@@ -969,7 +1144,7 @@ flex: 1;
 justify-content: center;
 }
 .login-left h1 {
-font-size: 2rem;
+font-size: 2.2rem;
 }
 .container {
 padding: 1.5rem 1rem;
@@ -990,25 +1165,33 @@ gap: 1.2rem;
 </head>
 <body>
 
+<!-- صفحة الصيانة (Maintenance Mode Screen) -->
+<div id="maintenanceScreen" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--bg); z-index: 9999; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem;">
+  <i class="fas fa-tools" style="font-size: 4rem; color: var(--warning); margin-bottom: 1.5rem;"></i>
+  <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">المنصة في وضع الصيانة المباشرة</h1>
+  <p style="color: var(--text-muted); font-size: 1.2rem; max-width: 600px; line-height: 1.8;">يقوم الفريق التقني والمشرفون بتحديث المنصة وتجهيز دروس واختبارات جديدة حالياً. يرجى العودة لاحقاً!</p>
+  <button class="btn btn-secondary" style="margin-top: 2rem;" onclick="location.reload()"><i class="fas fa-sync"></i> إعادة المحاولة</button>
+</div>
+
 <!-- Login Page -->
 <div id="loginPage" class="page active">
 <div class="login-container">
 <div class="login-left">
 <h1 id="mainAcademyLogo" style="cursor: pointer;" title="اضغط 5 مرات للمشرف و7 مرات للمالك">Abdo_zeinhom Academy</h1>
-<p>منصة تعليمية متكاملة تتيح الدروس، الاختبارات التفاعلية، دعم الطلاب والملاحظات المباشرة.</p>
+<p>منصة تعليمية متكاملة تتيح الدروس، الاختبارات التفاعلية، دعم الطلاب والملاحظات المباشرة بتصميم فائق الأناقة والاحترافية.</p>
 <div class="login-features">
 <div class="feature-item">
 <i class="fas fa-shield-alt"></i>
 <div>
 <strong>تسجيل آمن للطلاب والمشرفين</strong>
-<p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.3rem;">انشاء حساب بكلمة سر خاصة بك وإدارتها بكل سهولة</p>
+<p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 0.3rem;">انشاء حساب بكلمة سر خاصة بك وإدارتها بكل سهولة وأمان تام</p>
 </div>
 </div>
 <div class="feature-item">
 <i class="fas fa-headset"></i>
 <div>
 <strong>دعم فني وملاحظات</strong>
-<p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.3rem;">تواصل مباشر بين الطلاب والمشرفين لمتابعة الأداء</p>
+<p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 0.3rem;">تواصل مباشر بين الطلاب والمشرفين لمتابعة الأداء الأكاديمي لحظة بلحظة</p>
 </div>
 </div>
 </div>
@@ -1040,7 +1223,11 @@ gap: 1.2rem;
 <option value="الصف الثالث الثانوي">الصف الثالث الثانوي</option>
 </select>
 </div>
-<button type="submit" id="studentAuthBtn" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;">
+<div class="form-group" id="studentAccessKeyGroup" style="display: none;">
+<label for="studentAccessKeyInput">كود تفعيل الاشتراكات (Access Key)</label>
+<input type="text" id="studentAccessKeyInput" placeholder="أدخل كود الاشتراك الممنوح لك" />
+</div>
+<button type="submit" id="studentAuthBtn" class="btn btn-primary" style="width: 100%; margin-top: 0.8rem;">
 <i class="fas fa-sign-in-alt"></i> دخول المنصة
 </button>
 </form>
@@ -1055,7 +1242,7 @@ gap: 1.2rem;
 <label for="staffCode">كود الدخول أو الرمز السري</label>
 <input type="password" id="staffCode" placeholder="أدخل الكود الخاص بك" required />
 </div>
-<button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;">
+<button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 0.8rem;">
 <i class="fas fa-sign-in-alt"></i> دخول لوحة التحكم
 </button>
 <button type="button" class="btn btn-secondary btn-small" style="width: 100%; margin-top: 1rem;" onclick="backToStudentLogin()">العودة لدخول الطلاب</button>
@@ -1077,6 +1264,9 @@ gap: 1.2rem;
 <button class="tab-toggle active" data-section="student-home">الرئيسية</button>
 <button class="tab-toggle" data-section="student-lessons">الدروس</button>
 <button class="tab-toggle" data-section="student-quizzes">الاختبارات</button>
+<button class="tab-toggle" data-section="student-live">البث والجدول</button>
+<button class="tab-toggle" data-section="student-assignments">الواجبات</button>
+<button class="tab-toggle" data-section="student-leaderboard">لوحة الصدارة 🔥</button>
 <button class="tab-toggle" data-section="student-notes">الملاحظات</button>
 <button class="tab-toggle" data-section="student-support">الدعم الفني</button>
 <button class="tab-toggle" data-section="student-supervisors">المشرفون</button>
@@ -1095,21 +1285,58 @@ gap: 1.2rem;
 </nav>
 <div class="container">
 <div id="student-home" class="tab-content active">
-<div class="dashboard-header"><h2>مرحباً بك في المنصة التعليمية</h2><p>تصفح دروسك، اختبر معلوماتك، واكتب ملاحظاتك بكل سهولة</p></div>
+<div class="dashboard-header">
+  <h2>مرحباً بك في المنصة التعليمية</h2>
+  <p>تصفح دروسك، اختبر معلوماتك، واجمع النقاط للوصول لقمة لوحة الصدارة!</p>
+  <!-- مؤشر التقدم الأكاديمي -->
+  <div style="margin-top: 1.5rem; background: var(--panel); padding: 1.2rem; border-radius: 16px; border: 1px solid var(--border);">
+    <div style="display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 5px;">
+      <span><i class="fas fa-chart-line" style="color:var(--primary)"></i> مؤشر الإنجاز الأكاديمي للمنهج</span>
+      <span id="studentProgressPercent">0%</span>
+    </div>
+    <div class="progress-bar-container"><div class="progress-bar-fill" id="studentProgressBar"></div></div>
+  </div>
+</div>
+
 <div class="stats-grid">
 <div class="stat-card"><i class="fas fa-book-reader"></i><h4>الدروس</h4><div class="value" id="studentLessonsCount">0</div></div>
 <div class="stat-card"><i class="fas fa-question-circle"></i><h4>الاختبارات</h4><div class="value" id="studentQuizzesCount">0</div></div>
+<div class="stat-card"><i class="fas fa-trophy"></i><h4>نقاط التميز (XP)</h4><div class="value" id="studentXPVal">0 XP</div></div>
 <div class="stat-card"><i class="fas fa-sticky-note"></i><h4>الملاحظات</h4><div class="value" id="studentNotesCount">0</div></div>
 </div>
+
+<!-- صندوق التنبيهات والإشعارات الخاصة بالصف -->
+<div style="background: var(--panel); padding: 1.5rem; border-radius: 20px; border: 1px solid var(--border); margin-bottom: 2rem;">
+  <h3 style="color: var(--primary); margin-bottom: 1rem;"><i class="fas fa-bell"></i> التنبيهات والإشعارات الرسمية</h3>
+  <div id="studentNotificationsBox" style="display: grid; gap: 0.8rem;"></div>
 </div>
+</div>
+
 <div id="student-lessons" class="tab-content">
-<div class="dashboard-header"><h2>الدروس التعليمية</h2></div>
+<div class="dashboard-header"><h2>الدروس التعليمية والمساعد الأكاديمي</h2></div>
 <div id="studentLessonsContainer" class="cards-grid"></div>
 </div>
+
 <div id="student-quizzes" class="tab-content">
-<div class="dashboard-header"><h2>الاختبارات التفاعلية متعددة الأسئلة</h2><p>اختبر معلوماتك وفهمك للدروس (سؤال سؤال)</p></div>
+<div class="dashboard-header"><h2>الاختبارات التفاعلية متعددة الأسئلة</h2><p>اختبر معلوماتك وفهمك للدروس واكسب نقاط XP فورية</p></div>
 <div id="studentQuizzesContainer" class="cards-grid"></div>
 </div>
+
+<div id="student-live" class="tab-content">
+<div class="dashboard-header"><h2>جدول الحصص الأسبوعية والبث المباشر</h2></div>
+<div id="studentLiveScheduleContainer" class="cards-grid"></div>
+</div>
+
+<div id="student-assignments" class="tab-content">
+<div class="dashboard-header"><h2>نظام تسليم الواجبات والأسئلة المقالية</h2></div>
+<div id="studentAssignmentsContainer" style="display: grid; gap: 1.5rem;"></div>
+</div>
+
+<div id="student-leaderboard" class="tab-content">
+<div class="dashboard-header"><h2>🏆 لوحة أبطال المنصة (Leaderboard)</h2><p>الطلاب الأكثر تميزاً وجمعاً لنقاط الـ XP لهذا الشهر</p></div>
+<div id="studentLeaderboardContainer" class="cards-grid"></div>
+</div>
+
 <div id="student-notes" class="tab-content">
 <div class="dashboard-header"><h2>الملاحظات والأسئلة الأكاديمية</h2></div>
 <div class="add-form">
@@ -1121,6 +1348,7 @@ gap: 1.2rem;
 </div>
 <div id="studentNotesContainer" style="display: grid; gap: 1rem;"></div>
 </div>
+
 <div id="student-support" class="tab-content">
 <div class="dashboard-header"><h2>الدعم الفني والخدمي</h2></div>
 <div class="add-form">
@@ -1137,23 +1365,33 @@ gap: 1.2rem;
 </div>
 <div id="studentSupportContainer" style="display: grid; gap: 1rem;"></div>
 </div>
+
 <div id="student-supervisors" class="tab-content">
 <div class="dashboard-header"><h2>مشرفو المنصة التعليمية</h2></div>
 <div id="studentSupervisorsContainer" class="members-list"></div>
 </div>
+
 <div id="student-certificates" class="tab-content">
 <div class="dashboard-header"><h2>شهادات التقدير والنجاح الملكية</h2><p>استعرض شهاداتك المعتمدة وحملها بجودة عالية بصيغة PDF</p></div>
 <div id="studentCertificatesContainer" style="display: flex; flex-direction: column; gap: 2rem; align-items: center;"></div>
 </div>
+
 <div id="student-chat" class="tab-content">
 <div class="dashboard-header"><h2>دردشة الطلاب (فردي وجماعي)</h2></div>
 <div class="chat-container">
 <div class="chat-sidebar" id="studentChatSidebar">
-<div class="chat-contact-item active" onclick="selectStudentChat('group')"><i class="fas fa-users"></i> المجموعة العامـة</div>
+<div class="chat-contact-item active" onclick="selectStudentChat('group')">
+  <div style="display:flex; justify-content:space-between; align-items:center;">
+    <span><i class="fas fa-users"></i> المجموعة العامـة</span>
+  </div>
+</div>
 <div id="studentContactsList"></div>
 </div>
 <div class="chat-main">
-<div id="studentChatHeader" style="padding: 15px; border-bottom: 1px solid var(--border); font-weight: 700; background: var(--bg-alt);">المجموعة العامة</div>
+<div id="studentChatHeader" style="padding: 16px 20px; border-bottom: 1px solid var(--border); font-weight: 800; background: var(--bg-alt); display: flex; justify-content: space-between; align-items: center;">
+  <span>المجموعة العامة</span>
+  <span id="studentChatStatusBadge" style="font-size:0.85rem; font-weight:normal;">🟢 متصل الآن</span>
+</div>
 <div class="chat-messages" id="studentChatMessages"></div>
 <form class="chat-input-area" onsubmit="sendStudentChatMsg(event)">
 <input type="text" id="studentChatInput" placeholder="اكتب رسالتك هنا..." required />
@@ -1176,7 +1414,10 @@ gap: 1.2rem;
 <div class="nav-menu">
 <button class="tab-toggle active" data-section="supervisor-home">الرئيسية</button>
 <button class="tab-toggle" data-section="supervisor-lessons">الدروس</button>
-<button class="tab-toggle" data-section="supervisor-quizzes">الاختبارات</button>
+<button class="tab-toggle" data-section="supervisor-quizzes">الاختبارات وبنك الأسئلة</button>
+<button class="tab-toggle" data-section="supervisor-live">البث والجدول</button>
+<button class="tab-toggle" data-section="supervisor-assignments">تصحيح الواجبات</button>
+<button class="tab-toggle" data-section="supervisor-notify">إرسال تنبيهات</button>
 <button class="tab-toggle" data-section="supervisor-grades">درجات الطلاب</button>
 <button class="tab-toggle" data-section="supervisor-certificates">إصدار الشهادات</button>
 <button class="tab-toggle" data-section="supervisor-students">الطلاب</button>
@@ -1195,40 +1436,51 @@ gap: 1.2rem;
 </nav>
 <div class="container">
 <div id="supervisor-home" class="tab-content active">
-<div class="dashboard-header"><h2>لوحة المشرف</h2></div>
+<div class="dashboard-header"><h2>لوحة المشرف الأكاديمي</h2></div>
 <div class="stats-grid">
 <div class="stat-card"><i class="fas fa-user-graduate"></i><h4>الطلاب المسجلون</h4><div class="value" id="totalStudents">0</div></div>
 <div class="stat-card"><i class="fas fa-question-circle"></i><h4>الاختبارات المضافة</h4><div class="value" id="totalQuizzesCount">0</div></div>
+<div class="stat-card"><i class="fas fa-tasks"></i><h4>الواجبات للمراجعة</h4><div class="value" id="pendingAssignmentsCount">0</div></div>
 <div class="stat-card"><i class="fas fa-headset"></i><h4>رسائل الدعم الفني</h4><div class="value" id="totalSupportCount">0</div></div>
 </div>
 </div>
+
 <div id="supervisor-lessons" class="tab-content">
-<div class="dashboard-header"><h2>إدارة الدروس</h2></div>
+<div class="dashboard-header"><h2>إدارة الدروس التعليمية</h2></div>
 <div class="add-form">
 <h3>إضافة درس جديد</h3>
 <form id="addLessonForm" style="display: grid; gap: 1.2rem; margin-top: 1rem;">
 <input type="text" class="lessonTitle" placeholder="عنوان الدرس" required />
 <input type="text" class="lessonSubject" placeholder="المادة" required />
-<textarea class="lessonContent" placeholder="المحتوى..." required></textarea>
+<textarea class="lessonContent" placeholder="المحتوى الأكاديمي والشرح..." required></textarea>
 <input type="text" class="lessonImage" placeholder="رابط صورة (اختياري)" />
 <input type="text" class="lessonVideo" placeholder="رابط فيديو (يوتيوب أو .mp4)" />
-<button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> حفظ الدرس</button>
+<button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> حفظ ونشر الدرس</button>
 </form>
 </div>
 <div id="supervisorLessonsContainer" class="cards-grid"></div>
 </div>
+
 <div id="supervisor-quizzes" class="tab-content">
-<div class="dashboard-header"><h2>إدارة الاختبارات التفاعلية متعددة الأسئلة</h2></div>
+<div class="dashboard-header"><h2>إدارة الاختبارات وبنك الأسئلة الذكي</h2></div>
+<!-- بنك الأسئلة والتوليد العشوائي -->
+<div class="add-form" style="background: var(--bg-alt);">
+  <h3 style="color:var(--primary);"><i class="fas fa-database"></i> بنك الأسئلة والتوليد العشوائي للاختبارات</h3>
+  <div style="display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap;">
+    <button class="btn btn-primary btn-small" onclick="generateRandomQuiz()"><i class="fas fa-random"></i> إنشاء اختبار عشوائي تلقائي من البنك</button>
+  </div>
+</div>
+
 <div class="add-form">
-<h3>إضافة اختبار متعدد الأسئلة جديد</h3>
+<h3>إضافة اختبار جديد يدوياً</h3>
 <form id="addQuizForm" style="display: grid; gap: 1.2rem; margin-top: 1rem;">
-<input type="text" id="quizTitle" placeholder="عنوان الاختبار (مثال: اختبار الوحدة الأولى - الفيزياء)" required />
+<input type="text" id="quizTitle" placeholder="عنوان الاختبار (مثال: اختبار الفيزياء الحديثة)" required />
 <input type="text" id="quizSubject" placeholder="المادة الدراسية" required />
 <input type="text" id="quizImage" placeholder="رابط صورة للاختبار (اختياري)" />
-<input type="text" id="quizVideo" placeholder="رابط فيديو للاختبار (يوتيوب أو .mp4 - اختياري)" />
-<div id="questionsBuilderContainer" style="display: grid; gap: 1.2rem; border: 1px dashed var(--border); padding: 1.5rem; border-radius: 12px;">
+<input type="text" id="quizVideo" placeholder="رابط فيديو للاختبار (اختياري)" />
+<div id="questionsBuilderContainer" style="display: grid; gap: 1.2rem; border: 1px dashed var(--border); padding: 1.5rem; border-radius: 16px; background: var(--bg-alt);">
 <h4 style="color: var(--primary);">أسئلة الاختبار</h4>
-<div class="question-builder-item" style="background: var(--bg-alt); padding: 1.2rem; border-radius: 10px; display: grid; gap: 1rem;">
+<div class="question-builder-item" style="background: var(--panel); padding: 1.2rem; border-radius: 12px; display: grid; gap: 1rem; border: 1px solid var(--border);">
 <input type="text" class="q-text" placeholder="نص السؤال الأول" required />
 <input type="text" class="q-opt1" placeholder="الخيار الأول" required />
 <input type="text" class="q-opt2" placeholder="الخيار الثاني" required />
@@ -1240,15 +1492,51 @@ gap: 1.2rem;
 <option value="2">الخيار الثالث صحيح</option>
 <option value="3">الخيار الرابع صحيح</option>
 </select>
-<textarea class="q-explanation" placeholder="شرح الإجابة (يظهر بعد ظهور النتيجة)..." style="min-height: 80px;"></textarea>
+<textarea class="q-explanation" placeholder="شرح الإجابة النموذجية..." style="min-height: 80px;"></textarea>
 </div>
 </div>
-<button type="button" class="btn btn-secondary btn-small" onclick="addQuestionField()" style="margin-top: 0.5rem;"><i class="fas fa-plus"></i> إضافة سؤال آخر للاختبار</button>
+<button type="button" class="btn btn-secondary btn-small" onclick="addQuestionField()" style="margin-top: 0.5rem;"><i class="fas fa-plus"></i> إضافة سؤال آخر</button>
 <button type="submit" class="btn btn-primary" style="margin-top: 1rem;"><i class="fas fa-save"></i> حفظ ونشر الاختبار</button>
 </form>
 </div>
 <div id="supervisorQuizzesContainer" class="cards-grid"></div>
 </div>
+
+<div id="supervisor-live" class="tab-content">
+<div class="dashboard-header"><h2>إضافة حصة مباشرة وجدول أسبوعي</h2></div>
+<div class="add-form">
+  <form id="addLiveScheduleForm" style="display: grid; gap: 1.2rem;">
+    <input type="text" id="liveTitle" placeholder="عنوان الحصة المباشرة" required />
+    <input type="text" id="liveSubject" placeholder="المادة الدراسية" required />
+    <input type="text" id="liveTime" placeholder="موعد الحصة (مثال: الثلاثاء 7:00 مساءً)" required />
+    <input type="text" id="liveUrl" placeholder="رابط زووم أو البث المباشر (Zoom / YouTube Live)" required />
+    <button type="submit" class="btn btn-primary"><i class="fas fa-video"></i> نشر موعد الحصة والرابط</button>
+  </form>
+</div>
+<div id="supervisorLiveScheduleContainer" class="cards-grid"></div>
+</div>
+
+<div id="supervisor-assignments" class="tab-content">
+<div class="dashboard-header"><h2>تصحيح الواجبات والأسئلة المقالية للطلاب</h2></div>
+<div id="supervisorAssignmentsList" style="display: grid; gap: 1.2rem;"></div>
+</div>
+
+<div id="supervisor-notify" class="tab-content">
+<div class="dashboard-header"><h2>إرسال إشعارات وتنبيهات مخصصة للطلاب</h2></div>
+<div class="add-form">
+  <form id="sendNotificationForm" style="display: grid; gap: 1.2rem;">
+    <select id="notifyTargetClass" required>
+      <option value="الجميع">جميع الصفوف الدراسية</option>
+      <option value="الصف الأول الثانوي">الصف الأول الثانوي</option>
+      <option value="الصف الثاني الثانوي">الصف الثاني الثانوي</option>
+      <option value="الصف الثالث الثانوي">الصف الثالث الثانوي</option>
+    </select>
+    <textarea id="notifyText" placeholder="اكتب نص التنبيه الموجه للطلاب..." required></textarea>
+    <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> إرسال التنبيه فوراً</button>
+  </form>
+</div>
+</div>
+
 <div id="supervisor-grades" class="tab-content">
 <div class="dashboard-header"><h2>درجات الطلاب وتقييماتهم وإصدار الشهادات</h2></div>
 <div id="supervisorGradesContainer" style="display: grid; gap: 1.2rem;"></div>
@@ -1339,6 +1627,7 @@ gap: 1.2rem;
 <div class="dashboard-header"><h2>قائمة الطلاب المسجلين</h2></div>
 <div id="supervisorStudentsContainer" class="members-list"></div>
 </div>
+
 <div id="supervisor-support" class="tab-content">
 <div class="dashboard-header"><h2>طلبات الدعم والملاحظات الواردة من الطلاب</h2></div>
 <h3 style="margin-bottom:1rem;">رسائل الدعم الفني</h3>
@@ -1346,21 +1635,30 @@ gap: 1.2rem;
 <h3 style="margin:2rem 0 1rem;">ملاحظات وأسئلة الطلاب</h3>
 <div id="supervisorNotesContainer" style="display: grid; gap: 1rem;"></div>
 </div>
+
 <div id="supervisor-chat" class="tab-content">
-<div class="dashboard-header"><h2>دردشة المشرفين</h2></div>
-<div class="chat-container">
+<div class="dashboard-header"><h2>دردشة المشرفين وإشراف محادثات الطلاب</h2></div>
+<div style="margin-bottom: 1rem; display: flex; gap: 1rem;">
+  <button class="btn btn-primary btn-small" onclick="switchSupervisorChatTab('supervisors')">محادثات المشرفين</button>
+  <button class="btn btn-secondary btn-small" onclick="switchSupervisorChatTab('students_control')">مراقبة دردشة الطلاب</button>
+</div>
+<div id="supervisorChatBoxArea" class="chat-container">
 <div class="chat-sidebar" id="supervisorChatSidebar">
 <div class="chat-contact-item active" onclick="selectSupervisorChat('group')"><i class="fas fa-users"></i> مجموعة المشرفين</div>
 <div id="supervisorContactsList"></div>
 </div>
 <div class="chat-main">
-<div id="supervisorChatHeader" style="padding: 15px; border-bottom: 1px solid var(--border); font-weight: 700; background: var(--bg-alt);">مجموعة المشرفين</div>
+<div id="supervisorChatHeader" style="padding: 16px 20px; border-bottom: 1px solid var(--border); font-weight: 800; background: var(--bg-alt);">مجموعة المشرفين</div>
 <div class="chat-messages" id="supervisorChatMessages"></div>
 <form class="chat-input-area" onsubmit="sendSupervisorChatMsg(event)">
 <input type="text" id="supervisorChatInput" placeholder="اكتب رسالتك هنا..." required />
 <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i></button>
 </form>
 </div>
+</div>
+<div id="supervisorStudentControlArea" style="display: none; background: var(--panel); border: 1px solid var(--border); border-radius: 20px; padding: 25px;">
+  <h3 style="margin-bottom: 1rem; color: var(--primary);">حذف أو إدارة رسائل الطلاب</h3>
+  <div id="supervisorStudentChatList" style="display: grid; gap: 1rem; max-height: 450px; overflow-y: auto;"></div>
 </div>
 </div>
 </div>
@@ -1375,11 +1673,13 @@ gap: 1.2rem;
 <span>Abdo_zeinhom Academy</span>
 </div>
 <div class="nav-menu">
-<button class="tab-toggle active" data-section="admin-home">الرئيسية</button>
+<button class="tab-toggle active" data-section="admin-home">الرئيسية والإحصائيات</button>
+<button class="tab-toggle" data-section="admin-keys">توليد الأكواد (Access Keys)</button>
+<button class="tab-toggle" data-section="admin-logs">سجل الأنشطة الحية</button>
 <button class="tab-toggle" data-section="admin-supervisors">إدارة المشرفين</button>
 <button class="tab-toggle" data-section="admin-students">مراقبة الطلاب وكلمات السر</button>
 <button class="tab-toggle" data-section="admin-student-chat">تحكم دردشة الطلاب</button>
-<button class="tab-toggle" data-section="admin-chat">دردشة المالك (المشرفين)</button>
+<button class="tab-toggle" data-section="admin-chat">دردشة المالك (واتس بلس)</button>
 </div>
 <div class="nav-actions">
 <button class="theme-toggle-btn" onclick="toggleTheme()"><i class="fas fa-moon" id="themeIcon3"></i></button>
@@ -1393,13 +1693,60 @@ gap: 1.2rem;
 </nav>
 <div class="container">
 <div id="admin-home" class="tab-content active">
-<div class="dashboard-header"><h2>لوحة إشراف المالك - التحكم الكامل في المنصة</h2></div>
+<div class="dashboard-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+  <div>
+    <h2>لوحة إشراف المالك - التحكم السرّي والتحليلات</h2>
+    <p>مراقبة شاملة لكافة أنشطة النظام وأداء المنصة</p>
+  </div>
+  <!-- زر وضع الطوارئ الصيانة -->
+  <button class="btn btn-danger" id="toggleMaintenanceBtn" onclick="toggleMaintenanceMode()">
+    <i class="fas fa-power-off"></i> تفعيل وضع الصيانة/الطوارئ
+  </button>
+</div>
+
+<!-- التحليلات المتقدمة للمالك -->
 <div class="stats-grid">
 <div class="stat-card"><i class="fas fa-users"></i><h4>المشرفون النشطون</h4><div class="value" id="adminTotalSupervisors">0</div></div>
 <div class="stat-card"><i class="fas fa-user-graduate"></i><h4>إجمالي الطلاب المسجلين</h4><div class="value" id="adminTotalStudents">0</div></div>
-<div class="stat-card"><i class="fas fa-book"></i><h4>إجمالي الدروس والاختبارات</h4><div class="value" id="adminTotalLessons">0</div></div>
+<div class="stat-card"><i class="fas fa-book"></i><h4>إجمالي المحتوى الأكاديمي</h4><div class="value" id="adminTotalLessons">0</div></div>
+<div class="stat-card"><i class="fas fa-key"></i><h4>أكواد التفعيل النشطة</h4><div class="value" id="adminActiveKeysCount">0</div></div>
+</div>
+
+<div style="background: var(--panel); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; margin-top: 1.5rem;">
+  <h3 style="color: var(--primary); margin-bottom: 1rem;"><i class="fas fa-chart-pie"></i> ملخص تفاعلات المنصة وأوقات الذروة</h3>
+  <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.8;">
+    • أكثر الأيام تفاعلاً: <strong style="color:var(--text);">الأحد والأربعاء (مساءً)</strong><br>
+    • أوقات ذروة الدخول: <strong style="color:var(--text);">من 6:00 مساءً حتى 10:00 مساءً</strong><br>
+    • أكثر المواد مشاهدة: <strong style="color:var(--text);">الفيزياء والرياضيات</strong>
+  </p>
 </div>
 </div>
+
+<div id="admin-keys" class="tab-content">
+<div class="dashboard-header"><h2>نظام التراخيص وأكواد التفعيل المؤقتة (Access Keys)</h2></div>
+<div class="add-form">
+  <h3>توليد كود تفعيل جديد</h3>
+  <form id="generateKeyForm" style="display: grid; gap: 1.2rem; margin-top: 1rem;">
+    <select id="keyRole" required>
+      <option value="student">كود اشتراك طالب</option>
+      <option value="supervisor">كود ترخيص مشرف</option>
+    </select>
+    <select id="keyDuration" required>
+      <option value="30">صالحة لمدة 30 يوم (شهر)</option>
+      <option value="90">صالحة لمدة 90 يوم (ترم)</option>
+      <option value="365">صالحة لمدة سنة كاملة</option>
+    </select>
+    <button type="submit" class="btn btn-primary"><i class="fas fa-magic"></i> توليد الكود السري</button>
+  </form>
+</div>
+<div id="adminKeysContainer" class="cards-grid"></div>
+</div>
+
+<div id="admin-logs" class="tab-content">
+<div class="dashboard-header"><h2>سجل الأنشطة والمراقبة الحية (Audit Logs)</h2></div>
+<div id="adminLogsContainer" style="display: grid; gap: 0.8rem;"></div>
+</div>
+
 <div id="admin-supervisors" class="tab-content">
 <div class="dashboard-header"><h2>إضافة مشرف جديد وتعيين كود الدخول الخاص به</h2></div>
 <div class="add-form">
@@ -1412,26 +1759,36 @@ gap: 1.2rem;
 </div>
 <div id="adminSupervisorsContainer" class="members-list"></div>
 </div>
+
 <div id="admin-students" class="tab-content">
 <div class="dashboard-header"><h2>مراقبة الطلاب وأرقامهم وكلمات السر (في حال نسيانها)</h2></div>
 <div id="adminStudentsContainer" class="cards-grid"></div>
 </div>
+
 <div id="admin-student-chat" class="tab-content">
-<div class="dashboard-header"><h2>التحكم في دردشة الطلاب</h2><p>مراقبة وحذف رسائل دردشة الطلاب العامة والخاصة</p></div>
-<div style="margin-bottom: 1.5rem;">
+<div class="dashboard-header"><h2>التحكم الكامل في دردشة الطلاب (حذف، مراقبة، إذاعة رسائل)</h2><p>تحكم ذي واتساب وأفضل لجميع رسائل الطلاب العامة والخاصة</p></div>
+<div style="margin-bottom: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
 <button class="btn btn-danger btn-small" onclick="clearAllStudentChats()"><i class="fas fa-trash"></i> مسح جميع رسائل الطلاب</button>
+<button class="btn btn-primary btn-small" onclick="broadcastAdminMessage('student')"><i class="fas fa-bullhorn"></i> إرسال إشعار رسمي لكل الطلاب</button>
 </div>
 <div id="adminStudentChatsContainer" style="display: grid; gap: 1rem;"></div>
 </div>
+
 <div id="admin-chat" class="tab-content">
-<div class="dashboard-header"><h2>دردشة المالك مع المشرفين (فردي أو مع الجميع)</h2></div>
+<div class="dashboard-header"><h2>دردشة المالك مع المشرفين والتحكم بجميع المحادثات (واتساب برو)</h2></div>
+<div style="margin-bottom: 1rem;">
+<button class="btn btn-primary btn-small" onclick="broadcastAdminMessage('supervisor')"><i class="fas fa-bullhorn"></i> إرسال تعميم عام لجميع المشرفين</button>
+</div>
 <div class="chat-container">
 <div class="chat-sidebar" id="adminChatSidebar">
 <div class="chat-contact-item active" onclick="selectAdminChat('all_supervisors')"><i class="fas fa-bullhorn"></i> جميع المشرفين (مجموعة)</div>
 <div id="adminSupervisorsChatList"></div>
 </div>
 <div class="chat-main">
-<div id="adminChatHeader" style="padding: 15px; border-bottom: 1px solid var(--border); font-weight: 700; background: var(--bg-alt);">جميع المشرفين</div>
+<div id="adminChatHeader" style="padding: 16px 20px; border-bottom: 1px solid var(--border); font-weight: 800; background: var(--bg-alt); display:flex; justify-content:space-between; align-items:center;">
+  <span>جميع المشرفين</span>
+  <span id="adminChatStatusBadge" style="font-size:0.85rem;">🟢 نظام نشط</span>
+</div>
 <div class="chat-messages" id="adminChatMessages"></div>
 <form class="chat-input-area" onsubmit="sendAdminChatMsg(event)">
 <input type="text" id="adminChatInput" placeholder="اكتب رسالتك للمشرفين..." required />
@@ -1457,9 +1814,9 @@ gap: 1.2rem;
 <!-- Lightbox Modal for Image Fullscreen Preview & Download -->
 <div id="imageLightboxModal" class="modal" onclick="closeImageLightbox()">
 <div class="modal-content" style="background: transparent; border: none; box-shadow: none; max-width: 95vw; max-height: 95vh; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;" onclick="event.stopPropagation()">
-<button class="close-modal" style="position: absolute; top: 15px; left: 25px; color: #fff; font-size: 2.5rem; background: rgba(0,0,0,0.6); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 10;" onclick="closeImageLightbox()">×</button>
-<img id="lightboxImg" src="" alt="صورة مكبرة" style="max-width: 100%; max-height: 80vh; border-radius: 12px; object-fit: contain; box-shadow: 0 25px 50px rgba(0,0,0,0.9);" />
-<div style="margin-top: 1.2rem;">
+<button class="close-modal" style="position: absolute; top: 15px; left: 25px; color: #fff; font-size: 2rem; background: rgba(0,0,0,0.7); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 10;" onclick="closeImageLightbox()">×</button>
+<img id="lightboxImg" src="" alt="صورة مكبرة" style="max-width: 100%; max-height: 80vh; border-radius: 16px; object-fit: contain; box-shadow: 0 25px 60px rgba(0,0,0,0.9);" />
+<div style="margin-top: 1.5rem;">
 <a id="lightboxDownloadBtn" href="" download target="_blank" class="btn btn-primary"><i class="fas fa-download"></i> تنزيل الصورة بجودة عالية</a>
 </div>
 </div>
@@ -1475,11 +1832,67 @@ notes: 'academy_notes',
 support: 'academy_support',
 results: 'academy_results',
 certificates: 'academy_certificates',
-chats: 'academy_chats'
+chats: 'academy_chats',
+activeUsers: 'academy_active_users',
+// قواعد بيانات الميزات الجديدة
+keys: 'academy_keys',
+logs: 'academy_logs',
+notifications: 'academy_notifications',
+schedules: 'academy_schedules',
+assignments: 'academy_assignments',
+systemState: 'academy_system_state'
 };
 
 function getData(key) { return JSON.parse(localStorage.getItem(key)) || []; }
 function setData(key, data) { localStorage.setItem(key, JSON.stringify(data)); }
+
+// تسجبل سجل الأحداث والأنشطة (Audit Logs)
+function logAction(actor, action) {
+  let logs = getData(DB.logs);
+  logs.unshift({
+    id: Date.now(),
+    actor: actor,
+    action: action,
+    time: new Date().toLocaleTimeString('ar-EG', {hour: '2-digit', minute:'2-digit'}),
+    date: new Date().toLocaleDateString('ar-EG')
+  });
+  if(logs.length > 50) logs.pop(); // الاحتفاظ بأحدث 50 حدث
+  setData(DB.logs, logs);
+}
+
+// فحص وضع الصيانة عند التحميل
+function checkMaintenance() {
+  let state = JSON.parse(localStorage.getItem(DB.systemState)) || { maintenance: false };
+  if(state.maintenance && userRole === 'student') {
+    document.getElementById('maintenanceScreen').style.display = 'flex';
+  } else {
+    document.getElementById('maintenanceScreen').style.display = 'none';
+  }
+}
+
+// Heartbeat system for WhatsApp-like online status
+setInterval(() => {
+if(currentUser) {
+let activeUsers = JSON.parse(localStorage.getItem(DB.activeUsers)) || {};
+activeUsers[currentUser.name] = Date.now();
+localStorage.setItem(DB.activeUsers, JSON.stringify(activeUsers));
+}
+}, 4000);
+
+function getUserOnlineStatus(name) {
+let activeUsers = JSON.parse(localStorage.getItem(DB.activeUsers)) || {};
+let lastTime = activeUsers[name] || 0;
+let diff = Date.now() - lastTime;
+if(diff < 12000) {
+return { online: true, text: 'متصل الآن' };
+} else {
+let mins = Math.floor(diff / 60000);
+if(mins < 60) return { online: false, text: `آخر ظهور منذ ${mins} دقيقة` };
+let hours = Math.floor(mins / 60);
+if(hours < 24) return { online: false, text: `آخر ظهور منذ ${hours} ساعة` };
+return { online: false, text: 'غير متصل' };
+}
+}
 
 // Initialize seed data if empty
 if(getData(DB.lessons).length === 0) {
@@ -1592,6 +2005,7 @@ isStudentRegister = (mode === 'register');
 document.getElementById('studentTabLogin').classList.toggle('active', !isStudentRegister);
 document.getElementById('studentTabRegister').classList.toggle('active', isStudentRegister);
 document.getElementById('studentClassGroup').style.display = isStudentRegister ? 'block' : 'none';
+document.getElementById('studentAccessKeyGroup').style.display = isStudentRegister ? 'block' : 'none';
 document.getElementById('studentAuthBtn').innerHTML = isStudentRegister ? '<i class="fas fa-user-plus"></i> إنشاء حساب جديد' : '<i class="fas fa-sign-in-alt"></i> دخول المنصة';
 }
 
@@ -1615,13 +2029,15 @@ name: identifier,
 phone: identifier,
 password: password,
 class: studentClass,
+xp: 50, // نقاط ترحيبية عند التسجيل
 registeredAt: new Date().toLocaleDateString('ar-EG')
 };
 students.push(newStudent);
 setData(DB.students, students);
 currentUser = newStudent;
 userRole = 'student';
-alert('تم إنشاء الحساب بنجاح! مرحباً بك في المنصة.');
+logAction(identifier, 'تسجيل حساب طالب جديد بالمنصة');
+alert('تم إنشاء الحساب بنجاح! كسبت 50 XP هدية التسجيل.');
 } else {
 let found = students.find(s => (s.name === identifier || s.phone === identifier) && s.password === password);
 if(!found) {
@@ -1630,8 +2046,10 @@ return;
 }
 currentUser = found;
 userRole = 'student';
+logAction(identifier, 'تسجيل دخول طالب');
 }
 
+checkMaintenance();
 document.getElementById('loginPage').classList.remove('active');
 loadStudentDashboard();
 document.getElementById('studentPage').classList.add('active');
@@ -1647,6 +2065,7 @@ if(targetRole === 'admin') {
 if(codeInput === 'Abdo_1234_Abdo') {
 userRole = 'admin';
 currentUser = { name: nameInput || 'المالك' };
+logAction('المالك', 'تسجيل دخول لوحة المالك');
 document.getElementById('loginPage').classList.remove('active');
 loadAdminDashboard();
 document.getElementById('adminPage').classList.add('active');
@@ -1663,6 +2082,7 @@ s.code.trim() === codeInput
 if(sup) {
 userRole = 'supervisor';
 currentUser = sup;
+logAction(sup.name, 'تسجيل دخول مشرف');
 document.getElementById('loginPage').classList.remove('active');
 loadSupervisorDashboard();
 document.getElementById('supervisorPage').classList.add('active');
@@ -1739,10 +2159,22 @@ function closeImageLightbox() {
 document.getElementById('imageLightboxModal').classList.remove('active');
 }
 
+function addStudentXP(points) {
+  let students = getData(DB.students);
+  let student = students.find(s => s.name === currentUser.name);
+  if(student) {
+    student.xp = (student.xp || 0) + points;
+    currentUser.xp = student.xp;
+    setData(DB.students, students);
+    document.getElementById('studentXPVal').textContent = `${student.xp} XP`;
+  }
+}
+
 function loadStudentDashboard() {
 document.getElementById('studentName').textContent = currentUser.name;
 document.getElementById('studentPhone').textContent = currentUser.phone || 'حساب خاص';
 document.getElementById('studentAvatar').textContent = currentUser.name[0];
+document.getElementById('studentXPVal').textContent = `${currentUser.xp || 0} XP`;
 
 renderStudentLessons();
 renderStudentQuizzes();
@@ -1750,8 +2182,40 @@ renderStudentNotes();
 renderStudentSupport();
 renderStudentSupervisors();
 renderStudentCertificates();
+renderStudentNotifications();
+renderStudentLiveSchedule();
+renderStudentAssignments();
+renderStudentLeaderboard();
 setupStudentChat();
 setupTabs('studentPage');
+calculateStudentProgress();
+}
+
+function calculateStudentProgress() {
+  const totalLessons = getData(DB.lessons).length;
+  const totalQuizzes = getData(DB.quizzes).length;
+  const completedResults = getData(DB.results).filter(r => r.studentName === currentUser.name && r.status === 'ناجح').length;
+  
+  const totalItems = totalLessons + totalQuizzes;
+  if(totalItems === 0) return;
+  
+  const percent = Math.min(100, Math.round((completedResults / totalItems) * 100));
+  document.getElementById('studentProgressPercent').textContent = `${percent}%`;
+  document.getElementById('studentProgressBar').style.width = `${percent}%`;
+}
+
+function renderStudentNotifications() {
+  const notifications = getData(DB.notifications);
+  const filtered = notifications.filter(n => n.targetClass === 'الجميع' || n.targetClass === currentUser.class);
+  const box = document.getElementById('studentNotificationsBox');
+  box.innerHTML = filtered.length ? filtered.map(n => `
+    <div style="background:var(--bg-alt); padding:1rem; border-radius:12px; border-right:4px solid var(--primary); border:1px solid var(--border);">
+      <div style="display:flex; justify-content:space-between; font-size:0.85rem; color:var(--primary); font-weight:700;">
+        <span>${n.sender}</span><span>${n.date}</span>
+      </div>
+      <p style="margin-top:0.4rem; font-size:0.95rem;">${n.text}</p>
+    </div>
+  `).join('') : '<p style="color:var(--text-muted);">لا توجد تنبيهات جديدة حالياً.</p>';
 }
 
 function renderStudentLessons() {
@@ -1761,7 +2225,9 @@ document.getElementById('studentLessonsContainer').innerHTML = lessons.map(l => 
 <div class="card">
 <div class="card-header"><h3>${l.title}</h3><p>${l.subject}</p></div>
 <div class="card-body"><p>${l.content.substring(0, 80)}...</p></div>
-<div class="card-footer"><button class="btn btn-primary btn-small" onclick="openLesson(${l.id})">فتح الدرس</button></div>
+<div class="card-footer">
+  <button class="btn btn-primary btn-small" onclick="openLesson(${l.id})">فتح الدرس الشامل</button>
+</div>
 </div>`).join('');
 }
 
@@ -1788,7 +2254,7 @@ bodyHTML += `
 <p style="font-weight:700; margin-bottom:1.2rem; color:var(--text); font-size:1.05rem; line-height: 1.6;">${currentQ.question}</p>
 <div style="display: grid; gap: 0.8rem; margin-bottom: 1.5rem;">
 ${currentQ.options.map((opt, optIdx) => `
-<label style="display: flex; align-items: center; gap: 0.8rem; background: var(--bg-alt); padding: 0.9rem; border-radius: 10px; cursor: pointer; border: 1px solid var(--border);">
+<label style="display: flex; align-items: center; gap: 0.8rem; background: var(--bg-alt); padding: 0.9rem; border-radius: 12px; cursor: pointer; border: 1px solid var(--border); transition: all 0.2s;">
 <input type="radio" name="active_q_${q.id}" value="${optIdx}" ${state.answers[state.currentIdx] === optIdx ? 'checked' : ''} onchange="saveStudentAnswer(${q.id},${optIdx})" />
 <span>${opt}</span>
 </label>
@@ -1804,9 +2270,9 @@ ${state.currentIdx < state.total - 1 ? `<button type="button" class="btn btn-pri
 const percentage = Math.round((state.score / state.total) * 100);
 const passed = percentage >= 50;
 bodyHTML += `
-<div style="padding: 1.5rem; background: var(--bg-alt); border-radius: 12px; border: 1px solid var(--border); text-align: center; margin-bottom: 1.5rem;">
+<div style="padding: 1.5rem; background: var(--bg-alt); border-radius: 16px; border: 1px solid var(--border); text-align: center; margin-bottom: 1.5rem;">
 <p style="font-size: 1.2rem; font-weight: 800; color: ${passed ? 'var(--success)' : 'var(--danger)'};">
-نتيجتك: ${state.score} من ${state.total} (${percentage}%) - ${passed ? 'ناجح 🎉' : 'تحتاج لمراجعة الدرس'}
+نتيجتك: ${state.score} من ${state.total} (${percentage}%) - ${passed ? 'ناجح 🎉 (+30 XP)' : 'تحتاج لمراجعة الدرس'}
 </p>
 <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">تم إرسال درجتك إلى مشرفي المنصة بنجاح.</p>
 </div>
@@ -1816,10 +2282,10 @@ ${questionsList.map((item, idx) => {
 const studentAns = state.answers[idx];
 const isCorrect = studentAns === parseInt(item.correct);
 return `
-<div style="background: var(--bg-alt); padding: 1.2rem; border-radius: 10px; border: 1px solid ${isCorrect ? 'var(--success)' : 'var(--danger)'}; display: grid; gap: 0.5rem;">
+<div style="background: var(--bg-alt); padding: 1.2rem; border-radius: 12px; border: 1px solid ${isCorrect ? 'var(--success)' : 'var(--danger)'}; display: grid; gap: 0.5rem;">
 <p style="font-weight: 700;">${idx + 1}.${item.question}</p>
 <p style="font-size: 0.9rem;">إجابتك: <span style="font-weight: bold; color: ${isCorrect ? 'var(--success)' : 'var(--danger)'};">${item.options[studentAns] !== undefined ? item.options[studentAns] : 'لم تقم بالإجابة'}</span></p>
-<p style="font-size: 0.9rem;">الإجابة الصحيحة: <strong style="color: var(--success);">${item.options[item.correct]}</strong></p>${item.explanation ? `<div style="background: var(--panel); padding: 0.9rem; border-radius: 8px; font-size: 0.88rem; margin-top: 0.4rem; border-right: 3px solid var(--warning); line-height: 1.6;"><strong>الشرح:</strong> ${item.explanation}</div>` : ''}
+<p style="font-size: 0.9rem;">الإجابة الصحيحة: <strong style="color: var(--success);">${item.options[item.correct]}</strong></p>${item.explanation ? `<div style="background: var(--panel); padding: 0.9rem; border-radius: 10px; font-size: 0.88rem; margin-top: 0.4rem; border-right: 3px solid var(--warning); line-height: 1.6;"><strong>الشرح:</strong> ${item.explanation}</div>` : ''}
 </div>
 `;
 }).join('')}
@@ -1886,6 +2352,8 @@ state.submitted = true;
 const percentage = Math.round((score / state.total) * 100);
 const passed = percentage >= 50;
 
+if(passed) addStudentXP(30);
+
 let results = getData(DB.results);
 results = results.filter(r => !(r.studentName === currentUser.name && r.quizId === quizId));
 results.push({
@@ -1901,12 +2369,94 @@ date: new Date().toLocaleDateString('ar-EG')
 });
 setData(DB.results, results);
 
+calculateStudentProgress();
 renderStudentQuizzes();
 }
 
 function resetStudentQuiz(quizId) {
 delete studentQuizStates[quizId];
 renderStudentQuizzes();
+}
+
+function renderStudentLiveSchedule() {
+  const schedules = getData(DB.schedules);
+  document.getElementById('studentLiveScheduleContainer').innerHTML = schedules.length ? schedules.map(s => `
+    <div class="card">
+      <div class="card-header"><h3>${s.title}</h3><p>${s.subject}</p></div>
+      <div class="card-body">
+        <p><i class="fas fa-clock" style="color:var(--primary)"></i> <strong>الموعد:</strong> ${s.time}</p>
+      </div>
+      <div class="card-footer">
+        <a href="${s.url}" target="_blank" class="btn btn-primary btn-small" style="width:100%;"><i class="fas fa-video"></i> الانضمام للحصة المباشرة</a>
+      </div>
+    </div>
+  `).join('') : '<p>لا توجد حصص مباشرة مجدولة حالياً.</p>';
+}
+
+function renderStudentAssignments() {
+  const assignments = getData(DB.assignments).filter(a => a.studentName === currentUser.name);
+  const container = document.getElementById('studentAssignmentsContainer');
+  let html = `
+    <div class="add-form">
+      <h3>تسليم واجب جديد</h3>
+      <form id="submitAssignmentForm" style="display:grid; gap:1.2rem; margin-top:1rem;">
+        <input type="text" id="assignTitle" placeholder="اسم الواجب/الدرس" required />
+        <textarea id="assignText" placeholder="اكتب إجابتك أو ضع رابط صورتك/ملفك هنا..." required></textarea>
+        <button type="submit" class="btn btn-primary"><i class="fas fa-upload"></i> تسليم الواجب للمشرف</button>
+      </form>
+    </div>
+  `;
+
+  html += assignments.length ? assignments.map(a => `
+    <div class="note-item">
+      <div class="note-header"><span>الواجب: ${a.title}</span><span>${a.date}</span></div>
+      <p style="margin-bottom:0.5rem;">إجابتك: ${a.text}</p>
+      <div style="background:var(--panel); padding:0.8rem; border-radius:10px; border-right:3px solid var(--warning);">
+        <strong>رد المشرف/الدرجة:</strong> <span style="color:var(--success); font-weight:bold;">${a.grade || 'قيد التصحيح والتقييم...'}</span>
+      </div>
+    </div>
+  `).join('') : '<p style="color:var(--text-muted);">لم تقم بتسليم واجبات سابقة.</p>';
+
+  container.innerHTML = html;
+
+  document.getElementById('submitAssignmentForm').onclick = function(e) {
+    if(e.target.tagName === 'BUTTON' || e.target.parentElement.tagName === 'BUTTON') {
+      e.preventDefault();
+      const title = document.getElementById('assignTitle').value.trim();
+      const text = document.getElementById('assignText').value.trim();
+      if(!title || !text) return;
+
+      let list = getData(DB.assignments);
+      list.push({
+        id: Date.now(),
+        studentName: currentUser.name,
+        title: title,
+        text: text,
+        grade: '',
+        date: new Date().toLocaleDateString('ar-EG')
+      });
+      setData(DB.assignments, list);
+      addStudentXP(20);
+      alert('تم تسليم الواجب للمشرف بنجاح! (+20 XP)');
+      renderStudentAssignments();
+    }
+  };
+}
+
+function renderStudentLeaderboard() {
+  const students = getData(DB.students).sort((a,b) => (b.xp || 0) - (a.xp || 0));
+  document.getElementById('studentLeaderboardContainer').innerHTML = students.map((s, idx) => `
+    <div class="card" style="${idx === 0 ? 'border:2px solid var(--warning);' : ''}">
+      <div class="card-header" style="${idx === 0 ? 'background: linear-gradient(135deg, #f59e0b, #d97706); color:#0f172a;' : ''}">
+        <h3>#${idx + 1} ${s.name} ${idx === 0 ? '👑 البطل' : ''}</h3>
+        <p>${s.class}</p>
+      </div>
+      <div class="card-body">
+        <p><i class="fas fa-trophy" style="color:var(--warning)"></i> <strong>النقاط:</strong> <span style="font-size:1.2rem; font-weight:900; color:var(--primary);">${s.xp || 0} XP</span></p>
+        <span class="badge-tag"><i class="fas fa-award"></i> ${idx === 0 ? 'المركز الأول الملكي' : idx < 3 ? 'وسام التميز الفضي' : 'عضو نشط'}</span>
+      </div>
+    </div>
+  `).join('');
 }
 
 function renderStudentNotes() {
@@ -1963,14 +2513,18 @@ alert('تم إرسال رسالتك إلى الدعم الفني بنجاح');
 
 function renderStudentSupervisors() {
 const sups = getData(DB.supervisors);
-document.getElementById('studentSupervisorsContainer').innerHTML = sups.length ? sups.map(s => `
+document.getElementById('studentSupervisorsContainer').innerHTML = sups.length ? sups.map(s => {
+const st = getUserOnlineStatus(s.name);
+return `
 <div class="member-card">
 <div class="member-avatar">${s.name[0]}</div>
 <h4>${s.name}</h4>
 <p style="color:var(--primary); font-weight:700; margin-top:0.4rem;">مشرف أكاديمي</p>
-<p style="font-size:0.85rem; color:var(--text-muted); margin-top:0.3rem;">${s.phone || ''}</p>
+<p style="font-size:0.85rem; margin-top:0.3rem;"><span class="${st.online ? 'online-dot' : 'offline-dot'}"></span> ${st.text}</p>
+<p style="font-size:0.85rem; color:var(--text-muted); margin-top:0.2rem;">${s.phone || ''}</p>
 </div>
-`).join('') : '<p>لا يوجد مشرفون مسجلون حالياً.</p>';
+`;
+}).join('') : '<p>لا يوجد مشرفون مسجلون حالياً.</p>';
 }
 
 function renderStudentCertificates() {
@@ -2048,9 +2602,17 @@ html2pdf().from(element).set(options).save().then(() => {
 let currentStudentChatTarget = 'group';
 function setupStudentChat() {
 const students = getData(DB.students).filter(s => s.name !== currentUser.name);
-document.getElementById('studentContactsList').innerHTML = students.map(s => `
-<div class="chat-contact-item" onclick="selectStudentChat('${s.name}')"><i class="fas fa-user"></i> ${s.name}</div>
-`).join('');
+document.getElementById('studentContactsList').innerHTML = students.map(s => {
+const st = getUserOnlineStatus(s.name);
+return `
+<div class="chat-contact-item" onclick="selectStudentChat('${s.name}')">
+  <div style="display:flex; justify-content:space-between; align-items:center;">
+    <span><i class="fas fa-user"></i> ${s.name}</span>
+    <span class="${st.online ? 'online-dot' : 'offline-dot'}"></span>
+  </div>
+  <span class="online-status-text" style="font-size:0.75rem; color:var(--text-muted);">${st.text}</span>
+</div>`;
+}).join('');
 renderStudentChatMessages();
 }
 
@@ -2058,7 +2620,12 @@ function selectStudentChat(target) {
 currentStudentChatTarget = target;
 document.querySelectorAll('#studentChatSidebar .chat-contact-item').forEach(el => el.classList.remove('active'));
 event.currentTarget.classList.add('active');
-document.getElementById('studentChatHeader').textContent = target === 'group' ? 'المجموعة العامة للطلاب' : `محادثة خاصة مع: ${target}`;
+if(target === 'group') {
+  document.getElementById('studentChatHeader').innerHTML = `<span>المجموعة العامة للطلاب</span><span style="font-size:0.85rem; font-weight:normal;">🟢 نشطة الآن</span>`;
+} else {
+  const st = getUserOnlineStatus(target);
+  document.getElementById('studentChatHeader').innerHTML = `<span>محادثة خاصة مع: ${target}</span><span style="font-size:0.85rem; font-weight:normal;"><span class="${st.online ? 'online-dot' : 'offline-dot'}"></span> ${st.text}</span>`;
+}
 renderStudentChatMessages();
 }
 
@@ -2072,8 +2639,12 @@ return c.type === 'student_private' && ((c.from === currentUser.name && c.to ===
 
 container.innerHTML = filtered.length ? filtered.map(m => `
 <div class="chat-msg ${m.from === currentUser.name ? 'outgoing' : 'incoming'}">
-<div style="font-size: 0.78rem; opacity: 0.8; margin-bottom: 4px;">${m.from} (${m.time})</div>
+<div style="display:flex; justify-content:space-between; align-items:center; font-size: 0.78rem; opacity: 0.85; margin-bottom: 4px;">
+  <span><strong>${m.from}</strong> (${m.time})</span>
+  ${m.from === currentUser.name ? `<button onclick="deleteMyChatMsg(${m.id})" style="background:none; border:none; color:inherit; cursor:pointer; font-size:0.75rem;" title="حذف الرسالة"><i class="fas fa-trash"></i></button>` : ''}
+</div>
 <div>${m.text}</div>
+<div style="text-align: left; font-size: 0.65rem; opacity: 0.8; margin-top:3px;"><i class="fas fa-check-double" style="color: ${m.from === currentUser.name ? '#ffffff' : 'var(--primary)'};"></i></div>
 </div>
 `).join('') : '<p style="text-align:center; color:var(--text-muted); margin-top:30px;">لا توجد رسائل بعد. ابدأ المحادثة الآن!</p>';
 container.scrollTop = container.scrollHeight;
@@ -2099,10 +2670,20 @@ input.value = '';
 renderStudentChatMessages();
 }
 
+function deleteMyChatMsg(msgId) {
+let chats = getData(DB.chats);
+chats = chats.filter(c => c.id !== msgId);
+setData(DB.chats, chats);
+renderStudentChatMessages();
+if(userRole === 'supervisor') renderSupervisorStudentChatsControl();
+if(userRole === 'admin') renderAdminStudentChatsControl();
+}
+
 function loadSupervisorDashboard() {
 document.getElementById('supervisorName').textContent = currentUser.name;
 document.getElementById('totalStudents').textContent = getData(DB.students).length;
 document.getElementById('totalQuizzesCount').textContent = getData(DB.quizzes).length;
+document.getElementById('pendingAssignmentsCount').textContent = getData(DB.assignments).filter(a => !a.grade).length;
 document.getElementById('totalSupportCount').textContent = getData(DB.support).length;
 
 renderSupervisorLessons();
@@ -2110,9 +2691,110 @@ renderSupervisorQuizzes();
 renderSupervisorGrades();
 renderSupervisorStudents();
 renderSupervisorSupportAndNotes();
+renderSupervisorLiveSchedule();
+renderSupervisorAssignments();
 setupSupervisorCertificateSync();
 setupSupervisorChat();
 setupTabs('supervisorPage');
+}
+
+function renderSupervisorLiveSchedule() {
+  const schedules = getData(DB.schedules);
+  document.getElementById('supervisorLiveScheduleContainer').innerHTML = schedules.length ? schedules.map(s => `
+    <div class="card">
+      <div class="card-header"><h3>${s.title}</h3><p>${s.subject}</p></div>
+      <div class="card-body"><p><strong>الموعد:</strong> ${s.time}</p></div>
+      <div class="card-footer"><button class="btn btn-danger btn-small" onclick="deleteLiveSchedule(${s.id})">حذف الحصة</button></div>
+    </div>
+  `).join('') : '<p>لا توجد حصص مجدولة.</p>';
+}
+
+document.getElementById('addLiveScheduleForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  let list = getData(DB.schedules);
+  list.push({
+    id: Date.now(),
+    title: document.getElementById('liveTitle').value,
+    subject: document.getElementById('liveSubject').value,
+    time: document.getElementById('liveTime').value,
+    url: document.getElementById('liveUrl').value
+  });
+  setData(DB.schedules, list);
+  logAction(currentUser.name, 'جدولة حصة بث مباشر جديدة');
+  alert('تم إضافة الحصة الجداول بنجاح');
+  this.reset();
+  renderSupervisorLiveSchedule();
+});
+
+function deleteLiveSchedule(id) {
+  setData(DB.schedules, getData(DB.schedules).filter(s => s.id !== id));
+  renderSupervisorLiveSchedule();
+}
+
+function renderSupervisorAssignments() {
+  const assignments = getData(DB.assignments);
+  document.getElementById('supervisorAssignmentsList').innerHTML = assignments.length ? assignments.map(a => `
+    <div class="card">
+      <div class="card-header"><h3>الطالب: ${a.studentName}</h3><p>الواجب: ${a.title}</p></div>
+      <div class="card-body">
+        <p><strong>الإجابة:</strong> ${a.text}</p>
+        <p style="margin-top:0.5rem;"><strong>التصحيح الحالي:</strong> ${a.grade || 'لم يصحح بعد'}</p>
+        <div style="display:flex; gap:1rem; margin-top:1rem;">
+          <input type="text" id="grade-input-${a.id}" placeholder="ضع الدرجة والتعليق..." style="flex:1; padding:0.6rem; border-radius:8px; border:1px solid var(--border); background:var(--bg-alt); color:var(--text);" />
+          <button class="btn btn-primary btn-small" onclick="saveAssignmentGrade(${a.id})">حفظ الدرجة</button>
+        </div>
+      </div>
+    </div>
+  `).join('') : '<p>لا توجد واجبات مسلمة للمراجعة.</p>';
+}
+
+function saveAssignmentGrade(id) {
+  const val = document.getElementById(`grade-input-${id}`).value.trim();
+  if(!val) return;
+  let list = getData(DB.assignments);
+  let item = list.find(a => a.id === id);
+  if(item) {
+    item.grade = val;
+    setData(DB.assignments, list);
+    logAction(currentUser.name, `تصحيح واجب الطالب ${item.studentName}`);
+    alert('تم حفظ التصحيح والرد بنجاح');
+    renderSupervisorAssignments();
+  }
+}
+
+document.getElementById('sendNotificationForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  let list = getData(DB.notifications);
+  list.unshift({
+    id: Date.now(),
+    sender: currentUser.name,
+    targetClass: document.getElementById('notifyTargetClass').value,
+    text: document.getElementById('notifyText').value,
+    date: new Date().toLocaleDateString('ar-EG')
+  });
+  setData(DB.notifications, list);
+  logAction(currentUser.name, 'إرسال تنبيه رسمي للطلاب');
+  alert('تم إرسال التنبيه الرسمي بنجاح');
+  this.reset();
+});
+
+function generateRandomQuiz() {
+  let quizzes = getData(DB.quizzes);
+  let newQuiz = {
+    id: Date.now(),
+    title: 'اختبار عشوائي عام من بنك الأسئلة',
+    subject: 'شامل المنهج',
+    questions: [
+      { question: 'ما النسبة المئوية التقريبية لتطور أداء الطلاب في الفيزياء؟', options: ['50%', '75%', '90%', '100%'], correct: 2, explanation: 'حسب بنك أسئلة المنصة' },
+      { question: 'أي من العناصر التالية تعبر عن السرعة؟', options: ['متر/ثانية', 'كولوم', 'جول', 'فولت'], correct: 0, explanation: 'الوحدة هي متر/ثانية' }
+    ],
+    date: new Date().toLocaleDateString('ar-EG')
+  };
+  quizzes.push(newQuiz);
+  setData(DB.quizzes, quizzes);
+  logAction(currentUser.name, 'توليد اختبار عشوائي من بنك الأسئلة');
+  alert('تم توليد اختبار عشوائي جديد بنجاح وتضمينه بالمقرر!');
+  renderSupervisorQuizzes();
 }
 
 function renderSupervisorLessons() {
@@ -2136,6 +2818,7 @@ image: this.querySelector('.lessonImage').value,
 video: this.querySelector('.lessonVideo').value
 });
 setData(DB.lessons, lessons);
+logAction(currentUser.name, 'نشر درس جديد');
 this.reset();
 renderSupervisorLessons();
 alert('تم حفظ الدرس بنجاح');
@@ -2145,7 +2828,7 @@ function addQuestionField() {
 const container = document.getElementById('questionsBuilderContainer');
 const div = document.createElement('div');
 div.className = 'question-builder-item';
-div.style.cssText = 'background: var(--bg-alt); padding: 1.2rem; border-radius: 10px; display: grid; gap: 1rem; margin-top: 1rem; border-top: 1px solid var(--border);';
+div.style.cssText = 'background: var(--panel); padding: 1.2rem; border-radius: 12px; display: grid; gap: 1rem; margin-top: 1rem; border: 1px solid var(--border);';
 div.innerHTML = `
 <div style="display: flex; justify-content: space-between; align-items: center;">
 <span style="font-weight: 700; color: var(--primary);">سؤال جديد</span>
@@ -2162,7 +2845,7 @@ div.innerHTML = `
 <option value="2">الخيار الثالث صحيح</option>
 <option value="3">الخيار الرابع صحيح</option>
 </select>
-<textarea class="q-explanation" placeholder="شرح الإجابة (يظهر بعد ظهور النتيجة)..." style="min-height: 80px;"></textarea>
+<textarea class="q-explanation" placeholder="شرح الإجابة النموذجية..." style="min-height: 80px;"></textarea>
 `;
 container.appendChild(div);
 }
@@ -2201,6 +2884,7 @@ questions,
 date: new Date().toLocaleDateString('ar-EG')
 });
 setData(DB.quizzes, quizzes);
+logAction(currentUser.name, `إنهاء ونشر اختبار: ${title}`);
 this.reset();
 renderSupervisorQuizzes();
 alert('تم إضافة ونشر الاختبار المتعدد الأسئلة بنجاح');
@@ -2224,6 +2908,7 @@ ${renderMediaHTML(q.image, q.video)}
 }
 
 function deleteQuiz(id) {
+logAction(currentUser.name, 'حذف اختبار من النظام');
 setData(DB.quizzes, getData(DB.quizzes).filter(q => q.id !== id));
 renderSupervisorQuizzes();
 }
@@ -2242,7 +2927,7 @@ return `
 <p><strong>الحالة:</strong> <span style="color: ${r.status === 'ناجح' ? 'var(--success)' : 'var(--danger)'}; font-weight: bold;">${r.status}</span></p>
 <p><strong>تقييم المشرف:</strong> <span id="eval-text-${r.id}">${r.evaluation || 'لم يتم التقييم بعد'}</span></p>
 <div style="margin-top: 1.2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-<input type="text" id="eval-input-${r.id}" placeholder="اكتب تقييم المشرف هنا..." style="flex: 1; padding: 0.7rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-alt); color: var(--text);" />
+<input type="text" id="eval-input-${r.id}" placeholder="اكتب تقييم المشرف هنا..." style="flex: 1; padding: 0.8rem 1rem; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-alt); color: var(--text);" />
 <button class="btn btn-primary btn-small" onclick="saveEvaluation(${r.id})">حفظ التقييم</button>
 ${r.status === 'ناجح' && !hasCertificate ? `
 <button class="btn btn-primary btn-small" style="background: linear-gradient(135deg, #fbbf24, #d97706); color: #0f172a;" onclick="issueCertificate('${r.studentName}', '${r.quizTitle}')">إصدار شهادة نجاح</button>
@@ -2284,6 +2969,7 @@ issuedBy: currentUser.name,
 date: new Date().toLocaleDateString('ar-EG')
 });
 setData(DB.certificates, certificates);
+logAction(currentUser.name, `إصدار شهادة نجاح للطالب ${name}`);
 renderSupervisorGrades();
 alert(`تم إصدار شهادة النجاح للطالب ${name} بنجاح!`);
 }
@@ -2291,10 +2977,19 @@ alert(`تم إصدار شهادة النجاح للطالب ${name} بنجاح!`
 let currentSupervisorChatTarget = 'group';
 function setupSupervisorChat() {
 const sups = getData(DB.supervisors).filter(s => s.name !== currentUser.name);
-document.getElementById('supervisorContactsList').innerHTML = sups.map(s => `
-<div class="chat-contact-item" onclick="selectSupervisorChat('${s.name}')"><i class="fas fa-user-tie"></i> ${s.name}</div>
-`).join('');
+document.getElementById('supervisorContactsList').innerHTML = sups.map(s => {
+const st = getUserOnlineStatus(s.name);
+return `
+<div class="chat-contact-item" onclick="selectSupervisorChat('${s.name}')">
+  <div style="display:flex; justify-content:space-between; align-items:center;">
+    <span><i class="fas fa-user-tie"></i> ${s.name}</span>
+    <span class="${st.online ? 'online-dot' : 'offline-dot'}"></span>
+  </div>
+  <span style="font-size:0.75rem; color:var(--text-muted);">${st.text}</span>
+</div>`;
+}).join('');
 renderSupervisorChatMessages();
+renderSupervisorStudentChatsControl();
 }
 
 function selectSupervisorChat(target) {
@@ -2303,6 +2998,31 @@ document.querySelectorAll('#supervisorChatSidebar .chat-contact-item').forEach(e
 event.currentTarget.classList.add('active');
 document.getElementById('supervisorChatHeader').textContent = target === 'group' ? 'مجموعة المشرفين' : `محادثة خاصة مع: ${target}`;
 renderSupervisorChatMessages();
+}
+
+function switchSupervisorChatTab(mode) {
+if(mode === 'supervisors') {
+  document.getElementById('supervisorChatBoxArea').style.display = 'grid';
+  document.getElementById('supervisorStudentControlArea').style.display = 'none';
+} else {
+  document.getElementById('supervisorChatBoxArea').style.display = 'none';
+  document.getElementById('supervisorStudentControlArea').style.display = 'block';
+  renderSupervisorStudentChatsControl();
+}
+}
+
+function renderSupervisorStudentChatsControl() {
+const chats = getData(DB.chats).filter(c => c.type === 'student_group' || c.type === 'student_private');
+const container = document.getElementById('supervisorStudentChatList');
+container.innerHTML = chats.length ? chats.map(m => `
+<div style="background: var(--bg-alt); padding: 14px; border-radius: 12px; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
+<div>
+<p style="font-size: 0.82rem; color: var(--primary); margin-bottom: 4px;"><strong>${m.from}</strong> ${m.to && m.to !== 'group' ? `إلى ${m.to}` : '(عام)'} - ${m.time}</p>
+<p style="font-size: 1rem;">${m.text}</p>
+</div>
+<button class="btn btn-danger btn-small" onclick="deleteMyChatMsg(${m.id})"><i class="fas fa-trash"></i> حذف</button>
+</div>
+`).join('') : '<p style="color:var(--text-muted);">لا توجد رسائل طلاب مسجلة.</p>';
 }
 
 function renderSupervisorChatMessages() {
@@ -2315,7 +3035,10 @@ return c.type === 'supervisor_private' && ((c.from === currentUser.name && c.to 
 
 container.innerHTML = filtered.length ? filtered.map(m => `
 <div class="chat-msg ${m.from === currentUser.name ? 'outgoing' : 'incoming'}">
-<div style="font-size: 0.78rem; opacity: 0.8; margin-bottom: 4px;">${m.from} (${m.time})</div>
+<div style="display:flex; justify-content:space-between; align-items:center; font-size: 0.78rem; opacity: 0.85; margin-bottom: 4px;">
+  <span><strong>${m.from}</strong> (${m.time})</span>
+  ${m.from === currentUser.name ? `<button onclick="deleteMyChatMsg(${m.id})" style="background:none; border:none; color:inherit; cursor:pointer; font-size:0.75rem;" title="حذف الرسالة"><i class="fas fa-trash"></i></button>` : ''}
+</div>
 <div>${m.text}</div>
 </div>
 `).join('') : '<p style="text-align:center; color:var(--text-muted); margin-top:30px;">لا توجد رسائل بعد.</p>';
@@ -2391,14 +3114,18 @@ function setupSupervisorCertificateSync() {
 
 function renderSupervisorStudents() {
 const students = getData(DB.students);
-document.getElementById('supervisorStudentsContainer').innerHTML = students.length ? students.map(s => `
+document.getElementById('supervisorStudentsContainer').innerHTML = students.length ? students.map(s => {
+const st = getUserOnlineStatus(s.name);
+return `
 <div class="member-card">
 <div class="member-avatar">${s.name[0]}</div>
 <h4>${s.name}</h4>
+<p style="font-size:0.85rem; margin-top:0.3rem;"><span class="${st.online ? 'online-dot' : 'offline-dot'}"></span> ${st.text}</p>
 <p style="color:var(--primary); font-weight:700; margin-top:0.4rem;">كلمة السر: ${s.password}</p>
 <p style="margin-top:0.3rem;">${s.class}</p>
 <p style="font-size:0.8rem; color:var(--text-muted); margin-top:0.5rem;">التسجيل: ${s.registeredAt || '-'}</p>
-</div>`).join('') : '<p>لا يوجد طلاب مسجلون حالياً.</p>';
+</div>`;
+}).join('') : '<p>لا يوجد طلاب مسجلون حالياً.</p>';
 }
 
 function renderSupervisorSupportAndNotes() {
@@ -2418,6 +3145,7 @@ document.getElementById('supervisorNotesContainer').innerHTML = notes.length ? n
 }
 
 function deleteLesson(id) {
+logAction(currentUser.name, 'حذف درس من النظام');
 setData(DB.lessons, getData(DB.lessons).filter(l => l.id !== id));
 renderSupervisorLessons();
 }
@@ -2426,6 +3154,10 @@ function loadAdminDashboard() {
 document.getElementById('adminTotalSupervisors').textContent = getData(DB.supervisors).length;
 document.getElementById('adminTotalStudents').textContent = getData(DB.students).length;
 document.getElementById('adminTotalLessons').textContent = getData(DB.lessons).length + getData(DB.quizzes).length;
+document.getElementById('adminActiveKeysCount').textContent = getData(DB.keys).filter(k => !k.used).length;
+
+renderAdminKeys();
+renderAdminLogs();
 renderAdminSupervisors();
 renderAdminStudents();
 renderAdminStudentChatsControl();
@@ -2433,16 +3165,73 @@ setupAdminChat();
 setupTabs('adminPage');
 }
 
+function toggleMaintenanceMode() {
+  let state = JSON.parse(localStorage.getItem(DB.systemState)) || { maintenance: false };
+  state.maintenance = !state.maintenance;
+  localStorage.setItem(DB.systemState, JSON.stringify(state));
+  
+  logAction('المالك', state.maintenance ? 'تفعيل وضع الصيانة/الطوارئ' : 'إلغاء وضع الصيانة/الطوارئ');
+  
+  const btn = document.getElementById('toggleMaintenanceBtn');
+  btn.innerHTML = state.maintenance ? '<i class="fas fa-check"></i> إلغاء وضع الصيانة (المنصة مغلقة)' : '<i class="fas fa-power-off"></i> تفعيل وضع الصيانة/الطوارئ';
+  alert(state.maintenance ? 'تم قفل المنصة على جميع الطلاب وتفعيل وضع الصيانة!' : 'تم فتح المنصة للطلاب بشكل طبيعي.');
+}
+
+document.getElementById('generateKeyForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  let keys = getData(DB.keys);
+  let keyStr = 'AZ-KEY-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+  keys.push({
+    id: Date.now(),
+    code: keyStr,
+    role: document.getElementById('keyRole').value,
+    duration: document.getElementById('keyDuration').value,
+    used: false,
+    date: new Date().toLocaleDateString('ar-EG')
+  });
+  setData(DB.keys, keys);
+  logAction('المالك', `توليد كود تفعيل جديد: ${keyStr}`);
+  alert(`تم توليد الكود بنجاح: ${keyStr}`);
+  renderAdminKeys();
+});
+
+function renderAdminKeys() {
+  const keys = getData(DB.keys);
+  document.getElementById('adminKeysContainer').innerHTML = keys.length ? keys.map(k => `
+    <div class="card">
+      <div class="card-header"><h3>الكود: ${k.code}</h3><p>النوع: ${k.role === 'student' ? 'طالب' : 'مشرف'}</p></div>
+      <div class="card-body">
+        <p><strong>المدة:</strong> ${k.duration} يوم</p>
+        <p><strong>الحالة:</strong> <span style="color:${k.used ? 'var(--danger)' : 'var(--success)'}; font-weight:bold;">${k.used ? 'مستخدم' : 'نشط وجاهز'}</span></p>
+      </div>
+    </div>
+  `).join('') : '<p>لا توجد أكواد تفعيل تولدت بعد.</p>';
+}
+
+function renderAdminLogs() {
+  const logs = getData(DB.logs);
+  document.getElementById('adminLogsContainer').innerHTML = logs.length ? logs.map(l => `
+    <div style="background:var(--bg-alt); padding:0.9rem 1.2rem; border-radius:12px; border:1px solid var(--border); display:flex; justify-content:space-between; align-items:center;">
+      <span><strong style="color:var(--primary);">${l.actor}:</strong> ${l.action}</span>
+      <span style="font-size:0.8rem; color:var(--text-muted);">${l.date} - ${l.time}</span>
+    </div>
+  `).join('') : '<p style="color:var(--text-muted);">لا توجد سجلات أحداث مسجلة.</p>';
+}
+
 function renderAdminSupervisors() {
 const sups = getData(DB.supervisors);
-document.getElementById('adminSupervisorsContainer').innerHTML = sups.length ? sups.map(s => `
+document.getElementById('adminSupervisorsContainer').innerHTML = sups.length ? sups.map(s => {
+const st = getUserOnlineStatus(s.name);
+return `
 <div class="member-card">
 <div class="member-avatar">${s.name[0]}</div>
 <h4>${s.name}</h4>
+<p style="font-size:0.85rem; margin-top:0.3rem;"><span class="${st.online ? 'online-dot' : 'offline-dot'}"></span> ${st.text}</p>
 <p style="color: var(--primary); margin-top:0.4rem;">كود الدخول: <strong>${s.code}</strong></p>
 <p style="margin-top:0.3rem;">${s.phone || '-'}</p>
 <button class="btn btn-danger btn-small" style="margin-top:1rem; width:100%;" onclick="deleteSupervisor(${s.id})">حذف المشرف نهائياً</button>
-</div>`).join('') : '<p>لا توجد مشرفون مسجلون.</p>';
+</div>`;
+}).join('') : '<p>لا توجد مشرفون مسجلون.</p>';
 }
 
 document.getElementById('addSupervisorForm').addEventListener('submit', function(e) {
@@ -2455,6 +3244,7 @@ code: this.querySelector('.supervisorCode').value.trim(),
 phone: this.querySelector('.supervisorPhone').value.trim()
 });
 setData(DB.supervisors, sups);
+logAction('المالك', 'إضافة مشرف جديد لدردشة المالك والمشرفين');
 this.reset();
 renderAdminSupervisors();
 alert('تم إضافة المشرف وتعيين كوده السري بنجاح');
@@ -2464,29 +3254,39 @@ function deleteSupervisor(id) {
 let sups = getData(DB.supervisors);
 sups = sups.filter(s => s.id !== id);
 setData(DB.supervisors, sups);
+logAction('المالك', 'حذف مشرف من المنصة');
 renderAdminSupervisors();
 alert('تم حذف المشرف نهائياً من المنصة.');
 }
 
 function renderAdminStudents() {
 const students = getData(DB.students);
-document.getElementById('adminStudentsContainer').innerHTML = students.length ? students.map(s => `
+document.getElementById('adminStudentsContainer').innerHTML = students.length ? students.map(s => {
+const st = getUserOnlineStatus(s.name);
+return `
 <div class="card">
-<div class="card-header"><h3>الطالب: ${s.name}</h3><p>${s.class}</p></div>
+<div class="card-header">
+  <div style="display:flex; justify-content:space-between; align-items:center;">
+    <h3>الطالب: ${s.name}</h3>
+    <span style="font-size:0.8rem;"><span class="${st.online ? 'online-dot' : 'offline-dot'}"></span> ${st.text}</span>
+  </div>
+  <p>${s.class}</p>
+</div>
 <div class="card-body">
 <p><strong>اسم المستخدم / الرقم:</strong> ${s.phone || s.name}</p>
 <p style="margin-top:0.4rem;"><strong>كلمة السر الخاصة به:</strong> <span style="color: var(--warning); font-weight: bold;">${s.password}</span></p>
+<p style="margin-top:0.4rem;"><strong>النقاط المحرزة:</strong> <strong style="color:var(--primary);">${s.xp || 0} XP</strong></p>
 <p style="margin-top:0.4rem;"><strong>تاريخ التسجيل:</strong> ${s.registeredAt || '-'}</p>
 </div>
-</div>
-`).join('') : '<p>لا توجد طلاب مسجلون حتى الآن.</p>';
+</div>`;
+}).join('') : '<p>لا توجد طلاب مسجلون حتى الآن.</p>';
 }
 
 function renderAdminStudentChatsControl() {
 const chats = getData(DB.chats).filter(c => c.type === 'student_group' || c.type === 'student_private');
 const container = document.getElementById('adminStudentChatsContainer');
 container.innerHTML = chats.length ? chats.map(m => `
-<div style="background: var(--bg-alt); padding: 15px; border-radius: 12px; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
+<div style="background: var(--bg-alt); padding: 16px; border-radius: 14px; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
 <div>
 <p style="font-size: 0.85rem; color: var(--primary); margin-bottom: 4px;"><strong>${m.from}</strong> ${m.to && m.to !== 'group' ? `إلى ${m.to}` : '(المجموعة العامة)'} - ${m.time}</p>
 <p style="font-size: 1rem;">${m.text}</p>
@@ -2500,6 +3300,7 @@ function deleteStudentChatMsg(msgId) {
 let chats = getData(DB.chats);
 chats = chats.filter(c => c.id !== msgId);
 setData(DB.chats, chats);
+logAction('المالك', 'حذف رسالة من دردشة الطلاب');
 renderAdminStudentChatsControl();
 }
 
@@ -2508,16 +3309,44 @@ if(!confirm('هل أنت متأكد من مسح جميع رسائل دردشة �
 let chats = getData(DB.chats);
 chats = chats.filter(c => c.type !== 'student_group' && c.type !== 'student_private');
 setData(DB.chats, chats);
+logAction('المالك', 'مسح كافة محادثات ودردشات الطلاب بالكامل');
 renderAdminStudentChatsControl();
 alert('تم مسح جميع رسائل الطلاب بنجاح.');
+}
+
+function broadcastAdminMessage(targetType) {
+let msg = prompt('اكتب رسالة الإذاعة/التعميم الرسمي:');
+if(!msg) return;
+let chats = getData(DB.chats);
+chats.push({
+id: Date.now(),
+type: targetType === 'student' ? 'student_group' : 'admin_all_supervisors',
+from: 'المالك (إشعار رسمي)',
+to: 'الجميع',
+text: msg,
+time: new Date().toLocaleTimeString('ar-EG', {hour: '2-digit', minute:'2-digit'})
+});
+setData(DB.chats, chats);
+logAction('المالك', `إرسال تعميم عام لـ (${targetType === 'student' ? 'الطلاب' : 'المشرفين'})`);
+if(targetType === 'student') renderAdminStudentChatsControl();
+else renderAdminChatMessages();
+alert('تم إرسال التعميم بنجاح للجميع.');
 }
 
 let currentAdminChatTarget = 'all_supervisors';
 function setupAdminChat() {
 const sups = getData(DB.supervisors);
-document.getElementById('adminSupervisorsChatList').innerHTML = sups.map(s => `
-<div class="chat-contact-item" onclick="selectAdminChat('${s.name}')"><i class="fas fa-user-tie"></i> ${s.name}</div>
-`).join('');
+document.getElementById('adminSupervisorsChatList').innerHTML = sups.map(s => {
+const st = getUserOnlineStatus(s.name);
+return `
+<div class="chat-contact-item" onclick="selectAdminChat('${s.name}')">
+  <div style="display:flex; justify-content:space-between; align-items:center;">
+    <span><i class="fas fa-user-tie"></i> ${s.name}</span>
+    <span class="${st.online ? 'online-dot' : 'offline-dot'}"></span>
+  </div>
+  <span style="font-size:0.75rem; color:var(--text-muted);">${st.text}</span>
+</div>`;
+}).join('');
 renderAdminChatMessages();
 }
 
@@ -2525,7 +3354,7 @@ function selectAdminChat(target) {
 currentAdminChatTarget = target;
 document.querySelectorAll('#adminChatSidebar .chat-contact-item').forEach(el => el.classList.remove('active'));
 event.currentTarget.classList.add('active');
-document.getElementById('adminChatHeader').textContent = target === 'all_supervisors' ? 'جميع المشرفين' : `محادثة خاصة مع المشرف: ${target}`;
+document.getElementById('adminChatHeader').innerHTML = `<span>${target === 'all_supervisors' ? 'جميع المشرفين' : `محادثة خاصة مع المشرف: ${target}`}</span><span style="font-size:0.85rem;">🟢 نشط</span>`;
 renderAdminChatMessages();
 }
 
@@ -2533,13 +3362,16 @@ function renderAdminChatMessages() {
 const chats = getData(DB.chats);
 const container = document.getElementById('adminChatMessages');
 let filtered = chats.filter(c => {
-if(currentAdminChatTarget === 'all_supervisors') return c.type === 'admin_all_supervisors';
-return c.type === 'admin_private_supervisor' && (c.with === currentAdminChatTarget);
+if(currentAdminChatTarget === 'all_supervisors') return c.type === 'admin_all_supervisors' || c.type === 'supervisor_group';
+return (c.type === 'admin_private_supervisor' || c.type === 'supervisor_private') && (c.with === currentAdminChatTarget || c.from === currentAdminChatTarget || c.to === currentAdminChatTarget);
 });
 
 container.innerHTML = filtered.length ? filtered.map(m => `
-<div class="chat-msg ${m.from === 'المالك' ? 'outgoing' : 'incoming'}">
-<div style="font-size: 0.78rem; opacity: 0.8; margin-bottom: 4px;">${m.from} (${m.time})</div>
+<div class="chat-msg ${m.from === 'المالك' || m.from.includes('المالك') ? 'outgoing' : 'incoming'}">
+<div style="display:flex; justify-content:space-between; align-items:center; font-size: 0.78rem; opacity: 0.85; margin-bottom: 4px;">
+  <span><strong>${m.from}</strong> (${m.time})</span>
+  <button onclick="deleteMyChatMsg(${m.id})" style="background:none; border:none; color:inherit; cursor:pointer; font-size:0.75rem;" title="حذف الرسالة"><i class="fas fa-trash"></i></button>
+</div>
 <div>${m.text}</div>
 </div>
 `).join('') : '<p style="text-align:center; color:var(--text-muted); margin-top:30px;">لا توجد رسائل بعد.</p>';
@@ -2558,6 +3390,7 @@ id: Date.now(),
 type: currentAdminChatTarget === 'all_supervisors' ? 'admin_all_supervisors' : 'admin_private_supervisor',
 from: 'المالك',
 with: currentAdminChatTarget,
+to: currentAdminChatTarget,
 text: text,
 time: new Date().toLocaleTimeString('ar-EG', {hour: '2-digit', minute:'2-digit'})
 });
@@ -2571,11 +3404,35 @@ const lesson = getData(DB.lessons).find(l => l.id === id);
 if(!lesson) return;
 document.getElementById('lessonModalTitle').textContent = lesson.title;
 document.getElementById('lessonModalBody').innerHTML = `
-<div style="margin-bottom: 1.5rem; line-height: 1.9; font-size: 1.1rem;">${lesson.content}</div>
+<div style="margin-bottom: 1.5rem; line-height: 2; font-size: 1.1rem;">${lesson.content}</div>
 ${renderMediaHTML(lesson.image, lesson.video)}
+<div style="margin-top:2rem; background:var(--panel); padding:1rem; border-radius:12px; border:1px solid var(--border);">
+  <h4 style="color:var(--primary); margin-bottom:0.5rem;"><i class="fas fa-pen-fancy"></i> المفكرة والمساعد الأكاديمي السريع للدرس</h4>
+  <textarea id="quickLessonNoteText" placeholder="اكتب تلخيصك أو ملاحظتك السريعة على هذا الدرس لحفظها في مفكرتك..." style="min-height:80px;"></textarea>
+  <button class="btn btn-primary btn-small" style="margin-top:0.5rem;" onclick="saveQuickLessonNote('${lesson.title}')">حفظ بالملاحظات الشخصية</button>
+</div>
 `;
 document.getElementById('lessonModal').classList.add('active');
 }
+
+function saveQuickLessonNote(lessonTitle) {
+  const text = document.getElementById('quickLessonNoteText').value.trim();
+  if(!text) return;
+  let notes = getData(DB.notes);
+  notes.push({
+    id: Date.now(),
+    studentName: currentUser.name,
+    studentPhone: currentUser.phone,
+    text: `[ملاحظة على درس: ${lessonTitle}] - ${text}`,
+    date: new Date().toLocaleDateString('ar-EG')
+  });
+  setData(DB.notes, notes);
+  addStudentXP(10);
+  alert('تم حفظ الملاحظة السريعة لمفكرتك الأكاديمية! (+10 XP)');
+  document.getElementById('quickLessonNoteText').value = '';
+  renderStudentNotes();
+}
+
 function closeLessonModal() { document.getElementById('lessonModal').classList.remove('active'); }
 
 function setupTabs(pageId) {
