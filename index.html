@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Abdo_zeinhom Academy - المنصة التعليمية الاحترافية</title>
+<title>منصة الدعوة إلى الله - المنصة الإسلامية والدعوية المتكاملة</title>
 
 <!-- الخطوط ومكتبات الأيقونات وتصدير PDF -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,37 +14,36 @@
 
 <style>
 :root {
---primary: #6366f1;
---primary-hover: #4f46e5;
---secondary: #06b6d4;
---danger: #f43f5e;
---warning: #f59e0b;
---success: #10b981;
---bg: #070b14;
---bg-alt: #0d1322;
---panel: #131c31;
---border: #212d4a;
---text: #f8fafc;
---text-muted: #94a3b8;
---shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
---glow: 0 0 30px rgba(99, 102, 241, 0.2);
-}
-
-body.light-mode {
---primary: #4f46e5;
---primary-hover: #4338ca;
---secondary: #0891b2;
+--primary: #059669;
+--primary-hover: #047857;
+--secondary: #0284c7;
 --danger: #e11d48;
 --warning: #d97706;
 --success: #059669;
 --bg: #f8fafc;
 --bg-alt: #f1f5f9;
---panel: #ffffff;
---border: #cbd5e1;
+--panel: rgba(255, 255, 255, 0.9);
+--border: #e2e8f0;
 --text: #0f172a;
 --text-muted: #64748b;
---shadow: 0 15px 35px -10px rgba(15, 23, 42, 0.06);
---glow: 0 0 25px rgba(79, 70, 229, 0.1);
+--shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.08);
+--glass-blur: blur(16px);
+}
+
+body.dark-mode {
+--primary: #10b981;
+--primary-hover: #059669;
+--secondary: #38bdf8;
+--danger: #f43f5e;
+--warning: #fbbf24;
+--success: #10b981;
+--bg: #030712;
+--bg-alt: #0b0f19;
+--panel: rgba(17, 24, 39, 0.9);
+--border: #1f2937;
+--text: #f8fafc;
+--text-muted: #94a3b8;
+--shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
 }
 
 * {
@@ -63,18 +62,15 @@ transition: background 0.3s ease, color 0.3s ease;
 }
 
 .navbar {
-background: rgba(19, 28, 49, 0.85);
+background: var(--panel);
 border-bottom: 1px solid var(--border);
 padding: 0.85rem 1.8rem;
 position: sticky;
 top: 0;
 z-index: 1000;
-backdrop-filter: blur(16px);
-box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-body.light-mode .navbar {
-background: rgba(255, 255, 255, 0.85);
+backdrop-filter: var(--glass-blur);
+-webkit-backdrop-filter: var(--glass-blur);
+box-shadow: 0 10px 30px rgba(0,0,0,0.04);
 }
 
 .navbar-content {
@@ -109,7 +105,7 @@ align-items: center;
 justify-content: center;
 color: #ffffff;
 flex-shrink: 0;
-box-shadow: 0 6px 16px rgba(99, 102, 241, 0.35);
+box-shadow: 0 6px 16px rgba(5, 150, 105, 0.25);
 font-size: 1.1rem;
 }
 
@@ -153,7 +149,7 @@ border-color: var(--border);
 color: #ffffff;
 background: linear-gradient(135deg, var(--primary), var(--primary-hover));
 border-color: transparent;
-box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+box-shadow: 0 4px 15px rgba(5, 150, 105, 0.25);
 }
 
 .nav-actions {
@@ -176,7 +172,7 @@ cursor: pointer;
 transition: all 0.25s;
 font-size: 1.05rem;
 flex-shrink: 0;
-box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+box-shadow: 0 2px 10px rgba(0,0,0,0.02);
 }
 
 .theme-toggle-btn:hover {
@@ -203,14 +199,14 @@ text-decoration: none;
 }
 
 .btn-primary {
-background: linear-gradient(135deg, var(--primary), #818cf8);
+background: linear-gradient(135deg, var(--primary), #10b981);
 color: #ffffff;
-box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
+box-shadow: 0 6px 20px rgba(5, 150, 105, 0.25);
 }
 
 .btn-primary:hover {
 transform: translateY(-2px);
-box-shadow: 0 10px 25px rgba(99, 102, 241, 0.45);
+box-shadow: 0 10px 25px rgba(5, 150, 105, 0.4);
 filter: brightness(1.05);
 }
 
@@ -228,13 +224,13 @@ background: var(--panel);
 }
 
 .btn-danger {
-background: rgba(244, 63, 94, 0.1);
-border: 1px solid rgba(244, 63, 94, 0.25);
+background: rgba(225, 29, 72, 0.1);
+border: 1px solid rgba(225, 29, 72, 0.25);
 color: var(--danger);
 }
 
 .btn-danger:hover {
-background: rgba(244, 63, 94, 0.2);
+background: rgba(225, 29, 72, 0.2);
 }
 
 .btn-small {
@@ -265,7 +261,7 @@ justify-content: center;
 color: #ffffff;
 font-weight: 900;
 flex-shrink: 0;
-box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+box-shadow: 0 4px 10px rgba(5, 150, 105, 0.25);
 }
 
 .user-details h4 {
@@ -320,12 +316,13 @@ max-width: 500px;
 .login-left h1 {
 font-size: 2.6rem;
 margin-bottom: 1rem;
-background: linear-gradient(135deg, var(--primary), var(--secondary));
+background: linear-gradient(135deg, var(--primary), var(--warning));
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
 line-height: 1.2;
 font-weight: 900;
 letter-spacing: -0.5px;
+font-family: 'Amiri', serif;
 }
 
 .login-left p {
@@ -345,6 +342,8 @@ display: flex;
 gap: 1.1rem;
 padding: 1.2rem;
 background: var(--panel);
+backdrop-filter: var(--glass-blur);
+-webkit-backdrop-filter: var(--glass-blur);
 border-radius: 16px;
 border: 1px solid var(--border);
 box-shadow: 0 8px 25px rgba(0,0,0,0.03);
@@ -365,8 +364,10 @@ margin-top: 0.1rem;
 
 .login-form {
 background: var(--panel);
+backdrop-filter: var(--glass-blur);
+-webkit-backdrop-filter: var(--glass-blur);
 padding: 2.5rem;
-border-radius: 20px;
+border-radius: 24px;
 border: 1px solid var(--border);
 box-shadow: var(--shadow);
 flex: 1;
@@ -421,7 +422,7 @@ transition: all 0.25s ease;
 .form-group input:focus, .form-group select:focus {
 outline: none;
 border-color: var(--primary);
-box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.15);
 background: var(--panel);
 }
 
@@ -483,6 +484,8 @@ margin-bottom: 2.5rem;
 
 .stat-card {
 background: var(--panel);
+backdrop-filter: var(--glass-blur);
+-webkit-backdrop-filter: var(--glass-blur);
 border: 1px solid var(--border);
 border-radius: 18px;
 padding: 1.8rem;
@@ -507,7 +510,7 @@ transition: opacity 0.3s;
 .stat-card:hover {
 border-color: var(--primary);
 transform: translateY(-4px);
-box-shadow: 0 20px 40px -10px rgba(99, 102, 241, 0.15);
+box-shadow: 0 20px 40px -10px rgba(5, 150, 105, 0.12);
 }
 
 .stat-card:hover::after {
@@ -518,7 +521,7 @@ opacity: 1;
 font-size: 2.1rem;
 color: var(--primary);
 margin-bottom: 1rem;
-background: rgba(99, 102, 241, 0.1);
+background: rgba(5, 150, 105, 0.1);
 width: 54px;
 height: 54px;
 border-radius: 14px;
@@ -561,6 +564,8 @@ margin-top: 1.5rem;
 
 .card {
 background: var(--panel);
+backdrop-filter: var(--glass-blur);
+-webkit-backdrop-filter: var(--glass-blur);
 border: 1px solid var(--border);
 border-radius: 18px;
 overflow: hidden;
@@ -574,11 +579,11 @@ margin-bottom: 1.2rem;
 .card:hover {
 border-color: var(--primary);
 transform: translateY(-4px);
-box-shadow: 0 20px 40px -10px rgba(99, 102, 241, 0.2);
+box-shadow: 0 20px 40px -10px rgba(5, 150, 105, 0.15);
 }
 
 .card-header {
-background: linear-gradient(135deg, var(--primary), #818cf8);
+background: linear-gradient(135deg, var(--primary), #10b981);
 padding: 1.4rem;
 color: #ffffff;
 }
@@ -626,7 +631,7 @@ box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
 margin: 1.5rem 0;
 border-radius: 14px;
 overflow: hidden;
-background: rgba(0,0,0,0.15);
+background: rgba(0,0,0,0.05);
 text-align: center;
 border: 1px solid var(--border);
 padding: 1rem;
@@ -660,6 +665,8 @@ margin: 0 auto;
 
 .add-form {
 background: var(--panel);
+backdrop-filter: var(--glass-blur);
+-webkit-backdrop-filter: var(--glass-blur);
 border: 1px solid var(--border);
 border-radius: 18px;
 padding: 2.2rem;
@@ -685,7 +692,7 @@ transition: all 0.25s ease;
 textarea:focus {
 outline: none;
 border-color: var(--primary);
-box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.15);
 background: var(--panel);
 }
 
@@ -693,12 +700,13 @@ background: var(--panel);
 display: none;
 position: fixed;
 top: 0; left: 0; right: 0; bottom: 0;
-background: rgba(7, 11, 20, 0.8);
+background: rgba(15, 23, 42, 0.7);
 z-index: 2000;
 align-items: center;
 justify-content: center;
 padding: 1.5rem;
-backdrop-filter: blur(6px);
+backdrop-filter: blur(8px);
+-webkit-backdrop-filter: blur(8px);
 }
 
 .modal.active {
@@ -707,6 +715,8 @@ display: flex;
 
 .modal-content {
 background: var(--panel);
+backdrop-filter: var(--glass-blur);
+-webkit-backdrop-filter: var(--glass-blur);
 border: 1px solid var(--border);
 border-radius: 20px;
 padding: 2.2rem;
@@ -714,7 +724,7 @@ width: 100%;
 max-width: 900px;
 max-height: 90vh;
 overflow-y: auto;
-box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+box-shadow: 0 25px 50px rgba(0,0,0,0.3);
 position: relative;
 animation: modalPop 0.25s ease;
 }
@@ -789,6 +799,8 @@ margin-top: 1.5rem;
 
 .member-card {
 background: var(--panel);
+backdrop-filter: var(--glass-blur);
+-webkit-backdrop-filter: var(--glass-blur);
 padding: 1.8rem;
 border-radius: 18px;
 border: 1px solid var(--border);
@@ -815,10 +827,10 @@ color: #ffffff;
 font-weight: 900;
 font-size: 1.4rem;
 margin: 0 auto 1rem;
-box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
+box-shadow: 0 6px 20px rgba(5, 150, 105, 0.25);
 }
 
-/* تنسيق الشهادة الملكية الفاخرة الثابتة للطباعة */
+/* تنسيق الشهادة الملكية الفاخرة للطباعة */
 .certificate-preview-wrapper {
   display: flex;
   justify-content: center;
@@ -835,15 +847,15 @@ box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
   color: #0f172a;
   position: relative;
   padding: 20px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
   box-sizing: border-box;
   flex-shrink: 0;
   border-radius: 12px;
-  border: 4px solid #b45309;
+  border: 4px solid #059669;
 }
 
 .cert-border-outer {
-  border: 4px double #b45309;
+  border: 4px double #059669;
   height: 100%;
   padding: 8px;
   box-sizing: border-box;
@@ -871,16 +883,16 @@ box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
 }
 
 .brand-title {
-  font-family: 'Reem Kufi', sans-serif;
-  font-size: 26px;
-  color: #b45309;
+  font-family: 'Amiri', serif;
+  font-size: 28px;
+  color: #059669;
   margin: 2px 0 0 0;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
 }
 
 .brand-subtitle {
   font-size: 12px;
-  color: #1e3a8a;
+  color: #0284c7;
   margin-bottom: 4px;
   font-weight: bold;
 }
@@ -888,7 +900,7 @@ box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
 .main-title {
   font-family: 'Amiri', serif;
   font-size: 34px;
-  color: #b45309;
+  color: #d97706;
   margin: 4px 0;
   font-weight: bold;
 }
@@ -896,11 +908,11 @@ box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
 .student-name-display {
   font-family: 'Amiri', serif;
   font-size: 30px;
-  color: #1e3a8a;
+  color: #059669;
   font-weight: bold;
   margin: 6px 0;
   padding: 2px 20px;
-  border-bottom: 3px solid #b45309;
+  border-bottom: 3px solid #d97706;
   display: inline-block;
 }
 
@@ -921,8 +933,8 @@ box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
 }
 
 .badge-item {
-  background: #fef3c7;
-  border: 2px solid #d97706;
+  background: #ecfdf5;
+  border: 2px solid #059669;
   border-radius: 20px;
   padding: 4px 14px;
   font-size: 12px;
@@ -931,7 +943,7 @@ box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
 }
 
 .badge-item strong {
-  color: #b45309;
+  color: #059669;
 }
 
 .cert-footer {
@@ -949,16 +961,16 @@ box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
 .signature-line {
   width: 130px;
   height: 2px;
-  background: #b45309;
+  background: #059669;
   margin: 4px auto;
 }
 
 .digital-seal-box {
   width: 70px;
   height: 70px;
-  border: 3px dashed #b45309;
+  border: 3px dashed #d97706;
   border-radius: 50%;
-  background: #0f172a;
+  background: #061712;
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -968,11 +980,13 @@ box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
-/* تنسيق الدردشة وواتساب العصري */
+/* تنسيق الدردشة والواتساب */
 .chat-container {
   display: grid;
   grid-template-columns: 300px 1fr;
   background: var(--panel);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--border);
   border-radius: 18px;
   height: 600px;
@@ -1002,12 +1016,12 @@ box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
 }
 .chat-contact-item:hover, .chat-contact-item.active {
   border-color: var(--primary);
-  background: rgba(99, 102, 241, 0.06);
+  background: rgba(5, 150, 105, 0.08);
 }
 .chat-contact-item.active {
   background: var(--primary);
   color: #ffffff;
-  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.25);
+  box-shadow: 0 4px 15px rgba(5, 150, 105, 0.2);
 }
 .chat-contact-item.active .online-status-text {
   color: rgba(255,255,255,0.85) !important;
@@ -1057,11 +1071,11 @@ box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
   border-top-right-radius: 4px;
 }
 .chat-msg.outgoing {
-  background: linear-gradient(135deg, var(--primary), #818cf8);
+  background: linear-gradient(135deg, var(--primary), #10b981);
   color: #ffffff;
   align-self: flex-end;
   border-top-left-radius: 4px;
-  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.25);
+  box-shadow: 0 4px 15px rgba(5, 150, 105, 0.2);
 }
 .chat-input-area {
   padding: 16px 20px;
@@ -1084,10 +1098,9 @@ box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
 .chat-input-area input:focus {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+  box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.15);
 }
 
-/* تنسيقات الميزات الجديدة الفاخرة */
 .progress-bar-container {
   width: 100%;
   background: var(--bg-alt);
@@ -1111,9 +1124,53 @@ box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
   border-radius: 20px;
   font-size: 0.78rem;
   font-weight: 700;
-  background: rgba(99, 102, 241, 0.12);
+  background: rgba(5, 150, 105, 0.12);
   color: var(--primary);
-  border: 1px solid rgba(99, 102, 241, 0.25);
+  border: 1px solid rgba(5, 150, 105, 0.25);
+}
+
+/* تنسيقات المواقيت والأذكار الإسلامية */
+.islamic-banner {
+  background: linear-gradient(135deg, rgba(5, 150, 105, 0.1), rgba(217, 119, 6, 0.1));
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.prayer-times-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.prayer-card {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1rem;
+  text-align: center;
+}
+.prayer-card.next-prayer {
+  border-color: var(--warning);
+  background: rgba(217, 119, 6, 0.08);
+}
+.athkar-card {
+  background: var(--panel);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  box-shadow: var(--shadow);
 }
 
 @media (max-width: 768px) {
@@ -1167,9 +1224,9 @@ gap: 1rem;
 
 <!-- صفحة الصيانة (Maintenance Mode Screen) -->
 <div id="maintenanceScreen" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--bg); z-index: 9999; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem;">
-  <i class="fas fa-tools" style="font-size: 3.8rem; color: var(--warning); margin-bottom: 1.4rem;"></i>
-  <h1 style="font-size: 2.3rem; margin-bottom: 1rem;">المنصة في وضع الصيانة المباشرة</h1>
-  <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 580px; line-height: 1.7;">يقوم الفريق التقني والمشرفون بتحديث المنصة وتجهيز دروس واختبارات جديدة حالياً. يرجى العودة لاحقاً!</p>
+  <i class="fas fa-kaaba" style="font-size: 3.8rem; color: var(--warning); margin-bottom: 1.4rem;"></i>
+  <h1 style="font-size: 2.3rem; margin-bottom: 1rem; font-family:'Amiri', serif;">المنصة في وضع الصيانة والتحديث المباشر</h1>
+  <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 580px; line-height: 1.7;">يقوم المشرف الدعوي بإضافة دروس واختبارات شرعية جديدة حالياً. يرجى العودة لاحقاً بارك الله فيكم!</p>
   <button class="btn btn-secondary" style="margin-top: 1.8rem;" onclick="location.reload()"><i class="fas fa-sync"></i> إعادة المحاولة</button>
 </div>
 
@@ -1177,28 +1234,28 @@ gap: 1rem;
 <div id="loginPage" class="page active">
 <div class="login-container">
 <div class="login-left">
-<h1 id="mainAcademyLogo" style="cursor: pointer;" title="اضغط 5 مرات للمشرف و7 مرات للمالك">Abdo_zeinhom Academy</h1>
-<p>منصة تعليمية متكاملة تتيح الدروس، الاختبارات التفاعلية، دعم الطلاب والملاحظات المباشرة بتصميم فائق الأناقة والاحترافية.</p>
+<h1 id="mainAcademyLogo" style="cursor: pointer;" title="اضغط 5 مرات للمشرف و7 مرات للمالك"><i class="fas fa-mosque"></i> منصة الدعوة إلى الله</h1>
+<p>منصة دعوية متكاملة لنشر العلم الشرعي، الدروس التفاعلية، حفظ وتفسير القرآن الكريم والأحاديث النبوية بحسابات خاصة وإشراف موثوق.</p>
 <div class="login-features">
 <div class="feature-item">
-<i class="fas fa-shield-alt"></i>
+<i class="fas fa-quran"></i>
 <div>
-<strong>تسجيل آمن للطلاب والمشرفين</strong>
-<p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem;">انشاء حساب بكلمة سر خاصة بك وإدارتها بكل سهولة وأمان تام</p>
+<strong>دروس واختبارات إيمانية</strong>
+<p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem;">دورات مستمرة في التفسير، الفقه، السيرة النبوية، والعقيدة</p>
 </div>
 </div>
 <div class="feature-item">
-<i class="fas fa-headset"></i>
+<i class="fas fa-pray"></i>
 <div>
-<strong>دعم فني وملاحظات</strong>
-<p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem;">تواصل مباشر بين الطلاب والمشرفين لمتابعة الأداء الأكاديمي لحظة بلحظة</p>
+<strong>مواقيت الصلاة والأذكار</strong>
+<p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem;">متابعة يومية لأوقات الصلاة وأذكار الصباح والمساء والعداد الرقمي</p>
 </div>
 </div>
 </div>
 </div>
 
 <div class="login-form">
-<h2 id="loginFormTitle">تسجيل دخول الطالب</h2>
+<h2 id="loginFormTitle">تسجيل دخول الطالب / السالك</h2>
 <div id="loginAlert"></div>
 
 <!-- Student Login / Register Form -->
@@ -1207,35 +1264,37 @@ gap: 1rem;
 <button type="button" class="active" id="studentTabLogin" onclick="switchStudentTab('login')">تسجيل دخول</button>
 <button type="button" id="studentTabRegister" onclick="switchStudentTab('register')">إنشاء حساب جديد</button>
 </div>
-<div class="form-group">
-<label for="studentNameInput">اسم المستخدم أو رقم الموبايل</label>
-<input type="text" id="studentNameInput" placeholder="أدخل اسمك أو رقم الموبايل" required />
+
+<!-- تم فصل اسم المستخدم عن رقم الهاتف تماماً لترتيب الواجهة -->
+<div class="form-group" id="studentNameGroup">
+<label for="studentNameInput">اسم المستخدم</label>
+<input type="text" id="studentNameInput" placeholder="أدخل اسم المستخدم الخاص بك" required />
 </div>
+
+<div class="form-group" id="studentPhoneGroup" style="display: none;">
+<label for="studentPhoneInput">رقم الهاتف</label>
+<input type="text" id="studentPhoneInput" placeholder="أدخل رقم الهاتف للتسجيل" />
+</div>
+
 <div class="form-group">
 <label for="studentPasswordInput">كلمة السر</label>
 <input type="password" id="studentPasswordInput" placeholder="أدخل كلمة السر الخاصة بك" required />
 </div>
-<div class="form-group" id="studentClassGroup" style="display: none;">
-<label for="studentClassInput">الصف الدراسي</label>
-<select id="studentClassInput">
-<option value="الصف الأول الثانوي">الصف الأول الثانوي</option>
-<option value="الصف الثاني الثانوي">الصف الثاني الثانوي</option>
-<option value="الصف الثالث الثانوي">الصف الثالث الثانوي</option>
-</select>
-</div>
+
 <div class="form-group" id="studentAccessKeyGroup" style="display: none;">
-<label for="studentAccessKeyInput">كود تفعيل الاشتراكات (Access Key)</label>
-<input type="text" id="studentAccessKeyInput" placeholder="أدخل كود الاشتراك الممنوح لك" />
+<label for="studentAccessKeyInput">كود التفعيل (يُطلب من بوت المنصة أو المشرف)</label>
+<input type="text" id="studentAccessKeyInput" placeholder="أدخل كود التفعيل الممنوح لك من البوت أو المشرف" />
 </div>
+
 <button type="submit" id="studentAuthBtn" class="btn btn-primary" style="width: 100%; margin-top: 0.8rem;">
-<i class="fas fa-sign-in-alt"></i> دخول المنصة
+<i class="fas fa-sign-in-alt"></i> دخول المنصة الدعوية
 </button>
 </form>
 
 <!-- Staff Login Form -->
 <form id="staffLoginForm" style="display: none;">
 <div class="form-group">
-<label for="staffName">اسم المستخدم (للمشرف)</label>
+<label for="staffName">اسم المستخدم (للمشرف الدعوي)</label>
 <input type="text" id="staffName" placeholder="أدخل اسم المشرف تماماً" required />
 </div>
 <div class="form-group">
@@ -1243,7 +1302,7 @@ gap: 1rem;
 <input type="password" id="staffCode" placeholder="أدخل الكود الخاص بك" required />
 </div>
 <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 0.8rem;">
-<i class="fas fa-sign-in-alt"></i> دخول لوحة التحكم
+<i class="fas fa-sign-in-alt"></i> دخول لوحة الإشراف
 </button>
 <button type="button" class="btn btn-secondary btn-small" style="width: 100%; margin-top: 1rem;" onclick="backToStudentLogin()">العودة لدخول الطلاب</button>
 </form>
@@ -1257,19 +1316,20 @@ gap: 1rem;
 <nav class="navbar">
 <div class="navbar-content">
 <div class="logo student-logo">
-<div class="logo-icon"><i class="fas fa-graduation-cap"></i></div>
-<span>Abdo_zeinhom Academy</span>
+<div class="logo-icon"><i class="fas fa-mosque"></i></div>
+<span>منصة الدعوة إلى الله</span>
 </div>
 <div class="nav-menu">
 <button class="tab-toggle active" data-section="student-home">الرئيسية</button>
-<button class="tab-toggle" data-section="student-lessons">الدروس</button>
-<button class="tab-toggle" data-section="student-quizzes">الاختبارات</button>
+<button class="tab-toggle" data-section="student-prayers">مواقيت الصلاة والأذكار 🕌</button>
+<button class="tab-toggle" data-section="student-lessons">الدروس الدعوية</button>
+<button class="tab-toggle" data-section="student-quizzes">الاختبارات الشرعية</button>
 <button class="tab-toggle" data-section="student-live">البث والجدول</button>
 <button class="tab-toggle" data-section="student-assignments">الواجبات</button>
 <button class="tab-toggle" data-section="student-leaderboard">لوحة الصدارة 🔥</button>
 <button class="tab-toggle" data-section="student-notes">الملاحظات</button>
 <button class="tab-toggle" data-section="student-support">الدعم الفني</button>
-<button class="tab-toggle" data-section="student-supervisors">المشرفون</button>
+<button class="tab-toggle" data-section="student-supervisors">المشرفون الدعويون</button>
 <button class="tab-toggle" data-section="student-certificates">الشهادات</button>
 <button class="tab-toggle" data-section="student-chat">الدردشة</button>
 </div>
@@ -1278,7 +1338,7 @@ gap: 1rem;
 <button class="theme-toggle-btn" onclick="toggleTheme()"><i class="fas fa-moon" id="themeIcon"></i></button>
 <div class="user-info">
 <div class="user-avatar" id="studentAvatar">ا</div>
-<div class="user-details"><h4 id="studentName">الطالب</h4><p id="studentPhone">01xxxxxxxx</p></div>
+<div class="user-details"><h4 id="studentName">الطالب</h4><p id="studentPhoneDisplay">01xxxxxxxx</p></div>
 </div>
 <button class="btn btn-secondary btn-small" onclick="logout()"><i class="fas fa-sign-out-alt"></i></button>
 </div>
@@ -1286,13 +1346,25 @@ gap: 1rem;
 </nav>
 <div class="container">
 <div id="student-home" class="tab-content active">
+
+<!-- شريط إسلامي أعلى اللوحة -->
+<div class="islamic-banner">
+  <div>
+    <h3 style="font-family:'Amiri', serif; color:var(--primary);"><i class="fas fa-book-open"></i> آية وحديث اليوم</h3>
+    <p style="font-family:'Amiri', serif; font-size:1.15rem; margin-top:0.3rem;">"ادْعُ إِلَىٰ سَبِيلِ رَبِّكَ بِالْحِكْمَةِ وَالْمَوْعِظَةِ الْحَسَنَةِ" [النحل: 125]</p>
+  </div>
+  <div style="font-size:0.9rem; color:var(--text-muted); border-right:2px solid var(--border); padding-right:1rem;">
+    قال رسول الله ﷺ: <br><strong>"مَنْ دَعا إِلى هُدًى، كانَ لَهُ مِنَ الأَجْرِ مِثْلُ أُجُورِ مَنْ تَبِعَهُ"</strong>
+  </div>
+</div>
+
 <div class="dashboard-header">
-  <h2>مرحباً بك في المنصة التعليمية</h2>
-  <p>تصفح دروسك، اختبر معلوماتك، واجمع النقاط للوصول لقمة لوحة الصدارة!</p>
-  <!-- مؤشر التقدم الأكاديمي -->
+  <h2>مرحباً بك في منصة الدعوة إلى الله</h2>
+  <p>تصفح دروسك الشرعية، اختبر علمك، واجمع نقاط التميز الدعوي!</p>
+  <!-- مؤشر التقدم الدعوي -->
   <div style="margin-top: 1.5rem; background: var(--panel); padding: 1.2rem; border-radius: 16px; border: 1px solid var(--border);">
     <div style="display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 5px;">
-      <span><i class="fas fa-chart-line" style="color:var(--primary)"></i> مؤشر الإنجاز الأكاديمي للمنهج</span>
+      <span><i class="fas fa-chart-line" style="color:var(--primary)"></i> مؤشر إنجاز المنهج الدعوي</span>
       <span id="studentProgressPercent">0%</span>
     </div>
     <div class="progress-bar-container"><div class="progress-bar-fill" id="studentProgressBar"></div></div>
@@ -1300,51 +1372,113 @@ gap: 1rem;
 </div>
 
 <div class="stats-grid">
-<div class="stat-card"><i class="fas fa-book-reader"></i><h4>الدروس</h4><div class="value" id="studentLessonsCount">0</div></div>
+<div class="stat-card"><i class="fas fa-book-reader"></i><h4>الدروس الشرعية</h4><div class="value" id="studentLessonsCount">0</div></div>
 <div class="stat-card"><i class="fas fa-question-circle"></i><h4>الاختبارات</h4><div class="value" id="studentQuizzesCount">0</div></div>
 <div class="stat-card"><i class="fas fa-trophy"></i><h4>نقاط التميز (XP)</h4><div class="value" id="studentXPVal">0 XP</div></div>
 <div class="stat-card"><i class="fas fa-sticky-note"></i><h4>الملاحظات</h4><div class="value" id="studentNotesCount">0</div></div>
 </div>
 
-<!-- صندوق التنبيهات والإشعارات الخاصة بالصف -->
+<!-- صندوق التنبيهات والإشعارات -->
 <div style="background: var(--panel); padding: 1.5rem; border-radius: 18px; border: 1px solid var(--border); margin-bottom: 2rem;">
-  <h3 style="color: var(--primary); margin-bottom: 1rem;"><i class="fas fa-bell"></i> التنبيهات والإشعارات الرسمية</h3>
+  <h3 style="color: var(--primary); margin-bottom: 1rem;"><i class="fas fa-bell"></i> التنبيهات والإشعارات الدعوية</h3>
   <div id="studentNotificationsBox" style="display: grid; gap: 0.8rem;"></div>
 </div>
 </div>
 
+<!-- قسم مواقيت الصلاة والأذكار الكاملة -->
+<div id="student-prayers" class="tab-content">
+  <div class="dashboard-header">
+    <h2>🕌 مواقيت الصلاة وأذكار الصباح والمساء الكاملة</h2>
+    <p>تابع أوقات صلاتك واقرأ الأذكار الواردة (ما يُقال مرة واحدة وما يُقال ثلاث مرات)</p>
+  </div>
+  
+  <div style="background:var(--panel); padding:1.5rem; border-radius:18px; border:1px solid var(--border); margin-bottom:2rem;">
+    <h3 style="color:var(--primary);"><i class="fas fa-clock"></i> مواقيت الصلاة اليومية (توقيت القاهرة)</h3>
+    <div class="prayer-times-grid">
+      <div class="prayer-card"><p>الفجر</p><h4 style="color:var(--primary); font-size:1.2rem; margin-top:5px;">4:32 ص</h4></div>
+      <div class="prayer-card"><p>الشروق</p><h4 style="color:var(--primary); font-size:1.2rem; margin-top:5px;">6:00 ص</h4></div>
+      <div class="prayer-card"><p>الظهر</p><h4 style="color:var(--primary); font-size:1.2rem; margin-top:5px;">11:40 ص</h4></div>
+      <div class="prayer-card next-prayer"><p>العصر</p><h4 style="color:var(--warning); font-size:1.2rem; margin-top:5px;">2:48 م</h4><span style="font-size:0.75rem; color:var(--warning);">الصلاة القادمة</span></div>
+      <div class="prayer-card"><p>المغرب</p><h4 style="color:var(--primary); font-size:1.2rem; margin-top:5px;">5:20 م</h4></div>
+      <div class="prayer-card"><p>العشاء</p><h4 style="color:var(--primary); font-size:1.2rem; margin-top:5px;">6:38 م</h4></div>
+    </div>
+  </div>
+
+  <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:1.5rem; margin-bottom: 2rem;">
+    <div class="athkar-card" style="text-align:center;">
+      <h3 style="color:var(--primary); font-family:'Amiri', serif;"><i class="fas fa-fingerprint"></i> التسبيح الإلكتروني (السبحة)</h3>
+      <div style="font-size:2.8rem; font-weight:900; color:var(--warning); margin:10px 0;" id="tasbeehCounter">0</div>
+      <p style="font-family:'Amiri', serif; font-size:1.2rem; margin-bottom:10px;">سبحان الله وبحمده .. سبحان الله العظيم</p>
+      <button class="btn btn-primary" onclick="countTasbeeh()"><i class="fas fa-plus"></i> اضغط للتسبيح (+5 XP لكل دورة)</button>
+    </div>
+  </div>
+
+  <h2 style="color:var(--primary); margin: 1.5rem 0 1rem; font-family:'Amiri', serif;"><i class="fas fa-sun"></i> أذكار الصباح والمساء (تُقال 3 مرات)</h2>
+  <div style="display: grid; gap: 1rem; margin-bottom: 2rem;">
+    <div class="athkar-card">
+      <p style="font-family:'Amiri', serif; font-size:1.15rem; line-height: 1.8;">1. "بِسْمِ اللَّهِ الَّذِي لَا يَضُرِّ مع اسمين شيء في الأرض ولا في السماء وهو السميع العليم." <strong>(تُقال 3 مرات)</strong></p>
+      <button class="btn btn-secondary btn-small" onclick="alert('أحسنت! تقبل الله طاعتك.')"><i class="fas fa-check"></i> قرأتها (3 مرات)</button>
+    </div>
+    <div class="athkar-card">
+      <p style="font-family:'Amiri', serif; font-size:1.15rem; line-height: 1.8;">2. "رَضِيتُ بِاللَّهِ رَبّاً، وَبِالإِسْلَامِ دِيناً، وَبِمُحَمَّدٍ ﷺ نَبِيّاً ورسولاً." <strong>(تُقال 3 مرات)</strong></p>
+      <button class="btn btn-secondary btn-small" onclick="alert('أحسنت! تقبل الله طاعتك.')"><i class="fas fa-check"></i> قرأتها (3 مرات)</button>
+    </div>
+    <div class="athkar-card">
+      <p style="font-family:'Amiri', serif; font-size:1.15rem; line-height: 1.8;">3. "حَسْبِيَ اللَّهُ لَا إِلَهَ إِلَّا هُوَ عَلَيْهِ تَوَكَّلْتُ وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ." <strong>(تُقال 7 مرات صباحاً ومساءً)</strong></p>
+      <button class="btn btn-secondary btn-small" onclick="alert('أحسنت! تقبل الله طاعتك.')"><i class="fas fa-check"></i> قرأتها</button>
+    </div>
+  </div>
+
+  <h2 style="color:var(--primary); margin: 1.5rem 0 1rem; font-family:'Amiri', serif;"><i class="fas fa-moon"></i> أذكار الصباح والمساء (تُقال مرة واحدة)</h2>
+  <div style="display: grid; gap: 1rem;">
+    <div class="athkar-card">
+      <p style="font-family:'Amiri', serif; font-size:1.15rem; line-height: 1.8;">1. "أَصْبَحْنَا وَأَصْبَحَ المُلْكُ لِلَّهِ، وَالحَمْدُ لِلَّهِ، لا إِلهَ إلَّا اللهُ وَحْدَهُ لا شَرِيكَ لَهُ، له المُلْكُ وله الحَمْدُ وهو على كل شيء قدير."</p>
+      <button class="btn btn-secondary btn-small" onclick="alert('أحسنت!')"><i class="fas fa-check"></i> قرأتها (مرة واحدة)</button>
+    </div>
+    <div class="athkar-card">
+      <p style="font-family:'Amiri', serif; font-size:1.15rem; line-height: 1.8;">2. "اللَّهُمَّ عَالِمَ الغَيْبِ والشَّهَادَةِ، فَاطِرَ السَّمَاوَاتِ والأرْضِ، رَبَّ كُلِّ شَيْءٍ ومَلِيكَهُ، أشْهَدُ أنْ لا إِلهَ إلَّا أنتَ، أعُوذُ بكَ من شَرِّ نَفْسِي، ومِنْ شَرِّ الشَّيْطَانِ وشِرْكِهِ."</p>
+      <button class="btn btn-secondary btn-small" onclick="alert('أحسنت!')"><i class="fas fa-check"></i> قرأتها (مرة واحدة)</button>
+    </div>
+    <div class="athkar-card">
+      <p style="font-family:'Amiri', serif; font-size:1.15rem; line-height: 1.8;">3. "اللهم إنِّي أسألُكَ العفوَ والعافيةَ في الدنيا والآخرةِ، اللهم إنِّي أسألُكَ العفوَ والعافيةَ في ديني ودنيايَ وأهلي ومالي."</p>
+      <button class="btn btn-secondary btn-small" onclick="alert('أحسنت!')"><i class="fas fa-check"></i> قرأتها (مرة واحدة)</button>
+    </div>
+  </div>
+</div>
+
 <div id="student-lessons" class="tab-content">
-<div class="dashboard-header"><h2>الدروس التعليمية والمساعد الأكاديمي</h2></div>
+<div class="dashboard-header"><h2>الدروس الشرعية والمساعد الأكاديمي</h2></div>
 <div id="studentLessonsContainer" class="cards-grid"></div>
 </div>
 
 <div id="student-quizzes" class="tab-content">
-<div class="dashboard-header"><h2>الاختبارات التفاعلية متعددة الأسئلة</h2><p>اختبر معلوماتك وفهمك للدروس واكسب نقاط XP فورية</p></div>
+<div class="dashboard-header"><h2>الاختبارات التفاعلية الشرعية</h2><p>اختبر معلوماتك الشرعية وفهمك للدروس واكسب نقاط XP فورية</p></div>
 <div id="studentQuizzesContainer" class="cards-grid"></div>
 </div>
 
 <div id="student-live" class="tab-content">
-<div class="dashboard-header"><h2>جدول الحصص الأسبوعية والبث المباشر</h2></div>
+<div class="dashboard-header"><h2>جدول الحصص والدروس المباشرة</h2></div>
 <div id="studentLiveScheduleContainer" class="cards-grid"></div>
 </div>
 
 <div id="student-assignments" class="tab-content">
-<div class="dashboard-header"><h2>نظام تسليم الواجبات والأسئلة المقالية</h2></div>
+<div class="dashboard-header"><h2>نظام تسليم الواجبات والأبحاث الدعوية</h2></div>
 <div id="studentAssignmentsContainer" style="display: grid; gap: 1.5rem;"></div>
 </div>
 
+<!-- لوحة الصدارة المرتبة والنظيفة -->
 <div id="student-leaderboard" class="tab-content">
-<div class="dashboard-header"><h2>🏆 لوحة أبطال المنصة (Leaderboard)</h2><p>الطلاب الأكثر تميزاً وجمعاً لنقاط الـ XP لهذا الشهر</p></div>
+<div class="dashboard-header"><h2>🏆 لوحة أبطال المنصة الدعوية (Leaderboard)</h2><p>الطلاب الأكثر تميزاً وجمعاً لنقاط الـ XP لهذا الشهر</p></div>
 <div id="studentLeaderboardContainer" class="cards-grid"></div>
 </div>
 
 <div id="student-notes" class="tab-content">
-<div class="dashboard-header"><h2>الملاحظات والأسئلة الأكاديمية</h2></div>
+<div class="dashboard-header"><h2>الملاحظات والأسئلة الشرعية</h2></div>
 <div class="add-form">
-<h3>إضافة ملاحظة جديدة</h3>
+<h3>إضافة سؤال أو ملاحظة جديدة</h3>
 <form id="addNoteForm" style="display: grid; gap: 1.2rem; margin-top: 1rem;">
-<textarea id="noteText" placeholder="اكتب ملاحظتك أو سؤالك الأكاديمي هنا..." required></textarea>
-<button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> نشر الملاحظة</button>
+<textarea id="noteText" placeholder="اكتب سؤالك أو ملاحظتك هنا ليجيبك الشيخ أو المشرف..." required></textarea>
+<button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> نشر السؤال / الملاحظة</button>
 </form>
 </div>
 <div id="studentNotesContainer" style="display: grid; gap: 1rem;"></div>
@@ -1353,7 +1487,7 @@ gap: 1rem;
 <div id="student-support" class="tab-content">
 <div class="dashboard-header"><h2>الدعم الفني والخدمي</h2></div>
 <div class="add-form">
-<h3>تواصل مع الدعم الفني</h3>
+<h3>تواصل مع الدعم الفني للمنصة</h3>
 <form id="addSupportForm" style="display: grid; gap: 1.2rem; margin-top: 1rem;">
 <select id="supportTopic" required>
 <option value="مشكلة في الحساب أو الكود">مشكلة في الحساب أو الكود</option>
@@ -1368,22 +1502,22 @@ gap: 1rem;
 </div>
 
 <div id="student-supervisors" class="tab-content">
-<div class="dashboard-header"><h2>مشرفو المنصة التعليمية</h2></div>
+<div class="dashboard-header"><h2>المشرفون والشيوخ الدعويون</h2></div>
 <div id="studentSupervisorsContainer" class="members-list"></div>
 </div>
 
 <div id="student-certificates" class="tab-content">
-<div class="dashboard-header"><h2>شهادات التقدير والنجاح الملكية</h2><p>استعرض شهاداتك المعتمدة وحملها بجودة عالية بصيغة PDF</p></div>
+<div class="dashboard-header"><h2>شهادات التقدير والإجازات الدعوية</h2><p>استعرض شهاداتك المعتمدة وحملها بجودة عالية بصيغة PDF</p></div>
 <div id="studentCertificatesContainer" style="display: flex; flex-direction: column; gap: 2rem; align-items: center;"></div>
 </div>
 
 <div id="student-chat" class="tab-content">
-<div class="dashboard-header"><h2>دردشة الطلاب (فردي وجماعي)</h2></div>
+<div class="dashboard-header"><h2>دردشة الطلاب (فردي والجماعي)</h2></div>
 <div class="chat-container">
 <div class="chat-sidebar" id="studentChatSidebar">
 <div class="chat-contact-item active" onclick="selectStudentChat('group')">
   <div style="display:flex; justify-content:space-between; align-items:center;">
-    <span><i class="fas fa-users"></i> المجموعة العامـة</span>
+    <span><i class="fas fa-users"></i> المجموعة العامة</span>
   </div>
 </div>
 <div id="studentContactsList"></div>
@@ -1410,11 +1544,11 @@ gap: 1rem;
 <div class="navbar-content">
 <div class="logo supervisor-logo">
 <div class="logo-icon"><i class="fas fa-chalkboard-teacher"></i></div>
-<span>Abdo_zeinhom Academy</span>
+<span>منصة الدعوة إلى الله</span>
 </div>
 <div class="nav-menu">
 <button class="tab-toggle active" data-section="supervisor-home">الرئيسية</button>
-<button class="tab-toggle" data-section="supervisor-lessons">الدروس</button>
+<button class="tab-toggle" data-section="supervisor-lessons">الدروس الدعوية</button>
 <button class="tab-toggle" data-section="supervisor-quizzes">الاختبارات وبنك الأسئلة</button>
 <button class="tab-toggle" data-section="supervisor-live">البث والجدول</button>
 <button class="tab-toggle" data-section="supervisor-assignments">تصحيح الواجبات</button>
@@ -1429,7 +1563,7 @@ gap: 1rem;
 <button class="theme-toggle-btn" onclick="toggleTheme()"><i class="fas fa-moon" id="themeIcon2"></i></button>
 <div class="user-info">
 <div class="user-avatar" id="supervisorAvatar">م</div>
-<div class="user-details"><h4 id="supervisorName">المشرف</h4><p>مشرف المنصة</p></div>
+<div class="user-details"><h4 id="supervisorName">المشرف</h4><p>مشرف دعوي</p></div>
 </div>
 <button class="btn btn-secondary btn-small" onclick="logout()"><i class="fas fa-sign-out-alt"></i></button>
 </div>
@@ -1437,7 +1571,7 @@ gap: 1rem;
 </nav>
 <div class="container">
 <div id="supervisor-home" class="tab-content active">
-<div class="dashboard-header"><h2>لوحة المشرف الأكاديمي</h2></div>
+<div class="dashboard-header"><h2>لوحة المشرف والداعية الشرعي</h2></div>
 <div class="stats-grid">
 <div class="stat-card"><i class="fas fa-user-graduate"></i><h4>الطلاب المسجلون</h4><div class="value" id="totalStudents">0</div></div>
 <div class="stat-card"><i class="fas fa-question-circle"></i><h4>الاختبارات المضافة</h4><div class="value" id="totalQuizzesCount">0</div></div>
@@ -1447,13 +1581,13 @@ gap: 1rem;
 </div>
 
 <div id="supervisor-lessons" class="tab-content">
-<div class="dashboard-header"><h2>إدارة الدروس التعليمية</h2></div>
+<div class="dashboard-header"><h2>إدارة الدروس والمحاضرات الشرعية</h2></div>
 <div class="add-form">
-<h3>إضافة درس جديد</h3>
+<h3>إضافة درس/محاضرة جديدة</h3>
 <form id="addLessonForm" style="display: grid; gap: 1.2rem; margin-top: 1rem;">
-<input type="text" class="lessonTitle" placeholder="عنوان الدرس" required />
-<input type="text" class="lessonSubject" placeholder="المادة" required />
-<textarea class="lessonContent" placeholder="المحتوى الأكاديمي والشرح..." required></textarea>
+<input type="text" class="lessonTitle" placeholder="عنوان الدرس الدعوي" required />
+<input type="text" class="lessonSubject" placeholder="المادة (تفسير، حديث، فقه...)" required />
+<textarea class="lessonContent" placeholder="المحتوى الأكاديمي والشرعي للشرح..." required></textarea>
 <input type="text" class="lessonImage" placeholder="رابط صورة (اختياري)" />
 <input type="text" class="lessonVideo" placeholder="رابط فيديو (يوتيوب أو .mp4)" />
 <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> حفظ ونشر الدرس</button>
@@ -1463,10 +1597,9 @@ gap: 1rem;
 </div>
 
 <div id="supervisor-quizzes" class="tab-content">
-<div class="dashboard-header"><h2>إدارة الاختبارات وبنك الأسئلة الذكي</h2></div>
-<!-- بنك الأسئلة والتوليد العشوائي -->
+<div class="dashboard-header"><h2>إدارة الاختبارات الشرعية وبنك الأسئلة</h2></div>
 <div class="add-form" style="background: var(--bg-alt);">
-  <h3 style="color:var(--primary);"><i class="fas fa-database"></i> بنك الأسئلة والتوليد العشوائي للاختبارات</h3>
+  <h3 style="color:var(--primary);"><i class="fas fa-database"></i> بنك الأسئلة الشرعي والتوليد العشوائي</h3>
   <div style="display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap;">
     <button class="btn btn-primary btn-small" onclick="generateRandomQuiz()"><i class="fas fa-random"></i> إنشاء اختبار عشوائي تلقائي من البنك</button>
   </div>
@@ -1475,7 +1608,7 @@ gap: 1rem;
 <div class="add-form">
 <h3>إضافة اختبار جديد يدوياً</h3>
 <form id="addQuizForm" style="display: grid; gap: 1.2rem; margin-top: 1rem;">
-<input type="text" id="quizTitle" placeholder="عنوان الاختبار (مثال: اختبار الفيزياء الحديثة)" required />
+<input type="text" id="quizTitle" placeholder="عنوان الاختبار (مثال: اختبار في السيرة النبوية)" required />
 <input type="text" id="quizSubject" placeholder="المادة الدراسية" required />
 <input type="text" id="quizImage" placeholder="رابط صورة للاختبار (اختياري)" />
 <input type="text" id="quizVideo" placeholder="رابط فيديو للاختبار (اختياري)" />
@@ -1493,7 +1626,7 @@ gap: 1rem;
 <option value="2">الخيار الثالث صحيح</option>
 <option value="3">الخيار الرابع صحيح</option>
 </select>
-<textarea class="q-explanation" placeholder="شرح الإجابة النموذجية..." style="min-height: 80px;"></textarea>
+<textarea class="q-explanation" placeholder="شرح الإجابة النموذجية والدليل..." style="min-height: 80px;"></textarea>
 </div>
 </div>
 <button type="button" class="btn btn-secondary btn-small" onclick="addQuestionField()" style="margin-top: 0.5rem;"><i class="fas fa-plus"></i> إضافة سؤال آخر</button>
@@ -1504,21 +1637,21 @@ gap: 1rem;
 </div>
 
 <div id="supervisor-live" class="tab-content">
-<div class="dashboard-header"><h2>إضافة حصة مباشرة وجدول أسبوعي</h2></div>
+<div class="dashboard-header"><h2>إضافة درس مباشر وجدول أسبوعي</h2></div>
 <div class="add-form">
   <form id="addLiveScheduleForm" style="display: grid; gap: 1.2rem;">
-    <input type="text" id="liveTitle" placeholder="عنوان الحصة المباشرة" required />
+    <input type="text" id="liveTitle" placeholder="عنوان الدرس المباشر" required />
     <input type="text" id="liveSubject" placeholder="المادة الدراسية" required />
-    <input type="text" id="liveTime" placeholder="موعد الحصة (مثال: الثلاثاء 7:00 مساءً)" required />
+    <input type="text" id="liveTime" placeholder="موعد الحصة (مثال: الثلاثاء بعد صلاة المغرب)" required />
     <input type="text" id="liveUrl" placeholder="رابط زووم أو البث المباشر (Zoom / YouTube Live)" required />
-    <button type="submit" class="btn btn-primary"><i class="fas fa-video"></i> نشر موعد الحصة والرابط</button>
+    <button type="submit" class="btn btn-primary"><i class="fas fa-video"></i> نشر موعد الدرس والرابط</button>
   </form>
 </div>
 <div id="supervisorLiveScheduleContainer" class="cards-grid"></div>
 </div>
 
 <div id="supervisor-assignments" class="tab-content">
-<div class="dashboard-header"><h2>تصحيح الواجبات والأسئلة المقالية للطلاب</h2></div>
+<div class="dashboard-header"><h2>تصحيح الواجبات والأبحاث الدعوية للطلاب</h2></div>
 <div id="supervisorAssignmentsList" style="display: grid; gap: 1.2rem;"></div>
 </div>
 
@@ -1527,10 +1660,10 @@ gap: 1rem;
 <div class="add-form">
   <form id="sendNotificationForm" style="display: grid; gap: 1.2rem;">
     <select id="notifyTargetClass" required>
-      <option value="الجميع">جميع الصفوف الدراسية</option>
-      <option value="الصف الأول الثانوي">الصف الأول الثانوي</option>
-      <option value="الصف الثاني الثانوي">الصف الثاني الثانوي</option>
-      <option value="الصف الثالث الثانوي">الصف الثالث الثانوي</option>
+      <option value="الجميع">جميع المستويات الدعوية</option>
+      <option value="المستوى الأول - العلوم الشرعية المبتدئة">المستوى الأول - العلوم الشرعية المبتدئة</option>
+      <option value="المستوى الثاني - التفسير والحديث">المستوى الثاني - التفسير والحديث</option>
+      <option value="المستوى الثالث - الفقه والدعوة">المستوى الثالث - الفقه والدعوة</option>
     </select>
     <textarea id="notifyText" placeholder="اكتب نص التنبيه الموجه للطلاب..." required></textarea>
     <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> إرسال التنبيه فوراً</button>
@@ -1545,7 +1678,7 @@ gap: 1rem;
 
 <!-- قسم تصميم وإصدار الشهادات الملكية المطورة -->
 <div id="supervisor-certificates" class="tab-content">
-<div class="dashboard-header"><h2>لوحة تصميم وإصدار شهادات التقدير الملكية</h2><p>تحكم ببيانات الشهادة وشاهد المعاينة الفورية قبل تحميلها أو إرسالها للطالب</p></div>
+<div class="dashboard-header"><h2>لوحة تصميم وإصدار الشهادات والإجازات الشرعية</h2><p>تحكم ببيانات الشهادة وشاهد المعاينة الفورية قبل تحميلها أو إرسالها للطالب</p></div>
 
 <div style="display: flex; flex-direction: column; gap: 2rem; align-items: center;">
   <div class="add-form" style="width: 100%; max-width: 850px; margin-bottom: 0;">
@@ -1555,16 +1688,16 @@ gap: 1rem;
       <input type="text" id="certInputName" value="أحمد محمد عبد العال" />
     </div>
     <div class="form-group">
-      <label>الصف الدراسي:</label>
+      <label>المستوى الدعوي:</label>
       <select id="certInputClass">
-        <option value="الصف الأول الثانوي">الصف الأول الثانوي</option>
-        <option value="الصف الثاني الثانوي">الصف الثاني الثانوي</option>
-        <option value="الصف الثالث الثانوي" selected>الصف الثالث الثانوي</option>
+        <option value="المستوى الأول - العلوم الشرعية المبتدئة">المستوى الأول - العلوم الشرعية المبتدئة</option>
+        <option value="المستوى الثاني - التفسير والحديث">المستوى الثاني - التفسير والحديث</option>
+        <option value="المستوى الثالث - الفقه والدعوة" selected>المستوى الثالث - الفقه والدعوة</option>
       </select>
     </div>
     <div class="form-group">
       <label>المادة الدراسية:</label>
-      <input type="text" id="certInputSubject" value="الفيزياء" />
+      <input type="text" id="certInputSubject" value="العقيدة الإسلامية" />
     </div>
     <div class="form-group">
       <label>التقييم العام / الدرجة:</label>
@@ -1584,35 +1717,35 @@ gap: 1rem;
       <div class="cert-border-outer">
         <div class="cert-border-inner">
           <div class="cert-header">
-            <div>الرقم التسلسلي: <span id="certDisplaySerial" style="color:#0f172a; font-weight:bold;">AZ-2026-0891</span></div>
+            <div>الرقم التسلسلي: <span id="certDisplaySerial" style="color:#0f172a; font-weight:bold;">DAWA-2026-0891</span></div>
             <div>التاريخ: <span id="certDisplayDate">14 أكتوبر 2026</span></div>
           </div>
           <div>
-            <h2 class="brand-title">Abdo_zeinhom Academy</h2>
-            <div class="brand-subtitle">المنصة التعليمية الاحترافية المعتمدة</div>
+            <h2 class="brand-title">منصة الدعوة إلى الله</h2>
+            <div class="brand-subtitle">المنصة الدعوية والتعليمية المعتمدة</div>
           </div>
           <div>
-            <h1 class="main-title">شَهَادَةُ شُكْرٍ وَتَقْدِيرٍ</h1>
+            <h1 class="main-title">شَهَادَةُ تَقدِيرٍ وَإِجَازَةُ عِلمٍ</h1>
             <p style="font-size: 13px; color: #64748b; margin: 0;">تتقدم إدارة المنصة بخالص الشكر والتقدير والاعتزاز للطالب المتميز:</p>
             <div class="student-name-display" id="certDisplayName">أحمد محمد عبد العال</div>
           </div>
           <p class="cert-body-text">
-            نظير مجهوده الاستثنائي، وتفوقه الباهر في أداء الاختبارات الأكاديمية التفاعلية المستمرة،<br>
-            سائلين المولى عز وجل له ولجميع طلابنا دوام التقدم والرفعة والصدارة دائماً.
+            نظير مجهوده الاستثنائي، وحرصه على طلب العلم الشرعي وتفوقه في أداء الاختبارات الأكاديمية التفاعلية،<br>
+            سائلين المولى عز وجل له ولجميع طلابنا التوفيق للعمل بما علموا والنفع به دائماً.
           </p>
           <div class="badges-wrapper">
-            <div class="badge-item">الصف: <strong id="certDisplayClass">الصف الثالث الثانوي</strong></div>
-            <div class="badge-item">المادة: <strong id="certDisplaySubject">الفيزياء</strong></div>
+            <div class="badge-item">المستوى: <strong id="certDisplayClass">المستوى الثالث - الفقه والدعوة</strong></div>
+            <div class="badge-item">المادة: <strong id="certDisplaySubject">العقيدة الإسلامية</strong></div>
             <div class="badge-item">التقييم العام: <strong id="certDisplayScore">امتياز (98%)</strong></div>
           </div>
           <div class="cert-footer">
             <div class="signature-box">
-              <p style="font-size: 12px; margin: 0; font-weight: bold; color: #0f172a;">مؤسس المنصة</p>
+              <p style="font-size: 12px; margin: 0; font-weight: bold; color: #0f172a;">المشرف العام على المنصة</p>
               <div class="signature-line"></div>
               <p style="font-size: 11px; margin: 0; color: #64748b; font-style: italic;">أ. عبد الرحمن زينهم</p>
             </div>
             <div class="digital-seal-box">
-              <span style="color: #fbbf24; font-weight: bold; font-size: 8px;">AZ ACADEMY</span>
+              <span style="color: #fbbf24; font-weight: bold; font-size: 8px;">DAWA ACADEMY</span>
               <span style="margin: 1px 0;">✓ موثقة</span>
               <span style="font-size: 6px; color: #cbd5e1;">SECURITY SEAL</span>
             </div>
@@ -1625,15 +1758,15 @@ gap: 1rem;
 </div>
 
 <div id="supervisor-students" class="tab-content">
-<div class="dashboard-header"><h2>قائمة الطلاب المسجلين</h2></div>
+<div class="dashboard-header"><h2>قائمة الطلاب المسجلين بالمنصة</h2></div>
 <div id="supervisorStudentsContainer" class="members-list"></div>
 </div>
 
 <div id="supervisor-support" class="tab-content">
-<div class="dashboard-header"><h2>طلبات الدعم والملاحظات الواردة من الطلاب</h2></div>
+<div class="dashboard-header"><h2>طلبات الدعم والأسئلة الشرعية الواردة من الطلاب</h2></div>
 <h3 style="margin-bottom:1rem;">رسائل الدعم الفني</h3>
 <div id="supervisorSupportContainer" style="display: grid; gap: 1rem; margin-bottom: 2rem;"></div>
-<h3 style="margin:2rem 0 1rem;">ملاحظات وأسئلة الطلاب</h3>
+<h3 style="margin:2rem 0 1rem;">أسئلة وملاحظات الطلاب</h3>
 <div id="supervisorNotesContainer" style="display: grid; gap: 1rem;"></div>
 </div>
 
@@ -1671,7 +1804,7 @@ gap: 1rem;
 <div class="navbar-content">
 <div class="logo admin-logo">
 <div class="logo-icon"><i class="fas fa-crown"></i></div>
-<span>Abdo_zeinhom Academy</span>
+<span>منصة الدعوة إلى الله</span>
 </div>
 <div class="nav-menu">
 <button class="tab-toggle active" data-section="admin-home">الرئيسية والإحصائيات</button>
@@ -1698,7 +1831,7 @@ gap: 1rem;
 <div class="dashboard-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
   <div>
     <h2>لوحة إشراف المالك - التحكم السرّي والتحليلات</h2>
-    <p>مراقبة شاملة لكافة أنشطة النظام وأداء المنصة</p>
+    <p>مراقبة شاملة لكافة أنشطة المنصة الدعوية</p>
   </div>
   <!-- زر وضع الطوارئ الصيانة -->
   <button class="btn btn-danger" id="toggleMaintenanceBtn" onclick="toggleMaintenanceMode()">
@@ -1710,16 +1843,16 @@ gap: 1rem;
 <div class="stats-grid">
 <div class="stat-card"><i class="fas fa-users"></i><h4>المشرفون النشطون</h4><div class="value" id="adminTotalSupervisors">0</div></div>
 <div class="stat-card"><i class="fas fa-user-graduate"></i><h4>إجمالي الطلاب المسجلين</h4><div class="value" id="adminTotalStudents">0</div></div>
-<div class="stat-card"><i class="fas fa-book"></i><h4>إجمالي المحتوى الأكاديمي</h4><div class="value" id="adminTotalLessons">0</div></div>
+<div class="stat-card"><i class="fas fa-book"></i><h4>إجمالي المحتوى الشرعي</h4><div class="value" id="adminTotalLessons">0</div></div>
 <div class="stat-card"><i class="fas fa-key"></i><h4>أكواد التفعيل النشطة</h4><div class="value" id="adminActiveKeysCount">0</div></div>
 </div>
 
 <div style="background: var(--panel); border: 1px solid var(--border); border-radius: 18px; padding: 2rem; margin-top: 1.5rem;">
   <h3 style="color: var(--primary); margin-bottom: 1rem;"><i class="fas fa-chart-pie"></i> ملخص تفاعلات المنصة وأوقات الذروة</h3>
   <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.8;">
-    • أكثر الأيام تفاعلاً: <strong style="color:var(--text);">الأحد والأربعاء (مساءً)</strong><br>
-    • أوقات ذروة الدخول: <strong style="color:var(--text);">من 6:00 مساءً حتى 10:00 مساءً</strong><br>
-    • أكثر المواد مشاهدة: <strong style="color:var(--text);">الفيزياء والرياضيات</strong>
+    • أكثر الأيام تفاعلاً: <strong style="color:var(--text);">الجمعة والاثنين</strong><br>
+    • أوقات ذروة الدخول: <strong style="color:var(--text);">بعد صلاة العشاء وصلاة الفجر</strong><br>
+    • أكثر المواد مشاهدة: <strong style="color:var(--text);">تفسير القرآن الكريم والسيرة النبوية</strong>
   </p>
 </div>
 </div>
@@ -1749,7 +1882,7 @@ gap: 1rem;
 <div id="adminLogsContainer" style="display: grid; gap: 0.8rem;"></div>
 </div>
 
-<!-- قسم نظام الأمان والحظر الفوري الجديد -->
+<!-- قسم نظام الأمان والحظر الفوري -->
 <div id="admin-security" class="tab-content">
   <div class="dashboard-header">
     <h2>🛡️ مركز الأمان والرقابة الفورية والحظر</h2>
@@ -1770,7 +1903,7 @@ gap: 1rem;
 <div class="dashboard-header"><h2>إدارة المشرفين وتعيين كود الدخول الخاص به</h2></div>
 <div class="add-form">
 <form id="addSupervisorForm" style="display: grid; gap: 1.2rem;">
-<input type="text" class="supervisorName" placeholder="اسم المشرف" required />
+<input type="text" class="supervisorName" placeholder="اسم المشرف الدعوي" required />
 <input type="text" class="supervisorCode" placeholder="الرمز السري الخاص بالدخول" required />
 <input type="text" class="supervisorPhone" placeholder="رقم الهاتف" />
 <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> إضافة المشرف وتعيين كوده</button>
@@ -1785,7 +1918,7 @@ gap: 1rem;
 </div>
 
 <div id="admin-student-chat" class="tab-content">
-<div class="dashboard-header"><h2>التحكم الكامل في دردشة الطلاب (حذف، مراقبة، إذاعة رسائل)</h2><p>تحكم ذي واتساب وأفضل لجميع رسائل الطلاب العامة والخاصة</p></div>
+<div class="dashboard-header"><h2>التحكم الكامل في دردشة الطلاب (حذف، مراقبة، إذاعة رسائل)</h2><p>تحكم للرسائل الدعوية العامة والخاصة</p></div>
 <div style="margin-bottom: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
 <button class="btn btn-danger btn-small" onclick="clearAllStudentChats()"><i class="fas fa-trash"></i> مسح جميع رسائل الطلاب</button>
 <button class="btn btn-primary btn-small" onclick="broadcastAdminMessage('student')"><i class="fas fa-bullhorn"></i> إرسال إشعار رسمي لكل الطلاب</button>
@@ -1830,11 +1963,10 @@ gap: 1rem;
       <div>
         <label style="display: block; font-weight: 700; margin-bottom: 0.8rem;">اختر اللون الأساسي للمنصة:</label>
         <div style="display: flex; gap: 1rem; justify-content: center;">
+          <button type="button" onclick="setPrimaryColor('#059669')" style="width: 40px; height: 40px; border-radius: 50%; background: #059669; border: 2px solid #fff; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2);" title="زمردي إسلامي"></button>
+          <button type="button" onclick="setPrimaryColor('#d97706')" style="width: 40px; height: 40px; border-radius: 50%; background: #d97706; border: 2px solid #fff; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2);" title="ذهبي"></button>
           <button type="button" onclick="setPrimaryColor('#6366f1')" style="width: 40px; height: 40px; border-radius: 50%; background: #6366f1; border: 2px solid #fff; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2);" title="بنفسجي نيلي"></button>
           <button type="button" onclick="setPrimaryColor('#2563eb')" style="width: 40px; height: 40px; border-radius: 50%; background: #2563eb; border: 2px solid #fff; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2);" title="أزرق ملكي"></button>
-          <button type="button" onclick="setPrimaryColor('#059669')" style="width: 40px; height: 40px; border-radius: 50%; background: #059669; border: 2px solid #fff; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2);" title="زمردي"></button>
-          <button type="button" onclick="setPrimaryColor('#d97706')" style="width: 40px; height: 40px; border-radius: 50%; background: #d97706; border: 2px solid #fff; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2);" title="ذهبي"></button>
-          <button type="button" onclick="setPrimaryColor('#db2777')" style="width: 40px; height: 40px; border-radius: 50%; background: #db2777; border: 2px solid #fff; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2);" title="وردي"></button>
         </div>
       </div>
       <div>
@@ -1880,22 +2012,22 @@ gap: 1rem;
 
 <script>
 const DB = {
-lessons: 'academy_lessons',
-quizzes: 'academy_quizzes',
-supervisors: 'academy_supervisors',
-students: 'academy_students',
-notes: 'academy_notes',
-support: 'academy_support',
-results: 'academy_results',
-certificates: 'academy_certificates',
-chats: 'academy_chats',
-activeUsers: 'academy_active_users',
-keys: 'academy_keys',
-logs: 'academy_logs',
-notifications: 'academy_notifications',
-schedules: 'academy_schedules',
-assignments: 'academy_assignments',
-systemState: 'academy_system_state'
+lessons: 'dawa_lessons',
+quizzes: 'dawa_quizzes',
+supervisors: 'dawa_supervisors',
+students: 'dawa_students',
+notes: 'dawa_notes',
+support: 'dawa_support',
+results: 'dawa_results',
+certificates: 'dawa_certificates',
+chats: 'dawa_chats',
+activeUsers: 'dawa_active_users',
+keys: 'dawa_keys',
+logs: 'dawa_logs',
+notifications: 'dawa_notifications',
+schedules: 'dawa_schedules',
+assignments: 'dawa_assignments',
+systemState: 'dawa_system_state'
 };
 
 function getData(key) { return JSON.parse(localStorage.getItem(key)) || []; }
@@ -1949,15 +2081,25 @@ return { online: false, text: 'غير متصل' };
 }
 }
 
+// العداد الإلكتروني للتسبيح المضاف
+let tasbeehCount = 0;
+function countTasbeeh() {
+  tasbeehCount++;
+  document.getElementById('tasbeehCounter').textContent = tasbeehCount;
+  if(tasbeehCount % 33 === 0) {
+    addStudentXP(5);
+  }
+}
+
 // Initialize seed data if empty
 if(getData(DB.lessons).length === 0) {
 setData(DB.lessons, [
 {
 id: 1,
-title: 'مقدمة في الفيزياء الحديثة - الصف الثاني الثانوي',
-subject: 'الفيزياء',
-content: 'في هذا الدرس سنتناول أساسيات الفيزياء الحديثة، الكمات، ازدواجية الموجة والجسيم، وتطبيقاتها العملية في حياتنا اليومية.',
-image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1200&q=80',
+title: 'مقدمة في علم العقيدة الإسلامية وأهميتها',
+subject: 'العقيدة',
+content: 'في هذا الدرس سنتناول مفهوم العقيدة الإسلامية الصحيحة، وأهم أركان الإيمان، وكيف يرسخ المسلم عقيدته في حياته اليومية بالمداومة على الطاعات والمفهوم الصحيح للتطبيقات الدعوية.',
+image: 'https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=1200&q=80',
 video: ''
 }
 ]);
@@ -1967,22 +2109,22 @@ if(getData(DB.quizzes).length === 0) {
 setData(DB.quizzes, [
 {
 id: 1,
-title: 'اختبار شامل في الفيزياء الحديثة',
-subject: 'الفيزياء',
+title: 'اختبار شامل في أحكام الطهارة والصلاة',
+subject: 'الفقه الإسلامي',
 image: '',
 video: '',
 questions: [
 {
-question: 'ما وحدة قياس الشحنة الكهربائية في النظام الدولي للوحدات؟',
-options: ['الولت', 'الكولوم', 'الأمبير', 'الجول'],
-correct: 1,
-explanation: 'الكولوم هي وحدة قياس الشحنة الكهربائية.'
+question: 'ما هي أركان الصلاة الرئيسية في الإسلام؟',
+options: ['النية والتكبير والقيام والركوع والسجود', 'الوضوء فقط', 'الدعاء فقط', 'قراءة السورة القصيرة فقط'],
+correct: 0,
+explanation: 'النية والقيام وتكبيرة الإحرام والركوع والسجود من أركان الصلاة المفروضة.'
 },
 {
-question: 'ما هي سرعة الضوء في الفراغ تقريباً؟',
-options: ['3 × 10^8 م/ث', '3 × 10^6 م/ث', '330 م/ث', '1500 م/ث'],
+question: 'ما حكم أذكار الصباح والمساء للمسلم؟',
+options: ['سنة مؤكدة ومستحبة', 'واجبة وفرض', 'مكروهة', 'لا أصل لها'],
 correct: 0,
-explanation: 'سرعة الضوء في الفراغ تساوي تقريباً 3 × 10^8 متر لكل ثانية.'
+explanation: 'أذكار الصباح والمساء من السنن المؤكدة التي تحصن المسلم وتزيد حسناته.'
 }
 ],
 date: '2026-10-13'
@@ -1994,14 +2136,14 @@ if(getData(DB.supervisors).length === 0) {
 setData(DB.supervisors, [
 {
 id: 1,
-name: 'أستاذ أحمد محمد',
+name: 'الشيخ أحمد محمد',
 code: 'sup123',
 phone: '01012345678',
 banned: false
 },
 {
 id: 2,
-name: 'أستاذ عبده زينهم',
+name: 'الداعية عبده زينهم',
 code: 'sup456',
 phone: '01098765432',
 banned: false
@@ -2009,32 +2151,32 @@ banned: false
 ]);
 }
 
-// Theme Toggle
+// Theme Toggle (افتراضي أبيض شفاف / فاتح مع إمكانية التبديل للوضع المظلم)
 function toggleTheme() {
-document.body.classList.toggle('light-mode');
-const isLight = document.body.classList.contains('light-mode');
-localStorage.setItem('academy_theme', isLight ? 'light' : 'dark');
+document.body.classList.toggle('dark-mode');
+const isDark = document.body.classList.contains('dark-mode');
+localStorage.setItem('dawa_theme', isDark ? 'dark' : 'light');
 ['themeIcon', 'themeIcon2', 'themeIcon3'].forEach(id => {
 const el = document.getElementById(id);
-if(el) el.className = isLight ? 'fas fa-sun' : 'fas fa-moon';
+if(el) el.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
 });
 }
-if(localStorage.getItem('academy_theme') === 'light') toggleTheme();
+if(localStorage.getItem('dawa_theme') === 'dark') toggleTheme();
 
 function toggleCustomizerModal() {
-  document.getElementById('uiCustomizerModal').classList.toggle('active');
+  document.getElementById('uiCustomizerModal').classList.add('active');
 }
 function closeUiCustomizer() {
   document.getElementById('uiCustomizerModal').classList.remove('active');
 }
 function setPrimaryColor(colorHex) {
   document.documentElement.style.setProperty('--primary', colorHex);
-  localStorage.setItem('academy_primary_color', colorHex);
+  localStorage.setItem('dawa_primary_color', colorHex);
   alert('تم تغيير اللون الأساسي للمنصة بنجاح!');
 }
 function setFontFamily(fontName) {
   document.body.style.fontFamily = `'${fontName}', sans-serif`;
-  localStorage.setItem('academy_font_family', fontName);
+  localStorage.setItem('dawa_font_family', fontName);
   alert(`تم تغيير خط النصوص إلى (${fontName}) بنجاح!`);
 }
 let currentFontSizeScale = 16;
@@ -2043,15 +2185,15 @@ function adjustFontSize(direction) {
   if(currentFontSizeScale < 12) currentFontSizeScale = 12;
   if(currentFontSizeScale > 22) currentFontSizeScale = 22;
   document.body.style.fontSize = currentFontSizeScale + 'px';
-  localStorage.setItem('academy_font_size', currentFontSizeScale);
+  localStorage.setItem('dawa_font_size', currentFontSizeScale);
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-  let savedColor = localStorage.getItem('academy_primary_color');
+  let savedColor = localStorage.getItem('dawa_primary_color');
   if(savedColor) document.documentElement.style.setProperty('--primary', savedColor);
-  let savedFont = localStorage.getItem('academy_font_family');
+  let savedFont = localStorage.getItem('dawa_font_family');
   if(savedFont) document.body.style.fontFamily = `'${savedFont}', sans-serif`;
-  let savedSize = localStorage.getItem('academy_font_size');
+  let savedSize = localStorage.getItem('dawa_font_size');
   if(savedSize) {
     currentFontSizeScale = parseInt(savedSize);
     document.body.style.fontSize = currentFontSizeScale + 'px';
@@ -2068,7 +2210,7 @@ logoClicks++;
 clearTimeout(logoTimer);
 
 if(logoClicks === 5) {
-showStaffLogin('supervisor', 'تسجيل دخول المشرف');
+showStaffLogin('supervisor', 'تسجيل دخول المشرف الدعوي');
 } else if(logoClicks === 7) {
 showStaffLogin('admin', 'تسجيل دخول المالك');
 logoClicks = 0;
@@ -2084,13 +2226,13 @@ document.getElementById('studentLoginForm').style.display = 'none';
 document.getElementById('staffLoginForm').style.display = 'block';
 document.getElementById('loginFormTitle').textContent = title;
 document.getElementById('staffLoginForm').dataset.targetRole = role;
-alert(`تم تفعيل وضع ${role === 'admin' ? 'المالك' : 'المشرف'}. أدخل بياناتك للدخول.`);
+alert(`تم تفعيل وضع ${role === 'admin' ? 'المالك' : 'المشرف الدعوي'}. أدخل بياناتك للدخول.`);
 }
 
 function backToStudentLogin() {
 document.getElementById('staffLoginForm').style.display = 'none';
 document.getElementById('studentLoginForm').style.display = 'block';
-document.getElementById('loginFormTitle').textContent = 'تسجيل دخول الطالب';
+document.getElementById('loginFormTitle').textContent = 'تسجيل دخول الطالب / السالك';
 }
 
 let isStudentRegister = false;
@@ -2098,32 +2240,45 @@ function switchStudentTab(mode) {
 isStudentRegister = (mode === 'register');
 document.getElementById('studentTabLogin').classList.toggle('active', !isStudentRegister);
 document.getElementById('studentTabRegister').classList.toggle('active', isStudentRegister);
-document.getElementById('studentClassGroup').style.display = isStudentRegister ? 'block' : 'none';
+document.getElementById('studentPhoneGroup').style.display = isStudentRegister ? 'block' : 'none';
 document.getElementById('studentAccessKeyGroup').style.display = isStudentRegister ? 'block' : 'none';
-document.getElementById('studentAuthBtn').innerHTML = isStudentRegister ? '<i class="fas fa-user-plus"></i> إنشاء حساب جديد' : '<i class="fas fa-sign-in-alt"></i> دخول المنصة';
+document.getElementById('studentAuthBtn').innerHTML = isStudentRegister ? '<i class="fas fa-user-plus"></i> إنشاء حساب جديد' : '<i class="fas fa-sign-in-alt"></i> دخول المنصة الدعوية';
 }
 
 // 🛡️ نظام الحظر والتحقق عند تسجيل الدخول
 document.getElementById('studentLoginForm').addEventListener('submit', function(e) {
 e.preventDefault();
-const identifier = document.getElementById('studentNameInput').value.trim();
+const nameVal = document.getElementById('studentNameInput').value.trim();
+const phoneVal = document.getElementById('studentPhoneInput').value.trim();
 const password = document.getElementById('studentPasswordInput').value.trim();
-const studentClass = document.getElementById('studentClassInput').value;
+const accessKey = document.getElementById('studentAccessKeyInput').value.trim();
 
 let students = getData(DB.students);
 
 if(isStudentRegister) {
-let existing = students.find(s => s.name === identifier || s.phone === identifier);
+let existing = students.find(s => s.name === nameVal || s.phone === phoneVal);
 if(existing) {
-alert('هذا المستخدم أو رقم الموبايل مسجل مسبقاً. سجل دخولك مباشرة.');
+alert('هذا المستخدم أو رقم الهاتف مسجل مسبقاً. سجل دخولك مباشرة.');
 return;
 }
+// التحقق من كود التفعيل الممنوح من بوت المنصة أو المشرف
+let keys = getData(DB.keys);
+let validKey = keys.find(k => k.code === accessKey && k.role === 'student' && !k.used);
+if(!validKey && accessKey !== 'ADMIN_BYPASS_2026') {
+  alert('كود التفعيل غير صحيح أو مستخدم مسبقاً! يرجى طلبه من بوت المنصة أو المشرف.');
+  return;
+}
+if(validKey) {
+  validKey.used = true;
+  setData(DB.keys, keys);
+}
+
 const newStudent = {
 id: Date.now(),
-name: identifier,
-phone: identifier,
+name: nameVal,
+phone: phoneVal || 'غير محدد',
 password: password,
-class: studentClass,
+class: 'المستوى العام - العلوم الشرعية',
 xp: 50,
 banned: false,
 banType: '',
@@ -2134,12 +2289,12 @@ students.push(newStudent);
 setData(DB.students, students);
 currentUser = newStudent;
 userRole = 'student';
-logAction(identifier, 'تسجيل حساب طالب جديد بالمنصة');
-alert('تم إنشاء الحساب بنجاح! كسبت 50 XP هدية التسجيل.');
+logAction(nameVal, 'تسجيل حساب طالب جديد بالمنصة الدعوية');
+alert('تم إنشاء الحساب بنجاح وتفعيل الكود! كسبت 50 XP هدية التسجيل.');
 } else {
-let found = students.find(s => (s.name === identifier || s.phone === identifier) && s.password === password);
+let found = students.find(s => s.name === nameVal && s.password === password);
 if(!found) {
-alert('اسم المستخدم أو كلمة السر غير صحيحة، أو لم تقم بإنشاء حساب بعد.');
+alert('اسم المستخدم أو كلمة السر غير صحيحة، أو لم تقم بتسجيل حساب جديد بعد.');
 return;
 }
 // فحص الحظر للطالب
@@ -2149,7 +2304,7 @@ return;
 }
 currentUser = found;
 userRole = 'student';
-logAction(identifier, 'تسجيل دخول طالب');
+logAction(nameVal, 'تسجيل دخول طالب');
 }
 
 checkMaintenance();
@@ -2189,7 +2344,7 @@ return;
 }
 userRole = 'supervisor';
 currentUser = sup;
-logAction(sup.name, 'تسجيل دخول مشرف');
+logAction(sup.name, 'تسجيل دخول مشرف دعوي');
 document.getElementById('loginPage').classList.remove('active');
 loadSupervisorDashboard();
 document.getElementById('supervisorPage').classList.add('active');
@@ -2279,7 +2434,7 @@ function addStudentXP(points) {
 
 function loadStudentDashboard() {
 document.getElementById('studentName').textContent = currentUser.name;
-document.getElementById('studentPhone').textContent = currentUser.phone || 'حساب خاص';
+document.getElementById('studentPhoneDisplay').textContent = currentUser.phone || 'حساب خاص';
 document.getElementById('studentAvatar').textContent = currentUser.name[0];
 document.getElementById('studentXPVal').textContent = `${currentUser.xp || 0} XP`;
 
@@ -2379,7 +2534,7 @@ const passed = percentage >= 50;
 bodyHTML += `
 <div style="padding: 1.5rem; background: var(--bg-alt); border-radius: 16px; border: 1px solid var(--border); text-align: center; margin-bottom: 1.5rem;">
 <p style="font-size: 1.2rem; font-weight: 800; color: ${passed ? 'var(--success)' : 'var(--danger)'};">
-نتيجتك: ${state.score} من ${state.total} (${percentage}%) - ${passed ? 'ناجح 🎉 (+30 XP)' : 'تحتاج لمراجعة الدرس'}
+نتيجتك: ${state.score} من ${state.total} (${percentage}%) - ${passed ? 'ناجح وممتاز 🎉 (+30 XP)' : 'تحتاج لمراجعة الدرس'}
 </p>
 <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">تم إرسال درجتك إلى مشرفي المنصة بنجاح.</p>
 </div>
@@ -2392,12 +2547,12 @@ return `
 <div style="background: var(--bg-alt); padding: 1.2rem; border-radius: 12px; border: 1px solid ${isCorrect ? 'var(--success)' : 'var(--danger)'}; display: grid; gap: 0.5rem;">
 <p style="font-weight: 700;">${idx + 1}.${item.question}</p>
 <p style="font-size: 0.9rem;">إجابتك: <span style="font-weight: bold; color: ${isCorrect ? 'var(--success)' : 'var(--danger)'};">${item.options[studentAns] !== undefined ? item.options[studentAns] : 'لم تقم بالإجابة'}</span></p>
-<p style="font-size: 0.9rem;">الإجابة الصحيحة: <strong style="color: var(--success);">${item.options[item.correct]}</strong></p>${item.explanation ? `<div style="background: var(--panel); padding: 0.9rem; border-radius: 10px; font-size: 0.88rem; margin-top: 0.4rem; border-right: 3px solid var(--warning); line-height: 1.6;"><strong>الشرح:</strong> ${item.explanation}</div>` : ''}
+<p style="font-size: 0.9rem;">الإجابة الصحيحة: <strong style="color: var(--success);">${item.options[item.correct]}</strong></p>${item.explanation ? `<div style="background: var(--panel); padding: 0.9rem; border-radius: 10px; font-size: 0.88rem; margin-top: 0.4rem; border-right: 3px solid var(--warning); line-height: 1.6;"><strong>الشرح والدليل:</strong> ${item.explanation}</div>` : ''}
 </div>
 `;
 }).join('')}
 </div>
-<button type="button" class="btn btn-secondary btn-small" style="margin-top: 1.5rem; width: 100%;" onclick="resetStudentQuiz(${q.id})">إعادة الاختبار</button>
+<!-- تم حذف زر إعادة الاختبار نهائياً بناءً على طلبك -->
 `;
 }
 
@@ -2480,11 +2635,6 @@ calculateStudentProgress();
 renderStudentQuizzes();
 }
 
-function resetStudentQuiz(quizId) {
-delete studentQuizStates[quizId];
-renderStudentQuizzes();
-}
-
 function renderStudentLiveSchedule() {
   const schedules = getData(DB.schedules);
   document.getElementById('studentLiveScheduleContainer').innerHTML = schedules.length ? schedules.map(s => `
@@ -2505,11 +2655,11 @@ function renderStudentAssignments() {
   const container = document.getElementById('studentAssignmentsContainer');
   let html = `
     <div class="add-form">
-      <h3>تسليم واجب جديد</h3>
+      <h3>تسليم واجب/بحث دعوي جديد</h3>
       <form id="submitAssignmentForm" style="display:grid; gap:1.2rem; margin-top:1rem;">
-        <input type="text" id="assignTitle" placeholder="اسم الواجب/الدرس" required />
+        <input type="text" id="assignTitle" placeholder="عنوان البحث أو الواجب" required />
         <textarea id="assignText" placeholder="اكتب إجابتك أو ضع رابط صورتك/ملفك هنا..." required></textarea>
-        <button type="submit" class="btn btn-primary"><i class="fas fa-upload"></i> تسليم الواجب للمشرف</button>
+        <button type="submit" class="btn btn-primary"><i class="fas fa-upload"></i> تسليم البحث للمشرف الدعوي</button>
       </form>
     </div>
   `;
@@ -2544,23 +2694,31 @@ function renderStudentAssignments() {
       });
       setData(DB.assignments, list);
       addStudentXP(20);
-      alert('تم تسليم الواجب للمشرف بنجاح! (+20 XP)');
+      alert('تم تسليم البحث للمشرف بنجاح! (+20 XP)');
       renderStudentAssignments();
     }
   };
 }
 
+// تعديل لوحة الصدارة لتصبح مرتبة ونظيفة (اسم المستخدم لوحده والرقم لوحده)
 function renderStudentLeaderboard() {
   const students = getData(DB.students).sort((a,b) => (b.xp || 0) - (a.xp || 0));
   document.getElementById('studentLeaderboardContainer').innerHTML = students.map((s, idx) => `
     <div class="card" style="${idx === 0 ? 'border:2px solid var(--warning);' : ''}">
-      <div class="card-header" style="${idx === 0 ? 'background: linear-gradient(135deg, #f59e0b, #d97706); color:#0f172a;' : ''}">
-        <h3>#${idx + 1} ${s.name} ${idx === 0 ? '👑 البطل' : ''}</h3>
-        <p>${s.class}</p>
+      <div class="card-header" style="${idx === 0 ? 'background: linear-gradient(135deg, #f59e0b, #d97706); color:#fff;' : ''}">
+        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+          <span style="font-size: 1.25rem; font-weight: 900;">${s.name}</span>
+          <span style="background: rgba(0,0,0,0.15); padding: 4px 12px; border-radius: 20px; font-size: 0.9rem; font-weight: bold;">#${idx + 1}</span>
+        </div>
+        <p style="margin-top: 4px; opacity: 0.9; font-size: 0.85rem;">عضو المنصة الدعوية</p>
       </div>
-      <div class="card-body">
-        <p><i class="fas fa-trophy" style="color:var(--warning)"></i> <strong>النقاط:</strong> <span style="font-size:1.2rem; font-weight:900; color:var(--primary);">${s.xp || 0} XP</span></p>
-        <span class="badge-tag"><i class="fas fa-award"></i> ${idx === 0 ? 'المركز الأول الملكي' : idx < 3 ? 'وسام التميز الفضي' : 'عضو نشط'}</span>
+      <div class="card-body" style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <span class="badge-tag"><i class="fas fa-trophy"></i> ${idx === 0 ? '👑 البطل الدعوي الأول' : idx < 3 ? 'وسام التميز' : 'عضو نشط'}</span>
+        </div>
+        <div style="text-align: left;">
+          <span style="font-size: 1.4rem; font-weight: 900; color: var(--primary);">${s.xp || 0} XP</span>
+        </div>
       </div>
     </div>
   `).join('');
@@ -2589,7 +2747,7 @@ date: new Date().toLocaleDateString('ar-EG')
 setData(DB.notes, notes);
 document.getElementById('noteText').value = '';
 renderStudentNotes();
-alert('تم إرسال الملاحظة بنجاح');
+alert('تم إرسال السؤال/الملاحظة بنجاح');
 });
 
 function renderStudentSupport() {
@@ -2626,7 +2784,7 @@ return `
 <div class="member-card">
 <div class="member-avatar">${s.name[0]}</div>
 <h4>${s.name}</h4>
-<p style="color:var(--primary); font-weight:700; margin-top:0.4rem;">مشرف أكاديمي</p>
+<p style="color:var(--primary); font-weight:700; margin-top:0.4rem;">مشرف وداعية شرعي</p>
 <p style="font-size:0.85rem; margin-top:0.3rem;"><span class="${st.online ? 'online-dot' : 'offline-dot'}"></span> ${st.text}</p>
 <p style="font-size:0.85rem; color:var(--text-muted); margin-top:0.2rem;">${s.phone || ''}</p>
 </div>
@@ -2642,24 +2800,24 @@ document.getElementById('studentCertificatesContainer').innerHTML = certs.length
     <div class="cert-border-outer">
       <div class="cert-border-inner">
         <div class="cert-header">
-          <div>الرقم التسلسلي: <span style="color:#0f172a; font-weight:bold;">AZ-2026-${1000 + index}</span></div>
+          <div>الرقم التسلسلي: <span style="color:#0f172a; font-weight:bold;">DAWA-2026-${1000 + index}</span></div>
           <div>التاريخ: <span style="color:#0f172a; font-weight:bold;">${c.date}</span></div>
         </div>
         <div>
-          <h2 class="brand-title">Abdo_zeinhom Academy</h2>
-          <div class="brand-subtitle">المنصة التعليمية الاحترافية المعتمدة</div>
+          <h2 class="brand-title">منصة الدعوة إلى الله</h2>
+          <div class="brand-subtitle">المنصة الدعوية والتعليمية المعتمدة</div>
         </div>
         <div>
-          <h1 class="main-title">شَهَادَةُ شُكْرٍ وَتَقْدِيرٍ</h1>
+          <h1 class="main-title">شَهَادَةُ تَقدِيرٍ وَإِجَازَةُ عِلمٍ</h1>
           <p style="font-size: 13px; color: #64748b; margin: 0;">تتقدم إدارة المنصة بخالص الشكر والتقدير والاعتزاز للطالب المتميز:</p>
           <div class="student-name-display">${c.studentName}</div>
         </div>
         <p class="cert-body-text">
-          نظير مجهوده الاستثنائي، وتفوقه الباهر في اجتياز الاختبار التفاعلي (${c.quizTitle}),<br>
-          سائلين المولى عز وجل له دوام التقدم والرفعة والصدارة دائماً.
+          نظير مجهوده الاستثنائي، وحرصه على طلب العلم الشرعي وتفوقه في اجتياز الاختبار التفاعلي (${c.quizTitle}),<br>
+          سائلين المولى عز وجل له التوفيق للعمل بما علم والنفع به دائماً.
         </p>
         <div class="badges-wrapper">
-          <div class="badge-item">الاختبار: <strong style="color: #b45309;">${c.quizTitle}</strong></div>
+          <div class="badge-item">الاختبار: <strong style="color: #059669;">${c.quizTitle}</strong></div>
           <div class="badge-item">الحالة: <strong style="color: #059669;">اجتياز بنجاح</strong></div>
         </div>
         <div class="cert-footer">
@@ -2669,7 +2827,7 @@ document.getElementById('studentCertificatesContainer').innerHTML = certs.length
             <p style="font-size: 11px; margin: 0; color: #64748b; font-style: italic;">${c.issuedBy}</p>
           </div>
           <div class="digital-seal-box">
-            <span style="color: #fbbf24; font-weight: bold; font-size: 8px;">AZ ACADEMY</span>
+            <span style="color: #fbbf24; font-weight: bold; font-size: 8px;">DAWA ACADEMY</span>
             <span style="margin: 1px 0;">✓ موثقة</span>
             <span style="font-size: 6px; color: #cbd5e1;">SECURITY SEAL</span>
           </div>
@@ -2757,7 +2915,6 @@ container.innerHTML = filtered.length ? filtered.map(m => `
 container.scrollTop = container.scrollHeight;
 }
 
-// 🛡️ فحص حظر الطالب عند إرسال رسالة دردشة
 function sendStudentChatMsg(e) {
 e.preventDefault();
 if(currentUser && currentUser.banned) {
@@ -2832,8 +2989,8 @@ document.getElementById('addLiveScheduleForm').addEventListener('submit', functi
     url: document.getElementById('liveUrl').value
   });
   setData(DB.schedules, list);
-  logAction(currentUser.name, 'جدولة حصة بث مباشر جديدة');
-  alert('تم إضافة الحصة الجداول بنجاح');
+  logAction(currentUser.name, 'جدولة درس مباشر جديد');
+  alert('تم إضافة الدرس المجدول بنجاح');
   this.reset();
   renderSupervisorLiveSchedule();
 });
@@ -2847,7 +3004,7 @@ function renderSupervisorAssignments() {
   const assignments = getData(DB.assignments);
   document.getElementById('supervisorAssignmentsList').innerHTML = assignments.length ? assignments.map(a => `
     <div class="card">
-      <div class="card-header"><h3>الطالب: ${a.studentName}</h3><p>الواجب: ${a.title}</p></div>
+      <div class="card-header"><h3>الطالب: ${a.studentName}</h3><p>الواجب/البحث: ${a.title}</p></div>
       <div class="card-body">
         <p><strong>الإجابة:</strong> ${a.text}</p>
         <p style="margin-top:0.5rem;"><strong>التصحيح الحالي:</strong> ${a.grade || 'لم يصحح بعد'}</p>
@@ -2894,17 +3051,17 @@ function generateRandomQuiz() {
   let quizzes = getData(DB.quizzes);
   let newQuiz = {
     id: Date.now(),
-    title: 'اختبار عشوائي عام من بنك الأسئلة',
+    title: 'اختبار شرعي عشوائي عام من بنك الأسئلة',
     subject: 'شامل المنهج',
     questions: [
-      { question: 'ما النسبة المئوية التقريبية لتطور أداء الطلاب في الفيزياء؟', options: ['50%', '75%', '90%', '100%'], correct: 2, explanation: 'حسب بنك أسئلة المنصة' },
-      { question: 'أي من العناصر التالية تعبر عن السرعة؟', options: ['متر/ثانية', 'كولوم', 'جول', 'فولت'], correct: 0, explanation: 'الوحدة هي متر/ثانية' }
+      { question: 'ما النسبة المئوية لإنجاز حفظ السورة الكريمة؟', options: ['50%', '75%', '90%', '100%'], correct: 2, explanation: 'حسب بنك الأسئلة الشرعية' },
+      { question: 'ما هو الفرض العيني من العلوم الشرعية؟', options: ['ما لا يسع المسلم جهله في عبادته', 'علم الفلك', 'علم الرياضيات', 'اللغات الأجنبية'], correct: 0, explanation: 'الفرض العيني هو علم ما تصح به عقيدة المسلم وعبادته' }
     ],
     date: new Date().toLocaleDateString('ar-EG')
   };
   quizzes.push(newQuiz);
   setData(DB.quizzes, quizzes);
-  logAction(currentUser.name, 'توليد اختبار عشوائي من بنك الأسئلة');
+  logAction(currentUser.name, 'توليد اختبار عشوائي من بنك الأسئلة الشرعي');
   alert('تم توليد اختبار عشوائي جديد بنجاح وتضمينه بالمقرر!');
   renderSupervisorQuizzes();
 }
@@ -2957,7 +3114,7 @@ div.innerHTML = `
 <option value="2">الخيار الثالث صحيح</option>
 <option value="3">الخيار الرابع صحيح</option>
 </select>
-<textarea class="q-explanation" placeholder="شرح الإجابة النموذجية..." style="min-height: 80px;"></textarea>
+<textarea class="q-explanation" placeholder="شرح الإجابة النموذجية والدليل..." style="min-height: 80px;"></textarea>
 `;
 container.appendChild(div);
 }
@@ -3381,7 +3538,7 @@ function toggleMaintenanceMode() {
 document.getElementById('generateKeyForm').addEventListener('submit', function(e) {
   e.preventDefault();
   let keys = getData(DB.keys);
-  let keyStr = 'AZ-KEY-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+  let keyStr = 'DAWA-KEY-' + Math.random().toString(36).substring(2, 8).toUpperCase();
   keys.push({
     id: Date.now(),
     code: keyStr,
@@ -3481,7 +3638,7 @@ return `
   <p>${s.class}</p>
 </div>
 <div class="card-body">
-<p><strong>اسم المستخدم / الرقم:</strong> ${s.phone || s.name}</p>
+<p><strong>اسم المستخدم / الهاتف:</strong> ${s.name} / ${s.phone || '-'}</p>
 <p style="margin-top:0.4rem;"><strong>كلمة السر الخاصة به:</strong> <span style="color: var(--warning); font-weight: bold;">${s.password}</span></p>
 <p style="margin-top:0.4rem;"><strong>النقاط المحرزة:</strong> <strong style="color:var(--primary);">${s.xp || 0} XP</strong></p>
 ${s.banned ? `<p style="margin-top:0.4rem; color:var(--danger);"><strong>سبب الحظر:</strong> ${s.banReason || 'مخالفة سياسات المنصة'}</p>` : ''}
@@ -3645,7 +3802,7 @@ function saveQuickLessonNote(lessonTitle) {
   });
   setData(DB.notes, notes);
   addStudentXP(10);
-  alert('تم حفظ الملاحظة السريعة لمفكرتك الأكاديمية! (+10 XP)');
+  alert('تم حفظ الملاحظة السريعة لمفكرتك الدعوية! (+10 XP)');
   document.getElementById('quickLessonNoteText').value = '';
   renderStudentNotes();
 }
