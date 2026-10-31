@@ -806,7 +806,7 @@ border-radius: 18px;
 border: 1px solid var(--border);
 text-align: center;
 box-shadow: var(--shadow);
-margin-bottom: 1rem;
+margin-bottom: 1.0rem;
 transition: all 0.25s ease;
 }
 
@@ -1173,6 +1173,48 @@ box-shadow: 0 6px 20px rgba(5, 150, 105, 0.25);
   box-shadow: var(--shadow);
 }
 
+/* أزرار المشاركة السريعة وتوليد بطاقات الاقتباس */
+.share-bar {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--border);
+  flex-wrap: wrap;
+  align-items: center;
+}
+.share-btn {
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #fff;
+  transition: opacity 0.2s;
+}
+.share-btn:hover { opacity: 0.85; }
+.share-whatsapp { background: #25d366; }
+.share-twitter { background: #000000; }
+.share-facebook { background: #1877f2; }
+.share-card-btn { background: var(--secondary); }
+
+/* نافذة بطاقة الاقتباس الجاهزة للمشاركة */
+.quote-card-modal-box {
+  background: linear-gradient(135deg, #064e3b, #022c22);
+  color: #fff;
+  padding: 2.5rem;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+  border: 3px solid #d97706;
+  font-family: 'Amiri', serif;
+  position: relative;
+}
+
 @media (max-width: 768px) {
 .navbar-content {
 flex-direction: column;
@@ -1226,7 +1268,7 @@ gap: 1rem;
 <div id="maintenanceScreen" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--bg); z-index: 9999; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem;">
   <i class="fas fa-kaaba" style="font-size: 3.8rem; color: var(--warning); margin-bottom: 1.4rem;"></i>
   <h1 style="font-size: 2.3rem; margin-bottom: 1rem; font-family:'Amiri', serif;">المنصة في وضع الصيانة والتحديث المباشر</h1>
-  <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 580px; line-height: 1.7;">يقوم المشرف الدعوي بإضافة دروس واختبارات شرعية جديدة حالياً. يرجى العودة لاحقاً بارك الله فيكم!</p>
+  <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 580px; line-height: 1.7;">يقوم المشرف الدعوي بإضافة دروس ومحتوى ومواقيت جديدة حالياً. يرجى العودة لاحقاً بارك الله فيكم!</p>
   <button class="btn btn-secondary" style="margin-top: 1.8rem;" onclick="location.reload()"><i class="fas fa-sync"></i> إعادة المحاولة</button>
 </div>
 
@@ -1235,20 +1277,20 @@ gap: 1rem;
 <div class="login-container">
 <div class="login-left">
 <h1 id="mainAcademyLogo" style="cursor: pointer;" title="اضغط 5 مرات للمشرف و7 مرات للمالك"><i class="fas fa-mosque"></i> منصة الدعوة إلى الله</h1>
-<p>منصة دعوية متكاملة لنشر العلم الشرعي، الدروس التفاعلية، حفظ وتفسير القرآن الكريم والأحاديث النبوية بحسابات خاصة وإشراف موثوق.</p>
+<p>منصة دعوية متكاملة لنشر العلم الشرعي، الدروس التفاعلية، الأحاديث، المكتبة الإسلامية، ومواقيت الصلاة والأذكار بإشراف المشرفين.</p>
 <div class="login-features">
 <div class="feature-item">
-<i class="fas fa-quran"></i>
+<i class="fas fa-book-open"></i>
 <div>
-<strong>دروس واختبارات إيمانية</strong>
-<p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem;">دورات مستمرة في التفسير، الفقه، السيرة النبوية، والعقيدة</p>
+<strong>المكتبة الإسلامية وحقيبة الداعية</strong>
+<p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem;">كتب شرعية ومطويات يتم إدارتها وتحديثها بواسطة المشرفين</p>
 </div>
 </div>
 <div class="feature-item">
 <i class="fas fa-pray"></i>
 <div>
-<strong>مواقيت الصلاة والأذكار</strong>
-<p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem;">متابعة يومية لأوقات الصلاة وأذكار الصباح والمساء والعداد الرقمي</p>
+<strong>مواقيت الصلاة وأذكار الصباح والمساء</strong>
+<p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem;">توقيت دقيق ومسبحة رقمية مع إشراف وتعديل دائم من المشرفين</p>
 </div>
 </div>
 </div>
@@ -1315,7 +1357,6 @@ gap: 1rem;
 </div>
 <div class="nav-menu">
 <button class="tab-toggle active" data-section="student-home">الرئيسية</button>
-<button class="tab-toggle" data-section="student-quran">المصحف والمقرأة 📖</button>
 <button class="tab-toggle" data-section="student-hadith">الأحاديث والسيرة 📜</button>
 <button class="tab-toggle" data-section="student-library">المكتبة والحقيبة 📚</button>
 <button class="tab-toggle" data-section="student-prayers">مواقيت الصلاة والأذكار 🕌</button>
@@ -1351,12 +1392,18 @@ gap: 1rem;
   </div>
   <div style="font-size:0.9rem; color:var(--text-muted); border-right:2px solid var(--border); padding-right:1rem;">
     قال رسول الله ﷺ: <br><strong>"مَنْ دَعا إِلى هُدًى، كانَ لَهُ مِنَ الأَجْرِ مِثْلُ أُجُورِ مَنْ تَبِعَهُ"</strong>
+    <div class="share-bar">
+      <button class="share-btn share-whatsapp" onclick="shareToSocial('whatsapp', 'قال رسول الله ﷺ: مَنْ دَعا إِلى هُدًى، كانَ لَهُ مِنَ الأَجْرِ مِثْلُ أُجُورِ مَنْ تَبِعَهُ')"><i class="fab fa-whatsapp"></i> واتساب</button>
+      <button class="share-btn share-twitter" onclick="shareToSocial('twitter', 'قال رسول الله ﷺ: مَنْ دَعا إِلى هُدًى، كانَ لَهُ مِنَ الأَجْرِ مِثْلُ أُجُورِ مَنْ تَبِعَهُ')"><i class="fab fa-x-twitter"></i> إكس</button>
+      <button class="share-btn share-facebook" onclick="shareToSocial('facebook', 'قال رسول الله ﷺ: مَنْ دَعا إِلى هُدًى، كانَ لَهُ مِنَ الأَجْرِ مِثْلُ أُجُورِ مَنْ تَبِعَهُ')"><i class="fab fa-facebook"></i> فيسبوك</button>
+      <button class="share-btn share-card-btn" onclick="openQuoteCardModal('مَنْ دَعا إِلى هُدًى، كانَ لَهُ مِنَ الأَجْرِ مِثْلُ أُجُورِ مَنْ تَبِعَهُ - رسول الله ﷺ')"><i class="fas fa-image"></i> بطاقة اقتباس</button>
+    </div>
   </div>
 </div>
 
 <div class="dashboard-header">
   <h2>مرحباً بك في منصة الدعوة إلى الله</h2>
-  <p>تصفح دروسك الشرعية، اختبر علمك، واجمع نقاط التميز الدعوي!</p>
+  <p>تصفح دروسك الشرعية، المكتبة، الأحاديث، مواقيت الصلاة، واجمع نقاط التميز الدعوي!</p>
   <div style="margin-top: 1.5rem; background: var(--panel); padding: 1.2rem; border-radius: 16px; border: 1px solid var(--border);">
     <div style="display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 5px;">
       <span><i class="fas fa-chart-line" style="color:var(--primary)"></i> مؤشر إنجاز المنهج الدعوي</span>
@@ -1373,7 +1420,6 @@ gap: 1rem;
 <div class="stat-card"><i class="fas fa-sticky-note"></i><h4>الملاحظات</h4><div class="value" id="studentNotesCount">0</div></div>
 </div>
 
-<!-- إضافات شجرة الحسنات والأوسمة الشخصية بالرئيسية -->
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
   <div style="background:var(--panel); padding:1.5rem; border-radius:18px; border:1px solid var(--border);">
     <h3 style="color:var(--primary); margin-bottom:1rem;"><i class="fas fa-seedling"></i> مؤشر الطاعات وشجرة الحسنات</h3>
@@ -1384,7 +1430,7 @@ gap: 1rem;
         <div class="progress-bar-container"><div class="progress-bar-fill" style="width:92%;"></div></div>
       </div>
       <div>
-        <div style="display:flex; justify-content:space-between; font-weight:700; font-size:0.85rem; margin-bottom:3px;"><span>حفظ وتلاوة الورد اليومي</span><span>80%</span></div>
+        <div style="display:flex; justify-content:space-between; font-weight:700; font-size:0.85rem; margin-bottom:3px;"><span>متابعة الدروس والأحاديث</span><span>80%</span></div>
         <div class="progress-bar-container"><div class="progress-bar-fill" style="width:80%;"></div></div>
       </div>
     </div>
@@ -1406,70 +1452,19 @@ gap: 1rem;
 </div>
 </div>
 
-<!-- قسم المصحف التفاعلي والمقرأة والختمة الجماعية -->
-<div id="student-quran" class="tab-content">
-  <div class="dashboard-header">
-    <h2>📖 المصحف التفاعلي الشامل والمقرأة الإلكترونية</h2>
-    <p>تلاوة، استماع لأشهر القراء، مقرأة بالذكاء الاصطناعي والتسجيل، وختمة جماعية للمنصة</p>
-  </div>
-  
-  <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:1.5rem; margin-bottom:2rem;">
-    <div class="card">
-      <div class="card-header"><h3><i class="fas fa-headphones"></i> تلاوة واستماع الآيات</h3></div>
-      <div class="card-body">
-        <p>اضغط على الآية لسماع التلاوة المباشرة بأصوات كبار القراء:</p>
-        <div style="background:var(--bg-alt); padding:1.2rem; border-radius:12px; border:1px solid var(--border); margin-top:1rem; font-family:'Amiri',serif; font-size:1.2rem; text-align:center; line-height:2;">
-          "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ. الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ. الرَّحْمَٰنِ الرَّحِيمِ. مَالِكِ يَوْمِ الدِّينِ."
-        </div>
-        <div style="display:flex; gap:10px; margin-top:1rem; justify-content:center;">
-          <button class="btn btn-primary btn-small" onclick="alert('جارٍ تشغيل التلاوة بصوت الشيخ القارئ...')"><i class="fas fa-play"></i> استمع للتلاوة</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-header"><h3><i class="fas fa-microphone-alt"></i> المقرأة الإلكترونية وتصحيح التلاوة</h3></div>
-      <div class="card-body">
-        <p>قم بتسجيل تلاوتك أو إرسال مقطعك الصوتي للشيخ ليقوم بتصحيح التجويد والمخارج:</p>
-        <button class="btn btn-secondary btn-small" style="width:100%; margin-top:1rem;" onclick="alert('تم بدء تسجيل المقطع الصوتي... انقر لإيقافه وإرساله للمشرف.')"><i class="fas fa-microphone"></i> ابدأ تسجيل التلاوة الآن</button>
-        <button class="btn btn-primary btn-small" style="width:100%; margin-top:0.6rem;" onclick="alert('تم إرسال التسجيل بنجاح للشيخ المختص للمراجعة.')"><i class="fas fa-paper-plane"></i> إرسال المقطع للشيخ</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header"><h3><i class="fas fa-users"></i> الختمة الجماعية لطلاب المنصة</h3></div>
-    <div class="card-body">
-      <p>شارك إخوانك في ختم القرآن الكريم أسبوعياً. اختر الجزء المخصص لك للحجز والإنجاز:</p>
-      <div style="display:flex; justify-content:space-between; font-weight:700; margin:1rem 0 5px;">
-        <span>نسبة إنجاز الختمة الجماعية الحالية</span><span>68%</span>
-      </div>
-      <div class="progress-bar-container" style="margin-bottom:1.5rem;"><div class="progress-bar-fill" style="width:68%;"></div></div>
-      <button class="btn btn-primary" onclick="alert('تم حجز جزء جديد لك في الختمة الجماعية! بارك الله في همتك.')"><i class="fas fa-bookmark"></i> حجز جزء للختمة (+50 XP)</button>
-    </div>
-  </div>
-</div>
-
-<!-- قسم بنك الأحاديث والسيرة التفاعلية -->
+<!-- قسم بنك الأحاديث والسيرة التفاعلية (تحت إشراف وتعديل المشرفين) -->
 <div id="student-hadith" class="tab-content">
   <div class="dashboard-header">
-    <h2>📜 بنك الأحاديث النبوية وشجرة السيرة التفاعلية</h2>
-    <p>حديث اليوم مع الشرح والفوائد، وشجرة الأحداث النبوية العطرة</p>
+    <h2>📜 بنك الأحاديث النبوية الشريفة وشجرة السيرة</h2>
+    <p>الأحاديث النبوية الصحيحة والمحتوى المعتمد والمضاف من المشرفين الدعويين</p>
   </div>
 
-  <div class="card" style="margin-bottom:2rem;">
-    <div class="card-header"><h3><i class="fas fa-sun"></i> حديث اليوم الشريف</h3></div>
-    <div class="card-body" style="font-family:'Amiri', serif; font-size:1.15rem; line-height:1.8;">
-      <p style="color:var(--primary); font-weight:bold; margin-bottom:0.8rem;">عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ، عَن النَّبِيِّ ﷺ قَالَ: "مَنْ نَفَّسَ عَنْ مُؤْمِنٍ كُرْبَةً مِنْ كُرَبِ الدُّنْيَا نَفَّسَ اللَّهُ عَنْهُ كُرْبَةً مِنْ كُرَبِ يَوْمِ الْقِيَامَةِ..."</p>
-      <div style="background:var(--bg-alt); padding:1rem; border-radius:12px; border:1px solid var(--border); font-family:'Cairo', sans-serif; font-size:0.95rem;">
-        <strong>الحكم والتخريج:</strong> حديث صحيح (رواه مسلم).<br>
-        <strong>الفوائد التربوية والدعوية:</strong> الحث على قضاء حوائج المسلمين وتفريج الكروب، وفضل عظيم في الآخرة.
-      </div>
-    </div>
+  <div id="studentHadithsListContainer" style="display: grid; gap: 1.5rem; margin-bottom: 2rem;">
+    <!-- يتم تعبئتها ديناميكياً بناءً على ما يضيفه ويعدله المشرفون -->
   </div>
 
   <div class="card">
-    <div class="card-header"><h3><i class="fas fa-sitemap"></i> شجرة السيرة النبوية التفاعلية (Interactive Timeline)</h3></div>
+    <div class="card-header"><h3><i class="fas fa-sitemap"></i> شجرة السيرة النبوية التفاعلية</h3></div>
     <div class="card-body" style="display:grid; gap:1rem;">
       <div style="background:var(--bg-alt); padding:1rem; border-radius:12px; border-right:4px solid var(--primary); border:1px solid var(--border);">
         <strong>عام الفيل وميلاد الرسول ﷺ:</strong> ولد المصطفى عام الفيل بمكة المكرمة يتيماً.
@@ -1484,29 +1479,20 @@ gap: 1rem;
   </div>
 </div>
 
-<!-- قسم المكتبة الإسلامية وحقيبة الداعية وقاموس المصطلحات -->
+<!-- قسم المكتبة الإسلامية وحقيبة الداعية (تحت إشراف وتعديل المشرفين) -->
 <div id="student-library" class="tab-content">
   <div class="dashboard-header">
     <h2>📚 المكتبة الإسلامية الشاملة وحقيبة الداعية</h2>
-    <p>تحميل الكتب الشرعية، بطائط ومطويات الداعية للنشر، ومعجم مصطلحات العلوم الشرعية</p>
+    <p>الكتب الشرعية والمطويات والبطاقات الدعوية المضافة والمحدثة من قبل المشرفين</p>
   </div>
 
-  <div class="cards-grid" style="margin-bottom:2rem;">
-    <div class="card">
-      <div class="card-header"><h3>أصول الثلاثة (كتاب شرعي PDF)</h3><p>العقيدة الإسلامية</p></div>
-      <div class="card-body"><p>شرح مبسط ومختصر في أصول العقيدة الإسلامية الواجب معرفتها على كل مسلم ومسلمة.</p></div>
-      <div class="card-footer"><a href="#" onclick="alert('جارٍ تحميل الكتاب بصيغة PDF... بانتظار التنزيل.')" class="btn btn-primary btn-small" style="width:100%;"><i class="fas fa-download"></i> تحميل وقراءة الكتاب</a></div>
-    </div>
-    <div class="card">
-      <div class="card-header"><h3>الأربعين النووية (صوتيات وكتب)</h3><p>الحديث الشريف</p></div>
-      <div class="card-body"><p>الأحاديث النبوية الجامعة لأمهات الأحكام والآداب والتربية الدعوية الصحيحة.</p></div>
-      <div class="card-footer"><a href="#" onclick="alert('جارٍ تحميل الكتاب بصيغة PDF... بانتظار التنزيل.')" class="btn btn-primary btn-small" style="width:100%;"><i class="fas fa-download"></i> تحميل وقراءة الكتاب</a></div>
-    </div>
+  <div id="studentLibraryContainer" class="cards-grid" style="margin-bottom:2rem;">
+    <!-- يتم تعبئتها ديناميكياً من لوحة إشراف المشرفين -->
   </div>
 
   <div style="background:var(--panel); padding:1.5rem; border-radius:18px; border:1px solid var(--border); margin-bottom:2rem;">
     <h3 style="color:var(--primary); margin-bottom:1rem;"><i class="fas fa-briefcase"></i> حقيبة الداعية (تصاميم ومطويات جاهزة للنشر)</h3>
-    <p style="color:var(--text-muted); margin-bottom:1rem;">قم بتحميل البطاقات والمطويات الدعوية الجاهزة للمشاركة عبر واتساب وفيسبوك:</p>
+    <p style="color:var(--text-muted); margin-bottom:1rem;">قم بتحميل البطاقات والمطويات الدعوية المضافة من المشرفين لمشاركتها عبر واتساب وفيسبوك:</p>
     <div style="display:flex; gap:1rem; flex-wrap:wrap;">
       <button class="btn btn-secondary btn-small" onclick="alert('تم تنزيل بطاقة بر الوالدين بنجاح!')"><i class="fas fa-image"></i> مطوية بر الوالدين</button>
       <button class="btn btn-secondary btn-small" onclick="alert('تم تنزيل بطاقة فضل الصلاة بنجاح!')"><i class="fas fa-image"></i> بطاقة فضل الصلاة</button>
@@ -1527,21 +1513,17 @@ gap: 1rem;
   </div>
 </div>
 
+<!-- قسم مواقيت الصلاة والأذكار (تحت إشراف وتعديل المشرفين) -->
 <div id="student-prayers" class="tab-content">
   <div class="dashboard-header">
     <h2>🕌 مواقيت الصلاة وأذكار الصباح والمساء الكاملة</h2>
-    <p>تابع أوقات صلاتك واقرأ الأذكار الواردة (ما يُقال مرة واحدة وما يُقال ثلاث مرات)</p>
+    <p>أوقات الصلوات والأذكار والسبحة الرقمية المعدلة والمضافة بمعرفة المشرفين</p>
   </div>
   
   <div style="background:var(--panel); padding:1.5rem; border-radius:18px; border:1px solid var(--border); margin-bottom:2rem;">
-    <h3 style="color:var(--primary);"><i class="fas fa-clock"></i> مواقيت الصلاة اليومية (توقيت القاهرة)</h3>
-    <div class="prayer-times-grid">
-      <div class="prayer-card"><p>الفجر</p><h4 style="color:var(--primary); font-size:1.2rem; margin-top:5px;">4:32 ص</h4></div>
-      <div class="prayer-card"><p>الشروق</p><h4 style="color:var(--primary); font-size:1.2rem; margin-top:5px;">6:00 ص</h4></div>
-      <div class="prayer-card"><p>الظهر</p><h4 style="color:var(--primary); font-size:1.2rem; margin-top:5px;">11:40 ص</h4></div>
-      <div class="prayer-card next-prayer"><p>العصر</p><h4 style="color:var(--warning); font-size:1.2rem; margin-top:5px;">2:48 م</h4><span style="font-size:0.75rem; color:var(--warning);">الصلاة القادمة</span></div>
-      <div class="prayer-card"><p>المغرب</p><h4 style="color:var(--primary); font-size:1.2rem; margin-top:5px;">5:20 م</h4></div>
-      <div class="prayer-card"><p>العشاء</p><h4 style="color:var(--primary); font-size:1.2rem; margin-top:5px;">6:38 م</h4></div>
+    <h3 style="color:var(--primary);"><i class="fas fa-clock"></i> مواقيت الصلاة اليومية (توقيت القاهرة والمشرف)</h3>
+    <div class="prayer-times-grid" id="studentPrayerTimesGrid">
+      <!-- تعبئة ديناميكية من تعديل المشرفين -->
     </div>
   </div>
 
@@ -1554,16 +1536,9 @@ gap: 1rem;
     </div>
   </div>
 
-  <h2 style="color:var(--primary); margin: 1.5rem 0 1rem; font-family:'Amiri', serif;"><i class="fas fa-sun"></i> أذكار الصباح والمساء (تُقال 3 مرات)</h2>
-  <div style="display: grid; gap: 1rem; margin-bottom: 2rem;">
-    <div class="athkar-card">
-      <p style="font-family:'Amiri', serif; font-size:1.15rem; line-height: 1.8;">1. "بِسْمِ اللَّهِ الَّذِي لَا يَضُرِّ مع اسمين شيء في الأرض ولا في السماء وهو السميع العليم." <strong>(تُقال 3 مرات)</strong></p>
-      <button class="btn btn-secondary btn-small" onclick="alert('أحسنت! تقبل الله طاعتك.')"><i class="fas fa-check"></i> قرأتها (3 مرات)</button>
-    </div>
-    <div class="athkar-card">
-      <p style="font-family:'Amiri', serif; font-size:1.15rem; line-height: 1.8;">2. "رَضِيتُ بِاللَّهِ رَبّاً، وَبِالإِسْلَامِ دِيناً، وَبُِمُحَمَّدٍ ﷺ نَبِيّاً ورسولاً." <strong>(تُقال 3 مرات)</strong></p>
-      <button class="btn btn-secondary btn-small" onclick="alert('أحسنت! تقبل الله طاعتك.')"><i class="fas fa-check"></i> قرأتها (3 مرات)</button>
-    </div>
+  <h2 style="color:var(--primary); margin: 1.5rem 0 1rem; font-family:'Amiri', serif;"><i class="fas fa-sun"></i> أذكار الصباح والمساء المعتمدة</h2>
+  <div id="studentAthkarContainer" style="display: grid; gap: 1rem; margin-bottom: 2rem;">
+    <!-- تعبئة ديناميكية للأذكار المعدلة من المشرفين -->
   </div>
 </div>
 
@@ -1669,6 +1644,9 @@ gap: 1rem;
 <div class="nav-menu">
 <button class="tab-toggle active" data-section="supervisor-home">الرئيسية</button>
 <button class="tab-toggle" data-section="supervisor-lessons">الدروس الدعوية</button>
+<button class="tab-toggle" data-section="supervisor-hadiths">تحكم الأحاديث 📜</button>
+<button class="tab-toggle" data-section="supervisor-library">تحكم المكتبة 📚</button>
+<button class="tab-toggle" data-section="supervisor-prayers">تحكم الصلاة والأذكار 🕌</button>
 <button class="tab-toggle" data-section="supervisor-quizzes">الاختبارات وبنك الأسئلة</button>
 <button class="tab-toggle" data-section="supervisor-live">البث والجدول</button>
 <button class="tab-toggle" data-section="supervisor-assignments">تصحيح الواجبات</button>
@@ -1694,15 +1672,15 @@ gap: 1rem;
 <div class="dashboard-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
   <div>
     <h2>لوحة المشرف والداعية الشرعي</h2>
-    <p>إدارة الحصص، مراجعة تلاوات المقرأة، وتصحيح الواجبات والاستشارات</p>
+    <p>إدارة الحصص، تعديل وإشراف المكتبة، الأحاديث، مواقيت الصلاة، وتصحيح الواجبات</p>
   </div>
   <button class="btn btn-primary btn-small" onclick="exportStudentsReport()"><i class="fas fa-file-excel"></i> تصدير تقارير الطلاب (Excel/PDF)</button>
 </div>
 <div class="stats-grid">
 <div class="stat-card"><i class="fas fa-user-graduate"></i><h4>الطلاب المسجلون</h4><div class="value" id="totalStudents">0</div></div>
-<div class="stat-card"><i class="fas fa-question-circle"></i><h4>الاختبارات المضافة</h4><div class="value" id="totalQuizzesCount">0</div></div>
+<div class="stat-card"><i class="fas fa-book"></i><h4>محتوى المكتبة</h4><div class="value" id="totalLibraryCount">0</div></div>
+<div class="stat-card"><i class="fas fa-scroll"></i><h4>الأحاديث النبوية</h4><div class="value" id="totalHadithsCount">0</div></div>
 <div class="stat-card"><i class="fas fa-tasks"></i><h4>الواجبات للمراجعة</h4><div class="value" id="pendingAssignmentsCount">0</div></div>
-<div class="stat-card"><i class="fas fa-headset"></i><h4>رسائل الدعم الفني</h4><div class="value" id="totalSupportCount">0</div></div>
 </div>
 </div>
 
@@ -1720,6 +1698,67 @@ gap: 1rem;
 </form>
 </div>
 <div id="supervisorLessonsContainer" class="cards-grid"></div>
+</div>
+
+<!-- لوحة تحكم المشرفين في الأحاديث والشجرة -->
+<div id="supervisor-hadiths" class="tab-content">
+<div class="dashboard-header"><h2>إدارة وتحكم الأحاديث النبوية الشريفة</h2><p>أضف واحذف وعدل الأحاديث التي تظهر في بنك الأحاديث للطلاب</p></div>
+<div class="add-form">
+<h3>إضافة حديث نبوي جديد</h3>
+<form id="addHadithForm" style="display: grid; gap: 1.2rem; margin-top: 1rem;">
+<input type="text" id="hadithTitle" placeholder="عنوان الحديث (مثال: حديث تفريج الكروب)" required />
+<textarea id="hadithText" placeholder="نص الحديث الشريف..." required></textarea>
+<input type="text" id="hadithGrade" placeholder="التخريج والحكم (مثال: حديث صحيح - رواه مسلم)" required />
+<textarea id="hadithBenefits" placeholder="الفوائد التربوية والدعوية المستفادة..." required></textarea>
+<button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> نشر الحديث في بنك الأحاديث</button>
+</form>
+</div>
+<div id="supervisorHadithsContainer" class="cards-grid"></div>
+</div>
+
+<!-- لوحة تحكم المشرفين في المكتبة الإسلامية -->
+<div id="supervisor-library" class="tab-content">
+<div class="dashboard-header"><h2>إدارة وتحكم المكتبة الإسلامية وحقيبة الداعية</h2><p>أضف الكتب الشرعية والروابط والمطويات التي تظهر للطلاب في المكتبة</p></div>
+<div class="add-form">
+<h3>إضافة كتاب أو مطوية جديدة للمكتبة</h3>
+<form id="addLibraryBookForm" style="display: grid; gap: 1.2rem; margin-top: 1rem;">
+<input type="text" id="libBookTitle" placeholder="عنوان الكتاب أو المطوية (مثال: الأصول الثلاثة)" required />
+<input type="text" id="libBookCat" placeholder="التصنيف (عقيدة، حديث، فقه، مطويات)" required />
+<textarea id="libBookDesc" placeholder="نبذة مختصرة عن الكتاب..." required></textarea>
+<input type="text" id="libBookLink" placeholder="رابط التحميل (PDF / رابط مباشر)" required />
+<button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> نشر الكتاب في المكتبة</button>
+</form>
+</div>
+<div id="supervisorLibraryContainer" class="cards-grid"></div>
+</div>
+
+<!-- لوحة تحكم المشرفين في مواقيت الصلاة والأذكار -->
+<div id="supervisor-prayers" class="tab-content">
+<div class="dashboard-header"><h2>إدارة وتعديل مواقيت الصلاة والأذكار</h2><p>تعديل مواقيت الصلاة اليومية وإضافة الأذكار المعتمدة</p></div>
+<div class="add-form">
+<h3>تعديل مواقيت الصلاة</h3>
+<form id="updatePrayerTimesForm" style="display: grid; gap: 1.2rem; margin-top: 1rem;">
+<div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap:1rem;">
+  <div><label>الفجر</label><input type="text" id="pPrayerFajr" value="4:32 ص" required /></div>
+  <div><label>الشروق</label><input type="text" id="pPrayerSunrise" value="6:00 ص" required /></div>
+  <div><label>الظهر</label><input type="text" id="pPrayerDhuhr" value="11:40 ص" required /></div>
+  <div><label>العصر</label><input type="text" id="pPrayerAsr" value="2:48 م" required /></div>
+  <div><label>المغرب</label><input type="text" id="pPrayerMaghrib" value="5:20 م" required /></div>
+  <div><label>العشاء</label><input type="text" id="pPrayerIsha" value="6:38 م" required /></div>
+</div>
+<button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> حفظ وتحديث مواقيت الصلاة</button>
+</form>
+</div>
+
+<div class="add-form" style="margin-top:2rem;">
+<h3>إضافة ذكر جديد للأذكار المعتمدة</h3>
+<form id="addAthkarForm" style="display: grid; gap: 1.2rem; margin-top: 1rem;">
+<textarea id="athkarText" placeholder="نص الذكر (مثال: سبحان الله وبحمده...)" required></textarea>
+<input type="text" id="athkarCount" placeholder="عدد التكرار (مثال: تُقال 3 مرات أو 100 مرة)" required />
+<button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> إضافة الذكر لقائمة الطلاب</button>
+</form>
+</div>
+<div id="supervisorAthkarListContainer" style="display:grid; gap:1rem; margin-top:1.5rem;"></div>
 </div>
 
 <div id="supervisor-quizzes" class="tab-content">
@@ -2044,6 +2083,22 @@ gap: 1rem;
 </div>
 </div>
 
+<!-- نافذة توليد بطاقات الاقتباس (Quotes Cards) -->
+<div id="quoteCardModal" class="modal">
+  <div class="modal-content" style="max-width: 550px; background: transparent; border: none; box-shadow: none;">
+    <button class="close-modal" style="position: absolute; top: 15px; left: 25px; color: #fff; font-size: 2rem; background: rgba(0,0,0,0.7); width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 10;" onclick="closeQuoteCardModal()">×</button>
+    <div class="quote-card-modal-box" id="quoteCardBox">
+      <i class="fas fa-mosque" style="font-size: 2.5rem; color: #fbbf24; margin-bottom: 1rem;"></i>
+      <h3 style="font-size: 1.2rem; color: #34d399; margin-bottom: 0.5rem;">منصة الدعوة إلى الله</h3>
+      <p id="quoteCardTextContent" style="font-size: 1.35rem; line-height: 1.8; margin: 1.5rem 0; padding: 1rem; border-top: 2px dashed rgba(255,255,255,0.3); border-bottom: 2px dashed rgba(255,255,255,0.3);">اقتباس إسلامي مميز</p>
+      <div style="font-size: 0.85rem; color: #94a3b8; font-family: 'Cairo', sans-serif;">شاركها على حالتك لتعم الفائدة الدعوية 🌟</div>
+    </div>
+    <div style="margin-top: 1.5rem; text-align: center;">
+      <button class="btn btn-primary" onclick="downloadQuoteCardPdf()"><i class="fas fa-download"></i> تحميل البطاقة كصورة / PDF</button>
+    </div>
+  </div>
+</div>
+
 <!-- UI Customizer Modal -->
 <div id="uiCustomizerModal" class="modal">
   <div class="modal-content" style="max-width: 460px;">
@@ -2118,7 +2173,11 @@ logs: 'dawa_logs',
 notifications: 'dawa_notifications',
 schedules: 'dawa_schedules',
 assignments: 'dawa_assignments',
-systemState: 'dawa_system_state'
+systemState: 'dawa_system_state',
+hadiths: 'dawa_hadiths',
+library: 'dawa_library',
+prayers: 'dawa_prayers',
+athkar: 'dawa_athkar'
 };
 
 function getData(key) { return JSON.parse(localStorage.getItem(key)) || []; }
@@ -2178,6 +2237,49 @@ function countTasbeeh() {
   }
 }
 
+// البيانات الافتراضية الأولية لما تحكم المشرفين
+if(getData(DB.hadiths).length === 0) {
+setData(DB.hadiths, [
+{
+id: 1,
+title: 'حديث تفريج الكروب العظيم',
+text: 'عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ، عَن النَّبِيِّ ﷺ قَالَ: "مَنْ نَفَّسَ عَنْ مُؤْمِنٍ كُرْبَةً مِنْ كُرَبِ الدُّنْيَا نَفَّسَ اللَّهُ عَنْهُ كُرْبَةً مِنْ كُرَبِ يَوْمِ الْقِيَامَةِ..."',
+grade: 'حديث صحيح (رواه مسلم)',
+benefits: 'الحث على قضاء حوائج المسلمين وتفريج الكروب، وفضل عظيم في الآخرة.'
+}
+]);
+}
+
+if(getData(DB.library).length === 0) {
+setData(DB.library, [
+{
+id: 1,
+title: 'الأصول الثلاثة وأدلتها',
+category: 'العقيدة',
+description: 'شرح مبسط ومختصر في أصول العقيدة الإسلامية الواجب معرفتها.',
+link: '#'
+},
+{
+id: 2,
+title: 'الأربعين النووية',
+category: 'الحديث الشريف',
+description: 'الأحاديث النبوية الجامعة لأمهات الأحكام والآداب والتربية الدعوية.',
+link: '#'
+}
+]);
+}
+
+if(!localStorage.getItem(DB.prayers)) {
+setData(DB.prayers, { fajr: '4:32 ص', sunrise: '6:00 ص', dhuhr: '11:40 ص', asr: '2:48 م', maghrib: '5:20 م', isha: '6:38 م' });
+}
+
+if(getData(DB.athkar).length === 0) {
+setData(DB.athkar, [
+{ id: 1, text: 'بِسْمِ اللَّهِ الَّذِي لَا يَضُرِّ مع اسمه شيء في الأرض ولا في السماء وهو السميع العليم.', count: 'تُقال 3 مرات' },
+{ id: 2, text: 'رَضِيتُ بِاللَّهِ رَبّاً، وَبِالإِسْلَامِ دِيناً، وَبُِمُحَمَّدٍ ﷺ نَبِيّاً ورسولاً.', count: 'تُقال 3 مرات' }
+]);
+}
+
 if(getData(DB.lessons).length === 0) {
 setData(DB.lessons, [
 {
@@ -2228,6 +2330,36 @@ phone: '01012345678',
 banned: false
 }
 ]);
+}
+
+function shareToSocial(platform, text) {
+  let encoded = encodeURIComponent(text + '\nمنصة الدعوة إلى الله 🌟');
+  if(platform === 'whatsapp') {
+    window.open(`https://api.whatsapp.com/send?text=${encoded}`, '_blank');
+  } else if(platform === 'twitter') {
+    window.open(`https://twitter.com/intent/tweet?text=${encoded}`, '_blank');
+  } else if(platform === 'facebook') {
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=${encoded}`, '_blank');
+  }
+}
+
+function openQuoteCardModal(text) {
+  document.getElementById('quoteCardTextContent').textContent = text;
+  document.getElementById('quoteCardModal').classList.add('active');
+}
+function closeQuoteCardModal() {
+  document.getElementById('quoteCardModal').classList.remove('active');
+}
+function downloadQuoteCardPdf() {
+  const element = document.getElementById('quoteCardBox');
+  const options = {
+    margin: 0,
+    filename: 'Dawa_Quote_Card.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2, useCORS: true, backgroundColor: '#064e3b' },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  };
+  html2pdf().from(element).set(options).save();
 }
 
 function exportStudentsReport() {
@@ -2517,6 +2649,9 @@ document.getElementById('studentAvatar').textContent = currentUser.name[0];
 document.getElementById('studentXPVal').textContent = `${currentUser.xp || 0} XP`;
 
 renderStudentLessons();
+renderStudentHadiths();
+renderStudentLibrary();
+renderStudentPrayersAndAthkar();
 renderStudentQuizzes();
 renderStudentNotes();
 renderStudentSupport();
@@ -2564,11 +2699,77 @@ document.getElementById('studentLessonsCount').textContent = lessons.length;
 document.getElementById('studentLessonsContainer').innerHTML = lessons.map(l => `
 <div class="card">
 <div class="card-header"><h3>${l.title}</h3><p>${l.subject}</p></div>
-<div class="card-body"><p>${l.content.substring(0, 80)}...</p></div>
+<div class="card-body">
+  <p>${l.content.substring(0, 80)}...</p>
+  <div class="share-bar">
+    <button class="share-btn share-whatsapp" onclick="shareToSocial('whatsapp', 'درس شرعي مميز: ${l.title}')"><i class="fab fa-whatsapp"></i> واتساب</button>
+    <button class="share-btn share-twitter" onclick="shareToSocial('twitter', 'درس شرعي مميز: ${l.title}')"><i class="fab fa-x-twitter"></i> إكس</button>
+    <button class="share-btn share-facebook" onclick="shareToSocial('facebook', 'درس شرعي مميز: ${l.title}')"><i class="fab fa-facebook"></i> فيسبوك</button>
+    <button class="share-btn share-card-btn" onclick="openQuoteCardModal('${l.title} - منصة الدعوة إلى الله')"><i class="fas fa-image"></i> بطاقة اقتباس</button>
+  </div>
+</div>
 <div class="card-footer">
   <button class="btn btn-primary btn-small" onclick="openLesson(${l.id})">فتح الدرس الشامل</button>
 </div>
 </div>`).join('');
+}
+
+// عرض الأحاديث المضافة والمعدلة من قبل المشرفين
+function renderStudentHadiths() {
+  const hadiths = getData(DB.hadiths);
+  const container = document.getElementById('studentHadithsListContainer');
+  container.innerHTML = hadiths.length ? hadiths.map(h => `
+    <div class="card">
+      <div class="card-header"><h3><i class="fas fa-scroll"></i> ${h.title}</h3></div>
+      <div class="card-body" style="font-family:'Amiri', serif; font-size:1.15rem; line-height:1.8;">
+        <p style="color:var(--primary); font-weight:bold; margin-bottom:0.8rem;">${h.text}</p>
+        <div style="background:var(--bg-alt); padding:1rem; border-radius:12px; border:1px solid var(--border); font-family:'Cairo', sans-serif; font-size:0.95rem; margin-bottom:1rem;">
+          <strong>الحكم والتخريج:</strong> ${h.grade}<br>
+          <strong>الفوائد التربوية والدعوية:</strong> ${h.benefits}
+        </div>
+        <div class="share-bar">
+          <button class="share-btn share-whatsapp" onclick="shareToSocial('whatsapp', '${h.text}')"><i class="fab fa-whatsapp"></i> واتساب</button>
+          <button class="share-btn share-twitter" onclick="shareToSocial('twitter', '${h.text}')"><i class="fab fa-x-twitter"></i> إكس</button>
+          <button class="share-btn share-facebook" onclick="shareToSocial('facebook', '${h.text}')"><i class="fab fa-facebook"></i> فيسبوك</button>
+          <button class="share-btn share-card-btn" onclick="openQuoteCardModal('${h.text}')"><i class="fas fa-image"></i> بطاقة اقتباس</button>
+        </div>
+      </div>
+    </div>
+  `).join('') : '<p style="color:var(--text-muted); text-align:center;">لم يقم المشرفون بإضافة أحاديث جديدة بعد.</p>';
+}
+
+// عرض المكتبة المضافة والمعدلة من قبل المشرفين
+function renderStudentLibrary() {
+  const books = getData(DB.library);
+  const container = document.getElementById('studentLibraryContainer');
+  container.innerHTML = books.length ? books.map(b => `
+    <div class="card">
+      <div class="card-header"><h3>${b.title}</h3><p>${b.category}</p></div>
+      <div class="card-body"><p>${b.description}</p></div>
+      <div class="card-footer"><a href="${b.link}" target="_blank" class="btn btn-primary btn-small" style="width:100%;"><i class="fas fa-download"></i> قراءة وتحميل الكتاب</a></div>
+    </div>
+  `).join('') : '<p style="color:var(--text-muted);">لا توجد كتب مضافة في المكتبة حالياً.</p>';
+}
+
+// عرض مواقيت الصلاة والأذكار المعدلة من قبل المشرفين
+function renderStudentPrayersAndAthkar() {
+  const p = getData(DB.prayers) || { fajr: '4:32 ص', sunrise: '6:00 ص', dhuhr: '11:40 ص', asr: '2:48 م', maghrib: '5:20 م', isha: '6:38 م' };
+  document.getElementById('studentPrayerTimesGrid').innerHTML = `
+    <div class="prayer-card"><p>الفجر</p><h4 style="color:var(--primary); font-size:1.2rem; margin-top:5px;">${p.fajr}</h4></div>
+    <div class="prayer-card"><p>الشروق</p><h4 style="color:var(--primary); font-size:1.2rem; margin-top:5px;">${p.sunrise}</h4></div>
+    <div class="prayer-card"><p>الظهر</p><h4 style="color:var(--primary); font-size:1.2rem; margin-top:5px;">${p.dhuhr}</h4></div>
+    <div class="prayer-card next-prayer"><p>العصر</p><h4 style="color:var(--warning); font-size:1.2rem; margin-top:5px;">${p.asr}</h4><span style="font-size:0.75rem; color:var(--warning);">الصلاة القادمة</span></div>
+    <div class="prayer-card"><p>المغرب</p><h4 style="color:var(--primary); font-size:1.2rem; margin-top:5px;">${p.maghrib}</h4></div>
+    <div class="prayer-card"><p>العشاء</p><h4 style="color:var(--primary); font-size:1.2rem; margin-top:5px;">${p.isha}</h4></div>
+  `;
+
+  const athkar = getData(DB.athkar);
+  document.getElementById('studentAthkarContainer').innerHTML = athkar.length ? athkar.map(a => `
+    <div class="athkar-card">
+      <p style="font-family:'Amiri', serif; font-size:1.15rem; line-height: 1.8;">${a.text} <strong>(${a.count})</strong></p>
+      <button class="btn btn-secondary btn-small" onclick="alert('أحسنت! تقبل الله طاعتك.')"><i class="fas fa-check"></i> قرأتها</button>
+    </div>
+  `).join('') : '<p style="color:var(--text-muted);">لا توجد أذكار مضافة حالياً.</p>';
 }
 
 let studentQuizStates = {};
@@ -3027,12 +3228,14 @@ if(userRole === 'admin') renderAdminStudentChatsControl();
 function loadSupervisorDashboard() {
 document.getElementById('supervisorName').textContent = currentUser.name;
 document.getElementById('totalStudents').textContent = getData(DB.students).length;
-document.getElementById('totalQuizzesCount').textContent = getData(DB.quizzes).length;
+document.getElementById('totalLibraryCount').textContent = getData(DB.library).length;
+document.getElementById('totalHadithsCount').textContent = getData(DB.hadiths).length;
 document.getElementById('pendingAssignmentsCount').textContent = getData(DB.assignments).filter(a => !a.grade).length;
-document.getElementById('totalSupportCount').textContent = getData(DB.support).length;
 
 renderSupervisorLessons();
-renderSupervisorQuizzes();
+renderSupervisorHadiths();
+renderSupervisorLibrary();
+renderSupervisorPrayersAndAthkar();
 renderSupervisorGrades();
 renderSupervisorStudents();
 renderSupervisorSupportAndNotes();
@@ -3130,7 +3333,6 @@ function generateRandomQuiz() {
     title: 'اختبار شرعي عشوائي عام من بنك الأسئلة',
     subject: 'شامل المنهج',
     questions: [
-      { question: 'ما النسبة المئوية لإنجاز حفظ السورة الكريمة؟', options: ['50%', '75%', '90%', '100%'], correct: 2, explanation: 'حسب بنك الأسئلة الشرعية' },
       { question: 'ما هو الفرض العيني من العلوم الشرعية؟', options: ['ما لا يسع المسلم جهله في عبادته', 'علم الفلك', 'علم الرياضيات', 'اللغات الأجنبية'], correct: 0, explanation: 'الفرض العيني هو علم ما تصح به عقيدة المسلم وعبادته' }
     ],
     date: new Date().toLocaleDateString('ar-EG')
@@ -3168,6 +3370,141 @@ this.reset();
 renderSupervisorLessons();
 alert('تم حفظ الدرس بنجاح');
 });
+
+// تحكم المشرفين بالأحاديث
+function renderSupervisorHadiths() {
+  const hadiths = getData(DB.hadiths);
+  document.getElementById('supervisorHadithsContainer').innerHTML = hadiths.length ? hadiths.map(h => `
+    <div class="card">
+      <div class="card-header"><h3>${h.title}</h3></div>
+      <div class="card-body">
+        <p style="font-family:'Amiri', serif; font-size:1.1rem; color:var(--primary); font-weight:bold;">${h.text}</p>
+        <p style="margin-top:0.6rem;"><strong>التخريج:</strong> ${h.grade}</p>
+        <p style="margin-top:0.3rem;"><strong>الفوائد:</strong> ${h.benefits}</p>
+      </div>
+      <div class="card-footer"><button class="btn btn-danger btn-small" onclick="deleteHadith(${h.id})"><i class="fas fa-trash"></i> حذف الحديث</button></div>
+    </div>
+  `).join('') : '<p>لا توجد أحاديث مضافة.</p>';
+}
+
+document.getElementById('addHadithForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  let hadiths = getData(DB.hadiths);
+  hadiths.push({
+    id: Date.now(),
+    title: document.getElementById('hadithTitle').value.trim(),
+    text: document.getElementById('hadithText').value.trim(),
+    grade: document.getElementById('hadithGrade').value.trim(),
+    benefits: document.getElementById('hadithBenefits').value.trim()
+  });
+  setData(DB.hadiths, hadiths);
+  logAction(currentUser.name, 'إضافة حديث نبوي جديد للبنك');
+  alert('تم إضافة الحديث ونشره بنجاح للطلاب');
+  this.reset();
+  renderSupervisorHadiths();
+});
+
+function deleteHadith(id) {
+  setData(DB.hadiths, getData(DB.hadiths).filter(h => h.id !== id));
+  logAction(currentUser.name, 'حذف حديث نبوي');
+  renderSupervisorHadiths();
+  alert('تم حذف الحديث بنجاح.');
+}
+
+// تحكم المشرفين بالمكتبة الإسلامية
+function renderSupervisorLibrary() {
+  const books = getData(DB.library);
+  document.getElementById('supervisorLibraryContainer').innerHTML = books.length ? books.map(b => `
+    <div class="card">
+      <div class="card-header"><h3>${b.title}</h3><p>${b.category}</p></div>
+      <div class="card-body"><p>${b.description}</p></div>
+      <div class="card-footer"><button class="btn btn-danger btn-small" onclick="deleteLibraryBook(${b.id})"><i class="fas fa-trash"></i> حذف الكتاب</button></div>
+    </div>
+  `).join('') : '<p>لا توجد كتب مضافة بالمكتبة.</p>';
+}
+
+document.getElementById('addLibraryBookForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  let books = getData(DB.library);
+  books.push({
+    id: Date.now(),
+    title: document.getElementById('libBookTitle').value.trim(),
+    category: document.getElementById('libBookCat').value.trim(),
+    description: document.getElementById('libBookDesc').value.trim(),
+    link: document.getElementById('libBookLink').value.trim()
+  });
+  setData(DB.library, books);
+  logAction(currentUser.name, 'إضافة كتاب للمكتبة الإسلامية');
+  alert('تم إضافة الكتاب بنجاح للمكتبة');
+  this.reset();
+  renderSupervisorLibrary();
+});
+
+function deleteLibraryBook(id) {
+  setData(DB.library, getData(DB.library).filter(b => b.id !== id));
+  logAction(currentUser.name, 'حذف كتاب من المكتبة');
+  renderSupervisorLibrary();
+  alert('تم حذف الكتاب بنجاح.');
+}
+
+// تحكم المشرفين بمواقيت الصلاة والأذكار
+function renderSupervisorPrayersAndAthkar() {
+  const p = getData(DB.prayers) || { fajr: '4:32 ص', sunrise: '6:00 ص', dhuhr: '11:40 ص', asr: '2:48 م', maghrib: '5:20 م', isha: '6:38 م' };
+  document.getElementById('pPrayerFajr').value = p.fajr;
+  document.getElementById('pPrayerSunrise').value = p.sunrise;
+  document.getElementById('pPrayerDhuhr').value = p.dhuhr;
+  document.getElementById('pPrayerAsr').value = p.asr;
+  document.getElementById('pPrayerMaghrib').value = p.maghrib;
+  document.getElementById('pPrayerIsha').value = p.isha;
+
+  const athkar = getData(DB.athkar);
+  document.getElementById('supervisorAthkarListContainer').innerHTML = athkar.length ? athkar.map(a => `
+    <div style="background:var(--bg-alt); padding:1rem; border-radius:12px; border:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; gap:1rem;">
+      <div>
+        <p style="font-family:'Amiri', serif; font-size:1.1rem; font-weight:bold;">${a.text}</p>
+        <p style="font-size:0.85rem; color:var(--primary); margin-top:3px;">${a.count}</p>
+      </div>
+      <button class="btn btn-danger btn-small" onclick="deleteAthkar(${a.id})"><i class="fas fa-trash"></i> حذف</button>
+    </div>
+  `).join('') : '<p>لا توجد أذكار مضافة.</p>';
+}
+
+document.getElementById('updatePrayerTimesForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  let prayers = {
+    fajr: document.getElementById('pPrayerFajr').value.trim(),
+    sunrise: document.getElementById('pPrayerSunrise').value.trim(),
+    dhuhr: document.getElementById('pPrayerDhuhr').value.trim(),
+    asr: document.getElementById('pPrayerAsr').value.trim(),
+    maghrib: document.getElementById('pPrayerMaghrib').value.trim(),
+    isha: document.getElementById('pPrayerIsha').value.trim()
+  };
+  setData(DB.prayers, prayers);
+  logAction(currentUser.name, 'تحديث مواقيت الصلاة');
+  alert('تم تحديث مواقيت الصلاة بنجاح لجميع الطلاب');
+});
+
+document.getElementById('addAthkarForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  let athkar = getData(DB.athkar);
+  athkar.push({
+    id: Date.now(),
+    text: document.getElementById('athkarText').value.trim(),
+    count: document.getElementById('athkarCount').value.trim()
+  });
+  setData(DB.athkar, athkar);
+  logAction(currentUser.name, 'إضافة ذكر جديد للأذكار');
+  alert('تم إضافة الذكر بنجاح لقائمة الطلاب');
+  this.reset();
+  renderSupervisorPrayersAndAthkar();
+});
+
+function deleteAthkar(id) {
+  setData(DB.athkar, getData(DB.athkar).filter(a => a.id !== id));
+  logAction(currentUser.name, 'حذف ذكر من الأذكار');
+  renderSupervisorPrayersAndAthkar();
+  alert('تم حذف الذكر بنجاح.');
+}
 
 function addQuestionField() {
 const container = document.getElementById('questionsBuilderContainer');
@@ -3237,7 +3574,6 @@ alert('تم إضافة ونشر الاختبار المتعدد الأسئلة �
 
 function renderSupervisorQuizzes() {
 const quizzes = getData(DB.quizzes);
-document.getElementById('totalQuizzesCount').textContent = quizzes.length;
 document.getElementById('supervisorQuizzesContainer').innerHTML = quizzes.length ? quizzes.map(q => {
 const questionsList = q.questions || [{ question: q.question, options: q.options, correct: q.correct }];
 return `
